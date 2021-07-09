@@ -33,6 +33,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E50254F326983D37000C6F03 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				E515A1582697FC85008D4FE4 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		E515A14A2697FC84008D4FE4 = {
 			isa = PBXGroup;
 			children = (
@@ -53,7 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				E515A1562697FC85008D4FE4 /* FilmiesApp.swift */,
-				E515A1582697FC85008D4FE4 /* ContentView.swift */,
+				E50254F326983D37000C6F03 /* Views */,
 				E515A15A2697FC95008D4FE4 /* Assets.xcassets */,
 				E515A15F2697FC95008D4FE4 /* Info.plist */,
 				E515A15C2697FC95008D4FE4 /* Preview Content */,
