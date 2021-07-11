@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct ContentView: View {
+    
+    @ObservedObject var modelData = ModelData()
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
-            .foregroundColor(Color("BrandPink"))
+        CategoryHome()
     }
 }
 

@@ -3,23 +3,41 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27147AFF2124A97E06A86996 /* Pods_Filmies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1DF6C58740873839F5188D /* Pods_Filmies.framework */; };
+		E50254F626983E6B000C6F03 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50254F526983E6B000C6F03 /* ModelData.swift */; };
+		E50254F826983E80000C6F03 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50254F726983E80000C6F03 /* Movie.swift */; };
 		E515A1572697FC85008D4FE4 /* FilmiesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E515A1562697FC85008D4FE4 /* FilmiesApp.swift */; };
 		E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E515A1582697FC85008D4FE4 /* ContentView.swift */; };
 		E515A15B2697FC95008D4FE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15A2697FC95008D4FE4 /* Assets.xcassets */; };
 		E515A15E2697FC95008D4FE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */; };
+		E56A3BF22699622800494650 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56A3BF12699622800494650 /* CategoryRow.swift */; };
+		E5A0CBB9269845D20088F968 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBB8269845D20088F968 /* Movies.swift */; };
+		E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBB26984F940088F968 /* CategoryHome.swift */; };
+		E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBD269850420088F968 /* CategoryItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E1DF6C58740873839F5188D /* Pods_Filmies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filmies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E50254F526983E6B000C6F03 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
+		E50254F726983E80000C6F03 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		E515A1532697FC85008D4FE4 /* Filmies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filmies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E515A1562697FC85008D4FE4 /* FilmiesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmiesApp.swift; sourceTree = "<group>"; };
 		E515A1582697FC85008D4FE4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E515A15A2697FC95008D4FE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E515A15F2697FC95008D4FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E56A3BF12699622800494650 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
+		E5A0CBB8269845D20088F968 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
+		E5A0CBBB26984F940088F968 /* CategoryHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHome.swift; sourceTree = "<group>"; };
+		E5A0CBBD269850420088F968 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
+		E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		E5C6F1582699A37C00631576 /* Epilogue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-Regular.ttf"; sourceTree = "<group>"; };
+		EAE79C3C2D7E56BD45275267 /* Pods-Filmies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmies.release.xcconfig"; path = "Target Support Files/Pods-Filmies/Pods-Filmies.release.xcconfig"; sourceTree = "<group>"; };
+		ED199E9CE3D2131CC83C5A04 /* Pods-Filmies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmies.debug.xcconfig"; path = "Target Support Files/Pods-Filmies/Pods-Filmies.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,18 +45,47 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27147AFF2124A97E06A86996 /* Pods_Filmies.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5B32ED206E6D00D211A85DCE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ED199E9CE3D2131CC83C5A04 /* Pods-Filmies.debug.xcconfig */,
+				EAE79C3C2D7E56BD45275267 /* Pods-Filmies.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		695B4E8BED49C07B9CE95EB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E1DF6C58740873839F5188D /* Pods_Filmies.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E50254F326983D37000C6F03 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E5A0CBBA26984B2E0088F968 /* Categories */,
 				E515A1582697FC85008D4FE4 /* ContentView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		E50254F426983E5C000C6F03 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E50254F526983E6B000C6F03 /* ModelData.swift */,
+				E5A0CBB8269845D20088F968 /* Movies.swift */,
+				E50254F726983E80000C6F03 /* Movie.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		E515A14A2697FC84008D4FE4 = {
@@ -46,6 +93,8 @@
 			children = (
 				E515A1552697FC85008D4FE4 /* Filmies */,
 				E515A1542697FC85008D4FE4 /* Products */,
+				5B32ED206E6D00D211A85DCE /* Pods */,
+				695B4E8BED49C07B9CE95EB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,10 +110,13 @@
 			isa = PBXGroup;
 			children = (
 				E515A1562697FC85008D4FE4 /* FilmiesApp.swift */,
+				E50254F426983E5C000C6F03 /* Model */,
 				E50254F326983D37000C6F03 /* Views */,
 				E515A15A2697FC95008D4FE4 /* Assets.xcassets */,
 				E515A15F2697FC95008D4FE4 /* Info.plist */,
+				E5C6F1592699A38100631576 /* Resources */,
 				E515A15C2697FC95008D4FE4 /* Preview Content */,
+				E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */,
 			);
 			path = Filmies;
 			sourceTree = "<group>";
@@ -77,6 +129,32 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		E5A0CBBA26984B2E0088F968 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				E5A0CBBB26984F940088F968 /* CategoryHome.swift */,
+				E56A3BF12699622800494650 /* CategoryRow.swift */,
+				E5A0CBBD269850420088F968 /* CategoryItem.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		E5AC242B269AAC6B00FBBDD3 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E5C6F1582699A37C00631576 /* Epilogue-Regular.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		E5C6F1592699A38100631576 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E5AC242B269AAC6B00FBBDD3 /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -84,9 +162,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E515A1622697FC95008D4FE4 /* Build configuration list for PBXNativeTarget "Filmies" */;
 			buildPhases = (
+				0975489633328B98BC84B1B0 /* [CP] Check Pods Manifest.lock */,
 				E515A14F2697FC85008D4FE4 /* Sources */,
 				E515A1502697FC85008D4FE4 /* Frameworks */,
 				E515A1512697FC85008D4FE4 /* Resources */,
+				2A5902329FA0E233AC387149 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -141,13 +221,61 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0975489633328B98BC84B1B0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Filmies-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2A5902329FA0E233AC387149 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Filmies/Pods-Filmies-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Filmies/Pods-Filmies-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Filmies/Pods-Filmies-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E515A14F2697FC85008D4FE4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5A0CBB9269845D20088F968 /* Movies.swift in Sources */,
+				E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */,
+				E56A3BF22699622800494650 /* CategoryRow.swift in Sources */,
 				E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */,
+				E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */,
 				E515A1572697FC85008D4FE4 /* FilmiesApp.swift in Sources */,
+				E50254F826983E80000C6F03 /* Movie.swift in Sources */,
+				E50254F626983E6B000C6F03 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -156,6 +284,7 @@
 /* Begin XCBuildConfiguration section */
 		E515A1602697FC95008D4FE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -217,6 +346,7 @@
 		};
 		E515A1612697FC95008D4FE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -272,6 +402,7 @@
 		};
 		E515A1632697FC95008D4FE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ED199E9CE3D2131CC83C5A04 /* Pods-Filmies.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -294,6 +425,7 @@
 		};
 		E515A1642697FC95008D4FE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EAE79C3C2D7E56BD45275267 /* Pods-Filmies.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

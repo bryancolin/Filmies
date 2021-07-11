@@ -93,3 +93,7 @@ iOSInjectionProject/
 
 # CocoaPods
 Pods
+
+# Config
+Filmies/Config.xcconfig
+*.xcconfig
