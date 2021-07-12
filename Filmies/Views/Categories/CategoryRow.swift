@@ -15,7 +15,8 @@ struct CategoryRow: View {
     var body: some View {
         VStack(alignment: .leading) {
             Text(categoryName)
-                .font(.headline)
+                .font(.title2)
+                .fontWeight(.bold)
                 .padding(.leading, 15)
                 .padding(.top, 5)
                 .foregroundColor(Color("BrandPink"))
@@ -23,18 +24,19 @@ struct CategoryRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top) {
                     ForEach(movies) { movie in
-                        CategoryItem(movie: movie)
+                        NavigationLink(destination: MovieDetails(movie: movie)) {
+                            CategoryItem(movie: movie)
+                        }
                     }
                 }
             }
-            .frame(height: 260)
         }
     }
 }
 
 struct CategoryRow_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryRow(categoryName: "Now Playing", movies: ModelData().movies)
+        CategoryRow(categoryName: "Now Playing", movies: ModelData().sampleMovies)
             .previewLayout(.sizeThatFits)
     }
 }

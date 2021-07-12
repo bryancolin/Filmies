@@ -11,7 +11,22 @@ struct Movie: Codable, Identifiable {
     var id: Int
     var title: String
     var description: String
+    
+    var runTime: Int?
+    var duration: String {
+        if let time = runTime {
+            let hours = time / 60
+            let minutes = time % 60
+            return String("\(hours)h \(minutes)m")
+        }
+        return String()
+    }
+    
     var releaseDate: String
+    var releaseYear: String {
+        return String(releaseDate.prefix(4))
+    }
+    
     var url: String 
     var imageURL: String {
         return "https://image.tmdb.org/t/p/w500" + url
@@ -23,5 +38,6 @@ struct Movie: Codable, Identifiable {
         case description = "overview"
         case releaseDate = "release_date"
         case url = "poster_path"
+        case runTime = "runtime"
     }
 }

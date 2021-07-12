@@ -18,10 +18,17 @@ struct CategoryItem: View {
                 .resizable()
                 .frame(width: 150, height: 220, alignment: .leading)
                 .cornerRadius(8)
-            Text(movie.title)
-                .frame(width: 150, alignment: .leading)
-                .font(.body)
-                .foregroundColor(Color("BrandPink"))
+                .overlay(
+                    Circle()
+                        .frame(width: 25, height: 25)
+                        .foregroundColor(Color("BrandPink"))
+                        .overlay(
+                            Text(movie.releaseYear)
+                                .font(.system(size: 9))
+                                .foregroundColor(.white)
+                        )
+                        .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 0))
+                    , alignment: .topLeading)
         }
         .padding(.leading, 15)
     }
@@ -29,6 +36,7 @@ struct CategoryItem: View {
 
 struct CategoryItem_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryItem(movie: ModelData().movies[0])
+        CategoryItem(movie: ModelData().sampleMovies[0])
+            .previewLayout(.sizeThatFits)
     }
 }

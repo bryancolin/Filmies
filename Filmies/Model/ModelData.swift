@@ -13,13 +13,15 @@ final class ModelData: ObservableObject {
     private let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
     
     @Published var movies = [Movie]()
+    @Published var sampleMovies = [
+        Movie(id: 1, title: "Black Widow", description: "Avengers", runTime: 134, releaseDate: "2021", url: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg")
+    ]
     @Published var nowPlayingMovies = [Movie]()
     @Published var popularMovies = [Movie]()
     @Published var topRatedMovies = [Movie]()
     @Published var upcomingMovies = [Movie]()
     
     func fetchMovies(_ type: String) {
-        
         let url = "https://api.themoviedb.org/3/movie/\(type)?api_key=\(apiKey ?? "")"
         
         AF.request(url)
@@ -43,7 +45,7 @@ final class ModelData: ObservableObject {
         case "upcoming":
             upcomingMovies = result.all
         default:
-            movies = result.all
+            sampleMovies = result.all
         }
     }
 }

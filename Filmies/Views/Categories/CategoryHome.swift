@@ -13,11 +13,11 @@ struct CategoryHome: View {
     @ObservedObject var modelData = ModelData()
     
     init() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [
-            .foregroundColor: UIColor(named: "BrandPink") ?? UIColor.black]
+        let defaultColor = UIColor(named: "BrandPink") ?? UIColor.black
         
-        UINavigationBar.appearance().titleTextAttributes = [
-            .foregroundColor: UIColor(named: "BrandPink") ?? UIColor.black]
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: defaultColor]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: defaultColor]
+        UINavigationBar.appearance().barTintColor = UIColor(named: "BrandBlue")
     }
     
     var body: some View {
