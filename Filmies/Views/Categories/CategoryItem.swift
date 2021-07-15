@@ -32,6 +32,7 @@ struct CategoryItem: View {
                     , alignment: .topLeading)
         }
         .padding(.leading, 15)
+        .padding(.vertical)
         .onTapGesture {
             showingModal.toggle()
         }

@@ -10,9 +10,10 @@ import SDWebImageSwiftUI
 
 struct CardView: View {
     
-    @State var category: String
-    @State var scrolled = 0
+    @Binding var category: String
     @ObservedObject var modelData: ModelData
+    
+    @State var scrolled = 0
     @State var offsets: [CGFloat] = Array(repeating: 0, count: 20)
     
     func calculateWidth() -> CGFloat {
@@ -89,7 +90,7 @@ struct CardView: View {
         }
         .frame(height: UIScreen.main.bounds.height / 1.8)
         .padding(.horizontal)
-        .padding(.top, 25)
+        .padding(.vertical, 20)
     }
 }
 
