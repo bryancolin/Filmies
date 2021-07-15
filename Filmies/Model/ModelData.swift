@@ -11,7 +11,7 @@ import Alamofire
 final class ModelData: ObservableObject {
     
     private let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
-    let params = ["now_playing", "popular", "top_rated", "upcoming"]
+    var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
     
     @Published var sampleMovies = [
         Movie(id: 1, title: "Black Widow", description: "Avengers", runTime: 134, releaseDate: "2021", url: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg"),
@@ -21,8 +21,9 @@ final class ModelData: ObservableObject {
     
     func fetchMovies() {
         
-        for param in params {
-            let url = "https://api.themoviedb.org/3/movie/\(param)?api_key=\(apiKey ?? "")"
+        for (index, param) in params.enumerated() {
+            let trend = (index == 0 || index == 1) ? "trending/" : ""
+            let url = "https://api.themoviedb.org/3/\(trend)movie/\(param)?api_key=\(apiKey ?? "")"
             
             AF.request(url)
                 .validate()
