@@ -22,10 +22,10 @@
 		E56A3BF22699622800494650 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56A3BF12699622800494650 /* CategoryRow.swift */; };
 		E572603026A00D3000864493 /* ScrollTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572602F26A00D2F00864493 /* ScrollTabView.swift */; };
 		E572603226A00D5B00864493 /* RoundedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572603126A00D5B00864493 /* RoundedText.swift */; };
-		E58A7F13269C0EAC0066A4C7 /* MovieDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58A7F12269C0EAC0066A4C7 /* MovieDetails.swift */; };
 		E5A0CBB9269845D20088F968 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBB8269845D20088F968 /* Movies.swift */; };
 		E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBB26984F940088F968 /* CategoryHome.swift */; };
 		E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBD269850420088F968 /* CategoryItem.swift */; };
+		E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B3AF3026A0384B004B2DCC /* CustomColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,11 +46,11 @@
 		E56A3BF12699622800494650 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		E572602F26A00D2F00864493 /* ScrollTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTabView.swift; sourceTree = "<group>"; };
 		E572603126A00D5B00864493 /* RoundedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedText.swift; sourceTree = "<group>"; };
-		E58A7F12269C0EAC0066A4C7 /* MovieDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetails.swift; sourceTree = "<group>"; };
 		E5A0CBB8269845D20088F968 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		E5A0CBBB26984F940088F968 /* CategoryHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHome.swift; sourceTree = "<group>"; };
 		E5A0CBBD269850420088F968 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		E5B3AF3026A0384B004B2DCC /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		E5C6F1582699A37C00631576 /* Epilogue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-Regular.ttf"; sourceTree = "<group>"; };
 		EAE79C3C2D7E56BD45275267 /* Pods-Filmies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmies.release.xcconfig"; path = "Target Support Files/Pods-Filmies/Pods-Filmies.release.xcconfig"; sourceTree = "<group>"; };
 		ED199E9CE3D2131CC83C5A04 /* Pods-Filmies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmies.debug.xcconfig"; path = "Target Support Files/Pods-Filmies/Pods-Filmies.debug.xcconfig"; sourceTree = "<group>"; };
@@ -101,6 +101,7 @@
 		E50254F426983E5C000C6F03 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E5B3AF3026A0384B004B2DCC /* CustomColor.swift */,
 				E5A0CBB8269845D20088F968 /* Movies.swift */,
 				E50254F726983E80000C6F03 /* Movie.swift */,
 			);
@@ -169,7 +170,6 @@
 		E58A7F14269C0EB90066A4C7 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
-				E58A7F12269C0EAC0066A4C7 /* MovieDetails.swift */,
 				E54CC43E269D8EC50083C6FE /* ModalView.swift */,
 			);
 			path = Movie;
@@ -331,6 +331,7 @@
 				E56A3BF22699622800494650 /* CategoryRow.swift in Sources */,
 				E54CC441269DB1D80083C6FE /* RoundedCorner.swift in Sources */,
 				E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */,
+				E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */,
 				E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */,
 				E515A1572697FC85008D4FE4 /* FilmiesApp.swift in Sources */,
 				E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */,
@@ -339,7 +340,6 @@
 				E50254F626983E6B000C6F03 /* ModelData.swift in Sources */,
 				E54CC43A269D8DBE0083C6FE /* CardView.swift in Sources */,
 				E572603026A00D3000864493 /* ScrollTabView.swift in Sources */,
-				E58A7F13269C0EAC0066A4C7 /* MovieDetails.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
