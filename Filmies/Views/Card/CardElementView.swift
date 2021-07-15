@@ -23,7 +23,7 @@ struct CardElementView: View {
                 .foregroundColor(.white)
                 .padding(.vertical, 6)
                 .padding(.horizontal, 25)
-                .background(Color.blue)
+                .background(Color("BrandPink"))
                 .clipShape(Capsule())
         }
         .sheet(isPresented: $showingModal) {

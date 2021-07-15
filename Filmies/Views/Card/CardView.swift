@@ -28,7 +28,6 @@ struct CardView: View {
     }
     
     var body: some View {
-        
         ZStack {
             ForEach(getArrayIndexed(), id: \.element) { index, movie in
                 HStack {
@@ -49,21 +48,23 @@ struct CardView: View {
                 .contentShape(Rectangle())
                 .offset(x: offsets[index])
                 .gesture(DragGesture().onChanged({ value in
+                    let translation = value.translation.width
                     withAnimation {
-                        if value.translation.width < 0 && index < (modelData.movies[category]?.count ?? 0) - 1{
-                            offsets[index] = value.translation.width
+                        if translation < 0 && index < (modelData.movies[category]?.count ?? 0) - 1{
+                            offsets[index] = translation
 //                            modelData.movies["now_playing"]?[index].offset = value.translation.width
                         } else {
                             if index > 0 {
-                                offsets[index - 1] = -(calculateWidth() + 60) + value.translation.width
+                                offsets[index - 1] = -(calculateWidth() + 60) + translation
 //                                modelData.movies["now_playing"]?[index - 1].offset = -(calculateWidth() + 60) + value.translation.width
                             }
                         }
                     }
                 }).onEnded({ value in
+                    let translation = value.translation.width
                     withAnimation {
-                        if value.translation.width < 0 {
-                            if -value.translation.width > 180 && index < (modelData.movies[category]?.count ?? 0) - 1 {
+                        if translation < 0 {
+                            if -translation > 180 && index < (modelData.movies[category]?.count ?? 0) - 1 {
                                 offsets[index] = -(calculateWidth() + 60)
 //                                modelData.movies["now_playing"]?[index].offset = -(calculateWidth() + 60)
                                 scrolled += 1
@@ -73,7 +74,7 @@ struct CardView: View {
                             }
                         } else {
                             if index > 0 {
-                                if value.translation.width > 180 {
+                                if translation > 180 {
                                     offsets[index - 1] = 0
 //                                    modelData.movies["now_playing"]?[index - 1].offset = 0
                                     scrolled -= 1

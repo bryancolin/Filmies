@@ -13,11 +13,11 @@ final class ModelData: ObservableObject {
     private let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
     var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
     
+    @Published var movies = [String: [Movie]]()
     @Published var sampleMovies = [
         Movie(id: 1, title: "Black Widow", description: "Avengers", runTime: 134, releaseDate: "2021", url: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg"),
         Movie(id: 2, title: "Black Widow", description: "Avengers", runTime: 134, releaseDate: "2021", url: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg")
     ]
-    @Published var movies = [String: [Movie]]()
     
     func fetchMovies() {
         

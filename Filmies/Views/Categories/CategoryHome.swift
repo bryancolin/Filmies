@@ -34,15 +34,15 @@ struct CategoryHome: View {
             }
             
             // Scroll Tab for Trending Movies (Day & Week)
-            ScrollTab(titles: ["Day", "Week"], index: $selectedIndex1)
+            ScrollTabView(titles: ["Day", "Week"], index: $selectedIndex1)
             CardView(category: $modelData.params[selectedIndex1], modelData: modelData)
             
             // Scroll Tab for Now Showing Movies
-            ScrollTab(titles: ["Now Playing", "Popular", "Upcoming"], index: $selectedIndex2)
+            ScrollTabView(titles: ["Now Playing", "Popular", "Upcoming"], index: $selectedIndex2)
             CategoryRow(category: $modelData.params[selectedIndex2+2], modelData: modelData)
             
             // Scroll Tab for Top Rated Movies
-            ScrollTab(titles: ["Top Rated"], index: $selectedIndex3)
+            ScrollTabView(titles: ["Top Rated"], index: $selectedIndex3)
             CategoryRow(category: $modelData.params[modelData.params.count-1], modelData: modelData)
             
         }
@@ -59,45 +59,6 @@ struct CategoryHome: View {
 struct FilmCategory_Previews: PreviewProvider {
     static var previews: some View {
         CategoryHome()
-    }
-}
-
-struct ScrollTab: View {
-    
-    var titles: [String]
-    @Binding var index: Int
-    
-    var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                RoundedText(titles: titles, index: $index)
-            }
-            .padding(.horizontal)
-        }
-    }
-}
-
-struct RoundedText: View {
-    
-    var titles: [String]
-    @Binding var index: Int
-    
-    var body: some View {
-        ForEach(0..<titles.count) { value in
-            Text(titles[value])
-                .font(.system(size: 15))
-                .fontWeight(.bold)
-                .padding(.vertical, 6)
-                .padding(.horizontal, 20)
-                .foregroundColor(value == index ? .white : Color("BrandPink"))
-                .background(Color("BrandPink").opacity(value == index ? 1 : 0))
-                .clipShape(Capsule())
-                .onTapGesture {
-                    if index < titles.count {
-                        index = value
-                    }
-                }
-        }
     }
 }
 
