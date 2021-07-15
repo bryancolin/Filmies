@@ -20,7 +20,6 @@ final class ModelData: ObservableObject {
     ]
     
     func fetchMovies() {
-        
         for (index, param) in params.enumerated() {
             let trend = (index == 0 || index == 1) ? "trending/" : ""
             let url = "https://api.themoviedb.org/3/\(trend)movie/\(param)?api_key=\(apiKey ?? "")"

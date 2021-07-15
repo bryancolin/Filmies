@@ -23,6 +23,13 @@ struct CardView: View {
         return width
     }
     
+    func calculateHeight(with index: Int) -> CGFloat {
+        let screen = UIScreen.main.bounds.height / 1.8
+        
+        let height = screen - CGFloat(index - scrolled) * 50
+        return height
+    }
+    
     func getArrayIndexed() -> [EnumeratedSequence<[Movie]>.Element] {
         return modelData.movies[category]?.enumerated().reversed().map { $0 } ?? [Movie]().enumerated().map { $0 }
     }
@@ -35,7 +42,7 @@ struct CardView: View {
                         WebImage(url: URL(string: movie.imageURL))
                             .resizable()
                             .aspectRatio(contentMode: .fill)
-                            .frame(width: calculateWidth(), height: (UIScreen.main.bounds.height / 1.8) - CGFloat(index - scrolled) * 50)
+                            .frame(width: calculateWidth(), height: calculateHeight(with: index))
                             .cornerRadius(15)
                             .overlay(
                                 CardElementView(movie: movie), alignment: .bottomLeading

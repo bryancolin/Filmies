@@ -12,27 +12,26 @@ struct ModalView: View {
     
     var movie: Movie
     @Binding var showModal: Bool
+    @State var selectedIndex = 0
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            VStack {
+            VStack(spacing: 0) {
                 HStack {
                     Text(movie.title)
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.black)
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                        .foregroundColor(.white)
                     
                     Spacer()
                     
                     VStack(alignment: .trailing) {
                         Text(movie.releaseYear)
-                            .font(.caption)
-                            .fontWeight(.bold)
+                            .font(.caption2)
                             .foregroundColor(.white)
-                            
-                        Text(movie.duration)
-                            .font(.caption)
-                            .fontWeight(.bold)
+
+                        Text("2h 14m")
+                            .font(.caption2)
                             .foregroundColor(.white)
                     }
                 }
@@ -42,22 +41,21 @@ struct ModalView: View {
                 WebImage(url: URL(string: movie.imageURL))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                    .clipShape(RoundedCorner(radius: 8, corners: [.bottomLeft, .bottomRight]))
-                    
-            }
-            .background(
-                RoundedRectangle(cornerRadius: 8)
-                    .foregroundColor(Color(.white).opacity(0.32))
-            )
+            } 
+            .background(Color.white.opacity(0.32))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
+            
+            
+            ScrollTabView(titles: ["Overview", "Casts"], index: $selectedIndex, color: CustomColor.secondary)
+                .padding(.vertical, 10)
             
             VStack {
-//                ScrollTab(titles: ["Overview", "Casts"])
-                
                 Text(movie.description)
-                    .font(.body)
-                    .padding(.horizontal)
-                    .padding(.vertical)
+                    .font(.caption2)
+                    .foregroundColor(.white)
             }
+            .padding(.horizontal)
+            .padding(.bottom, 20)
         }
         .background(
             LinearGradient(gradient: Gradient(colors: [Color("BrandPurple"), Color("BrandPink")]), startPoint: .leading, endPoint: .trailing)

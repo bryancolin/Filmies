@@ -11,16 +11,20 @@ struct RoundedText: View {
     
     var titles: [String]
     @Binding var index: Int
+    var color: CustomColor = .primary
     
     var body: some View {
-        ForEach(0..<titles.count) { value in
+        let firstColor = color == .primary ? Color("BrandPink") : Color.white
+        let secondColor = color == .primary ? Color.white : Color("BrandPink")
+        
+        return ForEach(0..<titles.count) { value in
             Text(titles[value])
                 .font(.system(size: 15))
                 .fontWeight(.bold)
                 .padding(.vertical, 6)
                 .padding(.horizontal, 20)
-                .foregroundColor(value == index ? Color("BrandPink") : .white)
-                .background(Color.white.opacity(value == index ? 1 : 0))
+                .foregroundColor(color == .primary ? (value == index ? firstColor : secondColor) : firstColor)
+                .background(color == .primary ? secondColor.opacity(value == index ? 1 : 0) : firstColor.opacity(value == index ? 0.32 : 0))
                 .clipShape(Capsule())
                 .onTapGesture {
                     if index < titles.count { 
