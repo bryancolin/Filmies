@@ -14,6 +14,13 @@ struct ModalView: View {
     @Binding var showModal: Bool
     @State var selectedIndex = 0
     
+    init(movie: Movie, showModal: Binding<Bool>) {
+        self.movie = movie
+        self._showModal = showModal
+        
+        UIScrollView.appearance().bounces = false
+    }
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
@@ -29,7 +36,7 @@ struct ModalView: View {
                         Text(movie.releaseYear)
                             .font(.caption2)
                             .foregroundColor(.white)
-
+                        
                         Text("2h 14m")
                             .font(.caption2)
                             .foregroundColor(.white)
@@ -44,7 +51,6 @@ struct ModalView: View {
             } 
             .background(Color.white.opacity(0.32))
             .clipShape(RoundedRectangle(cornerRadius: 12))
-            
             
             ScrollTabView(titles: ["Overview", "Casts"], index: $selectedIndex, color: CustomColor.secondary)
                 .padding(.vertical, 10)
