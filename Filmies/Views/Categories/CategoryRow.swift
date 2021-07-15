@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryRow: View {
     
-    var categoryName: String
+    @State var categoryName: String
     var movies: [Movie]
     
     var body: some View {
@@ -24,9 +24,7 @@ struct CategoryRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top) {
                     ForEach(movies) { movie in
-                        NavigationLink(destination: MovieDetails(movie: movie)) {
-                            CategoryItem(movie: movie)
-                        }
+                        CategoryItem(movie: movie)
                     }
                 }
             }
@@ -34,9 +32,9 @@ struct CategoryRow: View {
     }
 }
 
-struct CategoryRow_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryRow(categoryName: "Now Playing", movies: ModelData().sampleMovies)
-            .previewLayout(.sizeThatFits)
-    }
-}
+//struct CategoryRow_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CategoryRow(categoryName: "Now Playing", movies: ModelData().sampleMovies)
+//            .previewLayout(.sizeThatFits)
+//    }
+//}

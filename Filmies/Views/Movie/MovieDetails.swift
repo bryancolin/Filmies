@@ -46,10 +46,6 @@ struct MovieDetails: View {
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .frame(height: 600)
-                        .background(
-                            RoundedCorners(color: .clear, tl: 0, tr: 0, bl: 16, br: 16)
-                        )
-                        
                 }
                 
             }.edgesIgnoringSafeArea(.top)

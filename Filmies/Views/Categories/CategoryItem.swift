@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct CategoryItem: View {
     
+    @State private var showingModal = false
     var movie: Movie
     
     var body: some View {
@@ -31,6 +32,12 @@ struct CategoryItem: View {
                     , alignment: .topLeading)
         }
         .padding(.leading, 15)
+        .onTapGesture {
+            showingModal.toggle()
+        }
+        .sheet(isPresented: $showingModal) {
+            ModalView(movie: movie, showModal: self.$showingModal)
+        }
     }
 }
 

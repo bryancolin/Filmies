@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import UIKit
 
-struct Movie: Codable, Identifiable {
+struct Movie: Codable, Hashable, Identifiable {
     var id: Int
     var title: String
     var description: String
@@ -31,6 +32,8 @@ struct Movie: Codable, Identifiable {
     var imageURL: String {
         return "https://image.tmdb.org/t/p/w500" + url
     }
+    
+    var offset: CGFloat = 0
     
     enum CodingKeys: String, CodingKey {
         case id
