@@ -39,7 +39,7 @@ final class ModelData: ObservableObject {
         guard let safeMovies = movies[param] else { return }
         
         for (index, movie) in safeMovies.enumerated() {
-            if movie.id == id && movie.details == false {
+            if movie.id == id {
                 AF.request("\(url)/movie/\(movie.id)?api_key=\(apiKey ?? "")")
                     .validate()
                     .responseDecodable(of: Movie.self) { response in
@@ -47,7 +47,6 @@ final class ModelData: ObservableObject {
                         
                         self.movies[param]?[index] = result
                         self.movies[param]?[index].details = true
-                        
                     }
             }
         }

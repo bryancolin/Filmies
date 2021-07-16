@@ -10,11 +10,12 @@ import SDWebImageSwiftUI
 
 struct ModalView: View {
     
+    @EnvironmentObject var modelData: ModelData
+    
     var movie: Movie
     var category: String
     @Binding var showModal: Bool
     @State var selectedIndex = 0
-    @EnvironmentObject var modelData: ModelData
     
     init(movie: Movie, category: String, showModal: Binding<Bool>) {
         self.movie = movie
@@ -70,9 +71,6 @@ struct ModalView: View {
             LinearGradient(gradient: Gradient(colors: [Color("BrandPurple"), Color("BrandPink")]), startPoint: .leading, endPoint: .trailing)
                 .ignoresSafeArea()
         )
-        .onAppear {
-            modelData.fetchMovieDetails(param: category, id: movie.id)
-        }
     }
 }
 

@@ -9,8 +9,9 @@ import SwiftUI
 
 struct CategoryRow: View {
     
-    @Binding var category: String
     @EnvironmentObject var modelData: ModelData
+    
+    @Binding var category: String
     
     var body: some View {
         VStack(alignment: .leading) {

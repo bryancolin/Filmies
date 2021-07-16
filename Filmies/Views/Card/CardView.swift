@@ -24,14 +24,7 @@ struct CardView: View {
             ForEach(getArrayIndexed(), id: \.element) { index, movie in
                 HStack {
                     ZStack(alignment: .bottomLeading) {
-                        WebImage(url: URL(string: movie.imageURL))
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: calculateWidth(), height: calculateHeight(with: index))
-                            .cornerRadius(15)
-                            .overlay(
-                                CardElementView(movie: movie, index: index, category: category), alignment: .bottomLeading
-                            )
+                        CardElementView(movie: movie, category: category, width: calculateWidth(), height: calculateHeight(with: index))
                     }
                     .offset(x: index - scrolled <= 2 ? CGFloat(index - scrolled) * 30 : 60)
                     
@@ -44,11 +37,9 @@ struct CardView: View {
                     withAnimation {
                         if translation < 0 && index < (modelData.movies[category]?.count ?? 0) - 1{
                             offsets[index] = translation
-//                            modelData.movies["now_playing"]?[index].offset = value.translation.width
                         } else {
                             if index > 0 {
                                 offsets[index - 1] = -(calculateWidth() + 60) + translation
-//                                modelData.movies["now_playing"]?[index - 1].offset = -(calculateWidth() + 60) + value.translation.width
                             }
                         }
                     }
@@ -58,21 +49,17 @@ struct CardView: View {
                         if translation < 0 {
                             if -translation > 180 && index < (modelData.movies[category]?.count ?? 0) - 1 {
                                 offsets[index] = -(calculateWidth() + 60)
-//                                modelData.movies["now_playing"]?[index].offset = -(calculateWidth() + 60)
                                 scrolled += 1
                             } else {
                                 offsets[index] = 0
-//                                modelData.movies["now_playing"]?[index].offset = 0
                             }
                         } else {
                             if index > 0 {
                                 if translation > 180 {
                                     offsets[index - 1] = 0
-//                                    modelData.movies["now_playing"]?[index - 1].offset = 0
                                     scrolled -= 1
                                 } else {
                                     offsets[index - 1] = -(calculateWidth() + 60)
-//                                    modelData.movies["now_playing"]?[index - 1].offset = -(calculateWidth() + 60)
                                 }
                             }
                         }

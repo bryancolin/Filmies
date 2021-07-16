@@ -10,17 +10,20 @@ import SDWebImageSwiftUI
 
 struct CategoryItem: View {
     
+    @EnvironmentObject var modelData: ModelData
     @State private var showingModal = false
     
     var movie: Movie
     var category: String
-    @EnvironmentObject var modelData: ModelData
+    
+    var width: CGFloat = 150
+    var height: CGFloat = 220
     
     var body: some View {
         VStack(alignment: .leading) {
             WebImage(url: URL(string: movie.imageURL))
                 .resizable()
-                .frame(width: 150, height: 220, alignment: .leading)
+                .frame(width: width, height: height, alignment: .leading)
                 .cornerRadius(8)
                 .overlay(
                     Circle()
@@ -37,6 +40,9 @@ struct CategoryItem: View {
         .padding(.leading, 15)
         .padding(.vertical)
         .onTapGesture {
+            if movie.details == false {
+                modelData.fetchMovieDetails(param: category, id: movie.id)
+            }
             showingModal.toggle()
         }
         .sheet(isPresented: $showingModal) {
