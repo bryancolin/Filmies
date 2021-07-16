@@ -10,7 +10,7 @@ import UIKit
 
 struct CategoryHome: View {
     
-    @StateObject var modelData = ModelData()
+    @EnvironmentObject var modelData: ModelData
     
     @State var selectedIndex1 = 0
     @State var selectedIndex2 = 0
@@ -35,15 +35,15 @@ struct CategoryHome: View {
             
             // Scroll Tab for Trending Movies (Day & Week)
             ScrollTabView(titles: ["Day", "Week"], index: $selectedIndex1)
-            CardView(category: $modelData.params[selectedIndex1], modelData: modelData)
+            CardView(category: $modelData.params[selectedIndex1])
             
             // Scroll Tab for Now Showing Movies
             ScrollTabView(titles: ["Now Playing", "Popular", "Upcoming"], index: $selectedIndex2)
-            CategoryRow(category: $modelData.params[selectedIndex2+2], modelData: modelData)
+            CategoryRow(category: $modelData.params[selectedIndex2+2])
             
             // Scroll Tab for Top Rated Movies
             ScrollTabView(titles: ["Top Rated"], index: $selectedIndex3)
-            CategoryRow(category: $modelData.params[modelData.params.count-1], modelData: modelData)
+            CategoryRow(category: $modelData.params[modelData.params.count-1])
             
         }
         .background(

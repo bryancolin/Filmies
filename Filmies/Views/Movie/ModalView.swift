@@ -11,11 +11,14 @@ import SDWebImageSwiftUI
 struct ModalView: View {
     
     var movie: Movie
+    var category: String
     @Binding var showModal: Bool
     @State var selectedIndex = 0
+    @EnvironmentObject var modelData: ModelData
     
-    init(movie: Movie, showModal: Binding<Bool>) {
+    init(movie: Movie, category: String, showModal: Binding<Bool>) {
         self.movie = movie
+        self.category = category
         self._showModal = showModal
         
         UIScrollView.appearance().bounces = false
@@ -37,7 +40,7 @@ struct ModalView: View {
                             .font(.caption2)
                             .foregroundColor(.white)
                         
-                        Text("2h 14m")
+                        Text(movie.duration ?? "")
                             .font(.caption2)
                             .foregroundColor(.white)
                     }
@@ -67,6 +70,9 @@ struct ModalView: View {
             LinearGradient(gradient: Gradient(colors: [Color("BrandPurple"), Color("BrandPink")]), startPoint: .leading, endPoint: .trailing)
                 .ignoresSafeArea()
         )
+        .onAppear {
+            modelData.fetchMovieDetails(param: category, id: movie.id)
+        }
     }
 }
 

@@ -11,6 +11,7 @@ import Alamofire
 final class ModelData: ObservableObject {
     
     private let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
+    private let url = "https://api.themoviedb.org/3"
     var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
     
     @Published var movies = [String: [Movie]]()
@@ -22,9 +23,8 @@ final class ModelData: ObservableObject {
     func fetchMovies() {
         for (index, param) in params.enumerated() {
             let trend = (index == 0 || index == 1) ? "trending/" : ""
-            let url = "https://api.themoviedb.org/3/\(trend)movie/\(param)?api_key=\(apiKey ?? "")"
             
-            AF.request(url)
+            AF.request("\(url)/\(trend)movie/\(param)?api_key=\(apiKey ?? "")")
                 .validate()
                 .responseDecodable(of: Movies.self) { response in
                     guard let result = response.value else { return }
@@ -32,6 +32,24 @@ final class ModelData: ObservableObject {
                         movies[param] = result.all
                     }
                 }
+        }
+    }
+    
+    func fetchMovieDetails(param: String, id: Int) {
+        guard let safeMovies = movies[param] else { return }
+        
+        for (index, movie) in safeMovies.enumerated() {
+            if movie.id == id && movie.details == false {
+                AF.request("\(url)/movie/\(movie.id)?api_key=\(apiKey ?? "")")
+                    .validate()
+                    .responseDecodable(of: Movie.self) { response in
+                        guard let result = response.value else { return }
+                        
+                        self.movies[param]?[index] = result
+                        self.movies[param]?[index].details = true
+                        
+                    }
+            }
         }
     }
 }

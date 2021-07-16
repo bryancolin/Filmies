@@ -11,28 +11,13 @@ import SDWebImageSwiftUI
 struct CardView: View {
     
     @Binding var category: String
-    @ObservedObject var modelData: ModelData
+    @EnvironmentObject var modelData: ModelData
     
     @State var scrolled = 0
     @State var offsets: [CGFloat] = Array(repeating: 0, count: 20)
     
-    func calculateWidth() -> CGFloat {
-        let screen = UIScreen.main.bounds.width - 50
-        
-        let width = screen - (2 * 30)
-        return width
-    }
-    
-    func calculateHeight(with index: Int) -> CGFloat {
-        let screen = UIScreen.main.bounds.height / 1.8
-        
-        let height = screen - CGFloat(index - scrolled) * 50
-        return height
-    }
-    
-    func getArrayIndexed() -> [EnumeratedSequence<[Movie]>.Element] {
-        return modelData.movies[category]?.enumerated().reversed().map { $0 } ?? [Movie]().enumerated().map { $0 }
-    }
+    @State var flipped: Bool = false
+    @State var flip: Bool = false
     
     var body: some View {
         ZStack {
@@ -45,7 +30,7 @@ struct CardView: View {
                             .frame(width: calculateWidth(), height: calculateHeight(with: index))
                             .cornerRadius(15)
                             .overlay(
-                                CardElementView(movie: movie), alignment: .bottomLeading
+                                CardElementView(movie: movie, index: index, category: category), alignment: .bottomLeading
                             )
                     }
                     .offset(x: index - scrolled <= 2 ? CGFloat(index - scrolled) * 30 : 60)
@@ -99,6 +84,24 @@ struct CardView: View {
         .frame(height: UIScreen.main.bounds.height / 1.8)
         .padding(.horizontal)
         .padding(.vertical, 20)
+    }
+    
+    func calculateWidth() -> CGFloat {
+        let screen = UIScreen.main.bounds.width - 50
+        
+        let width = screen - (2 * 30)
+        return width
+    }
+    
+    func calculateHeight(with index: Int) -> CGFloat {
+        let screen = UIScreen.main.bounds.height / 1.8
+        
+        let height = screen - CGFloat(index - scrolled) * 50
+        return height
+    }
+    
+    func getArrayIndexed() -> [EnumeratedSequence<[Movie]>.Element] {
+        return modelData.movies[category]?.enumerated().reversed().map { $0 } ?? [Movie]().enumerated().map { $0 }
     }
 }
 

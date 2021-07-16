@@ -9,27 +9,33 @@ import SwiftUI
 
 struct CardElementView: View {
     
-    var movie: Movie
     @State private var showingModal = false
     
+    var movie: Movie
+    var index: Int
+    var category: String 
+    @EnvironmentObject var modelData: ModelData
+    
     var body: some View {
-        Spacer()
-        Button(action: {
-            showingModal.toggle()
-        }) {
-            Text("View")
-                .font(.caption)
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .padding(.vertical, 6)
-                .padding(.horizontal, 25)
-                .background(Color("BrandPink"))
-                .clipShape(Capsule())
+        ZStack {
+            Button(action: {
+                showingModal.toggle()
+            }) {
+                Text("View")
+                    .font(.caption)
+                    .fontWeight(.bold)
+                    .foregroundColor(.white)
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 25)
+                    .background(Color("BrandPink"))
+                    .clipShape(Capsule())
+            }
+            .padding(.leading, 20)
+            .padding(.bottom, 20)
+            .sheet(isPresented: $showingModal) {
+                ModalView(movie: movie, category: category, showModal: self.$showingModal)
+                    .environmentObject(modelData)
+            }
         }
-        .sheet(isPresented: $showingModal) {
-            ModalView(movie: movie, showModal: self.$showingModal)
-        }
-        .padding(.leading, 20)
-        .padding(.bottom, 20)
     }
 }

@@ -11,7 +11,10 @@ import SDWebImageSwiftUI
 struct CategoryItem: View {
     
     @State private var showingModal = false
+    
     var movie: Movie
+    var category: String
+    @EnvironmentObject var modelData: ModelData
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -37,14 +40,16 @@ struct CategoryItem: View {
             showingModal.toggle()
         }
         .sheet(isPresented: $showingModal) {
-            ModalView(movie: movie, showModal: self.$showingModal)
+            ModalView(movie: movie, category: category, showModal: self.$showingModal)
+                .environmentObject(modelData)
         }
     }
 }
 
 struct CategoryItem_Previews: PreviewProvider {
     static var previews: some View {
-        CategoryItem(movie: ModelData().sampleMovies[0])
+        CategoryItem(movie: ModelData().sampleMovies[0], category: "category")
+            .environmentObject(ModelData())
             .previewLayout(.sizeThatFits)
     }
 }

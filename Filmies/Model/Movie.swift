@@ -13,8 +13,11 @@ struct Movie: Codable, Hashable, Identifiable {
     var title: String
     var description: String
     
+    var category: String = ""
+    var details: Bool = false
+    
     var runTime: Int?
-    var duration: String {
+    var duration: String? {
         if let time = runTime {
             let hours = time / 60
             let minutes = time % 60
