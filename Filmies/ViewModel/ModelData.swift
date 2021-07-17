@@ -11,24 +11,21 @@ import SwiftyJSON
 
 final class ModelData: ObservableObject {
     
-    private let apiKey = Bundle.main.infoDictionary?["API_KEY"] as? String
     private let url = "https://api.themoviedb.org/3"
+    private let apiKey = "?api_key=\(Bundle.main.infoDictionary?["API_KEY"] as? String ?? "")"
     var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
     
     @Published var movies = [String: [Movie]]()
-    @Published var sampleMovies = [
-        Movie(id: 1, title: "Black Widow", description: "Avengers", runTime: 134, releaseDate: "2021", url: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg"),
-        Movie(id: 2, title: "Black Widow", description: "Avengers", runTime: 134, releaseDate: "2021", url: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg")
-    ]
     
     func fetchMovies() {
         for (index, param) in params.enumerated() {
             let trend = (index == 0 || index == 1) ? "trending/" : ""
             
-            AF.request("\(url)/\(trend)movie/\(param)?api_key=\(apiKey ?? "")")
+            AF.request("\(url)/\(trend)movie/\(param)\(apiKey)")
                 .validate()
                 .responseDecodable(of: Movies.self) { response in
                     guard let result = response.value else { return }
+                    print(result.all)
                     DispatchQueue.main.async { [self] in
                         movies[param] = result.all
                     }
@@ -41,7 +38,7 @@ final class ModelData: ObservableObject {
         
         for (index, movie) in safeMovies.enumerated() {
             if movie.id == id {
-                AF.request("\(url)/movie/\(movie.id)?api_key=\(apiKey ?? "")")
+                AF.request("\(url)/movie/\(movie.id)\(apiKey)")
                     .validate()
                     .responseDecodable(of: Movie.self) { response in
                         guard let result = response.value else { return }
@@ -59,7 +56,7 @@ final class ModelData: ObservableObject {
     }
     
     func fetchMovieTrailer(movieId: Int, completion: @escaping (String) -> Void) {
-        AF.request("\(url)/movie/\(movieId)/videos?api_key=\(apiKey ?? "")")
+        AF.request("\(url)/movie/\(movieId)/videos\(apiKey)")
             .validate()
             .responseJSON { response in
                 guard let result = response.value else { return }

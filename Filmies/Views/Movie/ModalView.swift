@@ -21,10 +21,10 @@ struct ModalView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
-                
                 // Video Trailer
-                WebPlayerView(urlString: movie.youtubeURL)
+                WebPlayerView(urlString: movie.youtubeURL, loadOnce: true)
                     .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
+                    .background(Color.black)
                 
                 // Title
                 HStack {
@@ -32,6 +32,8 @@ struct ModalView: View {
                         .font(.title3)
                         .fontWeight(.semibold)
                         .foregroundColor(.white)
+                        .lineLimit(1)
+                        .minimumScaleFactor(0.5)
                     
                     Spacer()
                     
@@ -49,7 +51,7 @@ struct ModalView: View {
                 .padding(.vertical)
             } 
             .background(Color.black.opacity(0.5))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
             
             // SubView
             ScrollTabView(titles: ["Overview", "Casts"], index: $selectedIndex, color: CustomColor.primary)
@@ -63,7 +65,7 @@ struct ModalView: View {
             .padding(.horizontal)
             .padding(.vertical)
             .background(Color.black.opacity(0.5))
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
         }
         .background(
             WebImage(url: URL(string: movie.imageURL))

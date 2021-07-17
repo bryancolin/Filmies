@@ -51,11 +51,3 @@ struct CategoryItem: View {
         }
     }
 }
-
-struct CategoryItem_Previews: PreviewProvider {
-    static var previews: some View {
-        CategoryItem(movie: ModelData().sampleMovies[0], category: "category")
-            .environmentObject(ModelData())
-            .previewLayout(.sizeThatFits)
-    }
-}

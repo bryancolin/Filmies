@@ -11,16 +11,22 @@ import WebKit
 struct WebPlayerView: UIViewRepresentable {
     
     let urlString: String?
+    @State var loadOnce: Bool
+    
+    private let webView = WKWebView()
     
     func makeUIView(context: Context) -> WebPlayerView.UIViewType {
-        return WKWebView()
+        return webView
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        if let safeString = urlString {
-            if let url = URL(string: safeString) {
-                let request = URLRequest(url: url)
-                uiView.load(request)
+        if loadOnce {
+            guard let url = URL(string: urlString ?? "") else {  fatalError() }
+            let request = URLRequest(url: url)
+            
+            uiView.load(request)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.loadOnce = false     // must be async
             }
         }
     }

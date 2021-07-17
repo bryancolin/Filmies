@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 struct Movie: Codable, Hashable, Identifiable {
     var id: Int
@@ -26,7 +25,7 @@ struct Movie: Codable, Hashable, Identifiable {
         if let time = runTime {
             let hours = time / 60
             let minutes = time % 60
-            return String("\(hours)h \(minutes)m")
+            return String(hours > 0 ? "\(hours)h " : "") + "\(minutes)m"
         }
         return String()
     }
@@ -41,8 +40,6 @@ struct Movie: Codable, Hashable, Identifiable {
         return "https://image.tmdb.org/t/p/w500" + url
     }
     
-    var offset: CGFloat = 0
-    
     enum CodingKeys: String, CodingKey {
         case id
         case title = "original_title"
@@ -50,5 +47,6 @@ struct Movie: Codable, Hashable, Identifiable {
         case releaseDate = "release_date"
         case url = "poster_path"
         case runTime = "runtime"
+        case key
     }
 }
