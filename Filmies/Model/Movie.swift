@@ -16,6 +16,11 @@ struct Movie: Codable, Hashable, Identifiable {
     var category: String = ""
     var details: Bool = false
     
+    var key: String?
+    var youtubeURL: String {
+        return "https://www.youtube.com/embed/" + (key ?? "")
+    }
+    
     var runTime: Int?
     var duration: String? {
         if let time = runTime {

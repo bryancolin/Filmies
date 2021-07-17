@@ -34,7 +34,7 @@ struct CategoryHome: View {
             }
             
             // Scroll Tab for Trending Movies (Day & Week)
-            ScrollTabView(titles: ["Day", "Week"], index: $selectedIndex1)
+            ScrollTabView(titles: ["Today", "This Week"], index: $selectedIndex1)
             CardView(category: $modelData.params[selectedIndex1])
             
             // Scroll Tab for Now Showing Movies

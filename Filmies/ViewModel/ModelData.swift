@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import SwiftyJSON
 
 final class ModelData: ObservableObject {
     
@@ -45,10 +46,25 @@ final class ModelData: ObservableObject {
                     .responseDecodable(of: Movie.self) { response in
                         guard let result = response.value else { return }
                         
-                        self.movies[param]?[index] = result
-                        self.movies[param]?[index].details = true
+                        DispatchQueue.main.async { [self] in
+                            fetchMovieTrailer(movieId: movie.id) { key in
+                                movies[param]?[index].key = key
+                            }
+                            movies[param]?[index] = result
+                            movies[param]?[index].details = true
+                        }
                     }
             }
         }
+    }
+    
+    func fetchMovieTrailer(movieId: Int, completion: @escaping (String) -> Void) {
+        AF.request("\(url)/movie/\(movieId)/videos?api_key=\(apiKey ?? "")")
+            .validate()
+            .responseJSON { response in
+                guard let result = response.value else { return }
+                let json = JSON(result)
+                completion(json["results"][0]["key"].string ?? "")
+            }
     }
 }

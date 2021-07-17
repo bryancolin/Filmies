@@ -20,6 +20,7 @@ struct CardView: View {
     @State var flip: Bool = false
     
     var body: some View {
+        
         ZStack {
             ForEach(getArrayIndexed(), id: \.element) { index, movie in
                 HStack {
@@ -32,39 +33,42 @@ struct CardView: View {
                 }
                 .contentShape(Rectangle())
                 .offset(x: offsets[index])
-                .gesture(DragGesture().onChanged({ value in
-                    let translation = value.translation.width
-                    withAnimation {
-                        if translation < 0 && index < (modelData.movies[category]?.count ?? 0) - 1{
-                            offsets[index] = translation
-                        } else {
-                            if index > 0 {
-                                offsets[index - 1] = -(calculateWidth() + 60) + translation
-                            }
-                        }
-                    }
-                }).onEnded({ value in
-                    let translation = value.translation.width
-                    withAnimation {
-                        if translation < 0 {
-                            if -translation > 180 && index < (modelData.movies[category]?.count ?? 0) - 1 {
-                                offsets[index] = -(calculateWidth() + 60)
-                                scrolled += 1
-                            } else {
-                                offsets[index] = 0
-                            }
-                        } else {
-                            if index > 0 {
-                                if translation > 180 {
-                                    offsets[index - 1] = 0
-                                    scrolled -= 1
+                .gesture(
+                    DragGesture()
+                        .onChanged { value in
+                            let translation = value.translation.width
+                            withAnimation {
+                                if translation < 0 && index < (modelData.movies[category]?.count ?? 0) - 1{
+                                    offsets[index] = translation
                                 } else {
-                                    offsets[index - 1] = -(calculateWidth() + 60)
+                                    if index > 0 {
+                                        offsets[index - 1] = -(calculateWidth() + 60) + translation
+                                    }
                                 }
                             }
                         }
-                    }
-                })
+                        .onEnded { value in
+                            let translation = value.translation.width
+                            withAnimation {
+                                if translation < 0 {
+                                    if -translation > 180 && index < (modelData.movies[category]?.count ?? 0) - 1 {
+                                        offsets[index] = -(calculateWidth() + 60)
+                                        scrolled += 1
+                                    } else {
+                                        offsets[index] = 0
+                                    }
+                                } else {
+                                    if index > 0 {
+                                        if translation > 180 {
+                                            offsets[index - 1] = 0
+                                            scrolled -= 1
+                                        } else {
+                                            offsets[index - 1] = -(calculateWidth() + 60)
+                                        }
+                                    }
+                                }
+                            }
+                        }
                 )
             }
         }

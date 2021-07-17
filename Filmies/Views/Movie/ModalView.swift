@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVKit
 import SDWebImageSwiftUI
 
 struct ModalView: View {
@@ -17,17 +18,15 @@ struct ModalView: View {
     @Binding var showModal: Bool
     @State var selectedIndex = 0
     
-    init(movie: Movie, category: String, showModal: Binding<Bool>) {
-        self.movie = movie
-        self.category = category
-        self._showModal = showModal
-        
-        UIScrollView.appearance().bounces = false
-    }
-    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(spacing: 0) {
+                
+                // Video Trailer
+                WebPlayerView(urlString: movie.youtubeURL)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
+                
+                // Title
                 HStack {
                     Text(movie.title)
                         .font(.title3)
@@ -48,15 +47,12 @@ struct ModalView: View {
                 }
                 .padding(.horizontal)
                 .padding(.vertical)
-                
-                WebImage(url: URL(string: movie.imageURL))
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
             } 
-            .background(Color.white.opacity(0.32))
+            .background(Color.black.opacity(0.5))
             .clipShape(RoundedRectangle(cornerRadius: 12))
             
-            ScrollTabView(titles: ["Overview", "Casts"], index: $selectedIndex, color: CustomColor.secondary)
+            // SubView
+            ScrollTabView(titles: ["Overview", "Casts"], index: $selectedIndex, color: CustomColor.primary)
                 .padding(.vertical, 10)
             
             VStack {
@@ -65,11 +61,14 @@ struct ModalView: View {
                     .foregroundColor(.white)
             }
             .padding(.horizontal)
-            .padding(.bottom, 20)
+            .padding(.vertical)
+            .background(Color.black.opacity(0.5))
+            .clipShape(RoundedRectangle(cornerRadius: 12))
         }
         .background(
-            LinearGradient(gradient: Gradient(colors: [Color("BrandPurple"), Color("BrandPink")]), startPoint: .leading, endPoint: .trailing)
-                .ignoresSafeArea()
+            WebImage(url: URL(string: movie.imageURL))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
         )
     }
 }

@@ -8,5 +8,6 @@ target 'Filmies' do
   # Pods for Filmies
   pod 'Alamofire', '~> 5.4'
   pod 'SDWebImageSwiftUI'
+  pod 'SwiftyJSON', '~> 4.0'
 
 end
