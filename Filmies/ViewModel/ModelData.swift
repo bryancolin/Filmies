@@ -25,7 +25,6 @@ final class ModelData: ObservableObject {
                 .validate()
                 .responseDecodable(of: Movies.self) { response in
                     guard let result = response.value else { return }
-                    print(result.all)
                     DispatchQueue.main.async { [self] in
                         movies[param] = result.all
                     }
@@ -38,30 +37,17 @@ final class ModelData: ObservableObject {
         
         for (index, movie) in safeMovies.enumerated() {
             if movie.id == id {
-                AF.request("\(url)/movie/\(movie.id)\(apiKey)")
+                AF.request("\(url)/movie/\(movie.id)\(apiKey)&append_to_response=videos")
                     .validate()
                     .responseDecodable(of: Movie.self) { response in
                         guard let result = response.value else { return }
                         
                         DispatchQueue.main.async { [self] in
-                            fetchMovieTrailer(movieId: movie.id) { key in
-                                movies[param]?[index].key = key
-                            }
                             movies[param]?[index] = result
                             movies[param]?[index].details = true
                         }
                     }
             }
         }
-    }
-    
-    func fetchMovieTrailer(movieId: Int, completion: @escaping (String) -> Void) {
-        AF.request("\(url)/movie/\(movieId)/videos\(apiKey)")
-            .validate()
-            .responseJSON { response in
-                guard let result = response.value else { return }
-                let json = JSON(result)
-                completion(json["results"][0]["key"].string ?? "")
-            }
     }
 }

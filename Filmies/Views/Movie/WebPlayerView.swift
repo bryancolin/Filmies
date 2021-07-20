@@ -21,7 +21,7 @@ struct WebPlayerView: UIViewRepresentable {
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
         if loadOnce {
-            guard let url = URL(string: urlString ?? "") else {  fatalError() }
+            guard let url = URL(string: urlString ?? "https://www.youtube.com/embed/") else { fatalError() }
             let request = URLRequest(url: url)
             
             uiView.load(request)

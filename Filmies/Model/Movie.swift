@@ -7,18 +7,12 @@
 
 import Foundation
 
-struct Movie: Codable, Hashable, Identifiable {
+struct Movie: Codable, Identifiable {
     var id: Int
     var title: String
     var description: String
     
-    var category: String = ""
     var details: Bool = false
-    
-    var key: String?
-    var youtubeURL: String {
-        return "https://www.youtube.com/embed/" + (key ?? "")
-    }
     
     var runTime: Int?
     var duration: String? {
@@ -30,15 +24,20 @@ struct Movie: Codable, Hashable, Identifiable {
         return String()
     }
     
-    var releaseDate: String
+    var releaseDate: String?
     var releaseYear: String {
-        return String(releaseDate.prefix(4))
+        if let date = releaseDate {
+            return String(date.prefix(4))
+        }
+        return String("-")
     }
     
     var url: String 
     var imageURL: String {
         return "https://image.tmdb.org/t/p/w500" + url
     }
+    
+    let videos: Videos?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -47,6 +46,6 @@ struct Movie: Codable, Hashable, Identifiable {
         case releaseDate = "release_date"
         case url = "poster_path"
         case runTime = "runtime"
-        case key
+        case videos
     }
 }
