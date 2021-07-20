@@ -25,6 +25,7 @@ final class ModelData: ObservableObject {
                 .validate()
                 .responseDecodable(of: Movies.self) { response in
                     guard let result = response.value else { return }
+                    
                     DispatchQueue.main.async { [self] in
                         movies[param] = result.all
                     }

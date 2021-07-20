@@ -25,9 +25,7 @@ struct CardElementView: View {
     
     var body: some View {
         ZStack {
-            WebImage(url: URL(string: movie.imageURL))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+            CustomImage(urlString: movie.imageURL)
                 .frame(width: width, height: height)
                 .overlay(
                     ZStack() {

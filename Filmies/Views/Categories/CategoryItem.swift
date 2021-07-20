@@ -27,8 +27,7 @@ struct CategoryItem: View {
                 }
                 showingModal.toggle()
             }, label: {
-                WebImage(url: URL(string: movie.imageURL))
-                    .resizable()
+                CustomImage(urlString: movie.imageURL)
                     .frame(width: width, height: height, alignment: .leading)
                     .cornerRadius(8)
                     .overlay(
