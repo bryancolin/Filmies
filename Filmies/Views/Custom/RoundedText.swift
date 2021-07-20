@@ -14,8 +14,8 @@ struct RoundedText: View {
     var color: CustomColor = .primary
     
     var body: some View {
-        let firstColor = color == .primary ? Color("BrandPink") : Color.white
-        let secondColor = color == .primary ? Color.white : Color("BrandPink")
+        let firstColor = color == .primary ? Color(K.BrandColors.pink) : Color.white
+        let secondColor = color == .primary ? Color.white : Color(K.BrandColors.pink)
         
         return ForEach(0..<titles.count) { value in
             Text(titles[value])

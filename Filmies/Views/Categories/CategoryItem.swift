@@ -33,7 +33,7 @@ struct CategoryItem: View {
                     .overlay(
                         Circle()
                             .frame(width: 25, height: 25)
-                            .foregroundColor(Color("BrandPink"))
+                            .foregroundColor(Color(K.BrandColors.pink))
                             .overlay(
                                 Text(movie.releaseYear)
                                     .font(.system(size: 9))

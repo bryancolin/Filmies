@@ -40,7 +40,7 @@ struct CardElementView: View {
                                     .foregroundColor(.white)
                                     .padding(.vertical, 6)
                                     .padding(.horizontal, 25)
-                                    .background(Color("BrandPink"))
+                                    .background(Color(K.BrandColors.pink))
                                     .clipShape(Capsule())
                             }
                         }

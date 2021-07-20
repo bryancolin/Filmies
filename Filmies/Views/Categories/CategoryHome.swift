@@ -25,7 +25,7 @@ struct CategoryHome: View {
                     Text("Trending")
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                        .foregroundColor(Color("BrandPink"))
+                        .foregroundColor(Color(K.BrandColors.pink))
                     
                     Spacer()
                 }
@@ -47,7 +47,7 @@ struct CategoryHome: View {
             
         }
         .background(
-            LinearGradient(gradient: Gradient(colors: [Color("BrandBlue"), Color("BrandPurple")]), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)]), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
         )
         .onAppear {
