@@ -25,6 +25,10 @@
 		E572603026A00D3000864493 /* ScrollTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572602F26A00D2F00864493 /* ScrollTabView.swift */; };
 		E572603226A00D5B00864493 /* RoundedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572603126A00D5B00864493 /* RoundedText.swift */; };
 		E577698F26A6F6220076D7CF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577698E26A6F6220076D7CF /* Constants.swift */; };
+		E5840A6626A7FD4E00E3F782 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5840A6526A7FD4E00E3F782 /* CustomTabBar.swift */; };
+		E5840A6826A7FD6A00E3F782 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5840A6726A7FD6A00E3F782 /* TabBarButton.swift */; };
+		E5840A6A26A7FD7B00E3F782 /* TabCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5840A6926A7FD7B00E3F782 /* TabCurve.swift */; };
+		E5840A6C26A8031800E3F782 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5840A6B26A8031700E3F782 /* Tab.swift */; };
 		E5A0CBB9269845D20088F968 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBB8269845D20088F968 /* Movies.swift */; };
 		E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBB26984F940088F968 /* CategoryHome.swift */; };
 		E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBD269850420088F968 /* CategoryItem.swift */; };
@@ -55,6 +59,10 @@
 		E572602F26A00D2F00864493 /* ScrollTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTabView.swift; sourceTree = "<group>"; };
 		E572603126A00D5B00864493 /* RoundedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedText.swift; sourceTree = "<group>"; };
 		E577698E26A6F6220076D7CF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E5840A6526A7FD4E00E3F782 /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		E5840A6726A7FD6A00E3F782 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
+		E5840A6926A7FD7B00E3F782 /* TabCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCurve.swift; sourceTree = "<group>"; };
+		E5840A6B26A8031700E3F782 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		E5A0CBB8269845D20088F968 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		E5A0CBBB26984F940088F968 /* CategoryHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHome.swift; sourceTree = "<group>"; };
 		E5A0CBBD269850420088F968 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
@@ -113,7 +121,7 @@
 		E50254F426983E5C000C6F03 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				E5B3AF3026A0384B004B2DCC /* CustomColor.swift */,
+				E5840A6E26A803E000E3F782 /* Enum */,
 				E5A0CBB8269845D20088F968 /* Movies.swift */,
 				E50254F726983E80000C6F03 /* Movie.swift */,
 				E5EEA1F226A68C6E004BFA25 /* Videos.swift */,
@@ -181,6 +189,34 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		E5840A6426A7FD2800E3F782 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				E5840A6526A7FD4E00E3F782 /* CustomTabBar.swift */,
+				E5840A6726A7FD6A00E3F782 /* TabBarButton.swift */,
+				E5840A6926A7FD7B00E3F782 /* TabCurve.swift */,
+			);
+			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		E5840A6D26A8036F00E3F782 /* Scroll Tab */ = {
+			isa = PBXGroup;
+			children = (
+				E572602F26A00D2F00864493 /* ScrollTabView.swift */,
+				E572603126A00D5B00864493 /* RoundedText.swift */,
+			);
+			path = "Scroll Tab";
+			sourceTree = "<group>";
+		};
+		E5840A6E26A803E000E3F782 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				E5B3AF3026A0384B004B2DCC /* CustomColor.swift */,
+				E5840A6B26A8031700E3F782 /* Tab.swift */,
+			);
+			path = Enum;
+			sourceTree = "<group>";
+		};
 		E58A7F14269C0EB90066A4C7 /* Movie */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,9 +258,9 @@
 			children = (
 				E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */,
 				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
-				E572603126A00D5B00864493 /* RoundedText.swift */,
-				E572602F26A00D2F00864493 /* ScrollTabView.swift */,
 				E50C1A2226A18B4F003CE717 /* FlipEffect.swift */,
+				E5840A6D26A8036F00E3F782 /* Scroll Tab */,
+				E5840A6426A7FD2800E3F782 /* Tab Bar */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -345,18 +381,22 @@
 			files = (
 				E5A0CBB9269845D20088F968 /* Movies.swift in Sources */,
 				E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */,
+				E5840A6826A7FD6A00E3F782 /* TabBarButton.swift in Sources */,
 				E54CC43D269D8E8C0083C6FE /* CardElementView.swift in Sources */,
 				E50C1A2326A18B50003CE717 /* FlipEffect.swift in Sources */,
 				E56A3BF22699622800494650 /* CategoryRow.swift in Sources */,
 				E54CC441269DB1D80083C6FE /* RoundedCorner.swift in Sources */,
+				E5840A6C26A8031800E3F782 /* Tab.swift in Sources */,
 				E5FFD17C26A6C09D00FDD685 /* CustomImage.swift in Sources */,
 				E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */,
 				E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */,
 				E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */,
 				E515A1572697FC85008D4FE4 /* FilmiesApp.swift in Sources */,
 				E577698F26A6F6220076D7CF /* Constants.swift in Sources */,
+				E5840A6A26A7FD7B00E3F782 /* TabCurve.swift in Sources */,
 				E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */,
 				E50254F826983E80000C6F03 /* Movie.swift in Sources */,
+				E5840A6626A7FD4E00E3F782 /* CustomTabBar.swift in Sources */,
 				E572603226A00D5B00864493 /* RoundedText.swift in Sources */,
 				E50254F626983E6B000C6F03 /* ModelData.swift in Sources */,
 				E50DBD7E26A2BA43005948E7 /* WebPlayerView.swift in Sources */,

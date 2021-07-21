@@ -8,22 +8,21 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var selection: Tab = .film
     
-    enum Tab {
-        case film
-        case favorites
-    }
-    
+    @State var selectedTab: Tab = .house
+        
     var body: some View {
-//        TabView(selection: $selection) {
-//            CategoryHome()
-//                .tabItem {
-//                    Label("Film", systemImage: "house.fill")
-//                }
-//                .tag(Tab.film)
-//        }
-        CategoryHome()
+        ZStack(alignment: .bottom) {
+            switch selectedTab {
+            case .house:
+                CategoryHome()
+            default:
+                Color.white
+            }
+            
+            CustomTabBar(selectedTab: $selectedTab)
+                .padding(.vertical)
+        }
     }
 }
 

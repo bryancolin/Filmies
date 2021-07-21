@@ -24,43 +24,41 @@ struct CardElementView: View {
     var height: CGFloat
     
     var body: some View {
-        ZStack {
-            CustomImage(urlString: movie.imageURL)
-                .frame(width: width, height: height)
-                .overlay(
-                    ZStack() {
-                        if flip {
-                            Color.white.opacity(flip ? 0.5 : 0)
-                            Button(action: {
-                                showingModal.toggle()
-                            }) {
-                                Text("View")
-                                    .font(.caption)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                    .padding(.vertical, 6)
-                                    .padding(.horizontal, 25)
-                                    .background(Color(K.BrandColors.pink))
-                                    .clipShape(Capsule())
-                            }
+        CustomImage(urlString: movie.imageURL)
+            .frame(width: width, height: height)
+            .overlay(
+                ZStack() {
+                    if flip {
+                        Color.white.opacity(flip ? 0.5 : 0)
+                        Button(action: {
+                            showingModal.toggle()
+                        }) {
+                            Text("View")
+                                .font(.caption)
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .padding(.vertical, 6)
+                                .padding(.horizontal, 25)
+                                .background(Color(K.BrandColors.pink))
+                                .clipShape(Capsule())
                         }
                     }
-                    , alignment: .bottomLeading
-                )
-                .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
-                .onTapGesture() {
-                    withAnimation {
-                        if movie.details == false {
-                            modelData.fetchMovieDetails(param: category, id: movie.id)
-                        }
-                        flip.toggle()
+                }
+                , alignment: .bottomLeading
+            )
+            .modifier(FlipEffect(flipped: $flipped, angle: flip ? 0 : 180))
+            .onTapGesture() {
+                withAnimation {
+                    if movie.details == false {
+                        modelData.fetchMovieDetails(param: category, id: movie.id)
                     }
+                    flip.toggle()
                 }
-                .sheet(isPresented: $showingModal) {
-                    ModalView(movie: movie, category: category, showModal: self.$showingModal)
-                        .environmentObject(modelData)
-                }
-        }
-        .cornerRadius(15)
+            }
+            .sheet(isPresented: $showingModal) {
+                ModalView(movie: movie, category: category, showModal: self.$showingModal)
+                    .environmentObject(modelData)
+            }
+            .cornerRadius(15)
     }
 }
