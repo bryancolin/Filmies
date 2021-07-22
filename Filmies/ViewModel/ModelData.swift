@@ -16,6 +16,7 @@ final class ModelData: ObservableObject {
     var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
     
     @Published var movies = [String: [Movie]]()
+    @Published var isLoading = true
     
     func fetchMovies() {
         for (index, param) in params.enumerated() {
@@ -26,8 +27,10 @@ final class ModelData: ObservableObject {
                 .responseDecodable(of: Movies.self) { response in
                     guard let result = response.value else { return }
                     
-                    DispatchQueue.main.async { [self] in
-                        movies[param] = result.all
+                    self.movies[param] = result.all
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        self.isLoading = false
                     }
                 }
         }

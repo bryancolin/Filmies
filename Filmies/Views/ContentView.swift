@@ -12,17 +12,19 @@ struct ContentView: View {
     @State var selectedTab: Tab = .house
         
     var body: some View {
-        ZStack(alignment: .bottom) {
+        ZStack {
             switch selectedTab {
             case .house:
                 CategoryHome()
             default:
                 Color.white
             }
-            
+        }
+        .overlay(
             CustomTabBar(selectedTab: $selectedTab)
                 .padding(.vertical)
-        }
+            , alignment: .bottom
+        )
     }
 }
 

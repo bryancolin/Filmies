@@ -59,6 +59,7 @@ struct CategoryHome: View {
 struct FilmCategory_Previews: PreviewProvider {
     static var previews: some View {
         CategoryHome()
+            .environmentObject(ModelData())
     }
 }
 
