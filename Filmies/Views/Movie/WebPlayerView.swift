@@ -13,15 +13,17 @@ struct WebPlayerView: UIViewRepresentable {
     let urlString: String?
     @State var loadOnce: Bool
     
-    private let webView = WKWebView()
-    
     func makeUIView(context: Context) -> WebPlayerView.UIViewType {
+        let webConfiguration = WKWebViewConfiguration()
+        webConfiguration.allowsInlineMediaPlayback = true
+        
+        let webView = WKWebView(frame: .zero, configuration: webConfiguration)
         return webView
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
         if loadOnce {
-            guard let url = URL(string: urlString ?? "https://www.youtube.com/embed/") else { fatalError() }
+            guard let url = URL(string: "\(urlString ?? "https://www.youtube.com/embed/")?playsinline=1") else { fatalError() }
             let request = URLRequest(url: url)
             
             uiView.load(request)
