@@ -22,10 +22,9 @@ struct CategoryItem: View {
     var body: some View {
         VStack(alignment: .leading) {
             Button(action: {
-                if movie.details == false {
-                    modelData.fetchMovieDetails(param: category, id: movie.id)
+                if !modelData.isLoading {
+                    showingModal.toggle()
                 }
-                showingModal.toggle()
             }, label: {
                 CustomImage(urlString: movie.imageURL)
                     .frame(width: width, height: height, alignment: .leading)
@@ -39,8 +38,9 @@ struct CategoryItem: View {
                                     .font(.system(size: 9))
                                     .foregroundColor(.white)
                             )
-                            .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 0))
-                        , alignment: .topLeading)
+                            .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 0)),
+                        alignment: .topLeading
+                    )
             })
         }
         .padding(.leading, 15)

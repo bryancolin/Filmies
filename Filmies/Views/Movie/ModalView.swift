@@ -77,6 +77,11 @@ struct ModalView: View {
             CustomImage(urlString: movie.imageURL)
                 .ignoresSafeArea()
         )
+        .onAppear {
+            if movie.details == false {
+                modelData.fetchMovieDetails(param: category, id: movie.id)
+            }
+        }
     }
 }
 

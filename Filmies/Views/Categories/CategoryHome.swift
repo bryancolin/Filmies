@@ -14,7 +14,6 @@ struct CategoryHome: View {
     
     @State var selectedIndex1 = 0
     @State var selectedIndex2 = 0
-    @State var selectedIndex3 = 0
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -42,9 +41,8 @@ struct CategoryHome: View {
             CategoryRow(category: $modelData.params[selectedIndex2+2])
             
             // Scroll Tab for Top Rated Movies
-            ScrollTabView(titles: ["Top Rated"], index: $selectedIndex3)
+            ScrollTabView(titles: ["Top Rated"], index: .constant(0))
             CategoryRow(category: $modelData.params[modelData.params.count-1])
-            
         }
         .background(
             LinearGradient(gradient: Gradient(colors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)]), startPoint: .top, endPoint: .bottom)

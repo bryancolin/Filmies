@@ -73,7 +73,7 @@ struct CardView: View {
                         )
                     }
                 } else {
-                    Color.white.opacity(0.5)
+                    Color.white.opacity(0.2)
                 }
             }
         }

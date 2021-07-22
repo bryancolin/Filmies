@@ -16,9 +16,11 @@ final class ModelData: ObservableObject {
     var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
     
     @Published var movies = [String: [Movie]]()
-    @Published var isLoading = true
+    @Published var isLoading = false
     
     func fetchMovies() {
+        isLoading = true
+        
         for (index, param) in params.enumerated() {
             let trend = (index == 0 || index == 1) ? "trending/" : ""
             
