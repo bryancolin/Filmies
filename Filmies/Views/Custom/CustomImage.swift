@@ -13,8 +13,15 @@ struct CustomImage: View {
     var urlString: String
     
     var body: some View {
-        WebImage(url: URL(string: urlString))
-            .resizable()
-            .aspectRatio(contentMode: .fill)
+        if !urlString.isEmpty {
+            WebImage(url: URL(string: urlString))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+        } else {
+            Color(K.BrandColors.darkBlue)
+//            Image("filmies_app_icon")
+//                .resizable()
+//                .aspectRatio(contentMode: .fill)
+        }
     }
 }

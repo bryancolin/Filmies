@@ -21,6 +21,8 @@
 		E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43E269D8EC50083C6FE /* ModalView.swift */; };
 		E54CC441269DB1D80083C6FE /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC440269DB1D80083C6FE /* RoundedCorner.swift */; };
 		E551B052269C6C0D005D9613 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E551B051269C6C0D005D9613 /* Launch Screen.storyboard */; };
+		E568627926A970A300A83FCB /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E568627826A970A300A83FCB /* SearchView.swift */; };
+		E568627E26A9835F00A83FCB /* CardGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = E568627D26A9835F00A83FCB /* CardGrid.swift */; };
 		E56A3BF22699622800494650 /* CategoryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E56A3BF12699622800494650 /* CategoryRow.swift */; };
 		E572603026A00D3000864493 /* ScrollTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572602F26A00D2F00864493 /* ScrollTabView.swift */; };
 		E572603226A00D5B00864493 /* RoundedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E572603126A00D5B00864493 /* RoundedText.swift */; };
@@ -33,6 +35,7 @@
 		E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBB26984F940088F968 /* CategoryHome.swift */; };
 		E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBD269850420088F968 /* CategoryItem.swift */; };
 		E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B3AF3026A0384B004B2DCC /* CustomColor.swift */; };
+		E5D82B0326AA7F18009182FE /* CardGridItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5D82B0226AA7F18009182FE /* CardGridItem.swift */; };
 		E5EEA1F326A68C6F004BFA25 /* Videos.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA1F226A68C6E004BFA25 /* Videos.swift */; };
 		E5EEA1F526A68C91004BFA25 /* Video.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5EEA1F426A68C91004BFA25 /* Video.swift */; };
 		E5FFD17C26A6C09D00FDD685 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */; };
@@ -55,6 +58,8 @@
 		E54CC43E269D8EC50083C6FE /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		E54CC440269DB1D80083C6FE /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		E551B051269C6C0D005D9613 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		E568627826A970A300A83FCB /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		E568627D26A9835F00A83FCB /* CardGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGrid.swift; sourceTree = "<group>"; };
 		E56A3BF12699622800494650 /* CategoryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryRow.swift; sourceTree = "<group>"; };
 		E572602F26A00D2F00864493 /* ScrollTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollTabView.swift; sourceTree = "<group>"; };
 		E572603126A00D5B00864493 /* RoundedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedText.swift; sourceTree = "<group>"; };
@@ -69,6 +74,7 @@
 		E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E5B3AF3026A0384B004B2DCC /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		E5C6F1582699A37C00631576 /* Epilogue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-Regular.ttf"; sourceTree = "<group>"; };
+		E5D82B0226AA7F18009182FE /* CardGridItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardGridItem.swift; sourceTree = "<group>"; };
 		E5EEA1F226A68C6E004BFA25 /* Videos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Videos.swift; sourceTree = "<group>"; };
 		E5EEA1F426A68C91004BFA25 /* Video.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Video.swift; sourceTree = "<group>"; };
 		E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
@@ -113,6 +119,7 @@
 				E5A0CBBA26984B2E0088F968 /* Categories */,
 				E54CC43B269D8DC40083C6FE /* Card */,
 				E58A7F14269C0EB90066A4C7 /* Movie */,
+				E568627A26A970AC00A83FCB /* Browse */,
 				E5DA9EB1269C47800021D279 /* Custom */,
 			);
 			path = Views;
@@ -179,6 +186,16 @@
 				E54CC43C269D8E8B0083C6FE /* CardElementView.swift */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		E568627A26A970AC00A83FCB /* Browse */ = {
+			isa = PBXGroup;
+			children = (
+				E568627826A970A300A83FCB /* SearchView.swift */,
+				E568627D26A9835F00A83FCB /* CardGrid.swift */,
+				E5D82B0226AA7F18009182FE /* CardGridItem.swift */,
+			);
+			path = Browse;
 			sourceTree = "<group>";
 		};
 		E572602E26A00C6400864493 /* ViewModel */ = {
@@ -387,6 +404,7 @@
 				E56A3BF22699622800494650 /* CategoryRow.swift in Sources */,
 				E54CC441269DB1D80083C6FE /* RoundedCorner.swift in Sources */,
 				E5840A6C26A8031800E3F782 /* Tab.swift in Sources */,
+				E568627926A970A300A83FCB /* SearchView.swift in Sources */,
 				E5FFD17C26A6C09D00FDD685 /* CustomImage.swift in Sources */,
 				E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */,
 				E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */,
@@ -401,6 +419,8 @@
 				E50254F626983E6B000C6F03 /* ModelData.swift in Sources */,
 				E50DBD7E26A2BA43005948E7 /* WebPlayerView.swift in Sources */,
 				E5EEA1F526A68C91004BFA25 /* Video.swift in Sources */,
+				E568627E26A9835F00A83FCB /* CardGrid.swift in Sources */,
+				E5D82B0326AA7F18009182FE /* CardGridItem.swift in Sources */,
 				E5EEA1F326A68C6F004BFA25 /* Videos.swift in Sources */,
 				E54CC43A269D8DBE0083C6FE /* CardView.swift in Sources */,
 				E572603026A00D3000864493 /* ScrollTabView.swift in Sources */,

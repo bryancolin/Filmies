@@ -16,14 +16,16 @@ struct ContentView: View {
             switch selectedTab {
             case .house:
                 CategoryHome()
+            case .search:
+                SearchView()
             default:
                 Color.white
             }
         }
         .overlay(
             CustomTabBar(selectedTab: $selectedTab)
-                .padding(.vertical)
-            , alignment: .bottom
+                .padding(.vertical),
+            alignment: .bottom
         )
     }
 }

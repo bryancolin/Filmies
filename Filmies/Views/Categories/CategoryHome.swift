@@ -49,7 +49,9 @@ struct CategoryHome: View {
                 .ignoresSafeArea()
         )
         .onAppear {
-            modelData.fetchMovies()
+            if modelData.movies.isEmpty {
+                modelData.fetchMovies()
+            }
         }
     }
 }

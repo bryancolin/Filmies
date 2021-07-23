@@ -7,9 +7,9 @@
 
 import Foundation
 
-enum Tab {
-    case house
-    case bookmark
-    case message
-    case person
+enum Tab: String {
+    case house = "house"
+    case search = "magnifyingglass.circle"
+    case message = "message"
+    case person = "person"
 }

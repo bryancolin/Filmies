@@ -16,7 +16,9 @@ final class ModelData: ObservableObject {
     var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
     
     @Published var movies = [String: [Movie]]()
+    
     @Published var isLoading = false
+    @Published var isError = false
     
     func fetchMovies() {
         isLoading = true
@@ -26,13 +28,13 @@ final class ModelData: ObservableObject {
             
             AF.request("\(url)/\(trend)movie/\(param)\(apiKey)")
                 .validate()
-                .responseDecodable(of: Movies.self) { response in
+                .responseDecodable(of: Movies.self) { [self] response in
                     guard let result = response.value else { return }
                     
-                    self.movies[param] = result.all
+                    movies[param] = result.all
                     
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                        self.isLoading = false
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
+                        isLoading = false
                     }
                 }
         }
@@ -55,5 +57,32 @@ final class ModelData: ObservableObject {
                     }
             }
         }
+    }
+    
+    func searchMovie(name: String) {
+        isLoading = true
+        isError = false
+        
+        let urlName = name.replacingOccurrences(of: " ", with: "+")
+        
+        AF.request("\(url)/search/movie\(apiKey)&query=\(urlName)")
+            .validate()
+            .responseDecodable(of: Movies.self) { [self] response in
+                
+                switch response.result {
+                case .success:
+                    guard let result = response.value else { return}
+                    
+                    movies["search"] = result.all
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        isLoading = false
+                    }
+                    
+                case .failure(_):
+                    isLoading = false
+                    isError = true
+                }
+            }
     }
 }

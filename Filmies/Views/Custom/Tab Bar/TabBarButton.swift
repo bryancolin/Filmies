@@ -30,7 +30,7 @@ struct TabBarButton: View {
                         selectedTab = image
                     }
                 }, label: {
-                    Image(systemName: "\(image)\(selectedTab == image ? ".fill" : "")")
+                    Image(systemName: "\(image.rawValue)\(selectedTab == image ? ".fill" : "")")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(Color(K.BrandColors.pink))
                         .offset(y: selectedTab == image ? -10 : 0)

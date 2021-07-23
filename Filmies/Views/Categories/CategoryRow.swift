@@ -17,9 +17,11 @@ struct CategoryRow: View {
         VStack(alignment: .leading) {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(alignment: .top) {
-                    ForEach(modelData.movies[category] ?? [Movie]()) { movie in
-                        CategoryItem(movie: movie, category: category)
-                            .redacted(reason: modelData.isLoading ? .placeholder : [])
+                    if let movies = modelData.movies[category] {
+                        ForEach(movies) { movie in
+                            CategoryItem(movie: movie, category: category)
+                                .redacted(reason: modelData.isLoading ? .placeholder : [])
+                        }
                     }
                 }
             }

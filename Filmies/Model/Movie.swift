@@ -32,9 +32,12 @@ struct Movie: Codable, Identifiable {
         return String("-")
     }
     
-    var url: String 
+    var url: String?
     var imageURL: String {
-        return "https://image.tmdb.org/t/p/w500" + url
+        if let url = url {
+            return String("https://image.tmdb.org/t/p/w500" + url)
+        }
+        return String()
     }
     
     let videos: Videos?

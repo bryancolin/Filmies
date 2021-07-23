@@ -16,7 +16,7 @@ struct CustomTabBar: View {
     var body: some View {
         HStack(spacing: 0) {
             TabBarButton(image: Tab.house, selectedTab: $selectedTab, tabPoints: $tabPoints)
-            TabBarButton(image: Tab.bookmark, selectedTab: $selectedTab, tabPoints: $tabPoints)
+            TabBarButton(image: Tab.search, selectedTab: $selectedTab, tabPoints: $tabPoints)
             TabBarButton(image: Tab.message, selectedTab: $selectedTab, tabPoints: $tabPoints)
             TabBarButton(image: Tab.person, selectedTab: $selectedTab, tabPoints: $tabPoints)
         }
@@ -44,7 +44,7 @@ struct CustomTabBar: View {
             switch selectedTab {
             case .house:
                 return tabPoints[0]
-            case .bookmark:
+            case .search:
                 return tabPoints[1]
             case .message:
                 return tabPoints[2]
