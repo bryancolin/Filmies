@@ -33,7 +33,7 @@ struct ModalView: View {
                     
                     // Title
                     HStack {
-                        Text(movie.title)
+                        Text(movie.title ?? "")
                             .font(.title3)
                             .fontWeight(.semibold)
                             .foregroundColor(.white)
@@ -62,10 +62,66 @@ struct ModalView: View {
                 ScrollTabView(titles: ["Overview", "Casts"], index: $selectedIndex, color: CustomColor.primary)
                     .padding(.vertical, 10)
                 
-                VStack(alignment: .leading) {
-                    Text(movie.description)
-                        .font(.caption2)
-                        .foregroundColor(.white)
+                VStack(alignment: .leading, spacing: 10) {
+                    if selectedIndex == 0 {
+                        Text(movie.description ?? "")
+                            .foregroundColor(.white)
+                        
+                    } else if selectedIndex == 1 {
+                        
+                        if let casts = movie.casts {
+                            if let crews = casts.crewCategories["Director"] {
+                                HStack(alignment: .top) {
+                                    Text("Director")
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                    VStack(alignment: .trailing) {
+                                        ForEach(0..<5) { index in
+                                            if index < crews.count {
+                                                Text(crews[index].name ?? "")
+                                                    .foregroundColor(.white)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            if let crews = casts.crewCategories["Writer"] {
+                                HStack(alignment: .top) {
+                                    Text("Writer")
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                    VStack(alignment: .trailing) {
+                                        ForEach(0..<5) { index in
+                                            if index < crews.count {
+                                                Text(crews[index].name ?? "")
+                                                    .foregroundColor(.white)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            if let actors = casts.cast {
+                                HStack(alignment: .top) {
+                                    Text("Starring")
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.white)
+                                    Spacer()
+                                    VStack(alignment: .trailing) {
+                                        ForEach(0..<5) { index in
+                                            if index < actors.count {
+                                            Text(actors[index].name ?? "")
+                                                .foregroundColor(.white)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
                 .padding(.vertical)
                 .padding(.horizontal)
@@ -79,10 +135,9 @@ struct ModalView: View {
         )
         .onAppear {
             if movie.details == false {
-                modelData.fetchMovieDetails(param: category, id: movie.id)
+                modelData.fetchMovieDetails(param: category, id: movie.id ?? 0)
             }
         }
     }
 }
-
 

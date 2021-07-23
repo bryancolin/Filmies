@@ -8,7 +8,7 @@
 import Foundation
 
 struct Videos: Codable {
-    let all: [Video]
+    let all: [Video]?
     
     enum CodingKeys: String, CodingKey {
         case all = "results"

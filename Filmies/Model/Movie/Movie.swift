@@ -8,9 +8,9 @@
 import Foundation
 
 struct Movie: Codable, Identifiable {
-    var id: Int
-    var title: String
-    var description: String
+    let id: Int?
+    let title: String?
+    let description: String?
     
     var details: Bool = false
     
@@ -24,7 +24,7 @@ struct Movie: Codable, Identifiable {
         return String()
     }
     
-    var releaseDate: String?
+    let releaseDate: String?
     var releaseYear: String {
         if let date = releaseDate {
             return String(date.prefix(4))
@@ -32,7 +32,7 @@ struct Movie: Codable, Identifiable {
         return String("-")
     }
     
-    var url: String?
+    let url: String?
     var imageURL: String {
         if let url = url {
             return String("https://image.tmdb.org/t/p/w500" + url)
@@ -42,13 +42,18 @@ struct Movie: Codable, Identifiable {
     
     let videos: Videos?
     
+    let casts: Casts?
+    
     enum CodingKeys: String, CodingKey {
         case id
         case title = "original_title"
         case description = "overview"
-        case releaseDate = "release_date"
-        case url = "poster_path"
         case runTime = "runtime"
+        case releaseDate = "release_date"
+        
+        case url = "poster_path"
+        
         case videos
+        case casts
     }
 }

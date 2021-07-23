@@ -45,7 +45,9 @@ final class ModelData: ObservableObject {
         
         for (index, movie) in safeMovies.enumerated() {
             if movie.id == id {
-                AF.request("\(url)/movie/\(movie.id)\(apiKey)&append_to_response=videos")
+                guard let movieId = movie.id else { return }
+                
+                AF.request("\(url)/movie/\(movieId)\(apiKey)&append_to_response=videos,casts")
                     .validate()
                     .responseDecodable(of: Movie.self) { response in
                         guard let result = response.value else { return }

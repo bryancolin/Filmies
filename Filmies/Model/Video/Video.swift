@@ -8,11 +8,14 @@
 import Foundation
 
 struct Video: Codable {
-    var key: String
-    var site: String
-    var type: String
+    let key: String?
+    let site: String?
+    let type: String?
     var youtubeURL: String {
-        return "https://www.youtube.com/embed/" + key
+        if let key = key {
+            return "https://www.youtube.com/embed/" + key
+        }
+        return String()
     }
     
     enum CodingKeys: String, CodingKey {
