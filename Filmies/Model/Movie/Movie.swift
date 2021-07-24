@@ -11,6 +11,8 @@ struct Movie: Codable, Identifiable {
     let id: Int?
     let title: String?
     let description: String?
+    let genres: [Genre]?
+    let languages: [Language]?
     
     var details: Bool = false
     
@@ -48,6 +50,8 @@ struct Movie: Codable, Identifiable {
         case id
         case title = "original_title"
         case description = "overview"
+        case genres
+        case languages = "spoken_languages"
         case runTime = "runtime"
         case releaseDate = "release_date"
         

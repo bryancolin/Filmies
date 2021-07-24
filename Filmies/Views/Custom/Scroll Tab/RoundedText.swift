@@ -17,7 +17,7 @@ struct RoundedText: View {
         let firstColor = color == .primary ? Color(K.BrandColors.pink) : Color.white
         let secondColor = color == .primary ? Color.white : Color(K.BrandColors.pink)
         
-        return ForEach(0..<titles.count) { value in
+        ForEach(0..<titles.count) { value in
             Text(titles[value])
                 .font(.system(size: 15))
                 .fontWeight(.bold)
