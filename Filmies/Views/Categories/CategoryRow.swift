@@ -16,7 +16,7 @@ struct CategoryRow: View {
     var body: some View {
         VStack(alignment: .leading) {
             ScrollView(.horizontal, showsIndicators: false) {
-                LazyHStack(alignment: .top) {
+                HStack(alignment: .top) {
                     if let movies = modelData.movies[category] {
                         ForEach(movies) { movie in
                             CategoryItem(movie: movie, category: category)

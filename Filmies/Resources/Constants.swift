@@ -9,6 +9,8 @@ import Foundation
 
 struct K {
     
+    static let userDefaultsKey = "Favorites"
+    
     struct BrandColors {
         static let blue = "BrandBlue"
         static let darkBlue = "BrandDarkBlue"

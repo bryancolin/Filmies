@@ -14,7 +14,9 @@ struct Movie: Codable, Identifiable {
     let genres: [Genre]?
     let languages: [Language]?
     
+    var category: String = ""
     var details: Bool = false
+    var isFavorite: Bool = false
     
     var runTime: Int?
     var duration: String? {

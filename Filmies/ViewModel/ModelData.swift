@@ -15,6 +15,7 @@ final class ModelData: ObservableObject {
     var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
     
     @Published var movies = [String: [Movie]]()
+    @Published var favoriteMovies = [Movie]()
     
     @Published var isLoading = false
     @Published var isError = false
@@ -40,23 +41,24 @@ final class ModelData: ObservableObject {
     }
     
     func fetchMovieDetails(param: String, id: Int) {
-        guard let safeMovies = movies[param] else { return }
         
-        for (index, movie) in safeMovies.enumerated() {
-            if movie.id == id {
-                guard let movieId = movie.id else { return }
-                
-                AF.request("\(url)/movie/\(movieId)\(apiKey)&append_to_response=videos,casts")
-                    .validate()
-                    .responseDecodable(of: Movie.self) { response in
-                        guard let result = response.value else { return }
-                        
-                        DispatchQueue.main.async { [self] in
-                            movies[param]?[index] = result
-                            movies[param]?[index].details = true
-                        }
+        let movie = findMovie(param: param, id: id)
+        let movieExists = movie.0
+        let movieAtIndex = movie.1
+        
+        if movieExists {
+            AF.request("\(url)/movie/\(id)\(apiKey)&append_to_response=videos,casts")
+                .validate()
+                .responseDecodable(of: Movie.self) { response in
+                    guard let result = response.value else { return }
+                    
+                    DispatchQueue.main.async { [self] in
+                        movies[param]?[movieAtIndex] = result
+                        movies[param]?[movieAtIndex].category = param
+                        movies[param]?[movieAtIndex].isFavorite = findMovie(param: "favorites", id: id).0
+                        movies[param]?[movieAtIndex].details = true
                     }
-            }
+                }
         }
     }
     
@@ -85,5 +87,70 @@ final class ModelData: ObservableObject {
                     isError = true
                 }
             }
+    }
+    
+    func loadFavoriteMovies() {
+        //        if let data = UserDefaults.standard.data(forKey: K.userDefaultsKey) {
+        //            if let decoded = try? JSONDecoder().decode([Movie].self, from: data) {
+        //                self.favoriteMovies = decoded
+        //            }
+        //        }
+    }
+    
+    func highlightMovie(param: String, id: Int, check: Bool) {
+        
+        let movie = findMovie(param: param, id: id)
+        let movieExists = movie.0
+        let movieAtIndex = movie.1
+        
+        // Check Favorites to TRUE/FALSE from its category
+        if movieExists {
+            movies[param]?[movieAtIndex].isFavorite = check
+        }
+        
+        if check {
+            // Append & Save in User Defaults
+            guard let movie = movies[param]?[movieAtIndex] else { return }
+            
+            if movies["favorites"] == nil {
+                movies["favorites"] = [movie]
+            } else {
+                movies["favorites"]?.append(movie)
+            }
+            
+            //                if let encoded = try? JSONEncoder().encode(movies[param]?[movieAtIndex]) {
+            //                    UserDefaults.standard.set(encoded, forKey: K.userDefaultsKey)
+            //                }
+        } else {
+            // Remove Movie & Delete from User Defaults
+            let favoriteMovie = findMovie(param: "favorites", id: id)
+            if favoriteMovie.0 {
+                movies["favorites"]?.remove(at: favoriteMovie.1)
+            }
+            
+            // Remove from User Defaults
+        }
+    }
+    
+    func findMovie(param: String, id: Int) -> (Bool, Int) {
+        if let safeMovies = movies[param] {
+            for (index, movie) in safeMovies.enumerated() {
+                if movie.id == id  {
+                    return (true, index)
+                }
+            }
+        }
+        
+        return (false, 0)
+    }
+    
+    func findFavoriteMovie(id : Int) -> (Bool, Int) {
+        for (index, movie) in favoriteMovies.enumerated() {
+            if movie.id == id {
+                return (true, index)
+            }
+        }
+        
+        return (false, 0)
     }
 }

@@ -44,6 +44,15 @@ struct ModalView: View {
                             .minimumScaleFactor(0.5)
                         
                         Spacer()
+                        
+                        Button(action: {
+                            let check = !movie.isFavorite
+                            modelData.highlightMovie(param: movie.category, id: movie.id ?? 0, check: check)
+                        }, label: {
+                            Image(systemName: !movie.isFavorite ? "checkmark.circle" : "checkmark.circle.fill")
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(.white)
+                        })
                     }
                     .padding(.horizontal)
                     .padding(.vertical)

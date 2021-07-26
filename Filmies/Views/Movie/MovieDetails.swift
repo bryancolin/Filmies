@@ -23,7 +23,6 @@ struct MovieDetails: View {
         
         HorizontalText(name: "Runtime", details: movie.duration ?? "")
         
-        
         if let languages = movie.languages {
             HStack(alignment: .top) {
                 Text("Languages")

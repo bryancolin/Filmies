@@ -51,6 +51,21 @@ struct CategoryHome: View {
             // Scroll Tab for Top Rated Movies
             ScrollTabView(titles: ["Top Rated"], index: .constant(0))
             CategoryRow(category: $modelData.params[modelData.params.count-1])
+            
+            ScrollTabView(titles: ["Favorites"], index: .constant(0))
+            CategoryRow(category: .constant("favorites"))
+//            VStack(alignment: .leading) {
+//                ScrollView(.horizontal, showsIndicators: false) {
+//                    HStack(alignment: .top) {
+//                        if let movies = modelData.movies["favorites"] {
+//                            ForEach(movies) { movie in
+//                                CategoryItem(movie: movie, category: "favorites")
+//                                    .redacted(reason: modelData.isLoading ? .placeholder : [])
+//                            }
+//                        }
+//                    }
+//                }
+//            }
         }
         .background(
             gradient
