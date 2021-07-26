@@ -15,6 +15,14 @@ struct CategoryHome: View {
     @State var selectedIndex1 = 0
     @State var selectedIndex2 = 0
     
+    var gradient: LinearGradient {
+        LinearGradient (
+            gradient: Gradient(colors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             
@@ -45,7 +53,7 @@ struct CategoryHome: View {
             CategoryRow(category: $modelData.params[modelData.params.count-1])
         }
         .background(
-            LinearGradient(gradient: Gradient(colors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)]), startPoint: .top, endPoint: .bottom)
+            gradient
                 .ignoresSafeArea()
         )
         .onAppear {

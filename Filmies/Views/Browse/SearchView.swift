@@ -14,6 +14,14 @@ struct SearchView: View {
     @State private var numberOfColumns = 2
     @State private var searchText = ""
     
+    var gradient: LinearGradient {
+        LinearGradient (
+            gradient: Gradient(colors: [Color(K.BrandColors.purple), Color(K.BrandColors.pink)]),
+            startPoint: .top,
+            endPoint: .bottom
+        )
+    }
+    
     var body: some View {
         // Title
         VStack(spacing: 20) {
@@ -65,8 +73,7 @@ struct SearchView: View {
             }
         }
         .background(
-            LinearGradient(gradient: Gradient(colors: [Color(K.BrandColors.purple), Color(K.BrandColors.pink)]), startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
+            gradient.ignoresSafeArea()
         )
     }
 }
