@@ -15,7 +15,6 @@ final class ModelData: ObservableObject {
     var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
     
     @Published var movies = [String: [Movie]]()
-    @Published var favoriteMovies = [Movie]()
     
     @Published var isLoading = false
     @Published var isError = false
@@ -89,14 +88,6 @@ final class ModelData: ObservableObject {
             }
     }
     
-    func loadFavoriteMovies() {
-        //        if let data = UserDefaults.standard.data(forKey: K.userDefaultsKey) {
-        //            if let decoded = try? JSONDecoder().decode([Movie].self, from: data) {
-        //                self.favoriteMovies = decoded
-        //            }
-        //        }
-    }
-    
     func highlightMovie(param: String, id: Int, check: Bool) {
         
         let movie = findMovie(param: param, id: id)
@@ -109,27 +100,24 @@ final class ModelData: ObservableObject {
         }
         
         if check {
-            // Append & Save in User Defaults
-            guard let movie = movies[param]?[movieAtIndex] else { return }
+            // Append Favorite Movie
+            guard var movie = movies[param]?[movieAtIndex] else { return }
+            movie.addedAt = Date().timeIntervalSince1970
             
             if movies["favorites"] == nil {
                 movies["favorites"] = [movie]
             } else {
-                movies["favorites"]?.append(movie)
+                movies["favorites"]?.insert(movie, at: 0)
             }
-            
-            //                if let encoded = try? JSONEncoder().encode(movies[param]?[movieAtIndex]) {
-            //                    UserDefaults.standard.set(encoded, forKey: K.userDefaultsKey)
-            //                }
         } else {
-            // Remove Movie & Delete from User Defaults
+            // Remove Favorite Movie
             let favoriteMovie = findMovie(param: "favorites", id: id)
             if favoriteMovie.0 {
                 movies["favorites"]?.remove(at: favoriteMovie.1)
             }
-            
-            // Remove from User Defaults
         }
+        
+        saveFavoriteMovies()
     }
     
     func findMovie(param: String, id: Int) -> (Bool, Int) {
@@ -144,13 +132,20 @@ final class ModelData: ObservableObject {
         return (false, 0)
     }
     
-    func findFavoriteMovie(id : Int) -> (Bool, Int) {
-        for (index, movie) in favoriteMovies.enumerated() {
-            if movie.id == id {
-                return (true, index)
+    func loadFavoriteMovies() {
+        if let data = UserDefaults.standard.data(forKey: K.userDefaultsKey) {
+            if let decoded = try? JSONDecoder().decode([Movie].self, from: data) {
+                DispatchQueue.main.async {
+                    self.movies["favorites"] = decoded.sorted(by: { $0.addedAt < $1.addedAt })
+                }
             }
         }
-        
-        return (false, 0)
+    }
+    
+    func saveFavoriteMovies() {
+        // Store in User Defaults
+        if let encoded = try? JSONEncoder().encode(movies["favorites"]) {
+            UserDefaults.standard.set(encoded, forKey: K.userDefaultsKey)
+        }
     }
 }

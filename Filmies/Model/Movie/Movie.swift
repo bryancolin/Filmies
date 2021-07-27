@@ -17,6 +17,7 @@ struct Movie: Codable, Identifiable {
     var category: String = ""
     var details: Bool = false
     var isFavorite: Bool = false
+    var addedAt: Double = Date().timeIntervalSince1970
     
     var runTime: Int?
     var duration: String? {

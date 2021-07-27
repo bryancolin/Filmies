@@ -23,8 +23,8 @@ struct SearchView: View {
     }
     
     var body: some View {
-        // Title
-        VStack(spacing: 20) {
+        VStack(spacing: 10) {
+            // Title
             HStack {
                 Text("Search")
                     .font(.largeTitle)
@@ -44,6 +44,7 @@ struct SearchView: View {
             .padding(.horizontal)
             .padding(.vertical)
             
+            // Search Bar
             HStack {
                 TextField("Type here...", text: $searchText)
                     .foregroundColor(Color(K.BrandColors.pink))
@@ -64,9 +65,10 @@ struct SearchView: View {
             .cornerRadius(20)
             .padding(.horizontal)
             
+            // Card Grid
             VStack(alignment: .center) {
                 if !modelData.isError {
-                    CardGrid(numberOfColumns: $numberOfColumns)
+                    CardGrid(category: "search", numberOfColumns: $numberOfColumns)
                 } else {
                     Text("Not Found")
                 }

@@ -10,6 +10,7 @@ import SwiftUI
 struct CardGrid: View {
     
     @EnvironmentObject var modelData: ModelData
+    var category: String
     
     let spacing: CGFloat = 10
     @Binding var numberOfColumns: Int
@@ -19,7 +20,7 @@ struct CardGrid: View {
         
         ScrollView(.vertical, showsIndicators: false) {
             LazyVGrid(columns: columns, spacing: spacing) {
-                if let movies = modelData.movies["search"] {
+                if let movies = modelData.movies[category] {
                     ForEach(movies) { movie in
                         CardGridItem(movie: movie)
                             .redacted(reason: modelData.isLoading ? .placeholder : [])

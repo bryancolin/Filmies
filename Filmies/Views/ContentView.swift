@@ -16,6 +16,8 @@ struct ContentView: View {
             switch selectedTab {
             case .house:
                 CategoryHome()
+            case .star:
+                FavoritesView()
             case .search:
                 SearchView()
             default:

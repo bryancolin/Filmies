@@ -10,6 +10,6 @@ import Foundation
 enum Tab: String {
     case house = "house"
     case search = "magnifyingglass.circle"
-    case message = "message"
+    case star = "star"
     case person = "person"
 }
