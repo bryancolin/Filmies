@@ -19,42 +19,18 @@ struct MovieDetails: View {
         
         CustomDivider()
         
-        HorizontalText(name: "Release Date", details: movie.releaseDate ?? "")
+        HorizontalText(name: "Release Date", details: [movie.releaseDate ?? ""])
         
-        HorizontalText(name: "Runtime", details: movie.duration ?? "")
+        HorizontalText(name: "Runtime", details: [movie.duration ?? ""])
         
         if let languages = movie.languages {
-            HStack(alignment: .top) {
-                Text("Languages")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                Spacer()
-                VStack(alignment: .trailing) {
-                    ForEach(0..<5) { index in
-                        if index < languages.count {
-                            Text(languages[index].name ?? "")
-                                .foregroundColor(.white)
-                        }
-                    }
-                }
-            }
+            let details = languages.compactMap( { $0.name })
+            HorizontalText(name: "Languages", details: details)
         }
         
         if let genres = movie.genres {
-            HStack(alignment: .top) {
-                Text("Genres")
-                    .fontWeight(.semibold)
-                    .foregroundColor(.white)
-                Spacer()
-                VStack(alignment: .trailing) {
-                    ForEach(0..<5) { index in
-                        if index < genres.count {
-                            Text(genres[index].name ?? "")
-                                .foregroundColor(.white)
-                        }
-                    }
-                }
-            }
+            let details = genres.compactMap( { $0.name })
+            HorizontalText(name: "Genres", details: details)
         }
     }
 }
@@ -62,7 +38,7 @@ struct MovieDetails: View {
 struct HorizontalText: View {
     
     var name: String
-    var details: String
+    var details: [String]
     
     var body: some View {
         HStack(alignment: .top) {
@@ -72,8 +48,14 @@ struct HorizontalText: View {
             
             Spacer()
             
-            Text(details)
-                .foregroundColor(.white)
+            VStack(alignment: .trailing) {
+                ForEach(0..<5) { index in
+                    if index < details.count {
+                        Text(details[index])
+                            .foregroundColor(.white)
+                    }
+                }
+            }
         }
     }
 }

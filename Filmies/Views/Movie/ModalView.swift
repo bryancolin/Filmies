@@ -22,7 +22,6 @@ struct ModalView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                
                 // Head View
                 VStack(spacing: 0) {
                     // Video Trailer
@@ -75,54 +74,18 @@ struct ModalView: View {
                             
                             if let casts = movie.casts {
                                 if let crews = casts.crewCategories["Director"] {
-                                    HStack(alignment: .top) {
-                                        Text("Director")
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.white)
-                                        Spacer()
-                                        VStack(alignment: .trailing) {
-                                            ForEach(0..<5) { index in
-                                                if index < crews.count {
-                                                    Text(crews[index].name ?? "")
-                                                        .foregroundColor(.white)
-                                                }
-                                            }
-                                        }
-                                    }
+                                    let details = crews.compactMap( { $0.name })
+                                    HorizontalText(name: "Director", details: details)
                                 }
                                 
                                 if let crews = casts.crewCategories["Writer"] {
-                                    HStack(alignment: .top) {
-                                        Text("Writer")
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.white)
-                                        Spacer()
-                                        VStack(alignment: .trailing) {
-                                            ForEach(0..<5) { index in
-                                                if index < crews.count {
-                                                    Text(crews[index].name ?? "")
-                                                        .foregroundColor(.white)
-                                                }
-                                            }
-                                        }
-                                    }
+                                    let details = crews.compactMap( { $0.name })
+                                    HorizontalText(name: "Writer", details: details)
                                 }
                                 
                                 if let actors = casts.cast {
-                                    HStack(alignment: .top) {
-                                        Text("Starring")
-                                            .fontWeight(.semibold)
-                                            .foregroundColor(.white)
-                                        Spacer()
-                                        VStack(alignment: .trailing) {
-                                            ForEach(0..<5) { index in
-                                                if index < actors.count {
-                                                    Text(actors[index].name ?? "")
-                                                        .foregroundColor(.white)
-                                                }
-                                            }
-                                        }
-                                    }
+                                    let details = actors.compactMap( { $0.name })
+                                    HorizontalText(name: "Starring", details: details)
                                 }
                             }
                         }

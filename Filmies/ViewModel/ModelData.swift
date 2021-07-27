@@ -29,11 +29,12 @@ final class ModelData: ObservableObject {
                 .validate()
                 .responseDecodable(of: Movies.self) { [self] response in
                     guard let result = response.value else { return }
-
-                    movies[param] = result.all
-
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
-                        isLoading = false
+                    
+                    DispatchQueue.main.async {
+                        movies[param] = result.all
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
+                            isLoading = false
+                        }
                     }
                 }
         }
@@ -57,10 +58,6 @@ final class ModelData: ObservableObject {
                         movies[param]?[movieAtIndex].details = true
                     }
                 }
-            
-//            DispatchQueue.main.async { [self] in
-//                movies[param]?[movieAtIndex].isFavorite = findMovie(param: "favorites", id: id).0
-//            }
         }
     }
     
