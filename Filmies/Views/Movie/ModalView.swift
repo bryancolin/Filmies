@@ -16,6 +16,7 @@ struct ModalView: View {
     var category: String
     @Binding var showModal: Bool
     
+    @State var isFavorite: Bool = false
     @State var selectedIndex = 0
     
     var body: some View {
@@ -46,10 +47,10 @@ struct ModalView: View {
                         Spacer()
                         
                         Button(action: {
-                            let check = !movie.isFavorite
-                            modelData.highlightMovie(param: movie.category, id: movie.id ?? 0, check: check)
+                            isFavorite.toggle()
+                            modelData.highlightMovie(param: movie.category, id: movie.id ?? 0, check: isFavorite)
                         }, label: {
-                            Image(systemName: !movie.isFavorite ? "checkmark.circle" : "checkmark.circle.fill")
+                            Image(systemName: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill")
                                 .font(.system(size: 20, weight: .semibold))
                                 .foregroundColor(.white)
                         })
@@ -141,6 +142,7 @@ struct ModalView: View {
             if movie.details == false {
                 modelData.fetchMovieDetails(param: category, id: movie.id ?? 0)
             }
+            isFavorite = modelData.findMovie(param: "favorites", id: movie.id ?? 0).0
         }
     }
 }

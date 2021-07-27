@@ -51,6 +51,10 @@ struct CategoryHome: View {
             // Scroll Tab for Top Rated Movies
             ScrollTabView(titles: ["Top Rated"], index: .constant(0))
             CategoryRow(category: $modelData.params[modelData.params.count-1])
+            
+            // Scroll Tab for Top Rated Movies
+            ScrollTabView(titles: ["Favorites"], index: .constant(0))
+            CategoryRow(category: .constant("favorites"))
         }
         .background(
             gradient

@@ -29,9 +29,9 @@ final class ModelData: ObservableObject {
                 .validate()
                 .responseDecodable(of: Movies.self) { [self] response in
                     guard let result = response.value else { return }
-                    
+
                     movies[param] = result.all
-                    
+
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
                         isLoading = false
                     }
@@ -54,10 +54,13 @@ final class ModelData: ObservableObject {
                     DispatchQueue.main.async { [self] in
                         movies[param]?[movieAtIndex] = result
                         movies[param]?[movieAtIndex].category = param
-                        movies[param]?[movieAtIndex].isFavorite = findMovie(param: "favorites", id: id).0
                         movies[param]?[movieAtIndex].details = true
                     }
                 }
+            
+//            DispatchQueue.main.async { [self] in
+//                movies[param]?[movieAtIndex].isFavorite = findMovie(param: "favorites", id: id).0
+//            }
         }
     }
     
@@ -102,6 +105,7 @@ final class ModelData: ObservableObject {
         if check {
             // Append Favorite Movie
             guard var movie = movies[param]?[movieAtIndex] else { return }
+            movie.isFavorite = true
             movie.addedAt = Date().timeIntervalSince1970
             
             if movies["favorites"] == nil {
@@ -128,15 +132,14 @@ final class ModelData: ObservableObject {
                 }
             }
         }
-        
         return (false, 0)
     }
     
     func loadFavoriteMovies() {
         if let data = UserDefaults.standard.data(forKey: K.userDefaultsKey) {
             if let decoded = try? JSONDecoder().decode([Movie].self, from: data) {
-                DispatchQueue.main.async {
-                    self.movies["favorites"] = decoded.sorted(by: { $0.addedAt < $1.addedAt })
+                DispatchQueue.main.async { [self] in
+                    movies["favorites"] = decoded.sorted(by: { $0.addedAt < $1.addedAt })
                 }
             }
         }
