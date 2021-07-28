@@ -28,16 +28,7 @@ struct CategoryHome: View {
             
             // Title
             VStack(spacing: nil) {
-                HStack {
-                    Text("Trending")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
-                        .foregroundColor(Color(K.BrandColors.pink))
-                    
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.vertical)
+                LargeTitle(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {}
             }
             
             // Scroll Tab for Trending Movies (Day & Week)

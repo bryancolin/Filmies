@@ -25,14 +25,7 @@ struct SearchView: View {
     var body: some View {
         VStack(spacing: 10) {
             // Title
-            HStack {
-                Text("Search")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                    .foregroundColor(.white)
-                
-                Spacer()
-                
+            LargeTitle(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
                 Button(action: {
                     numberOfColumns = numberOfColumns % 2 + 1
                 }, label: {
@@ -41,8 +34,6 @@ struct SearchView: View {
                         .foregroundColor(.white)
                 })
             }
-            .padding(.horizontal)
-            .padding(.vertical)
             
             // Search Bar
             HStack {

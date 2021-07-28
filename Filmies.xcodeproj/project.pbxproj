@@ -17,6 +17,7 @@
 		E515A15B2697FC95008D4FE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15A2697FC95008D4FE4 /* Assets.xcassets */; };
 		E515A15E2697FC95008D4FE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */; };
 		E52C334726B13E5F0080031F /* MovieTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C334626B13E5E0080031F /* MovieTrailer.swift */; };
+		E52C334926B146320080031F /* LargeTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C334826B146320080031F /* LargeTitle.swift */; };
 		E54CC43A269D8DBE0083C6FE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC439269D8DBD0083C6FE /* CardView.swift */; };
 		E54CC43D269D8E8C0083C6FE /* CardElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43C269D8E8B0083C6FE /* CardElementView.swift */; };
 		E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43E269D8EC50083C6FE /* ModalView.swift */; };
@@ -65,6 +66,7 @@
 		E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E515A15F2697FC95008D4FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E52C334626B13E5E0080031F /* MovieTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTrailer.swift; sourceTree = "<group>"; };
+		E52C334826B146320080031F /* LargeTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeTitle.swift; sourceTree = "<group>"; };
 		E54CC439269D8DBD0083C6FE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E54CC43C269D8E8B0083C6FE /* CardElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardElementView.swift; sourceTree = "<group>"; };
 		E54CC43E269D8EC50083C6FE /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */,
 				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
 				E50C1A2226A18B4F003CE717 /* FlipEffect.swift */,
+				E52C334826B146320080031F /* LargeTitle.swift */,
 				E5840A6D26A8036F00E3F782 /* Scroll Tab */,
 				E5840A6426A7FD2800E3F782 /* Tab Bar */,
 			);
@@ -493,6 +496,7 @@
 				E564B11F26AC01EF002637A9 /* Genre.swift in Sources */,
 				E5EEA1F526A68C91004BFA25 /* Video.swift in Sources */,
 				E568627E26A9835F00A83FCB /* CardGrid.swift in Sources */,
+				E52C334926B146320080031F /* LargeTitle.swift in Sources */,
 				E52C334726B13E5F0080031F /* MovieTrailer.swift in Sources */,
 				E5D82B0326AA7F18009182FE /* CardGridItem.swift in Sources */,
 				E57C8BB726B1208500D41473 /* PageViewController.swift in Sources */,

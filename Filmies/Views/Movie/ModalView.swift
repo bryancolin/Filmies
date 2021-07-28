@@ -25,18 +25,9 @@ struct ModalView: View {
                 VStack(spacing: 0) {
                     // Video Trailer
                     MovieTrailer(movie: movie)
-
-                    // Title
-                    HStack {
-                        Text(movie.title ?? "")
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .foregroundColor(.white)
-                            .lineLimit(2)
-                            .minimumScaleFactor(0.5)
-                        
-                        Spacer()
-                        
+                    
+                    // Title Description
+                    LargeTitle(name: movie.title ?? "", color: .white, type: .title3, weight: .semibold) {
                         Button(action: {
                             isFavorite.toggle()
                             modelData.highlightMovie(param: movie.category, id: movie.id ?? 0, check: isFavorite)
@@ -46,8 +37,6 @@ struct ModalView: View {
                                 .foregroundColor(.white)
                         })
                     }
-                    .padding(.horizontal)
-                    .padding(.vertical)
                 }
                 .background(Color.black.opacity(0.75))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
