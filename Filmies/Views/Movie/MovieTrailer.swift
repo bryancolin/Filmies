@@ -14,11 +14,15 @@ struct MovieTrailer: View {
     var body: some View {
         if let trailers = movie.videos?.all, !trailers.isEmpty {
             VStack {
-                if trailers.count == 1 {
-                    WebPlayerView(urlString: trailers.first?.youtubeURL, loadOnce: true)
+                let officialTrailers = trailers.filter { trailer -> Bool in
+                    guard let trailerName = trailer.name else { return false }
+                    return trailerName.contains("Trailer")
+                }
+                
+                if officialTrailers.count == 1 {
+                    WebPlayerView(urlString: officialTrailers.first?.youtubeURL, loadOnce: true)
                 } else {
-                    let fiveTrailers = trailers.enumerated().compactMap { $0 < 5 ? $1.youtubeURL : nil }
-                    PageView(pages: fiveTrailers.compactMap({ WebPlayerView(urlString: $0, loadOnce: true) }), alignment: .topTrailing)
+                    PageView(pages: officialTrailers.compactMap({ WebPlayerView(urlString: $0.youtubeURL, loadOnce: true) }), alignment: .topTrailing)
                 }
             }
             .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
