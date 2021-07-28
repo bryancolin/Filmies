@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import AVKit
 
 struct ModalView: View {
     
@@ -25,15 +24,8 @@ struct ModalView: View {
                 // Head View
                 VStack(spacing: 0) {
                     // Video Trailer
-                    if let trailers = movie.videos?.all {
-                        if !trailers.isEmpty {
-                            WebPlayerView(urlString: trailers.first?.youtubeURL, loadOnce: true)
-                                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
-                        } else {
-                            CustomImage(urlString: movie.imageURL)
-                        }
-                    }
-                    
+                    MovieTrailer(movie: movie)
+
                     // Title
                     HStack {
                         Text(movie.title ?? "")
@@ -62,35 +54,13 @@ struct ModalView: View {
                 
                 // Sub View
                 VStack(alignment: .leading) {
-                    
                     ScrollTabView(titles: ["Overview", "Casts"], index: $selectedIndex, color: CustomColor.secondary)
                     
-                    VStack(alignment: .leading, spacing: 10) {
-                        if selectedIndex == 0 {
-                            
-                            MovieDetails(movie: movie)
-                            
-                        } else if selectedIndex == 1 {
-                            
-                            if let casts = movie.casts {
-                                if let crews = casts.crewCategories["Director"] {
-                                    let details = crews.compactMap( { $0.name })
-                                    HorizontalText(name: "Director", details: details)
-                                }
-                                
-                                if let crews = casts.crewCategories["Writer"] {
-                                    let details = crews.compactMap( { $0.name })
-                                    HorizontalText(name: "Writer", details: details)
-                                }
-                                
-                                if let actors = casts.cast {
-                                    let details = actors.compactMap( { $0.name })
-                                    HorizontalText(name: "Starring", details: details)
-                                }
-                            }
-                        }
+                    if selectedIndex == 0 {
+                        MovieDetails(movie: movie, version: 1)
+                    } else {
+                        MovieDetails(movie: movie, version: 2)
                     }
-                    .padding(.horizontal)
                 }
                 .padding(.vertical)
                 .background(Color.black.opacity(0.75))
