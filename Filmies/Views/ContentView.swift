@@ -18,6 +18,8 @@ struct ContentView: View {
                 CategoryHome()
             case .search:
                 SearchView()
+            case .person:
+                AccountView()
             default:
                 Color.white
             }
