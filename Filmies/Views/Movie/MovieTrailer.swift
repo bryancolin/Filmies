@@ -9,7 +9,10 @@ import SwiftUI
 
 struct MovieTrailer: View {
     
+    @EnvironmentObject var modelData: ModelData
+    
     var movie: Movie
+    var category: String
     
     var body: some View {
         if let officialTrailers = movie.videos?.all?.filter({ trailer -> Bool in
@@ -18,10 +21,14 @@ struct MovieTrailer: View {
         }) {
             if !officialTrailers.isEmpty {
                 VStack {
-                    if officialTrailers.count == 1 {
-                        WebPlayerView(urlString: officialTrailers.first?.youtubeURL, loadOnce: true)
+                    if officialTrailers.count > 1 {
+                        if category == "favorites" {
+                            WebPlayerView(urlString: officialTrailers.first?.youtubeURL, loadOnce: true)
+                        } else {
+                            PageView(pages: officialTrailers.compactMap({ WebPlayerView(urlString: $0.youtubeURL, loadOnce: true) }), alignment: .topTrailing)
+                        }
                     } else {
-                        PageView(pages: officialTrailers.compactMap({ WebPlayerView(urlString: $0.youtubeURL, loadOnce: true) }), alignment: .topTrailing)
+                        WebPlayerView(urlString: officialTrailers.first?.youtubeURL, loadOnce: true)
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
