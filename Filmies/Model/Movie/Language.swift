@@ -8,8 +8,7 @@
 import Foundation
 
 struct Language: Codable, Identifiable {
-    let id: String?
-    let name: String?
+    let id, name: String?
     
     enum CodingKeys: String, CodingKey {
         case id = "iso_639_1"

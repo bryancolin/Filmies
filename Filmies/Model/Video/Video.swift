@@ -8,10 +8,7 @@
 import Foundation
 
 struct Video: Codable {
-    let name: String?
-    let key: String?
-    let site: String?
-    let type: String?
+    let name, key, site, type: String?
     
     var youtubeURL: String {
         if let key = key {

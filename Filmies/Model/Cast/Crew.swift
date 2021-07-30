@@ -9,9 +9,7 @@ import Foundation
 
 struct Crew: Codable, Identifiable {
     let id: Int?
-    let name: String?
-    let department: String?
-    let job: String?
+    let name, department, job: String?
     
     enum CodingKeys: String, CodingKey {
         case id

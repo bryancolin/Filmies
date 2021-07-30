@@ -9,8 +9,7 @@ import Foundation
 
 struct Cast: Codable, Identifiable {
     let id: Int?
-    let name: String?
-    let department: String?
+    let name, department: String?
     let order: Int?
     
     enum CodingKeys: String, CodingKey {
