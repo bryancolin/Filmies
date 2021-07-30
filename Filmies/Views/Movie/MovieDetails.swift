@@ -39,6 +39,8 @@ struct MovieDetails: View {
                     HorizontalText(name: "Genres", details: genres.compactMap( { $0.name }))
                 }
                 
+                HorizontalText(name: "Added Day", details: [movie.addedDate])
+                
             } else if version == 2 {
                 
                 if let casts = movie.casts {

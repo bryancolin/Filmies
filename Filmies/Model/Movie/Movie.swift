@@ -15,9 +15,20 @@ struct Movie: Codable, Identifiable {
     let languages: [Language]?
     
     var category: String = ""
-    var details: Bool = false
-    var isFavorite: Bool = false
-    var addedAt: Double = Date().timeIntervalSince1970
+    var details: Bool? = nil
+    var isFavorite: Bool? = nil
+    
+    var addedAt: Double? = nil
+    var addedDate: String {
+        let dateFormatter  = DateFormatter()
+        dateFormatter.dateFormat = "EEEE MMMMM yyyy H mm"
+        
+        if let addedAt = addedAt {
+            let date = NSDate(timeIntervalSince1970: addedAt) as Date
+            return dateFormatter.string(from: date)
+        }
+        return String()
+    }
     
     var runTime: Int?
     var duration: String? {
@@ -62,5 +73,9 @@ struct Movie: Codable, Identifiable {
         
         case videos
         case casts
+        
+        case details
+        case isFavorite
+        case addedAt
     }
 }

@@ -24,7 +24,7 @@ struct ModalView: View {
                 // Head View
                 VStack(spacing: 0) {
                     // Video Trailer
-                    MovieTrailer(movie: movie)
+                    MovieTrailer(movie: movie, category: category)
                     
                     // Title Description
                     LargeTitle(name: movie.title ?? "", color: .white, type: .title3, weight: .semibold) {
@@ -61,7 +61,7 @@ struct ModalView: View {
                 .ignoresSafeArea()
         )
         .onAppear {
-            if movie.details == false {
+            if movie.details == nil {
                 modelData.fetchMovieDetails(param: category, id: movie.id ?? 0)
             }
             isFavorite = modelData.findMovie(param: "favorites", id: movie.id ?? 0).0

@@ -136,7 +136,7 @@ final class ModelData: ObservableObject {
         if let data = UserDefaults.standard.data(forKey: K.userDefaultsKey) {
             if let decoded = try? JSONDecoder().decode([Movie].self, from: data) {
                 DispatchQueue.main.async { [self] in
-                    movies["favorites"] = decoded.sorted(by: { $0.addedAt < $1.addedAt })
+                    movies["favorites"] = decoded.sorted(by: { $0.addedAt ?? 0 < $1.addedAt ?? 0 })
                 }
             }
         }
