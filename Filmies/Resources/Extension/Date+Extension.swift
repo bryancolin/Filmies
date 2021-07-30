@@ -23,10 +23,14 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    func fullNameDay(format: String = "EEEE") -> String {
+    func fullDayName(format: String = "EEEE") -> String {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.dateFormat = format
         return formatter.string(from: self)
+    }
+    
+    func isThisWeek() -> Bool {
+        return Calendar.current.isDate(self, equalTo: Date(), toGranularity: .weekOfYear)
     }
 }
