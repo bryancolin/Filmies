@@ -54,8 +54,8 @@ struct CategoryHome: View {
         .onAppear {
             if modelData.movies.isEmpty {
                 modelData.fetchMovies()
+                modelData.loadFavoriteMovies()
             }
-            modelData.loadFavoriteMovies()
         }
     }
 }
