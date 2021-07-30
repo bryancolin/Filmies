@@ -39,7 +39,7 @@ struct MovieDetails: View {
                     HorizontalText(name: "Genres", details: genres.compactMap( { $0.name }))
                 }
                 
-                HorizontalText(name: "Added Day", details: [movie.addedDate])
+                HorizontalText(name: "Added Day", details: [movie.addedDate.dateAndTimetoString()])
                 
             } else if version == 2 {
                 

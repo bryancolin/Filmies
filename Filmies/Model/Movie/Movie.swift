@@ -19,12 +19,11 @@ struct Movie: Codable, Identifiable {
     var isFavorite: Bool? = nil
     
     var addedAt: Double? = nil
-    var addedDate: String {        
+    var addedDate: Date {
         if let addedAt = addedAt {
-            let date = NSDate(timeIntervalSince1970: addedAt) as Date
-            return date.dateAndTimetoString()
+            return addedAt.toDate()
         }
-        return String()
+        return Date()
     }
     
     var runTime: Int?

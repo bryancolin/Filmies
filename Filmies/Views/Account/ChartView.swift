@@ -16,7 +16,10 @@ struct ChartView: View {
     var body: some View {
         VStack {
             if let favoriteMovies = modelData.movies[K.MovieCategory.favorites] {
-                let totalHours = favoriteMovies.map({ $0.runTime ?? 0 }).reduce(0, +)
+                
+                let totalHours = favoriteMovies.map { movie -> Int in
+                    return movie.addedDate.isThisWeek() ? movie.runTime ?? 0 : 0
+                }.reduce(0, +)
                 
                 HStack {
                     ScrollTabView(titles: ["Screen Time"], selectedIndex: .constant(0))
@@ -29,14 +32,18 @@ struct ChartView: View {
                 }
                 .padding(.trailing)
                 
-                let movies = Dictionary(grouping: favoriteMovies, by: { getDayName($0.addedAt ?? 0) })
+                let movies = Dictionary(grouping: favoriteMovies, by: { $0.addedDate.fullDayName() })
                 
                 ZStack(alignment: .center) {
                     GeometryReader { geometry in
                         let width = geometry.size.width / 2 * (1 / 7)
                         HStack(alignment: .center, spacing: geometry.size.width / 14.5) {
                             ForEach(days, id: \.self) { day in
-                                let height = (movies[day]?.map({ $0.runTime ?? 0 }).reduce(0, +) ?? 0)
+                                
+                                let height = movies[day]?.map { movie -> Int in
+                                    return movie.addedDate.isThisWeek() ? movie.runTime ?? 0 : 0
+                                }.reduce(0, +) ?? 0
+                                
                                 BarView(title: day, width: width, height: CGFloat(height / 60))
                             }
                         }
@@ -46,10 +53,5 @@ struct ChartView: View {
                 }
             }
         }
-    }
-    
-    func getDayName(_ unixDate: Double) -> String? {
-        let date = NSDate(timeIntervalSince1970: unixDate) as Date
-        return date.fullNameDay()
     }
 }
