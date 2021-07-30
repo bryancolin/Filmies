@@ -11,9 +11,6 @@ struct AccountView: View {
     
     @EnvironmentObject var modelData: ModelData
     
-    private var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    @State private var totalHours = 0
-    
     var body: some View {
         ZStack(alignment: .top) {
             Color(K.BrandColors.darkBlue)
@@ -24,40 +21,71 @@ struct AccountView: View {
                 VStack(alignment: .leading) {
                     LargeTitle(name: "Account", color: .white, type: .largeTitle, weight: .bold) {}
                     
-                    HStack {
-                        Text("Movies Screen Time")
-                            .foregroundColor(.white)
-                            .fontWeight(.semibold)
-                            .font(.title3)
-                        
-                        Spacer()
-                        Text("\(totalHours)m")
-                            .foregroundColor(.white)
-                            .font(.body)
-                    }
-                    .padding(.horizontal)
-                    
-                    if let movies = modelData.movies["favorites"] {
-                        let hours = Dictionary(grouping: movies, by: { getDayOfWeek($0.addedAt) })
-                        
-                        ZStack(alignment: .center) {
-                            GeometryReader { geometry in
-                                let width = geometry.size.width / 2 * (1 / 7)
-                                HStack(alignment: .center, spacing: geometry.size.width / 20) {
-                                    ForEach(days, id: \.self) { day in
-                                        let height = (hours[day]?.map({ $0.runTime ?? 0 }).reduce(0, +) ?? 0)
-                                        BarView(day: day, width: width, height: CGFloat(height / 60))
-                                    }
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: 250)
-                            
-                        }
-                    }
+                    ChartView()
                 }
             }
         }
+    }
+}
+
+struct AccountView_Previews: PreviewProvider {
+    static var previews: some View {
+        AccountView()
+            .environmentObject(ModelData())
+    }
+}
+
+struct ChartView: View {
+    
+    @EnvironmentObject var modelData: ModelData
+    
+    private var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    
+    var body: some View {
+        VStack {
+            if let favoriteMovies = modelData.movies["favorites"] {
+                let time = favoriteMovies.map({ $0.runTime ?? 0 }).reduce(0, +)
+                
+                HStack {
+                    Text("Screen Time")
+                        .foregroundColor(.white)
+                        .fontWeight(.semibold)
+                        .font(.title3)
+                    
+                    Spacer()
+                    Text(getTotalHours(from: time))
+                        .foregroundColor(.white)
+                        .font(.body)
+                }
+                .padding(.horizontal)
+                
+                let movies = Dictionary(grouping: favoriteMovies, by: { getDayOfWeek($0.addedAt ?? 0) })
+                
+                ZStack(alignment: .center) {
+                    GeometryReader { geometry in
+                        let width = geometry.size.width / 2 * (1 / 7)
+                        HStack(alignment: .center, spacing: geometry.size.width / 14.5) {
+                            ForEach(days, id: \.self) { day in
+                                let height = (movies[day]?.map({ $0.runTime ?? 0 }).reduce(0, +) ?? 0)
+                                BarView(title: day, width: width, height: CGFloat(height / 60))
+                            }
+                        }
+                        .padding(.horizontal)
+                    }
+                    .frame(height: 250)
+                }
+            }
+        }
+    }
+    
+    func getTotalHours(from time: Int) -> String {
+        if let movies = modelData.movies["favorites"] {
+            let addedAtt = movies.map{  NSDate(timeIntervalSince1970: $0.addedAt ?? 0) as Date }
+            print(addedAtt)
+        }
+        let hours = time / 60
+        let minutes = time % 60
+        return String(hours > 0 ? "\(hours)h " : "") + String(minutes != 0 ? "\(minutes)m" : "")
     }
     
     func getDayOfWeek(_ unixDate: Double) -> String? {
@@ -71,7 +99,7 @@ struct AccountView: View {
 
 struct BarView: View {
     
-    var day: String
+    var title: String
     var width: CGFloat
     var height: CGFloat
     
@@ -96,7 +124,7 @@ struct BarView: View {
             }
             .frame(width: width)
             
-            Text(day.prefix(1))
+            Text(title.prefix(1))
                 .foregroundColor(.white)
         }
     }
