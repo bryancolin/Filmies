@@ -32,20 +32,16 @@ struct CategoryHome: View {
             }
             
             // Scroll Tab for Trending Movies (Day & Week)
-            ScrollTabView(titles: ["Today", "This Week"], index: $selectedIndex1)
+            ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex1)
             CardView(category: $modelData.params[selectedIndex1])
             
             // Scroll Tab for Now Showing Movies
-            ScrollTabView(titles: ["Now Playing", "Popular", "Upcoming"], index: $selectedIndex2)
+            ScrollTabView(titles: ["Now Playing", "Popular", "Upcoming"], selectedIndex: $selectedIndex2)
             CategoryRow(category: $modelData.params[selectedIndex2+2])
             
             // Scroll Tab for Top Rated Movies
-            ScrollTabView(titles: ["Top Rated"], index: .constant(0))
+            ScrollTabView(titles: ["Top Rated"], selectedIndex: .constant(0))
             CategoryRow(category: $modelData.params[modelData.params.count-1])
-            
-            // Scroll Tab for Top Rated Movies
-            ScrollTabView(titles: ["Favorites"], index: .constant(0))
-            CategoryRow(category: .constant("favorites"))
         }
         .background(
             gradient

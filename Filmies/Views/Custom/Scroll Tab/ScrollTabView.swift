@@ -10,16 +10,24 @@ import SwiftUI
 struct ScrollTabView: View {
     
     var titles: [String]
-    @Binding var index: Int
+    @Binding var selectedIndex: Int
     var color: CustomColor = .primary
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                RoundedText(titles: titles, index: $index, color: color)
-                    .animation(.easeInOut)
+                ForEach(0..<titles.count) { index in
+                    RoundedText(title: titles[index], id: index, selectedIndex: $selectedIndex, color: color)
+                        .animation(.easeInOut)
+                        .onTapGesture {
+                            if selectedIndex < titles.count {
+                                selectedIndex = index
+                            }
+                        }
+                }
             }
             .padding(.horizontal)
         }
     }
 }
+

@@ -11,6 +11,10 @@ struct K {
     
     static let userDefaultsKey = "Favorites"
     
+    struct MovieCategory {
+        static let favorites = "favorites"
+    }
+    
     struct BrandColors {
         static let blue = "BrandBlue"
         static let darkBlue = "BrandDarkBlue"

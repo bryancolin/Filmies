@@ -105,16 +105,16 @@ final class ModelData: ObservableObject {
             movie.isFavorite = true
             movie.addedAt = Date().timeIntervalSince1970
             
-            if movies["favorites"] == nil {
-                movies["favorites"] = [movie]
+            if movies[K.MovieCategory.favorites] == nil {
+                movies[K.MovieCategory.favorites] = [movie]
             } else {
-                movies["favorites"]?.insert(movie, at: 0)
+                movies[K.MovieCategory.favorites]?.insert(movie, at: 0)
             }
         } else {
             // Remove Favorite Movie
-            let favoriteMovie = findMovie(param: "favorites", id: id)
+            let favoriteMovie = findMovie(param: K.MovieCategory.favorites, id: id)
             if favoriteMovie.0 {
-                movies["favorites"]?.remove(at: favoriteMovie.1)
+                movies[K.MovieCategory.favorites]?.remove(at: favoriteMovie.1)
             }
         }
         
@@ -136,7 +136,7 @@ final class ModelData: ObservableObject {
         if let data = UserDefaults.standard.data(forKey: K.userDefaultsKey) {
             if let decoded = try? JSONDecoder().decode([Movie].self, from: data) {
                 DispatchQueue.main.async { [self] in
-                    movies["favorites"] = decoded.sorted(by: { $0.addedAt ?? 0 < $1.addedAt ?? 0 })
+                    movies[K.MovieCategory.favorites] = decoded.sorted(by: { $0.addedAt ?? 0 < $1.addedAt ?? 0 })
                 }
             }
         }
@@ -144,7 +144,7 @@ final class ModelData: ObservableObject {
     
     func saveFavoriteMovies() {
         // Store in User Defaults
-        if let encoded = try? JSONEncoder().encode(movies["favorites"]) {
+        if let encoded = try? JSONEncoder().encode(movies[K.MovieCategory.favorites]) {
             UserDefaults.standard.set(encoded, forKey: K.userDefaultsKey)
         }
     }

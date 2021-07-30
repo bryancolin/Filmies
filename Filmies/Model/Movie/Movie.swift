@@ -19,13 +19,10 @@ struct Movie: Codable, Identifiable {
     var isFavorite: Bool? = nil
     
     var addedAt: Double? = nil
-    var addedDate: String {
-        let dateFormatter  = DateFormatter()
-        dateFormatter.dateFormat = "EEEE MMMMM yyyy H mm"
-        
+    var addedDate: String {        
         if let addedAt = addedAt {
             let date = NSDate(timeIntervalSince1970: addedAt) as Date
-            return dateFormatter.string(from: date)
+            return date.dateAndTimetoString()
         }
         return String()
     }
@@ -33,9 +30,7 @@ struct Movie: Codable, Identifiable {
     var runTime: Int?
     var duration: String? {
         if let time = runTime {
-            let hours = time / 60
-            let minutes = time % 60
-            return String(hours > 0 ? "\(hours)h " : "") + "\(minutes)m"
+            return time.convert()
         }
         return String()
     }

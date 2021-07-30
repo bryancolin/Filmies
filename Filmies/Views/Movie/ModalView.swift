@@ -43,7 +43,7 @@ struct ModalView: View {
                 
                 // Sub View
                 VStack(alignment: .leading) {
-                    ScrollTabView(titles: ["Overview", "Casts"], index: $selectedIndex, color: CustomColor.secondary)
+                    ScrollTabView(titles: ["Overview", "Casts"], selectedIndex: $selectedIndex, color: CustomColor.secondary)
                     
                     if selectedIndex == 0 {
                         MovieDetails(movie: movie, version: 1)
@@ -64,7 +64,7 @@ struct ModalView: View {
             if movie.details == nil {
                 modelData.fetchMovieDetails(param: category, id: movie.id ?? 0)
             }
-            isFavorite = modelData.findMovie(param: "favorites", id: movie.id ?? 0).0
+            isFavorite = modelData.findMovie(param: K.MovieCategory.favorites, id: movie.id ?? 0).0
         }
     }
 }

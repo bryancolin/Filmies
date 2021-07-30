@@ -22,6 +22,10 @@ struct AccountView: View {
                     LargeTitle(name: "Account", color: .white, type: .largeTitle, weight: .bold) {}
                     
                     ChartView()
+                    
+                    // Scroll Tab for Favorites Movies
+                    ScrollTabView(titles: ["Favorites"], selectedIndex: .constant(0))
+                    CategoryRow(category: .constant(K.MovieCategory.favorites))
                 }
             }
         }
@@ -43,23 +47,21 @@ struct ChartView: View {
     
     var body: some View {
         VStack {
-            if let favoriteMovies = modelData.movies["favorites"] {
-                let time = favoriteMovies.map({ $0.runTime ?? 0 }).reduce(0, +)
+            if let favoriteMovies = modelData.movies[K.MovieCategory.favorites] {
+                let totalHours = favoriteMovies.map({ $0.runTime ?? 0 }).reduce(0, +)
                 
                 HStack {
-                    Text("Screen Time")
-                        .foregroundColor(.white)
-                        .fontWeight(.semibold)
-                        .font(.title3)
+                    ScrollTabView(titles: ["Screen Time"], selectedIndex: .constant(0))
                     
                     Spacer()
-                    Text(getTotalHours(from: time))
+                    
+                    Text(totalHours.convert())
                         .foregroundColor(.white)
                         .font(.body)
                 }
-                .padding(.horizontal)
+                .padding(.trailing)
                 
-                let movies = Dictionary(grouping: favoriteMovies, by: { getDayOfWeek($0.addedAt ?? 0) })
+                let movies = Dictionary(grouping: favoriteMovies, by: { getDayName($0.addedAt ?? 0) })
                 
                 ZStack(alignment: .center) {
                     GeometryReader { geometry in
@@ -78,22 +80,9 @@ struct ChartView: View {
         }
     }
     
-    func getTotalHours(from time: Int) -> String {
-        if let movies = modelData.movies["favorites"] {
-            let addedAtt = movies.map{  NSDate(timeIntervalSince1970: $0.addedAt ?? 0) as Date }
-            print(addedAtt)
-        }
-        let hours = time / 60
-        let minutes = time % 60
-        return String(hours > 0 ? "\(hours)h " : "") + String(minutes != 0 ? "\(minutes)m" : "")
-    }
-    
-    func getDayOfWeek(_ unixDate: Double) -> String? {
+    func getDayName(_ unixDate: Double) -> String? {
         let date = NSDate(timeIntervalSince1970: unixDate) as Date
-        let dateFormatter  = DateFormatter()
-        dateFormatter.dateFormat = "EEEE"
-        let dayOfTheWeekString = dateFormatter.string(from: date)
-        return dayOfTheWeekString
+        return date.fullNameDay()
     }
 }
 
