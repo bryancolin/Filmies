@@ -10,48 +10,55 @@ import SwiftUI
 struct ChartView: View {
     
     @EnvironmentObject var modelData: ModelData
-    
-    private var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    var movies: [String: [Movie]]
+    var titles: [String]
     
     var body: some View {
         VStack {
-            if let favoriteMovies = modelData.movies[K.MovieCategory.favorites] {
+            // Title
+            HStack {
+                ScrollTabView(titles: ["Screen Time"], selectedIndex: .constant(0))
                 
-                let totalHours = favoriteMovies.map { movie -> Int in
-                    return movie.addedDate.isThisWeek() ? movie.runTime ?? 0 : 0
-                }.reduce(0, +)
+                Spacer()
                 
-                HStack {
-                    ScrollTabView(titles: ["Screen Time"], selectedIndex: .constant(0))
-                    
-                    Spacer()
-                    
-                    Text(totalHours.convert())
-                        .foregroundColor(.white)
-                        .font(.body)
-                }
-                .padding(.trailing)
-                
-                let movies = Dictionary(grouping: favoriteMovies, by: { $0.addedDate.fullDayName() })
-                
-                ZStack(alignment: .center) {
-                    GeometryReader { geometry in
-                        let width = geometry.size.width / 2 * (1 / 7)
-                        HStack(alignment: .center, spacing: geometry.size.width / 14.5) {
-                            ForEach(days, id: \.self) { day in
-                                
-                                let height = movies[day]?.map { movie -> Int in
-                                    return movie.addedDate.isThisWeek() ? movie.runTime ?? 0 : 0
-                                }.reduce(0, +) ?? 0
-                                
-                                BarView(title: day, width: width, height: CGFloat(height / 60))
-                            }
+                Text(getTotalHoursPerWeek().convert())
+                    .foregroundColor(.white)
+                    .font(.body)
+            }
+            .padding(.bottom)
+            .padding(.trailing)
+            
+            // Bars
+            ZStack(alignment: .center) {
+                GeometryReader { geometry in
+                    let width = geometry.size.width / 2 * (1 / 7)
+                    HStack(alignment: .center, spacing: geometry.size.width / 14.5) {
+                        ForEach(titles, id: \.self) { title in
+                            let height = getTotalHoursPerDay(movies[title])
+                            BarView(title: title, width: width, height: CGFloat(height / 60))
                         }
-                        .padding(.horizontal)
                     }
-                    .frame(height: 250)
+                    .padding(.horizontal)
                 }
+                .frame(height: 250)
             }
         }
+    }
+    
+    // Total Hours of Watching Movies In A Week
+    func getTotalHoursPerWeek() -> Int {
+        var hours = 0
+        for (_, allMovies) in movies {
+            hours += getTotalHoursPerDay(allMovies)
+        }
+        
+        return hours
+    }
+    
+    // Total Hours of Watching Movies In A Day
+    func getTotalHoursPerDay(_ movies: [Movie]?) -> Int {
+        return movies?.compactMap { movie -> Int in
+            return movie.addedDate.isThisWeek() ? movie.runTime ?? 0 : 0
+        }.reduce(0, +) ?? 0
     }
 }

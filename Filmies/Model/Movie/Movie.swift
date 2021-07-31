@@ -20,8 +20,8 @@ struct Movie: Codable, Identifiable {
     
     var addedAt: Double? = nil
     var addedDate: Date {
-        if let addedAt = addedAt {
-            return addedAt.toDate()
+        if let dateInDouble = addedAt {
+            return dateInDouble.toDate()
         }
         return Date()
     }

@@ -24,29 +24,28 @@ struct CategoryHome: View {
     }
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: false) {
-            
-            // Title
-            VStack(spacing: nil) {
-                LargeTitle(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {}
+        ZStack {
+            gradient.ignoresSafeArea()
+            ScrollView(.vertical, showsIndicators: false) {
+                
+                // Title
+                VStack(spacing: nil) {
+                    LargeTitle(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {}
+                }
+                
+                // Scroll Tab for Trending Movies (Day & Week)
+                ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex1)
+                CardView(category: $modelData.params[selectedIndex1])
+                
+                // Scroll Tab for Now Showing Movies
+                ScrollTabView(titles: ["Now Playing", "Popular", "Upcoming"], selectedIndex: $selectedIndex2)
+                CategoryRow(category: $modelData.params[selectedIndex2+2])
+                
+                // Scroll Tab for Top Rated Movies
+                ScrollTabView(titles: ["Top Rated"], selectedIndex: .constant(0))
+                CategoryRow(category: $modelData.params[modelData.params.count-1])
             }
-            
-            // Scroll Tab for Trending Movies (Day & Week)
-            ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex1)
-            CardView(category: $modelData.params[selectedIndex1])
-            
-            // Scroll Tab for Now Showing Movies
-            ScrollTabView(titles: ["Now Playing", "Popular", "Upcoming"], selectedIndex: $selectedIndex2)
-            CategoryRow(category: $modelData.params[selectedIndex2+2])
-            
-            // Scroll Tab for Top Rated Movies
-            ScrollTabView(titles: ["Top Rated"], selectedIndex: .constant(0))
-            CategoryRow(category: $modelData.params[modelData.params.count-1])
         }
-        .background(
-            gradient
-                .ignoresSafeArea()
-        )
         .onAppear {
             if modelData.movies.isEmpty {
                 modelData.fetchMovies()

@@ -21,7 +21,10 @@ struct AccountView: View {
                 VStack(alignment: .leading) {
                     LargeTitle(name: "Account", color: .white, type: .largeTitle, weight: .bold) {}
                     
-                    ChartView()
+                    if let movies = modelData.movies[K.MovieCategory.favorites] {
+                        let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
+                        ChartView(movies: categorizeMovies, titles: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])
+                    }
                     
                     // Scroll Tab for Favorites Movies
                     ScrollTabView(titles: ["Favorites"], selectedIndex: .constant(0))
