@@ -27,7 +27,7 @@ struct MovieDetails: View {
                 
                 CustomDivider()
                 
-                HorizontalText(name: "Release Date", details: [movie.releaseDate ?? ""])
+                HorizontalText(name: "Release Date", details: [movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
                 
                 HorizontalText(name: "Runtime", details: [movie.duration ?? ""])
                 
