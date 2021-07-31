@@ -27,33 +27,33 @@ struct MovieDetails: View {
                 
                 CustomDivider()
                 
-                HorizontalText(name: "Release Date", details: [movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
+                HorizontalComponent(title: "Release Date", details: [movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
                 
-                HorizontalText(name: "Runtime", details: [movie.duration ?? ""])
+                HorizontalComponent(title: "Runtime", details: [movie.duration ?? ""])
                 
                 if let languages = movie.languages {
-                    HorizontalText(name: "Languages", details: languages.compactMap( { $0.name }))
+                    HorizontalComponent(title: "Languages", details: languages.compactMap( { $0.name }))
                 }
                 
                 if let genres = movie.genres {
-                    HorizontalText(name: "Genres", details: genres.compactMap( { $0.name }))
+                    HorizontalComponent(title: "Genres", details: genres.compactMap( { $0.name }))
                 }
                 
-                HorizontalText(name: "Added Day", details: [movie.addedDate.dateAndTimetoString()])
+                HorizontalComponent(title: "Added Day", details: [movie.addedDate.dateAndTimetoString()])
                 
             } else if version == 2 {
                 
                 if let casts = movie.casts {
                     if let crews = casts.crewCategories["Director"] {
-                        HorizontalText(name: "Director", details: crews.compactMap( { $0.name }))
+                        VerticalComponent(title: "Director", urls: crews.compactMap({ $0.imageURL }), details: crews.compactMap({ $0.name }))
                     }
                     
                     if let crews = casts.crewCategories["Writer"] {
-                        HorizontalText(name: "Writer", details: crews.compactMap( { $0.name }))
+                        VerticalComponent(title: "Writer", urls: crews.compactMap({ $0.imageURL }), details: crews.compactMap({ $0.name }))
                     }
                     
                     if let actors = casts.cast {
-                        HorizontalText(name: "Starring", details: actors.compactMap( { $0.name }))
+                        VerticalComponent(title: "Starring", urls: actors.compactMap({ $0.imageURL }), details: actors.compactMap({ $0.name }))
                     }
                 }
                 
@@ -63,14 +63,14 @@ struct MovieDetails: View {
     }
 }
 
-struct HorizontalText: View {
+struct HorizontalComponent: View {
     
-    var name: String
+    var title: String
     var details: [String]
     
     var body: some View {
         HStack(alignment: .top) {
-            Text(name)
+            Text(title)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
             
@@ -81,6 +81,42 @@ struct HorizontalText: View {
                     if index < details.count {
                         Text(details[index])
                             .foregroundColor(.white)
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct VerticalComponent: View {
+    
+    var title: String
+    var urls: [String]
+    var details: [String]
+    
+    var body: some View {
+        
+        CustomDivider()
+        
+        VStack(alignment: .leading) {
+            Text(title)
+                .fontWeight(.semibold)
+                .foregroundColor(.white)
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: 10) {
+                    ForEach(0..<5) { index in
+                        if index < details.count {
+                            VStack(alignment: .leading) {
+                                CustomImage(urlString: urls[index])
+                                    .frame(width: 100, height: 100)
+                                    .cornerRadius(16)
+                                
+                                Text(details[index])
+                                    .foregroundColor(.white)
+                                    .frame(width: 100)
+                            }
+                        }
                     }
                 }
             }
