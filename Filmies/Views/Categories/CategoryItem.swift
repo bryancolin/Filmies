@@ -27,7 +27,7 @@ struct CategoryItem: View {
                 }
             }, label: {
                 CustomImage(urlString: movie.imageURL)
-                    .frame(width: width, height: height, alignment: .leading)
+                    .frame(width: width, alignment: .leading)
                     .cornerRadius(8)
                     .overlay(
                         Circle()
