@@ -23,7 +23,7 @@ struct AccountView: View {
                     
                     if let movies = modelData.movies[K.MovieCategory.favorites] {
                         let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
-                        ChartView(movies: categorizeMovies, titles: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])
+                        ChartView(movies: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
                     }
                     
                     // Scroll Tab for Favorites Movies

@@ -11,6 +11,7 @@ import SDWebImageSwiftUI
 struct CustomImage: View {
     
     var urlString: String
+    var placeholder: String = ""
     
     var body: some View {
         if !urlString.isEmpty {
@@ -18,10 +19,14 @@ struct CustomImage: View {
                 .resizable()
                 .aspectRatio(contentMode: .fill)
         } else {
-            Color(K.BrandColors.darkBlue)
-//            Image("filmies_app_icon")
-//                .resizable()
-//                .aspectRatio(contentMode: .fill)
+            if !placeholder.isEmpty {
+                Image(placeholder)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .opacity(0.5)
+            } else {
+                Color(K.BrandColors.darkBlue)
+            }
         }
     }
 }

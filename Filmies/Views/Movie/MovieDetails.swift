@@ -108,13 +108,15 @@ struct VerticalComponent: View {
                     ForEach(0..<5) { index in
                         if index < details.count {
                             VStack(alignment: .leading) {
-                                CustomImage(urlString: urls[index])
+                                CustomImage(urlString: urls[index], placeholder: "user")
                                     .frame(width: 100, height: 100)
-                                    .cornerRadius(16)
+                                    .cornerRadius(50)
                                 
                                 Text(details[index])
                                     .foregroundColor(.white)
                                     .frame(width: 100)
+                                    .lineLimit(2)
+                                    .minimumScaleFactor(0.5)
                             }
                         }
                     }
