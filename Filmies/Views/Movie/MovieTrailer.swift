@@ -29,7 +29,7 @@ struct MovieTrailer: View {
                 }
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
             } else {
-                CustomImage(urlString: movie.imageURL)
+                CustomImage(urlString: movie.backdropUrl.isEmpty ? movie.posterUrl : movie.backdropUrl)
             }
         }
     }

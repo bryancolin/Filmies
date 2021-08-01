@@ -20,7 +20,7 @@ struct CardGridItem: View {
                 showingModal.toggle()
             }
         }) {
-            CustomImage(urlString: movie.imageURL)
+            CustomImage(urlString: movie.posterUrl)
                 .cornerRadius(15)
         }
         .sheet(isPresented: $showingModal) {

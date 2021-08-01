@@ -47,7 +47,7 @@ final class ModelData: ObservableObject {
         let movieAtIndex = movie.1
         
         if movieExists {
-            AF.request("\(url)/movie/\(id)\(apiKey)&append_to_response=videos,casts")
+            AF.request("\(url)/movie/\(id)\(apiKey)&append_to_response=videos,casts,images&include_image_language=en")
                 .validate()
                 .responseDecodable(of: Movie.self) { response in
                     guard let result = response.value else { return }

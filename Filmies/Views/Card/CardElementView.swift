@@ -21,7 +21,7 @@ struct CardElementView: View {
     var height: CGFloat
     
     var body: some View {
-        CustomImage(urlString: movie.imageURL)
+        CustomImage(urlString: movie.posterUrl)
             .frame(width: width, height: height)
             .overlay(
                 Button(action: {

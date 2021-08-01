@@ -9,8 +9,7 @@ import Foundation
 
 struct Movie: Codable, Identifiable {
     let id: Int?
-    let title: String?
-    let description: String?
+    let title, description: String?
     let genres: [Genre]?
     let languages: [Language]?
     
@@ -42,9 +41,17 @@ struct Movie: Codable, Identifiable {
         return String("-")
     }
     
-    let url: String?
-    var imageURL: String {
-        if let url = url {
+    let backdropPath: String?
+    var backdropUrl: String {
+        if let url = backdropPath {
+            return String("https://image.tmdb.org/t/p/w500" + url)
+        }
+        return posterUrl
+    }
+    
+    let posterPath: String?
+    var posterUrl: String {
+        if let url = posterPath {
             return String("https://image.tmdb.org/t/p/w500" + url)
         }
         return String()
@@ -53,6 +60,18 @@ struct Movie: Codable, Identifiable {
     let videos: Videos?
     
     let casts: Casts?
+    
+    let images: Images?
+    func getImages(at index: Int) -> String {
+        if let images = images {
+            if let imagePosters = images.posters {
+                if index < imagePosters.count {
+                    return imagePosters[index].url
+                }
+            }
+        }
+        return posterUrl
+    }
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -63,10 +82,12 @@ struct Movie: Codable, Identifiable {
         case runTime = "runtime"
         case releaseDate = "release_date"
         
-        case url = "poster_path"
+        case backdropPath = "backdrop_path"
+        case posterPath = "poster_path"
         
         case videos
         case casts
+        case images
         
         case details
         case isFavorite

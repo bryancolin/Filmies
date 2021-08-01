@@ -26,7 +26,7 @@ struct CategoryItem: View {
                     showingModal.toggle()
                 }
             }, label: {
-                CustomImage(urlString: movie.imageURL)
+                CustomImage(urlString: movie.posterUrl)
                     .frame(width: width, alignment: .leading)
                     .cornerRadius(8)
                     .overlay(

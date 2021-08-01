@@ -17,6 +17,9 @@ struct ModalView: View {
     
     @State var isFavorite: Bool = false
     
+    @State var imageIndex = 0
+    private let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
@@ -44,9 +47,17 @@ struct ModalView: View {
                 MovieDetails(movie: movie)
             }
         }
-        .background(
-            CustomImage(urlString: movie.imageURL)
+        .background (
+            CustomImage(urlString: movie.getImages(at: imageIndex))
                 .ignoresSafeArea()
+                .animation(.easeInOut(duration: 2))
+                .onReceive(timer) { _ in
+                    if imageIndex < movie.images?.postersCount ?? 0 {
+                        imageIndex += 1
+                    } else {
+                        imageIndex = 0
+                    }
+                }
         )
         .onAppear {
             if movie.details == nil {
