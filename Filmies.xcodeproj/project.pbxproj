@@ -159,8 +159,7 @@
 				E58A7F14269C0EB90066A4C7 /* Movie */,
 				E568627A26A970AC00A83FCB /* Browse */,
 				E563EB8626B25C9500324CA6 /* Account */,
-				E57C8BB026B1208400D41473 /* PageView */,
-				E5DA9EB1269C47800021D279 /* Custom */,
+				E5DA9EB1269C47800021D279 /* Components */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -343,7 +342,7 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		E5DA9EB1269C47800021D279 /* Custom */ = {
+		E5DA9EB1269C47800021D279 /* Components */ = {
 			isa = PBXGroup;
 			children = (
 				E564B11C26ABFCDB002637A9 /* CustomDivider.swift */,
@@ -351,10 +350,11 @@
 				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
 				E50C1A2226A18B4F003CE717 /* FlipEffect.swift */,
 				E52C334826B146320080031F /* LargeTitle.swift */,
+				E57C8BB026B1208400D41473 /* PageView */,
 				E5840A6D26A8036F00E3F782 /* Scroll Tab */,
 				E5840A6426A7FD2800E3F782 /* Tab Bar */,
 			);
-			path = Custom;
+			path = Components;
 			sourceTree = "<group>";
 		};
 		E5FB89BB26AAAAD200A496CB /* Movie */ = {
