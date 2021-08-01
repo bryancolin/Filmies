@@ -15,7 +15,6 @@ struct MovieTrailer: View {
     var category: String
     
     var body: some View {
-        
         if let officialTrailers = movie.videos?.all?.filter({ trailer -> Bool in
             guard let trailerName = trailer.name else { return false }
             return trailerName.contains("Trailer")

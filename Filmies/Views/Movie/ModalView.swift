@@ -16,7 +16,6 @@ struct ModalView: View {
     @Binding var showModal: Bool
     
     @State var isFavorite: Bool = false
-    @State var selectedIndex = 0
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -42,18 +41,7 @@ struct ModalView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 // Sub View
-                VStack(alignment: .leading) {
-                    ScrollTabView(titles: ["Overview", "Casts"], selectedIndex: $selectedIndex, color: CustomColor.secondary)
-                    
-                    if selectedIndex == 0 {
-                        MovieDetails(movie: movie, version: 1)
-                    } else {
-                        MovieDetails(movie: movie, version: 2)
-                    }
-                }
-                .padding(.vertical)
-                .background(Color.black.opacity(0.75))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                MovieDetails(movie: movie)
             }
         }
         .background(

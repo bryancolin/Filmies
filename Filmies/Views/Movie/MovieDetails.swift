@@ -12,13 +12,13 @@ struct MovieDetails: View {
     @EnvironmentObject var modelData: ModelData
     
     var movie: Movie
-    var version: Int
+    
+    @State var index  = 0
     
     var body: some View {
-        
-        VStack(alignment: .leading, spacing: 10) {
-            
-            if version == 1 {
+        TabView(selection: $index) {
+            VStack(alignment: .leading, spacing: 10) {
+                RoundedText(title: "Overview", id: 0, selectedIndex: .constant(0), color: .secondary)
                 
                 Text(movie.description ?? "")
                     .foregroundColor(.white)
@@ -41,7 +41,11 @@ struct MovieDetails: View {
                 
                 HorizontalComponent(title: "Added Day", details: [movie.addedDate.dateAndTimetoString()])
                 
-            } else if version == 2 {
+                Spacer()
+            }.tag(0)
+            
+            VStack(alignment: .leading, spacing: 10) {
+                RoundedText(title: "Casts", id: 0, selectedIndex: .constant(0), color: .secondary)
                 
                 if let casts = movie.casts {
                     if let crews = casts.crewCategories["Director"] {
@@ -57,9 +61,20 @@ struct MovieDetails: View {
                     }
                 }
                 
-            }
+                Spacer()
+            }.tag(1)
         }
-        .padding(.horizontal)
+        .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+        .frame(height: UIScreen.main.bounds.height + 100)
+        .padding()
+        .background(Color.black.opacity(0.75))
+        .clipShape(RoundedRectangle(cornerRadius: 10))
+        .overlay(
+            PageControl(numberOfPages: 2, currentpage: $index)
+                .frame(width: CGFloat(2 * 18))
+                .padding(),
+            alignment: .topTrailing
+        )
     }
 }
 
