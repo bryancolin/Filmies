@@ -27,6 +27,8 @@ struct MovieDetails: View {
                 
                 CustomDivider()
                 
+                HorizontalComponent(title: "Rating", details: [movie.rate])
+                
                 HorizontalComponent(title: "Release Date", details: [movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
                 
                 HorizontalComponent(title: "Runtime", details: [movie.duration ?? ""])
@@ -39,7 +41,7 @@ struct MovieDetails: View {
                     HorizontalComponent(title: "Genres", details: genres.compactMap( { $0.name }))
                 }
                 
-                HorizontalComponent(title: "Added Day", details: [movie.addedDate.dateAndTimetoString()])
+//                HorizontalComponent(title: "Added Day", details: [movie.addedDate.dateAndTimetoString()])
                 
                 Spacer()
             }.tag(0)
@@ -124,12 +126,13 @@ struct VerticalComponent: View {
                         if index < details.count {
                             VStack(alignment: .leading) {
                                 CustomImage(urlString: urls[index], placeholder: "user")
-                                    .frame(width: 100, height: 100)
+                                    .frame(width: 75, height: 75)
                                     .cornerRadius(50)
                                 
                                 Text(details[index])
                                     .foregroundColor(.white)
-                                    .frame(width: 100)
+                                    .frame(width: 75)
+                                    .font(.caption)
                                     .lineLimit(2)
                                     .minimumScaleFactor(0.5)
                             }

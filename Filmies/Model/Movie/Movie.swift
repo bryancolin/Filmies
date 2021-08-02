@@ -25,6 +25,14 @@ struct Movie: Codable, Identifiable {
         return Date()
     }
     
+    let rating: Double?
+    var rate: String {
+        if let rating = rating {
+            return String(rating)
+        }
+        return String()
+    }
+    
     var runTime: Int?
     var duration: String? {
         if let time = runTime {
@@ -67,6 +75,7 @@ struct Movie: Codable, Identifiable {
         case id
         case title = "original_title"
         case description = "overview"
+        case rating = "vote_average"
         case genres
         case languages = "spoken_languages"
         case runTime = "runtime"
