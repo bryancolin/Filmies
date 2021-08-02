@@ -62,16 +62,6 @@ struct Movie: Codable, Identifiable {
     let casts: Casts?
     
     let images: Images?
-    func getImages(at index: Int) -> String {
-        if let images = images {
-            if let imagePosters = images.posters {
-                if index < imagePosters.count {
-                    return imagePosters[index].url
-                }
-            }
-        }
-        return posterUrl
-    }
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -92,5 +82,16 @@ struct Movie: Codable, Identifiable {
         case details
         case isFavorite
         case addedAt
+    }
+    
+    func getPosters(at index: Int) -> String {
+        if let images = images {
+            if let imagePosters = images.posters {
+                if index < imagePosters.count {
+                    return imagePosters[index].url
+                }
+            }
+        }
+        return posterUrl
     }
 }

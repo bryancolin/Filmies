@@ -20,6 +20,15 @@ struct ModalView: View {
     @State var imageIndex = 0
     private let timer = Timer.publish(every: 5, on: .main, in: .common).autoconnect()
     
+    var transition: AnyTransition {
+        switch imageIndex {
+        case 0:
+            return .asymmetric(insertion: .scale, removal: .opacity)
+        default:
+            return .identity
+        }
+    }
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
@@ -48,14 +57,13 @@ struct ModalView: View {
             }
         }
         .background (
-            CustomImage(urlString: movie.getImages(at: imageIndex))
+            CustomImage(urlString: movie.getPosters(at: imageIndex))
                 .ignoresSafeArea()
-                .animation(.easeInOut(duration: 2))
+                .transition(transition)
+                .animation(.spring())
                 .onReceive(timer) { _ in
-                    if imageIndex < movie.images?.postersCount ?? 0 {
-                        imageIndex += 1
-                    } else {
-                        imageIndex = 0
+                    if let posters = movie.images?.postersCount, posters != 0 {
+                        self.imageIndex = (self.imageIndex + 1) % posters
                     }
                 }
         )
