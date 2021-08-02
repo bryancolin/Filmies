@@ -14,12 +14,12 @@ struct MovieDetails: View {
     var movie: Movie
     
     @State var index  = 0
+    var pageNumber = 3
     
     var body: some View {
         TabView(selection: $index) {
-            VStack(alignment: .leading, spacing: 10) {
-                RoundedText(title: "Overview", id: 0, selectedIndex: .constant(0), color: .secondary)
-                
+
+            MovieComponent(title: "Overview") {
                 Text(movie.description ?? "")
                     .foregroundColor(.white)
                     .font(.caption)
@@ -40,15 +40,10 @@ struct MovieDetails: View {
                 if let genres = movie.genres {
                     HorizontalComponent(title: "Genres", details: genres.compactMap( { $0.name }))
                 }
-                
-//                HorizontalComponent(title: "Added Day", details: [movie.addedDate.dateAndTimetoString()])
-                
-                Spacer()
-            }.tag(0)
+            }
+            .tag(0)
             
-            VStack(alignment: .leading, spacing: 10) {
-                RoundedText(title: "Casts", id: 0, selectedIndex: .constant(0), color: .secondary)
-                
+            MovieComponent(title: "Casts") {
                 if let casts = movie.casts {
                     if let crews = casts.crewCategories["Director"] {
                         VerticalComponent(title: "Director", urls: crews.compactMap({ $0.imageURL }), details: crews.compactMap({ $0.name }))
@@ -62,85 +57,29 @@ struct MovieDetails: View {
                         VerticalComponent(title: "Starring", urls: actors.compactMap({ $0.imageURL }), details: actors.compactMap({ $0.name }))
                     }
                 }
+            }
+            .tag(1)
+            
+            MovieComponent(title: "Production") {
+                if let countries = movie.productionCountries {
+                    HorizontalComponent(title: "Countries", details: countries.compactMap({ $0.name }))
+                }
                 
-                Spacer()
-            }.tag(1)
+                if let companies = movie.productionCompanies {
+                    HorizontalComponent(title: "Companies", details: companies.compactMap({ $0.name }))
+                }
+            }
+            .tag(2)
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .frame(height: UIScreen.main.bounds.height + 100)
-        .padding()
+        .frame(height: UIScreen.main.bounds.height + 150)
         .background(Color.black.opacity(0.75))
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(
-            PageControl(numberOfPages: 2, currentpage: $index)
-                .frame(width: CGFloat(2 * 18))
+            PageControl(numberOfPages: pageNumber, currentpage: $index)
+                .frame(width: CGFloat(pageNumber * 18))
                 .padding(),
             alignment: .topTrailing
         )
     }
 }
-
-struct HorizontalComponent: View {
-    
-    var title: String
-    var details: [String]
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            Text(title)
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-            
-            Spacer()
-            
-            VStack(alignment: .trailing) {
-                ForEach(0..<5) { index in
-                    if index < details.count {
-                        Text(details[index])
-                            .foregroundColor(.white)
-                    }
-                }
-            }
-        }
-    }
-}
-
-struct VerticalComponent: View {
-    
-    var title: String
-    var urls: [String]
-    var details: [String]
-    
-    var body: some View {
-        
-        CustomDivider()
-        
-        VStack(alignment: .leading) {
-            Text(title)
-                .fontWeight(.semibold)
-                .foregroundColor(.white)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: 10) {
-                    ForEach(0..<5) { index in
-                        if index < details.count {
-                            VStack(alignment: .leading) {
-                                CustomImage(urlString: urls[index], placeholder: "user")
-                                    .frame(width: 75, height: 75)
-                                    .cornerRadius(50)
-                                
-                                Text(details[index])
-                                    .foregroundColor(.white)
-                                    .frame(width: 75)
-                                    .font(.caption)
-                                    .lineLimit(2)
-                                    .minimumScaleFactor(0.5)
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
