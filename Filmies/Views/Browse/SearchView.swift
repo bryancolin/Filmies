@@ -27,7 +27,7 @@ struct SearchView: View {
             gradient.ignoresSafeArea()
             VStack(spacing: 10) {
                 // Title
-                LargeTitle(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
+                TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
                     Button(action: {
                         numberOfColumns = numberOfColumns % 2 + 1
                     }, label: {
@@ -50,7 +50,6 @@ struct SearchView: View {
                         Image(systemName: "arrow.up.forward.circle.fill")
                             .font(.system(size: 25, weight: .semibold))
                             .foregroundColor(Color(K.BrandColors.pink))
-                        
                     })
                 }
                 .padding(12)

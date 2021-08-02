@@ -1,5 +1,5 @@
 //
-//  ImageURL.swift
+//  Photo.swift
 //  Filmies
 //
 //  Created by bryan colin on 8/1/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Picture: Codable {
+struct Photo: Codable {
     let filePath: String?
     var url: String {
         if let url = filePath {

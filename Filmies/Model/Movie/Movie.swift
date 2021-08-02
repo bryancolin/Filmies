@@ -70,6 +70,9 @@ struct Movie: Codable, Identifiable {
     let casts: Casts?
     
     let images: Images?
+
+    let productionCompanies: [Production]?
+    let productionCountries: [Production]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -87,6 +90,9 @@ struct Movie: Codable, Identifiable {
         case videos
         case casts
         case images
+        
+        case productionCompanies = "production_companies"
+        case productionCountries = "production_countries"
         
         case details
         case isFavorite

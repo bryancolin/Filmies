@@ -8,7 +8,7 @@
 import Foundation
 
 struct Images: Codable {
-    let backdrops, posters: [ImageURL]?
+    let backdrops, posters: [Photo]?
     
     var postersCount: Int {
         if let posters = posters {

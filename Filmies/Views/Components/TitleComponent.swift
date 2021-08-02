@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LargeTitle<Content>: View where Content : View {
+struct TitleComponent<Content>: View where Content : View {
     
     var name: String
     var color: Color

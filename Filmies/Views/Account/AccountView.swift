@@ -19,7 +19,7 @@ struct AccountView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 
                 VStack(alignment: .leading) {
-                    LargeTitle(name: "Account", color: .white, type: .largeTitle, weight: .bold) {}
+                    TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold) {}
                     
                     if let movies = modelData.movies[K.MovieCategory.favorites] {
                         let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })

@@ -30,7 +30,7 @@ struct CategoryHome: View {
                 
                 // Title
                 VStack(spacing: nil) {
-                    LargeTitle(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {}
+                    TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {}
                 }
                 
                 // Scroll Tab for Trending Movies (Day & Week)

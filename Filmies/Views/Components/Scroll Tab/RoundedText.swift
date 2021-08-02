@@ -10,7 +10,7 @@ import SwiftUI
 struct RoundedText: View {
     
     var title: String
-    var id: Int
+    var id: Int = 0
     @Binding var selectedIndex: Int
     var color: CustomColor = .primary
     

@@ -38,7 +38,7 @@ struct ModalView: View {
                     MovieTrailer(movie: movie, category: category)
                     
                     // Title Description
-                    LargeTitle(name: movie.title ?? "", color: .white, type: .title3, weight: .semibold) {
+                    TitleComponent(name: movie.title ?? "", color: .white, type: .title3, weight: .semibold) {
                         Button(action: {
                             isFavorite.toggle()
                             modelData.highlightMovie(param: movie.category, id: movie.id ?? 0, check: isFavorite)
