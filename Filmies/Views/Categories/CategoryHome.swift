@@ -15,32 +15,25 @@ struct CategoryHome: View {
     @State var selectedIndex1 = 0
     @State var selectedIndex2 = 0
     
-    var gradient: LinearGradient {
-        LinearGradient (
-            gradient: Gradient(colors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)]),
-            startPoint: .top,
-            endPoint: .bottom
-        )
-    }
-    
     var body: some View {
         ZStack {
-            gradient.ignoresSafeArea()
+            // Glassmorphism Background
+            GlassmorphismBackground(type: .left, circleColors: [Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)], backgroundColors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)])
+
             ScrollView(.vertical, showsIndicators: false) {
-                
                 // Title
                 VStack(spacing: nil) {
                     TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {}
                 }
-                
+
                 // Scroll Tab for Trending Movies (Day & Week)
                 ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex1)
                 CardView(category: $modelData.params[selectedIndex1])
-                
+
                 // Scroll Tab for Now Showing Movies
                 ScrollTabView(titles: ["Now Playing", "Popular", "Upcoming"], selectedIndex: $selectedIndex2)
                 CategoryRow(category: $modelData.params[selectedIndex2+2])
-                
+
                 // Scroll Tab for Top Rated Movies
                 ScrollTabView(titles: ["Top Rated"], selectedIndex: .constant(0))
                 CategoryRow(category: $modelData.params[modelData.params.count-1])

@@ -21,7 +21,7 @@ struct BarView: View {
             ZStack(alignment: .bottom) {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 200)
-                    .foregroundColor(Color.white.opacity(0.1))
+                    .foregroundColor(Color.black.opacity(0.3))
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: progress)
                     .foregroundColor(Color(K.BrandColors.pink))

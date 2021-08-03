@@ -45,6 +45,9 @@
 		E5840A6826A7FD6A00E3F782 /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5840A6726A7FD6A00E3F782 /* TabBarButton.swift */; };
 		E5840A6A26A7FD7B00E3F782 /* TabCurve.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5840A6926A7FD7B00E3F782 /* TabCurve.swift */; };
 		E5840A6C26A8031800E3F782 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5840A6B26A8031700E3F782 /* Tab.swift */; };
+		E5943ABC26B92BFE00CF9836 /* BlurCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5943ABB26B92BFE00CF9836 /* BlurCircle.swift */; };
+		E5943ABE26B9345000CF9836 /* Direction.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5943ABD26B9345000CF9836 /* Direction.swift */; };
+		E5943AC026B9349500CF9836 /* GlassmorphismBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5943ABF26B9349500CF9836 /* GlassmorphismBackground.swift */; };
 		E5A0CBB9269845D20088F968 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBB8269845D20088F968 /* Movies.swift */; };
 		E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBB26984F940088F968 /* CategoryHome.swift */; };
 		E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBD269850420088F968 /* CategoryItem.swift */; };
@@ -107,6 +110,9 @@
 		E5840A6726A7FD6A00E3F782 /* TabBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
 		E5840A6926A7FD7B00E3F782 /* TabCurve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCurve.swift; sourceTree = "<group>"; };
 		E5840A6B26A8031700E3F782 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
+		E5943ABB26B92BFE00CF9836 /* BlurCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurCircle.swift; sourceTree = "<group>"; };
+		E5943ABD26B9345000CF9836 /* Direction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Direction.swift; sourceTree = "<group>"; };
+		E5943ABF26B9349500CF9836 /* GlassmorphismBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlassmorphismBackground.swift; sourceTree = "<group>"; };
 		E5A0CBB8269845D20088F968 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		E5A0CBBB26984F940088F968 /* CategoryHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHome.swift; sourceTree = "<group>"; };
 		E5A0CBBD269850420088F968 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
@@ -287,29 +293,30 @@
 			path = PageView;
 			sourceTree = "<group>";
 		};
-		E5840A6426A7FD2800E3F782 /* Tab Bar */ = {
+		E5840A6426A7FD2800E3F782 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
 				E5840A6526A7FD4E00E3F782 /* CustomTabBar.swift */,
 				E5840A6726A7FD6A00E3F782 /* TabBarButton.swift */,
 				E5840A6926A7FD7B00E3F782 /* TabCurve.swift */,
 			);
-			path = "Tab Bar";
+			path = TabBar;
 			sourceTree = "<group>";
 		};
-		E5840A6D26A8036F00E3F782 /* Scroll Tab */ = {
+		E5840A6D26A8036F00E3F782 /* ScrollTab */ = {
 			isa = PBXGroup;
 			children = (
 				E572602F26A00D2F00864493 /* ScrollTabView.swift */,
 				E572603126A00D5B00864493 /* RoundedText.swift */,
 			);
-			path = "Scroll Tab";
+			path = ScrollTab;
 			sourceTree = "<group>";
 		};
 		E5840A6E26A803E000E3F782 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
 				E5B3AF3026A0384B004B2DCC /* CustomColor.swift */,
+				E5943ABD26B9345000CF9836 /* Direction.swift */,
 				E5840A6B26A8031700E3F782 /* Tab.swift */,
 			);
 			path = Enum;
@@ -325,6 +332,15 @@
 				E50DBD7D26A2BA43005948E7 /* WebPlayerView.swift */,
 			);
 			path = Movie;
+			sourceTree = "<group>";
+		};
+		E5943AC126B934C200CF9836 /* GlassmorphismView */ = {
+			isa = PBXGroup;
+			children = (
+				E5943ABF26B9349500CF9836 /* GlassmorphismBackground.swift */,
+				E5943ABB26B92BFE00CF9836 /* BlurCircle.swift */,
+			);
+			path = GlassmorphismView;
 			sourceTree = "<group>";
 		};
 		E5A0CBBA26984B2E0088F968 /* Categories */ = {
@@ -383,9 +399,10 @@
 				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
 				E50C1A2226A18B4F003CE717 /* FlipEffect.swift */,
 				E52C334826B146320080031F /* TitleComponent.swift */,
+				E5943AC126B934C200CF9836 /* GlassmorphismView */,
 				E57C8BB026B1208400D41473 /* PageView */,
-				E5840A6D26A8036F00E3F782 /* Scroll Tab */,
-				E5840A6426A7FD2800E3F782 /* Tab Bar */,
+				E5840A6D26A8036F00E3F782 /* ScrollTab */,
+				E5840A6426A7FD2800E3F782 /* TabBar */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -543,6 +560,7 @@
 				E57C8BB826B1208500D41473 /* PageView.swift in Sources */,
 				E5840A6826A7FD6A00E3F782 /* TabBarButton.swift in Sources */,
 				E54CC43D269D8E8C0083C6FE /* CardElementView.swift in Sources */,
+				E5943ABC26B92BFE00CF9836 /* BlurCircle.swift in Sources */,
 				E5C9574626B3F097007B1B1D /* ChartView.swift in Sources */,
 				E5C9574426B3ED91007B1B1D /* Int+Extension.swift in Sources */,
 				E5C9574826B3F0B4007B1B1D /* BarView.swift in Sources */,
@@ -562,6 +580,7 @@
 				E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */,
 				E515A1572697FC85008D4FE4 /* FilmiesApp.swift in Sources */,
 				E577698F26A6F6220076D7CF /* Constants.swift in Sources */,
+				E5943ABE26B9345000CF9836 /* Direction.swift in Sources */,
 				E56870C626B7F61E002BA55F /* HorizontalComponent.swift in Sources */,
 				E5840A6A26A7FD7B00E3F782 /* TabCurve.swift in Sources */,
 				E564B11D26ABFCDB002637A9 /* CustomDivider.swift in Sources */,
@@ -582,6 +601,7 @@
 				E5B5785926B506D4005D86BD /* String+Extension.swift in Sources */,
 				E52C334726B13E5F0080031F /* MovieTrailer.swift in Sources */,
 				E5A7A52E26B6A5C50062B756 /* Photo.swift in Sources */,
+				E5943AC026B9349500CF9836 /* GlassmorphismBackground.swift in Sources */,
 				E5D82B0326AA7F18009182FE /* CardGridItem.swift in Sources */,
 				E57C8BB726B1208500D41473 /* PageViewController.swift in Sources */,
 				E564B12126AC0203002637A9 /* Language.swift in Sources */,

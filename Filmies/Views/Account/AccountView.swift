@@ -13,8 +13,8 @@ struct AccountView: View {
     
     var body: some View {
         ZStack(alignment: .top) {
-            Color(K.BrandColors.darkBlue)
-                .ignoresSafeArea()
+            // Glassmorphism Background
+            GlassmorphismBackground(type: .left, circleColors: [Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)], backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.blue)])
             
             ScrollView(.vertical, showsIndicators: false) {
                 
