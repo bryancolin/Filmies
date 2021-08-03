@@ -17,11 +17,11 @@ struct SearchView: View {
     var body: some View {
         ZStack {
             // Glassmorphism Background
-            GlassmorphismBackground(type: .right, circleColors: [Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)], backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.pink)])
+            GlassmorphismBackground(type: .right, circleColors: .constant([Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)]), backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.pink)])
             
             VStack(spacing: 10) {
                 // Title
-                TitleComponent(name: "Search", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {
+                TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
                     Button(action: {
                         numberOfColumns = numberOfColumns % 2 + 1
                     }, label: {

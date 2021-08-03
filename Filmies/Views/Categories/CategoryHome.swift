@@ -18,7 +18,7 @@ struct CategoryHome: View {
     var body: some View {
         ZStack {
             // Glassmorphism Background
-            GlassmorphismBackground(type: .left, circleColors: [Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)], backgroundColors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)])
+            GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)])
 
             ScrollView(.vertical, showsIndicators: false) {
                 // Title

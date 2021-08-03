@@ -14,7 +14,6 @@ struct BarView: View {
     var height: CGFloat
     
     @State private var progress: CGFloat = 0
-    @State private var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     var body: some View {
         VStack {
@@ -23,14 +22,13 @@ struct BarView: View {
                     .frame(height: 200)
                     .foregroundColor(Color.black.opacity(0.3))
                 RoundedRectangle(cornerRadius: 10)
-                    .frame(height: progress)
+                    .frame(height: progress * 200)
                     .foregroundColor(Color(K.BrandColors.pink))
-                    .animation(.linear)
-                    .onReceive(timer, perform: { _ in
-                        if progress < (height/6*200) {
-                            progress += 10
-                        }
-                    })
+                    .animation(.interpolatingSpring(mass: 1, stiffness: 100, damping: 17.5, initialVelocity: 0).speed(0.5))
+                    .onAppear {
+                        progress += (height < 6 ? (height/6) : 1)
+                    }
+                    .drawingGroup()
             }
             .frame(width: width)
             

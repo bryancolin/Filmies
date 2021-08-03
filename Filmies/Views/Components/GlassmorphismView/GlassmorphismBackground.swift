@@ -10,28 +10,31 @@ import SwiftUI
 struct GlassmorphismBackground: View {
     
     var type: Direction = .left
-    var circleColors: [Color]
+    @Binding var circleColors: [Color]
     var backgroundColors: [Color]
     
     var body: some View {
-        LinearGradient (gradient: Gradient(colors: backgroundColors), startPoint: .top, endPoint: .bottom)
-            .ignoresSafeArea()
-        
-        GeometryReader { proxy in
-            let width = (type == .left ? -1 : 1) * proxy.size.width
-            let height = proxy.size.height
+        ZStack {
+            LinearGradient (gradient: Gradient(colors: backgroundColors), startPoint: .top, endPoint: .bottom)
+                .ignoresSafeArea()
             
-            BlurCircle(color: circleColors[0], paddingNumber: 50, offsetX: width/2, offsetY: -height/4)
-            BlurCircle(color: circleColors[1], paddingNumber: 25, offsetX: -width/2.2)
-            BlurCircle(color: circleColors[2], paddingNumber: 50, offsetX: width/2.1, offsetY: height/2)
-            
-            Color.black.opacity(0.3).ignoresSafeArea()
+            GeometryReader { proxy in
+                let width = (type == .left ? -1 : 1) * proxy.size.width
+                let height = proxy.size.height
+                
+                BlurCircle(color: circleColors[0], paddingNumber: 50, offsetX: width/2, offsetY: -height/4)
+                BlurCircle(color: circleColors[1], paddingNumber: 25, offsetX: -width/2.2)
+                BlurCircle(color: circleColors[2], paddingNumber: 50, offsetX: width/2.1, offsetY: height/2)
+                
+                Color.black.opacity(0.3).ignoresSafeArea()
+            }
         }
+        .ignoresSafeArea()
     }
 }
 
 struct GlassmorphismBackground_Previews: PreviewProvider {
     static var previews: some View {
-        GlassmorphismBackground(type: .left, circleColors: [Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)], backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.blue)])
+        GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)]), backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.blue)])
     }
 }

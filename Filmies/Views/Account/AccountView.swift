@@ -10,16 +10,33 @@ import SwiftUI
 struct AccountView: View {
     
     @EnvironmentObject var modelData: ModelData
+    @State var colors = [Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)]
     
     var body: some View {
         ZStack(alignment: .top) {
             // Glassmorphism Background
-            GlassmorphismBackground(type: .left, circleColors: [Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)], backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.blue)])
+            GlassmorphismBackground(type: .left, circleColors: $colors, backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.blue)])
             
             ScrollView(.vertical, showsIndicators: false) {
-                
                 VStack(alignment: .leading) {
-                    TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold) {}
+                    
+                    GeometryReader { geometry in
+                        TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold) {
+                            HStack(alignment: .center) {
+                                ForEach(Array(colors.enumerated()), id: \.offset) { index, color in
+                                    Button(action: {
+                                        colors.rotateLeft(positions: index)
+                                    }) {
+                                        Circle()
+                                            .foregroundColor(color)
+                                            .animation(.spring())
+                                    }
+                                }
+                            }
+                            .frame(width: geometry.size.width * 0.25)
+                        }
+                    }
+                    .frame(height: 75)
                     
                     if let movies = modelData.movies[K.MovieCategory.favorites] {
                         let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
