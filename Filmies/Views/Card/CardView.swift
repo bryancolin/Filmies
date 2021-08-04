@@ -79,8 +79,7 @@ struct CardView: View {
         }
         .frame(height: UIScreen.main.bounds.height / 1.8)
         .cornerRadius(15)
-        .padding(.horizontal)
-        .padding(.vertical, 20)
+        .padding()
         .redacted(reason: modelData.isLoading ? .placeholder : [])
     }
     

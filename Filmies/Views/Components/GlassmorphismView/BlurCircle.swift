@@ -24,7 +24,7 @@ struct BlurCircle: View {
             .padding(paddingNumber)
             .blur(radius: blurRadius)
             .shadow(radius: shadowRadius)
-            .offset(x: isAppear ? offsetX : 0,
+            .offset(x: (isAppear ? 1 : -1) * offsetX,
                     y: offsetY)
             .animation(.interpolatingSpring(mass: 1, stiffness: 100, damping: 5, initialVelocity: 0))
             .onAppear {
