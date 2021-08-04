@@ -27,11 +27,11 @@ final class ModelData: ObservableObject {
             
             AF.request("\(url)/\(trend)movie/\(param)\(apiKey)")
                 .validate()
-                .responseDecodable(of: Movies.self) { [self] response in
+                .responseDecodable(of: Films.self) { [self] response in
                     guard let result = response.value else { return }
                     
                     DispatchQueue.main.async {
-                        movies[param] = result.all
+                        movies[param] = result.all as? [Movie]
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
                             isLoading = false
                         }
@@ -69,13 +69,13 @@ final class ModelData: ObservableObject {
         
         AF.request("\(url)/search/movie\(apiKey)&query=\(urlName)")
             .validate()
-            .responseDecodable(of: Movies.self) { [self] response in
+            .responseDecodable(of: Films.self) { [self] response in
                 
                 switch response.result {
                 case .success:
                     guard let result = response.value else { return}
                     
-                    movies["search"] = result.all
+                    movies["search"] = result.all as? [Movie]
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                         isLoading = false
