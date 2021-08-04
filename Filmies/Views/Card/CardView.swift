@@ -79,23 +79,16 @@ struct CardView: View {
         }
         .frame(height: UIScreen.main.bounds.height / 1.8)
         .cornerRadius(15)
-        .padding(.horizontal)
-        .padding(.vertical, 20)
+        .padding()
         .redacted(reason: modelData.isLoading ? .placeholder : [])
     }
     
     func calculateWidth() -> CGFloat {
-        let screen = UIScreen.main.bounds.width - 50
-        
-        let width = screen - (2 * 30)
-        return width
+        return (UIScreen.main.bounds.width - 50) - (2 * 30)
     }
     
     func calculateHeight(with index: Int) -> CGFloat {
-        let screen = UIScreen.main.bounds.height / 1.8
-        
-        let height = screen - CGFloat(index - scrolled) * 50
-        return height
+        return (UIScreen.main.bounds.height / 1.8) - CGFloat(index - scrolled) * 50
     }
 }
 

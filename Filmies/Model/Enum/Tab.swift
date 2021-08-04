@@ -7,9 +7,8 @@
 
 import Foundation
 
-enum Tab: String {
+enum Tab: String, CaseIterable {
     case house = "house"
     case search = "magnifyingglass.circle"
-    case star = "star"
     case person = "person"
 }

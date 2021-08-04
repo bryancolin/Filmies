@@ -18,9 +18,9 @@ struct GlassmorphismBackground: View {
             LinearGradient (gradient: Gradient(colors: backgroundColors), startPoint: .top, endPoint: .bottom)
                 .ignoresSafeArea()
             
-            GeometryReader { proxy in
-                let width = (type == .left ? -1 : 1) * proxy.size.width
-                let height = proxy.size.height
+            GeometryReader { geometry in
+                let width = (type == .left ? -1 : 1) * geometry.size.width
+                let height = geometry.size.height
                 
                 BlurCircle(color: circleColors[0], paddingNumber: 50, offsetX: width/2, offsetY: -height/4)
                 BlurCircle(color: circleColors[1], paddingNumber: 25, offsetX: -width/2.2)

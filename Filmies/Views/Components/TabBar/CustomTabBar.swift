@@ -15,9 +15,9 @@ struct CustomTabBar: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            TabBarButton(image: Tab.house, selectedTab: $selectedTab, tabPoints: $tabPoints)
-            TabBarButton(image: Tab.search, selectedTab: $selectedTab, tabPoints: $tabPoints)
-            TabBarButton(image: Tab.person, selectedTab: $selectedTab, tabPoints: $tabPoints)
+            ForEach(Tab.allCases, id: \.self) { tabName in
+                TabBarButton(image: tabName, selectedTab: $selectedTab, tabPoints: $tabPoints)
+            }
         }
         .padding(0)
         .background(
@@ -33,7 +33,6 @@ struct CustomTabBar: View {
         )
         .cornerRadius(30)
         .padding(.horizontal)
-        
     }
     
     func getCurvePoint() -> CGFloat {

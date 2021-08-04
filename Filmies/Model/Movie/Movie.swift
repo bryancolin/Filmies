@@ -70,7 +70,7 @@ struct Movie: Codable, Identifiable {
     let casts: Casts?
     
     let images: Images?
-
+    
     let productionCompanies: [Production]?
     let productionCountries: [Production]?
     
@@ -100,11 +100,9 @@ struct Movie: Codable, Identifiable {
     }
     
     func getPosters(at index: Int) -> String {
-        if let images = images {
-            if let imagePosters = images.posters {
-                if index < imagePosters.count {
-                    return imagePosters[index].url
-                }
+        if let images = images?.posters {
+            if index < images.count {
+                return images[index].url
             }
         }
         return posterUrl
