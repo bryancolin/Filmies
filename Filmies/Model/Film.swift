@@ -20,8 +20,7 @@ class Film: Codable, Identifiable {
         return String()
     }
     
-    let productionCompanies: [Production]?
-    let productionCountries: [Production]?
+    let productionCompanies, productionCountries: [Production]?
     
     let backdropPath: String?
     var backdropUrl: String {

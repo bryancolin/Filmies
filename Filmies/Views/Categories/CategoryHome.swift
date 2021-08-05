@@ -12,7 +12,6 @@ struct CategoryHome: View {
     
     @EnvironmentObject var modelData: ModelData
     
-    @State var selectedType = "movie"
     @State var selectedIndex1 = 0
     @State var selectedIndex2 = 0
     
@@ -30,9 +29,9 @@ struct CategoryHome: View {
                 // Title
                 GeometryReader { geometry in
                     TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {
-                        Picker(selection: $selectedType, label: Text("")) {
-                            Text("M").tag("movie")
-                            Text("T").tag("tv")
+                        Picker(selection: $modelData.selectedType, label: Text("")) {
+                            Text("M").tag(FilmType.movie)
+                            Text("T").tag(FilmType.tv)
                         }
                         .pickerStyle(SegmentedPickerStyle())
                         .frame(width: geometry.size.width * 0.2)
@@ -42,16 +41,16 @@ struct CategoryHome: View {
                 
                 // Scroll Tab for Trending Movies (Day & Week)
                 ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex1)
-                CardView(category: selectedType == "movie" ? $modelData.movieParams[selectedIndex1] : $modelData.tvShowParams[selectedIndex1])
+                CardView(category: modelData.selectedType == .movie ? $modelData.movieParams[selectedIndex1] : $modelData.tvShowParams[selectedIndex1])
                 
                 // Scroll Tab for Now Showing Movies
-                let titles = selectedType == "movie" ? ["Now Playing", "Popular", "Upcoming"] : ["Airing Today", "Popular", "On The Air"]
+                let titles = modelData.selectedType == .movie ? ["Now Playing", "Popular", "Upcoming"] : ["Airing Today", "Popular", "On The Air"]
                 ScrollTabView(titles: titles, selectedIndex: $selectedIndex2)
-                CategoryRow(category: selectedType == "movie" ? $modelData.movieParams[selectedIndex2+2] : $modelData.tvShowParams[selectedIndex2+2])
+                CategoryRow(category: modelData.selectedType == .movie ? $modelData.movieParams[selectedIndex2+2] : $modelData.tvShowParams[selectedIndex2+2])
                 
                 // Scroll Tab for Top Rated Movies
                 ScrollTabView(titles: ["Top Rated"], selectedIndex: .constant(0))
-                CategoryRow(category: selectedType == "movie" ? $modelData.movieParams[modelData.movieParams.count-1] : $modelData.tvShowParams[modelData.tvShowParams.count-1])
+                CategoryRow(category: modelData.selectedType == .movie ? $modelData.movieParams[modelData.movieParams.count-1] : $modelData.tvShowParams[modelData.tvShowParams.count-1])
             }
         }
         .onAppear {

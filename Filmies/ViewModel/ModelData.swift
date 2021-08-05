@@ -17,6 +17,7 @@ final class ModelData: ObservableObject {
     var tvShowParams = ["tv/day", "tv/week", "tv/airing_today", "tv/popular", "tv/on_the_air", "tv/top_rated"]
     
     @Published var films = [String: [Film]]()
+    @Published var selectedType: FilmType = .movie
     
     @Published var isLoading = false
     @Published var isError = false
