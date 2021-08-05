@@ -33,6 +33,7 @@ struct FilmDetails: View {
                     FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: movie.duration ?? "")
                 } else if let tvShow = film as? TvShow {
                     FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: tvShow.duration ?? "")
+                    HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
                 }
                 
                 if let languages = film.languages {
