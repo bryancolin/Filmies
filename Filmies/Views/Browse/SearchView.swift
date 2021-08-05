@@ -14,11 +14,6 @@ struct SearchView: View {
     @State private var numberOfColumns = 2
     @State private var searchText = ""
     
-    init() {
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color(K.BrandColors.pink))], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
-    }
-    
     var body: some View {
         ZStack {
             // Glassmorphism Background
@@ -29,12 +24,7 @@ struct SearchView: View {
                 GeometryReader { geometry in
                     TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
                         
-                        Picker(selection: $modelData.selectedType, label: Text("")) {
-                            Text("M").tag(FilmType.movie)
-                            Text("T").tag(FilmType.tv)
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: geometry.size.width * 0.2)
+                        CustomPicker(width: geometry.size.width * 0.2)
                         
                         Button(action: {
                             numberOfColumns = numberOfColumns % 2 + 1

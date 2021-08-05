@@ -32,6 +32,7 @@ final class ModelData: ObservableObject {
                 .validate(statusCode: 200..<600)
                 .responseDecodable(of: Films.self) { [self] response in
                     guard let result = response.value else { return }
+                    
                     DispatchQueue.main.async {
                         films[param] = result.all
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
@@ -42,14 +43,14 @@ final class ModelData: ObservableObject {
         }
     }
     
-    func fetchFilmDetails<T: Codable>(type: String, param: String, id: Int, expecting: T.Type) {
+    func fetchFilmDetails<T: Codable>(type: FilmType, param: String, id: Int, expecting: T.Type) {
         
         let film = findFilm(param: param, id: id)
         let filmExists = film.0
         let filmAtIndex = film.1
         
         if filmExists {
-            AF.request("\(url)/\(type)/\(id)\(apiKey)&append_to_response=videos,casts,credits,images&include_image_language=en")
+            AF.request("\(url)/\(type.rawValue)/\(id)\(apiKey)&append_to_response=videos,casts,credits,images&include_image_language=en")
                 .validate()
                 .responseDecodable(of: expecting) { response in
                     guard let result = response.value as? Film else { return }

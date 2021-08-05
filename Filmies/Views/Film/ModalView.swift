@@ -78,9 +78,9 @@ struct ModalView: View {
         )
         .onAppear {
             if let movie = film as? Movie, movie.details == nil {
-                modelData.fetchFilmDetails(type: "movie", param: category, id: movie.id ?? 0, expecting: Movie.self)
+                modelData.fetchFilmDetails(type: .movie, param: category, id: movie.id ?? 0, expecting: Movie.self)
             } else if let tvShow = film as? TvShow, tvShow.details == nil {
-                modelData.fetchFilmDetails(type: "tv", param: category, id: tvShow.id ?? 0, expecting: TvShow.self)
+                modelData.fetchFilmDetails(type: .tvShow, param: category, id: tvShow.id ?? 0, expecting: TvShow.self)
             }
     
             isFavorite = modelData.findFilm(param: K.MovieCategory.favorites, id: film.id ?? 0).0

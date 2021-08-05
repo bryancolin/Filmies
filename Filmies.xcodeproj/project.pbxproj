@@ -24,6 +24,7 @@
 		E54CC441269DB1D80083C6FE /* RoundedCorner.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC440269DB1D80083C6FE /* RoundedCorner.swift */; };
 		E551B052269C6C0D005D9613 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E551B051269C6C0D005D9613 /* Launch Screen.storyboard */; };
 		E55C503926BBE5020059EBD3 /* FilmType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55C503826BBE5010059EBD3 /* FilmType.swift */; };
+		E55C503D26BBE7550059EBD3 /* CustomPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55C503C26BBE7550059EBD3 /* CustomPicker.swift */; };
 		E560797326B7E3E600D6C7B5 /* Production.swift in Sources */ = {isa = PBXBuildFile; fileRef = E560797226B7E3E600D6C7B5 /* Production.swift */; };
 		E563EB8526B25C8F00324CA6 /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E563EB8426B25C8F00324CA6 /* AccountView.swift */; };
 		E564B11926ABFAE4002637A9 /* FilmDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = E564B11826ABFAE4002637A9 /* FilmDetails.swift */; };
@@ -93,6 +94,7 @@
 		E54CC440269DB1D80083C6FE /* RoundedCorner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedCorner.swift; sourceTree = "<group>"; };
 		E551B051269C6C0D005D9613 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E55C503826BBE5010059EBD3 /* FilmType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmType.swift; sourceTree = "<group>"; };
+		E55C503C26BBE7550059EBD3 /* CustomPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPicker.swift; sourceTree = "<group>"; };
 		E560797226B7E3E600D6C7B5 /* Production.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Production.swift; sourceTree = "<group>"; };
 		E563EB8426B25C8F00324CA6 /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		E564B11826ABFAE4002637A9 /* FilmDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmDetails.swift; sourceTree = "<group>"; };
@@ -194,13 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				E5840A6E26A803E000E3F782 /* Enum */,
-				E5A0CBB8269845D20088F968 /* Films.swift */,
-				E574286A26BACCEF006CC990 /* Film.swift */,
-				E50254F726983E80000C6F03 /* Movie.swift */,
-				E574286826BACCD1006CC990 /* TvShow.swift */,
-				E564B11E26AC01EF002637A9 /* Genre.swift */,
-				E564B12026AC0203002637A9 /* Language.swift */,
-				E560797226B7E3E600D6C7B5 /* Production.swift */,
+				E55C503A26BBE71A0059EBD3 /* Film */,
 				E5FB89BC26AAAAE700A496CB /* Video */,
 				E5FB89BF26AAB19200A496CB /* Cast */,
 				E5A7A52F26B6A61B0062B756 /* Image */,
@@ -257,6 +253,28 @@
 				E54CC43C269D8E8B0083C6FE /* CardElementView.swift */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		E55C503A26BBE71A0059EBD3 /* Film */ = {
+			isa = PBXGroup;
+			children = (
+				E55C503B26BBE7290059EBD3 /* Details */,
+				E5A0CBB8269845D20088F968 /* Films.swift */,
+				E574286A26BACCEF006CC990 /* Film.swift */,
+				E50254F726983E80000C6F03 /* Movie.swift */,
+				E574286826BACCD1006CC990 /* TvShow.swift */,
+			);
+			path = Film;
+			sourceTree = "<group>";
+		};
+		E55C503B26BBE7290059EBD3 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E564B11E26AC01EF002637A9 /* Genre.swift */,
+				E564B12026AC0203002637A9 /* Language.swift */,
+				E560797226B7E3E600D6C7B5 /* Production.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		E563EB8626B25C9500324CA6 /* Account */ = {
@@ -412,6 +430,7 @@
 			children = (
 				E564B11C26ABFCDB002637A9 /* CustomDivider.swift */,
 				E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */,
+				E55C503C26BBE7550059EBD3 /* CustomPicker.swift */,
 				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
 				E50C1A2226A18B4F003CE717 /* FlipEffect.swift */,
 				E52C334826B146320080031F /* TitleComponent.swift */,
@@ -568,6 +587,7 @@
 				E5943ABC26B92BFE00CF9836 /* BlurCircle.swift in Sources */,
 				E5C9574626B3F097007B1B1D /* ChartView.swift in Sources */,
 				E5C9574426B3ED91007B1B1D /* Int+Extension.swift in Sources */,
+				E55C503D26BBE7550059EBD3 /* CustomPicker.swift in Sources */,
 				E5C9574826B3F0B4007B1B1D /* BarView.swift in Sources */,
 				E50C1A2326A18B50003CE717 /* FlipEffect.swift in Sources */,
 				E56A3BF22699622800494650 /* CategoryRow.swift in Sources */,

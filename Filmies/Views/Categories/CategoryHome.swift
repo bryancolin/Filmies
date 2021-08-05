@@ -15,11 +15,6 @@ struct CategoryHome: View {
     @State var selectedIndex1 = 0
     @State var selectedIndex2 = 0
     
-    init() {
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color(K.BrandColors.pink))], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
-    }
-    
     var body: some View {
         ZStack {
             // Glassmorphism Background
@@ -28,13 +23,8 @@ struct CategoryHome: View {
             ScrollView(.vertical, showsIndicators: false) {
                 // Title
                 GeometryReader { geometry in
-                    TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {
-                        Picker(selection: $modelData.selectedType, label: Text("")) {
-                            Text("M").tag(FilmType.movie)
-                            Text("T").tag(FilmType.tv)
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                        .frame(width: geometry.size.width * 0.2)
+                    TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {                        
+                        CustomPicker(width: geometry.size.width * 0.2)
                     }
                 }
                 .frame(height: 75)

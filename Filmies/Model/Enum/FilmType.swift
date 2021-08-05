@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FilmType: String {
+enum FilmType: String, CaseIterable {
     case movie = "movie"
-    case tv = "tv"
+    case tvShow = "tv"
 }
