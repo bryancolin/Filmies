@@ -19,7 +19,6 @@ struct AccountView: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    
                     GeometryReader { geometry in
                         TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold) {
                             HStack(alignment: .center) {

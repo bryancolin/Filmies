@@ -12,7 +12,9 @@ final class ModelData: ObservableObject {
     
     private let url = "https://api.themoviedb.org/3"
     private let apiKey = "?api_key=\(Bundle.main.infoDictionary?["API_KEY"] as? String ?? "")"
-    var params = ["movie/day", "movie/week", "movie/now_playing", "movie/popular", "movie/upcoming", "movie/top_rated", "tv/airing_today", "tv/on_the_air", "tv/popular", "tv/top_rated"]
+    
+    var movieParams = ["movie/day", "movie/week", "movie/now_playing", "movie/popular", "movie/upcoming", "movie/top_rated"]
+    var tvShowParams = ["tv/day", "tv/week", "tv/airing_today", "tv/popular", "tv/on_the_air", "tv/top_rated"]
     
     @Published var films = [String: [Film]]()
     
@@ -22,14 +24,13 @@ final class ModelData: ObservableObject {
     func fetchFilms() {
         isLoading = true
         
-        for (index, param) in params.enumerated() {
-            let trend = (index == 0 || index == 1) ? "trending/" : ""
+        for param in movieParams + tvShowParams {
+            let trend = param.contains("/day") || param.contains("/week") ? "trending/" : ""
             
             AF.request("\(url)/\(trend)\(param)\(apiKey)")
-                .validate()
+                .validate(statusCode: 200..<600)
                 .responseDecodable(of: Films.self) { [self] response in
                     guard let result = response.value else { return }
-                    
                     DispatchQueue.main.async {
                         films[param] = result.all
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
@@ -50,9 +51,8 @@ final class ModelData: ObservableObject {
             AF.request("\(url)/\(type)/\(id)\(apiKey)&append_to_response=videos,casts,credits,images&include_image_language=en")
                 .validate()
                 .responseDecodable(of: expecting) { response in
-                    print(response)
                     guard let result = response.value as? Film else { return }
-                    print("yes sir")
+                    
                     DispatchQueue.main.async { [self] in
                         result.category = param
                         result.details = true
