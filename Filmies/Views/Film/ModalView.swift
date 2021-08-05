@@ -22,7 +22,7 @@ struct ModalView: View {
     
     var filmTitle: String {
         if let tvShow = film as? TvShow {
-            return tvShow.originalName ?? ""
+            return tvShow.name ?? ""
         }
         return film.title ?? ""
     }
