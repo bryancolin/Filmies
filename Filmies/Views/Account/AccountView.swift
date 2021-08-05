@@ -19,7 +19,6 @@ struct AccountView: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    
                     GeometryReader { geometry in
                         TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold) {
                             HStack(alignment: .center) {
@@ -37,14 +36,14 @@ struct AccountView: View {
                         }
                     }
                     .frame(height: 75)
-                    
-                    if let movies = modelData.movies[K.MovieCategory.favorites] {
+
+                    if let movies = modelData.films[K.MovieCategory.favorites] as? [Movie] {
                         let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
                         ChartView(movies: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
                     }
                     
                     // Scroll Tab for Favorites Movies
-                    ScrollTabView(titles: ["Favorites"], selectedIndex: .constant(0))
+                    ScrollTabView(titles: ["Favorites Movies"], selectedIndex: .constant(0))
                     CategoryRow(category: .constant(K.MovieCategory.favorites))
                 }
             }

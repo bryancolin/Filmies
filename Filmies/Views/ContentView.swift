@@ -20,8 +20,6 @@ struct ContentView: View {
                 SearchView()
             case .person:
                 AccountView()
-            default:
-                Color.white
             }
         }
         .overlay(

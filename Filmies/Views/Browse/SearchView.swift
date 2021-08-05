@@ -21,15 +21,21 @@ struct SearchView: View {
             
             VStack(spacing: 10) {
                 // Title
-                TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
-                    Button(action: {
-                        numberOfColumns = numberOfColumns % 2 + 1
-                    }, label: {
-                        Image(systemName: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(.white)
-                    })
+                GeometryReader { geometry in
+                    TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
+                        
+                        CustomPicker(width: geometry.size.width * 0.2)
+                        
+                        Button(action: {
+                            numberOfColumns = numberOfColumns % 2 + 1
+                        }) {
+                            Image(systemName: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(.white)
+                        }
+                    }
                 }
+                .frame(height: 75)
                 
                 // Search Bar
                 HStack {
@@ -38,13 +44,13 @@ struct SearchView: View {
                     
                     Button(action: {
                         if !searchText.isEmpty {
-                            modelData.searchMovie(name: searchText)
+                            modelData.searchFilm(type: modelData.selectedType.rawValue, name: searchText)
                         }
-                    }, label: {
+                    }) {
                         Image(systemName: "arrow.up.forward.circle.fill")
                             .font(.system(size: 25, weight: .semibold))
                             .foregroundColor(Color(K.BrandColors.pink))
-                    })
+                    }
                 }
                 .padding(12)
                 .background(Color.white)

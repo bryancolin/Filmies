@@ -13,11 +13,25 @@ struct CategoryItem: View {
     @EnvironmentObject var modelData: ModelData
     @State private var showingModal = false
     
-    var movie: Movie
+    var film: Film 
     var category: String
     
     var width: CGFloat = 150
     var height: CGFloat = 220
+    
+    var date: some View {
+        VStack {
+            if let movie = film as? Movie {
+                Text(movie.releaseYear)
+                    .font(.system(size: 9))
+                    .foregroundColor(.white)
+            } else if let tvShow = film as? TvShow {
+                Text(tvShow.releaseYear)
+                    .font(.system(size: 9))
+                    .foregroundColor(.white)
+            }
+        }
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,18 +40,14 @@ struct CategoryItem: View {
                     showingModal.toggle()
                 }
             }, label: {
-                CustomImage(urlString: movie.posterUrl)
+                CustomImage(urlString: film.posterUrl)
                     .frame(width: width, alignment: .leading)
                     .cornerRadius(8)
                     .overlay(
                         Circle()
                             .frame(width: 25, height: 25)
                             .foregroundColor(Color(K.BrandColors.pink))
-                            .overlay(
-                                Text(movie.releaseYear)
-                                    .font(.system(size: 9))
-                                    .foregroundColor(.white)
-                            )
+                            .overlay(date)
                             .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 0)),
                         alignment: .topLeading
                     )
@@ -46,7 +56,7 @@ struct CategoryItem: View {
         .padding(.leading, 15)
         .padding(.vertical)
         .sheet(isPresented: $showingModal) {
-            ModalView(movie: movie, category: category, showModal: self.$showingModal)
+            ModalView(film: film, category: category, showModal: self.$showingModal)
                 .environmentObject(modelData)
         }
     }

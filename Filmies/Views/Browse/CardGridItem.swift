@@ -10,7 +10,7 @@ import SwiftUI
 struct CardGridItem: View {
     
     @EnvironmentObject var modelData: ModelData
-    var movie: Movie
+    var film: Film
     
     @State private var showingModal = false
     
@@ -20,11 +20,11 @@ struct CardGridItem: View {
                 showingModal.toggle()
             }
         }) {
-            CustomImage(urlString: movie.posterUrl)
+            CustomImage(urlString: film.posterUrl)
                 .cornerRadius(15)
         }
         .sheet(isPresented: $showingModal) {
-            ModalView(movie: movie, category: "search", showModal: self.$showingModal)
+            ModalView(film: film, category: "search", showModal: self.$showingModal)
                 .environmentObject(modelData)
         }
     }

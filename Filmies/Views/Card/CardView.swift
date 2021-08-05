@@ -21,12 +21,12 @@ struct CardView: View {
     
     var body: some View {
         ZStack {
-            if let movies = modelData.movies[category] {
+            if let films = modelData.films[category] {
                 if modelData.isLoading == false {
-                    ForEach(movies.enumerated().reversed(), id: \.offset) { index, movie in
+                    ForEach(films.enumerated().reversed(), id: \.offset) { index, film in
                         HStack {
                             ZStack(alignment: .bottomLeading) {
-                                CardElementView(movie: movie, category: category, width: calculateWidth(), height: calculateHeight(with: index))
+                                CardElementView(film: film, category: category, width: calculateWidth(), height: calculateHeight(with: index))
                             }
                             .offset(x: index - scrolled <= 2 ? CGFloat(index - scrolled) * 30 : 60)
                             
@@ -39,7 +39,7 @@ struct CardView: View {
                                 .onChanged { value in
                                     let translation = value.translation.width
                                     withAnimation {
-                                        if translation < 0 && index < (modelData.movies[category]?.count ?? 0) - 1{
+                                        if translation < 0 && index < (modelData.films[category]?.count ?? 0) - 1{
                                             offsets[index] = translation
                                         } else {
                                             if index > 0 {
@@ -52,7 +52,7 @@ struct CardView: View {
                                     let translation = value.translation.width
                                     withAnimation {
                                         if translation < 0 {
-                                            if -translation > 180 && index < (modelData.movies[category]?.count ?? 0) - 1 {
+                                            if -translation > 180 && index < (modelData.films[category]?.count ?? 0) - 1 {
                                                 offsets[index] = -(calculateWidth() + 60)
                                                 scrolled += 1
                                             } else {
@@ -84,17 +84,11 @@ struct CardView: View {
     }
     
     func calculateWidth() -> CGFloat {
-        let screen = UIScreen.main.bounds.width - 50
-        
-        let width = screen - (2 * 30)
-        return width
+        return (UIScreen.main.bounds.width - 50) - (2 * 30)
     }
     
     func calculateHeight(with index: Int) -> CGFloat {
-        let screen = UIScreen.main.bounds.height / 1.8
-        
-        let height = screen - CGFloat(index - scrolled) * 50
-        return height
+        return (UIScreen.main.bounds.height / 1.8) - CGFloat(index - scrolled) * 50
     }
 }
 

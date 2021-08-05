@@ -1,5 +1,5 @@
 //
-//  MovieDetails.swift
+//  FilmDetails.swift
 //  Filmies
 //
 //  Created by bryan colin on 7/24/21.
@@ -7,65 +7,63 @@
 
 import SwiftUI
 
-struct MovieDetails: View {
+struct FilmDetails: View {
     
     @EnvironmentObject var modelData: ModelData
     
-    var movie: Movie
+    var film: Film
     
-    @State var index  = 0
+    @State var index = 0
     var pageNumber = 3
     
     var body: some View {
         TabView(selection: $index) {
 
-            MovieComponent(title: "Overview") {
-                Text(movie.description ?? "")
+            FilmComponent(title: "Overview") {
+                Text(film.description ?? "")
                     .foregroundColor(.white)
                     .font(.caption)
                     .fixedSize(horizontal: false, vertical: true)
                 
                 CustomDivider()
                 
-                HorizontalComponent(title: "Rating", details: [movie.rate])
+                HorizontalComponent(title: "Rating", details: [film.rate])
                 
-                HorizontalComponent(title: "Release Date", details: [movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
+                if let movie = film as? Movie {
+                    FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: movie.duration ?? "")
+                } else if let tvShow = film as? TvShow {
+                    FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: tvShow.duration ?? "")
+                }
                 
-                HorizontalComponent(title: "Runtime", details: [movie.duration ?? ""])
-                
-                if let languages = movie.languages {
+                if let languages = film.languages {
                     HorizontalComponent(title: "Languages", details: languages.compactMap( { $0.name }))
                 }
                 
-                if let genres = movie.genres {
+                if let genres = film.genres {
                     HorizontalComponent(title: "Genres", details: genres.compactMap( { $0.name }))
                 }
             }
             .tag(0)
             
-            MovieComponent(title: "Casts") {
-                if let casts = movie.casts {
-                    if let crews = casts.crewCategories["Director"] {
-                        VerticalComponent(title: "Director", urls: crews.compactMap({ $0.imageURL }), details: crews.compactMap({ $0.name }))
+            FilmComponent(title: "Casts") {
+                if let movie = film as? Movie {
+                    if let casts = movie.casts {
+                        FilmCasts(casts)
                     }
-                    
-                    if let crews = casts.crewCategories["Writer"] {
-                        VerticalComponent(title: "Writer", urls: crews.compactMap({ $0.imageURL }), details: crews.compactMap({ $0.name }))
-                    }
-                    
-                    if let actors = casts.cast {
-                        VerticalComponent(title: "Starring", urls: actors.compactMap({ $0.imageURL }), details: actors.compactMap({ $0.name }))
+                } else if let tvShow = film as? TvShow {
+                    if let casts = tvShow.casts {
+                        FilmCasts(casts)
                     }
                 }
             }
             .tag(1)
             
-            MovieComponent(title: "Production") {
-                if let countries = movie.productionCountries {
+            FilmComponent(title: "Production") {
+                if let countries = film.productionCountries {
                     HorizontalComponent(title: "Countries", details: countries.compactMap({ $0.name }))
                 }
                 
-                if let companies = movie.productionCompanies {
+                if let companies = film.productionCompanies {
                     HorizontalComponent(title: "Companies", details: companies.compactMap({ $0.name }))
                 }
             }
