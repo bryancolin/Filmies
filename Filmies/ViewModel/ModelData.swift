@@ -137,7 +137,7 @@ final class ModelData: ObservableObject {
     
     // Load from User Defaults
     func loadFavoriteMovies() {
-        if let data = UserDefaults.standard.data(forKey: K.userDefaultsKey) {
+        if let data = UserDefaults.standard.data(forKey: K.userDefaultsMovieKey) {
             if let decoded = try? JSONDecoder().decode([Movie].self, from: data) {
                 DispatchQueue.main.async { [self] in
                     films[K.MovieCategory.favorites] = decoded.sorted(by: { $0.addedAt ?? 0 > $1.addedAt ?? 0 })
@@ -153,7 +153,7 @@ final class ModelData: ObservableObject {
         
         if let encoded = try? encoder.encode(films[K.MovieCategory.favorites]) {
             print(String(data: encoded, encoding: .utf8)!)
-            UserDefaults.standard.set(encoded, forKey: K.userDefaultsKey)
+            UserDefaults.standard.set(encoded, forKey: K.userDefaultsMovieKey)
         }
     }
 }
