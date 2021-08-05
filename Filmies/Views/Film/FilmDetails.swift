@@ -13,13 +13,13 @@ struct FilmDetails: View {
     
     var film: Film
     
-    @State var index  = 0
+    @State var index = 0
     var pageNumber = 3
     
     var body: some View {
         TabView(selection: $index) {
 
-            MovieComponent(title: "Overview") {
+            FilmComponent(title: "Overview") {
                 Text(film.description ?? "")
                     .foregroundColor(.white)
                     .font(.caption)
@@ -30,11 +30,9 @@ struct FilmDetails: View {
                 HorizontalComponent(title: "Rating", details: [film.rate])
                 
                 if let movie = film as? Movie {
-                    HorizontalComponent(title: "Release Date", details: [movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
-                    HorizontalComponent(title: "Runtime", details: [movie.duration ?? ""])
+                    FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: movie.duration ?? "")
                 } else if let tvShow = film as? TvShow {
-                    HorizontalComponent(title: "First Air Date", details: [tvShow.firstAirDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
-                    HorizontalComponent(title: "Episode Runtime", details: [tvShow.duration ?? ""])
+                    FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: tvShow.duration ?? "")
                 }
                 
                 if let languages = film.languages {
@@ -47,40 +45,20 @@ struct FilmDetails: View {
             }
             .tag(0)
             
-            MovieComponent(title: "Casts") {
+            FilmComponent(title: "Casts") {
                 if let movie = film as? Movie {
                     if let casts = movie.casts {
-                        if let crews = casts.crewCategories["Director"] {
-                            VerticalComponent(title: "Director", urls: crews.compactMap({ $0.imageURL }), details: crews.compactMap({ $0.name }))
-                        }
-                        
-                        if let crews = casts.crewCategories["Writer"] {
-                            VerticalComponent(title: "Writer", urls: crews.compactMap({ $0.imageURL }), details: crews.compactMap({ $0.name }))
-                        }
-                        
-                        if let actors = casts.cast {
-                            VerticalComponent(title: "Starring", urls: actors.compactMap({ $0.imageURL }), details: actors.compactMap({ $0.name }))
-                        }
+                        FilmCasts(casts)
                     }
                 } else if let tvShow = film as? TvShow {
                     if let casts = tvShow.casts {
-                        if let crews = casts.crewCategories["Director"] {
-                            VerticalComponent(title: "Director", urls: crews.compactMap({ $0.imageURL }), details: crews.compactMap({ $0.name }))
-                        }
-                        
-                        if let crews = casts.crewCategories["Writer"] {
-                            VerticalComponent(title: "Writer", urls: crews.compactMap({ $0.imageURL }), details: crews.compactMap({ $0.name }))
-                        }
-                        
-                        if let actors = casts.cast {
-                            VerticalComponent(title: "Starring", urls: actors.compactMap({ $0.imageURL }), details: actors.compactMap({ $0.name }))
-                        }
+                        FilmCasts(casts)
                     }
                 }
             }
             .tag(1)
             
-            MovieComponent(title: "Production") {
+            FilmComponent(title: "Production") {
                 if let countries = film.productionCountries {
                     HorizontalComponent(title: "Countries", details: countries.compactMap({ $0.name }))
                 }

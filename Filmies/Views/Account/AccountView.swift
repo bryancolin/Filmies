@@ -43,7 +43,7 @@ struct AccountView: View {
                     }
                     
                     // Scroll Tab for Favorites Movies
-                    ScrollTabView(titles: ["Favorites"], selectedIndex: .constant(0))
+                    ScrollTabView(titles: ["Favorites Movies"], selectedIndex: .constant(0))
                     CategoryRow(category: .constant(K.MovieCategory.favorites))
                 }
             }

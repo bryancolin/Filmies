@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MovieComponent<Content>: View where Content : View {
+struct FilmComponent<Content>: View where Content : View {
     
     var title: String
     let content: () -> Content
