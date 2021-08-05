@@ -40,8 +40,8 @@ struct CategoryHome: View {
             }
         }
         .onAppear {
-            if modelData.movies.isEmpty {
-                modelData.fetchMovies()
+            if modelData.films.isEmpty {
+                modelData.fetchFilms()
                 modelData.loadFavoriteMovies()
             }
         }

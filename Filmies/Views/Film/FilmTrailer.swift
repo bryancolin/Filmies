@@ -1,5 +1,5 @@
 //
-//  MovieTrailer.swift
+//  FilmTrailer.swift
 //  Filmies
 //
 //  Created by bryan colin on 7/28/21.
@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct MovieTrailer: View {
+struct FilmTrailer: View {
     
     @EnvironmentObject var modelData: ModelData
     
-    var movie: Movie
+    var film: Film
     var category: String
     
     var body: some View {
-        if let officialTrailers = movie.videos?.all?.filter({ trailer -> Bool in
+        if let officialTrailers = film.videos?.all?.filter({ trailer -> Bool in
             guard let trailerName = trailer.name else { return false }
             return trailerName.contains("Trailer")
         }) {
@@ -29,7 +29,7 @@ struct MovieTrailer: View {
                 }
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
             } else {
-                CustomImage(urlString: movie.backdropUrl.isEmpty ? movie.posterUrl : movie.backdropUrl)
+                CustomImage(urlString: film.backdropUrl.isEmpty ? film.posterUrl : film.backdropUrl)
             }
         }
     }

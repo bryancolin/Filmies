@@ -28,12 +28,7 @@ struct Films: Codable {
         {
             let film = try results.nestedContainer(keyedBy: CodingNameKey.self)
             let title = try film.decodeIfPresent(String.self, forKey: CodingNameKey.title)
-            if title != nil {
-                films.append(try result.decode(Movie.self))
-            } else {
-                print("here")
-//                films.append(try result.decode(TvShow.self))
-            }
+            films.append(try result.decode(title != nil ? Movie.self : TvShow.self))
         }
         
         self.all = films

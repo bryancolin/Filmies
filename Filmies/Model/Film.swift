@@ -41,9 +41,20 @@ class Film: Codable, Identifiable {
     
     let videos: Videos?
     
-    let casts: Casts?
-    
     let images: Images?
+    
+    // Extra Variable
+    var category: String = ""
+    var details: Bool? = nil
+    var isFavorite: Bool? = nil
+    
+    var addedAt: Double? = nil
+    var addedDate: Date {
+        if let dateInDouble = addedAt {
+            return dateInDouble.toDate()
+        }
+        return Date()
+    }
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -53,14 +64,26 @@ class Film: Codable, Identifiable {
         case genres
         case languages = "spoken_languages"
         
+        case productionCompanies = "production_companies"
+        case productionCountries = "production_countries"
+        
         case backdropPath = "backdrop_path"
         case posterPath = "poster_path"
         
         case videos
-        case casts
         case images
         
-        case productionCompanies = "production_companies"
-        case productionCountries = "production_countries"
+        case details
+        case isFavorite
+        case addedAt
+    }
+    
+    func getPosters(at index: Int) -> String {
+        if let images = images?.posters {
+            if index < images.count {
+                return images[index].url
+            }
+        }
+        return posterUrl
     }
 }

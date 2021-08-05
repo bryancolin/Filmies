@@ -14,14 +14,14 @@ struct CardElementView: View {
     
     @State private var showingModal = false
     
-    var movie: Movie
+    var film: Film
     var category: String
     
     var width: CGFloat
     var height: CGFloat
     
     var body: some View {
-        CustomImage(urlString: movie.posterUrl)
+        CustomImage(urlString: film.posterUrl)
             .frame(width: width, height: height)
             .overlay(
                 Button(action: {
@@ -40,7 +40,7 @@ struct CardElementView: View {
                 alignment: .bottomLeading
             )
             .sheet(isPresented: $showingModal) {
-                ModalView(movie: movie, category: category, showModal: self.$showingModal)
+                ModalView(film: film, category: category, showModal: self.$showingModal)
                     .environmentObject(modelData)
             }
             .cornerRadius(15)

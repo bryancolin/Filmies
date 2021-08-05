@@ -38,7 +38,7 @@ struct SearchView: View {
                     
                     Button(action: {
                         if !searchText.isEmpty {
-                            modelData.searchMovie(name: searchText)
+                            modelData.searchFilm(type: "movie", name: searchText)
                         }
                     }, label: {
                         Image(systemName: "arrow.up.forward.circle.fill")

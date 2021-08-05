@@ -12,26 +12,26 @@ final class ModelData: ObservableObject {
     
     private let url = "https://api.themoviedb.org/3"
     private let apiKey = "?api_key=\(Bundle.main.infoDictionary?["API_KEY"] as? String ?? "")"
-    var params = ["day", "week", "now_playing", "popular", "upcoming", "top_rated"]
+    var params = ["movie/day", "movie/week", "movie/now_playing", "movie/popular", "movie/upcoming", "movie/top_rated", "tv/airing_today", "tv/on_the_air", "tv/popular", "tv/top_rated"]
     
-    @Published var movies = [String: [Movie]]()
+    @Published var films = [String: [Film]]()
     
     @Published var isLoading = false
     @Published var isError = false
     
-    func fetchMovies() {
+    func fetchFilms() {
         isLoading = true
         
         for (index, param) in params.enumerated() {
             let trend = (index == 0 || index == 1) ? "trending/" : ""
             
-            AF.request("\(url)/\(trend)movie/\(param)\(apiKey)")
+            AF.request("\(url)/\(trend)\(param)\(apiKey)")
                 .validate()
                 .responseDecodable(of: Films.self) { [self] response in
                     guard let result = response.value else { return }
                     
                     DispatchQueue.main.async {
-                        movies[param] = result.all as? [Movie]
+                        films[param] = result.all
                         DispatchQueue.main.asyncAfter(deadline: .now() + 4) { [self] in
                             isLoading = false
                         }
@@ -40,34 +40,35 @@ final class ModelData: ObservableObject {
         }
     }
     
-    func fetchMovieDetails(param: String, id: Int) {
+    func fetchFilmDetails<T: Codable>(type: String, param: String, id: Int, expecting: T.Type) {
         
-        let movie = findMovie(param: param, id: id)
-        let movieExists = movie.0
-        let movieAtIndex = movie.1
+        let film = findFilm(param: param, id: id)
+        let filmExists = film.0
+        let filmAtIndex = film.1
         
-        if movieExists {
-            AF.request("\(url)/movie/\(id)\(apiKey)&append_to_response=videos,casts,images&include_image_language=en")
+        if filmExists {
+            AF.request("\(url)/\(type)/\(id)\(apiKey)&append_to_response=videos,casts,credits,images&include_image_language=en")
                 .validate()
-                .responseDecodable(of: Movie.self) { response in
-                    guard let result = response.value else { return }
-                    
+                .responseDecodable(of: expecting) { response in
+                    print(response)
+                    guard let result = response.value as? Film else { return }
+                    print("yes sir")
                     DispatchQueue.main.async { [self] in
-                        movies[param]?[movieAtIndex] = result
-                        movies[param]?[movieAtIndex].category = param
-                        movies[param]?[movieAtIndex].details = true
+                        result.category = param
+                        result.details = true
+                        films[param]?[filmAtIndex] = result
                     }
                 }
         }
     }
     
-    func searchMovie(name: String) {
+    func searchFilm(type: String, name: String) {
         isLoading = true
         isError = false
         
         let urlName = name.replacingOccurrences(of: " ", with: "+")
         
-        AF.request("\(url)/search/movie\(apiKey)&query=\(urlName)")
+        AF.request("\(url)/search/\(type)\(apiKey)&query=\(urlName)")
             .validate()
             .responseDecodable(of: Films.self) { [self] response in
                 
@@ -75,7 +76,7 @@ final class ModelData: ObservableObject {
                 case .success:
                     guard let result = response.value else { return}
                     
-                    movies["search"] = result.all as? [Movie]
+                    films["search"] = result.all
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                         isLoading = false
@@ -90,39 +91,39 @@ final class ModelData: ObservableObject {
     
     func highlightMovie(param: String, id: Int, check: Bool) {
         
-        let movie = findMovie(param: param, id: id)
-        let movieExists = movie.0
+        let movie = findFilm(param: param, id: id)
+        //        let movieExists = movie.0
         let movieAtIndex = movie.1
         
         // Check Favorites to TRUE/FALSE from its category
-        if movieExists {
-            movies[param]?[movieAtIndex].isFavorite = check
-        }
+        //        if movieExists {
+        //            films[param]?[movieAtIndex].isFavorite = check
+        //        }
         
         if check {
             // Append Favorite Movie
-            guard var movie = movies[param]?[movieAtIndex] else { return }
+            guard let movie = films[param]?[movieAtIndex] as? Movie else { return }
             movie.isFavorite = true
             movie.addedAt = Date().timeIntervalSince1970
             
-            if movies[K.MovieCategory.favorites] == nil {
-                movies[K.MovieCategory.favorites] = [movie]
+            if films[K.MovieCategory.favorites] == nil {
+                films[K.MovieCategory.favorites] = [movie]
             } else {
-                movies[K.MovieCategory.favorites]?.insert(movie, at: 0)
+                films[K.MovieCategory.favorites]?.insert(movie, at: 0)
             }
         } else {
             // Remove Favorite Movie
-            let favoriteMovie = findMovie(param: K.MovieCategory.favorites, id: id)
+            let favoriteMovie = findFilm(param: K.MovieCategory.favorites, id: id)
             if favoriteMovie.0 {
-                movies[K.MovieCategory.favorites]?.remove(at: favoriteMovie.1)
+                films[K.MovieCategory.favorites]?.remove(at: favoriteMovie.1)
             }
         }
         
         saveFavoriteMovies()
     }
     
-    func findMovie(param: String, id: Int) -> (Bool, Int) {
-        if let safeMovies = movies[param] {
+    func findFilm(param: String, id: Int) -> (Bool, Int) {
+        if let safeMovies = films[param] {
             for (index, movie) in safeMovies.enumerated() {
                 if movie.id == id  {
                     return (true, index)
@@ -132,19 +133,24 @@ final class ModelData: ObservableObject {
         return (false, 0)
     }
     
+    // Load from User Defaults
     func loadFavoriteMovies() {
         if let data = UserDefaults.standard.data(forKey: K.userDefaultsKey) {
             if let decoded = try? JSONDecoder().decode([Movie].self, from: data) {
                 DispatchQueue.main.async { [self] in
-                    movies[K.MovieCategory.favorites] = decoded.sorted(by: { $0.addedAt ?? 0 > $1.addedAt ?? 0 })
+                    films[K.MovieCategory.favorites] = decoded.sorted(by: { $0.addedAt ?? 0 > $1.addedAt ?? 0 })
                 }
             }
         }
     }
     
+    // Store in User Defaults
     func saveFavoriteMovies() {
-        // Store in User Defaults
-        if let encoded = try? JSONEncoder().encode(movies[K.MovieCategory.favorites]) {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        if let encoded = try? encoder.encode(films[K.MovieCategory.favorites]) {
+            print(String(data: encoded, encoding: .utf8)!)
             UserDefaults.standard.set(encoded, forKey: K.userDefaultsKey)
         }
     }

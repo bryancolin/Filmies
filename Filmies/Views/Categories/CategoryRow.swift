@@ -17,9 +17,9 @@ struct CategoryRow: View {
         VStack(alignment: .leading) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top) {
-                    if let movies = modelData.movies[category] {
-                        ForEach(movies) { movie in
-                            CategoryItem(movie: movie, category: category)
+                    if let films = modelData.films[category] {
+                        ForEach(films) { film in
+                            CategoryItem(film: film, category: category)
                                 .redacted(reason: modelData.isLoading ? .placeholder : [])
                         }
                     }
