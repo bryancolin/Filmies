@@ -63,6 +63,9 @@ struct SearchView: View {
                         CardGrid(category: "search", numberOfColumns: $numberOfColumns)
                     } else {
                         Text("Not Found")
+                            .foregroundColor(.white)
+                            .font(.caption2)
+                        Spacer()
                     }
                 }
             }

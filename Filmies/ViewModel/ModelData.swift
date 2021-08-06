@@ -22,6 +22,12 @@ final class ModelData: ObservableObject {
     @Published var isLoading = false
     @Published var isError = false
     
+    init() {
+        fetchFilms()
+        loadFavoriteFilms(type: K.MovieCategory.favorites, key: K.UserDefaults.movieKey, expecting: [Movie].self)
+        loadFavoriteFilms(type: K.TvShowCategory.favorites, key: K.UserDefaults.tvKey, expecting: [TvShow].self)
+    }
+    
     func fetchFilms() {
         isLoading = true
         
@@ -73,12 +79,16 @@ final class ModelData: ObservableObject {
         AF.request("\(url)/search/\(type)\(apiKey)&query=\(urlName)")
             .validate()
             .responseDecodable(of: Films.self) { [self] response in
-                
+                print(response)
                 switch response.result {
                 case .success:
-                    guard let result = response.value else { return }
+                    guard let result = response.value?.all else { return }
                     
-                    films["search"] = result.all
+                    if result.isEmpty {
+                        isError = true
+                    } else {
+                        films["search"] = result
+                    }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
                         isLoading = false

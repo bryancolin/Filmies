@@ -25,7 +25,6 @@ struct FilmComponent<Content>: View where Content : View {
                 content()
             }
         }
-        .padding(.horizontal)
-        .padding(.top)
+        .padding()
     }
 }

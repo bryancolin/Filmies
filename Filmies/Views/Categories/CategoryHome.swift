@@ -43,13 +43,6 @@ struct CategoryHome: View {
                 CategoryRow(category: modelData.selectedType == .movie ? $modelData.movieParams[modelData.movieParams.count-1] : $modelData.tvShowParams[modelData.tvShowParams.count-1])
             }
         }
-        .onAppear {
-            if modelData.films.isEmpty {
-                modelData.fetchFilms()
-                modelData.loadFavoriteFilms(type: K.MovieCategory.favorites, key: K.UserDefaults.movieKey, expecting: [Movie].self)
-                modelData.loadFavoriteFilms(type: K.TvShowCategory.favorites, key: K.UserDefaults.tvKey, expecting: [TvShow].self)
-            }
-        }
     }
 }
 
