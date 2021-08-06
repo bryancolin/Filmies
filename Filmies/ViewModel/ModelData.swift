@@ -46,8 +46,8 @@ final class ModelData: ObservableObject {
     func fetchFilmDetails<T: Codable>(type: FilmType, param: String, id: Int, expecting: T.Type) {
         
         let film = findFilm(param: param, id: id)
-        let filmExists = film.0
-        let filmAtIndex = film.1
+        let filmExists = film.exists
+        let filmAtIndex = film.index
         
         if filmExists {
             AF.request("\(url)/\(type.rawValue)/\(id)\(apiKey)&append_to_response=videos,casts,credits,images&include_image_language=en")
@@ -76,7 +76,7 @@ final class ModelData: ObservableObject {
                 
                 switch response.result {
                 case .success:
-                    guard let result = response.value else { return}
+                    guard let result = response.value else { return }
                     
                     films["search"] = result.all
                     
@@ -91,11 +91,11 @@ final class ModelData: ObservableObject {
             }
     }
     
-    func highlightMovie(param: String, id: Int, check: Bool) {
+    func highlightFilm(type: String, param: String, id: Int, check: Bool) {
         
-        let movie = findFilm(param: param, id: id)
+        let film = findFilm(param: param, id: id)
         //        let movieExists = movie.0
-        let movieAtIndex = movie.1
+        let filmAtIndex = film.index
         
         // Check Favorites to TRUE/FALSE from its category
         //        if movieExists {
@@ -104,56 +104,58 @@ final class ModelData: ObservableObject {
         
         if check {
             // Append Favorite Movie
-            guard let movie = films[param]?[movieAtIndex] as? Movie else { return }
-            movie.isFavorite = true
-            movie.addedAt = Date().timeIntervalSince1970
+            guard let film = films[param]?[filmAtIndex] else { return }
+            film.isFavorite = true
+            film.addedAt = Date().timeIntervalSince1970
             
-            if films[K.MovieCategory.favorites] == nil {
-                films[K.MovieCategory.favorites] = [movie]
+            if films[type] == nil {
+                films[type] = [film]
             } else {
-                films[K.MovieCategory.favorites]?.insert(movie, at: 0)
+                films[type]?.insert(film, at: 0)
             }
         } else {
             // Remove Favorite Movie
-            let favoriteMovie = findFilm(param: K.MovieCategory.favorites, id: id)
-            if favoriteMovie.0 {
-                films[K.MovieCategory.favorites]?.remove(at: favoriteMovie.1)
+            let favoriteFilm = findFilm(param: type, id: id)
+            if favoriteFilm.exists {
+                films[type]?.remove(at: favoriteFilm.index)
             }
         }
         
-        saveFavoriteMovies()
+        saveFavoriteFilms(type: type, key: type == K.MovieCategory.favorites ? K.UserDefaults.movieKey : K.UserDefaults.tvKey)
     }
     
-    func findFilm(param: String, id: Int) -> (Bool, Int) {
-        if let safeMovies = films[param] {
-            for (index, movie) in safeMovies.enumerated() {
-                if movie.id == id  {
-                    return (true, index)
+    func findFilm(param: String, id: Int) -> (exists: Bool, index: Int) {
+        if let safeFilms = films[param] {
+            for (index, film) in safeFilms.enumerated() {
+                if film.id == id  {
+                    return (exists: true, index: index)
                 }
             }
         }
-        return (false, 0)
+        return (exists: false, index: 0)
     }
     
     // Load from User Defaults
-    func loadFavoriteMovies() {
-        if let data = UserDefaults.standard.data(forKey: K.userDefaultsMovieKey) {
-            if let decoded = try? JSONDecoder().decode([Movie].self, from: data) {
+    func loadFavoriteFilms<T: Codable>(type: String, key: String, expecting: T.Type) {
+        if let data = UserDefaults.standard.data(forKey: key) {
+            if let decoded = try? JSONDecoder().decode(expecting, from: data) {
                 DispatchQueue.main.async { [self] in
-                    films[K.MovieCategory.favorites] = decoded.sorted(by: { $0.addedAt ?? 0 > $1.addedAt ?? 0 })
+                    if let datas = decoded as? [Film] {
+                        films[type] = datas.sorted(by: { $0.addedAt ?? 0 > $1.addedAt ?? 0 })
+                    }
                 }
             }
         }
     }
     
     // Store in User Defaults
-    func saveFavoriteMovies() {
+    func saveFavoriteFilms(type: String, key: String) {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
         
-        if let encoded = try? encoder.encode(films[K.MovieCategory.favorites]) {
+        if let encoded = try? encoder.encode(films[type]) {
             print(String(data: encoded, encoding: .utf8)!)
-            UserDefaults.standard.set(encoded, forKey: K.userDefaultsMovieKey)
+            UserDefaults.standard.set(encoded, forKey: key)
         }
     }
 }

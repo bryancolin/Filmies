@@ -46,7 +46,8 @@ struct CategoryHome: View {
         .onAppear {
             if modelData.films.isEmpty {
                 modelData.fetchFilms()
-                modelData.loadFavoriteMovies()
+                modelData.loadFavoriteFilms(type: K.MovieCategory.favorites, key: K.UserDefaults.movieKey, expecting: [Movie].self)
+                modelData.loadFavoriteFilms(type: K.TvShowCategory.favorites, key: K.UserDefaults.tvKey, expecting: [TvShow].self)
             }
         }
     }
