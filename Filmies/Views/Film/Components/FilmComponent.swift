@@ -21,10 +21,11 @@ struct FilmComponent<Content>: View where Content : View {
         VStack(alignment: .leading, spacing: 10) {
             RoundedText(title: title, selectedIndex: .constant(0), color: .secondary)
             
-            content()
-            
-            Spacer()
+            ScrollView(showsIndicators: false) {
+                content()
+            }
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.top)
     }
 }

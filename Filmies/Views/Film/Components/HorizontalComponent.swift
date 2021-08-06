@@ -38,5 +38,6 @@ struct HorizontalComponent: View {
                 }
             }
         }
+        .padding(.bottom, 5)
     }
 }

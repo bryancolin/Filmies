@@ -14,13 +14,12 @@ struct VerticalComponent: View {
     var details: [String]
     
     var body: some View {
-        
-        CustomDivider()
-        
         VStack(alignment: .leading) {
             Text(title)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
+            
+            CustomDivider()
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 10) {
