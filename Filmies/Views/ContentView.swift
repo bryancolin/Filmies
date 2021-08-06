@@ -27,6 +27,7 @@ struct ContentView: View {
                 .padding(.vertical),
             alignment: .bottom
         )
+        .animation(.default)
     }
 }
 
