@@ -29,6 +29,7 @@ class TvShow: Film {
     let lastAirDate: String?
     
     let casts: Casts?
+    let seasons: [Season]?
     
     enum CodingKeys: String, CodingKey {
         case name
@@ -37,6 +38,7 @@ class TvShow: Film {
         case lastAirDate = "last_air_date"
         
         case casts = "credits"
+        case seasons
     }
     
     required init(from decoder: Decoder) throws {
@@ -47,6 +49,7 @@ class TvShow: Film {
         self.firstAirDate = try container.decodeIfPresent(String.self, forKey: .firstAirDate)
         self.lastAirDate = try container.decodeIfPresent(String.self, forKey: .lastAirDate)
         self.casts = try container.decodeIfPresent(Casts.self, forKey: .casts)
+        self.seasons = try container.decodeIfPresent([Season].self, forKey: .seasons)
         
         try super.init(from: decoder)
     }
@@ -59,6 +62,7 @@ class TvShow: Film {
         try container.encode(firstAirDate, forKey: .firstAirDate)
         try container.encode(lastAirDate, forKey: .lastAirDate)
         try container.encode(casts, forKey: .casts)
+        try container.encode(seasons, forKey: .seasons)
         
         try super.encode(to: encoder)
     }
