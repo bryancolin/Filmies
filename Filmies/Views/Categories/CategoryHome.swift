@@ -43,12 +43,6 @@ struct CategoryHome: View {
                 CategoryRow(category: modelData.selectedType == .movie ? $modelData.movieParams[modelData.movieParams.count-1] : $modelData.tvShowParams[modelData.tvShowParams.count-1])
             }
         }
-        .onAppear {
-            if modelData.films.isEmpty {
-                modelData.fetchFilms()
-                modelData.loadFavoriteMovies()
-            }
-        }
     }
 }
 

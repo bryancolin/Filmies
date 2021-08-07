@@ -17,7 +17,7 @@ struct ChartView: View {
         VStack {
             // Title
             HStack {
-                ScrollTabView(titles: ["Screen Time"], selectedIndex: .constant(0))
+                ScrollTabView(titles: ["Screen Time (Movies)"], selectedIndex: .constant(0))
                 
                 Spacer()
                 

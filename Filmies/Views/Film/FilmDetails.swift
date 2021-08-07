@@ -14,11 +14,13 @@ struct FilmDetails: View {
     var film: Film
     
     @State var index = 0
-    var pageNumber = 3
+    var pageNumber: Int {
+        return film is Movie ? 3 : 4
+    }
     
     var body: some View {
         TabView(selection: $index) {
-
+            
             FilmComponent(title: "Overview") {
                 Text(film.description ?? "")
                     .foregroundColor(.white)
@@ -33,6 +35,7 @@ struct FilmDetails: View {
                     FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: movie.duration ?? "")
                 } else if let tvShow = film as? TvShow {
                     FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: tvShow.duration ?? "")
+                    HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
                 }
                 
                 if let languages = film.languages {
@@ -68,9 +71,18 @@ struct FilmDetails: View {
                 }
             }
             .tag(2)
+            
+            if let tvShow = film as? TvShow {
+                FilmComponent(title: "Seasons") {
+                    if let seasons = tvShow.seasons {
+                        FilmSeasons(seasons: seasons)
+                    }
+                }
+                .tag(3)
+            }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-        .frame(height: UIScreen.main.bounds.height + 150)
+        .frame(height: UIScreen.main.bounds.height - 100)
         .background(Color.black.opacity(0.75))
         .clipShape(RoundedRectangle(cornerRadius: 10))
         .overlay(
@@ -81,3 +93,4 @@ struct FilmDetails: View {
         )
     }
 }
+

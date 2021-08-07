@@ -9,15 +9,17 @@ import Foundation
 
 struct K {
     
-    static let userDefaultsMovieKey = "FavoriteMovies"
-    static let userDefaultsTvKey = "FavoriteTvShows"
+    struct UserDefaults {
+        static let movieKey = "FavoriteMovies"
+        static let tvKey = "FavoriteTvShows"
+    }
     
     struct MovieCategory {
-        static let favorites = "favorites"
+        static let favorites = "favoriteMovies"
     }
     
     struct TvShowCategory {
-        static let favorites = "favorites"
+        static let favorites = "favoriteTvShows"
     }
     
     struct BrandColors {

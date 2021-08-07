@@ -27,6 +27,10 @@ struct ModalView: View {
         return film.title ?? ""
     }
     
+    var filmType: String {
+        return film is Movie ? K.MovieCategory.favorites : K.TvShowCategory.favorites
+    }
+    
     var transition: AnyTransition {
         switch imageIndex {
         case 0:
@@ -46,16 +50,14 @@ struct ModalView: View {
                     
                     // Title Description
                     TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold) {
-                        if let movie = film as? Movie {
-                            Button(action: {
-                                isFavorite.toggle()
-                                modelData.highlightMovie(param: movie.category, id: movie.id ?? 0, check: isFavorite)
-                            }, label: {
-                                Image(systemName: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill")
-                                    .font(.system(size: 20, weight: .semibold))
-                                    .foregroundColor(.white)
-                            })
-                        }
+                        Button(action: {
+                            isFavorite.toggle()
+                            modelData.highlightFilm(type: filmType, param: film.category, id: film.id ?? 0, check: isFavorite)
+                        }, label: {
+                            Image(systemName: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill")
+                                .font(.system(size: 20, weight: .semibold))
+                                .foregroundColor(.white)
+                        })
                     }
                 }
                 .background(Color.black.opacity(0.75))
@@ -82,8 +84,8 @@ struct ModalView: View {
             } else if let tvShow = film as? TvShow, tvShow.details == nil {
                 modelData.fetchFilmDetails(type: .tvShow, param: category, id: tvShow.id ?? 0, expecting: TvShow.self)
             }
-    
-            isFavorite = modelData.findFilm(param: K.MovieCategory.favorites, id: film.id ?? 0).0
+            
+            isFavorite = modelData.findFilm(param: filmType, id: film.id ?? 0).0
         }
     }
 }

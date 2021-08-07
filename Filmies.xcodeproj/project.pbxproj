@@ -58,6 +58,8 @@
 		E5A0CBB9269845D20088F968 /* Films.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBB8269845D20088F968 /* Films.swift */; };
 		E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBB26984F940088F968 /* CategoryHome.swift */; };
 		E5A0CBBE269850420088F968 /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0CBBD269850420088F968 /* CategoryItem.swift */; };
+		E5A0DF8526BD061E00C0FA11 /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0DF8426BD061E00C0FA11 /* Season.swift */; };
+		E5A0DF8726BD067C00C0FA11 /* FilmSeasons.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A0DF8626BD067C00C0FA11 /* FilmSeasons.swift */; };
 		E5A7A52C26B6A5AD0062B756 /* Images.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7A52B26B6A5AD0062B756 /* Images.swift */; };
 		E5A7A52E26B6A5C50062B756 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7A52D26B6A5C50062B756 /* Photo.swift */; };
 		E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B3AF3026A0384B004B2DCC /* CustomColor.swift */; };
@@ -130,6 +132,8 @@
 		E5A0CBB8269845D20088F968 /* Films.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Films.swift; sourceTree = "<group>"; };
 		E5A0CBBB26984F940088F968 /* CategoryHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHome.swift; sourceTree = "<group>"; };
 		E5A0CBBD269850420088F968 /* CategoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
+		E5A0DF8426BD061E00C0FA11 /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
+		E5A0DF8626BD067C00C0FA11 /* FilmSeasons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmSeasons.swift; sourceTree = "<group>"; };
 		E5A7A52B26B6A5AD0062B756 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		E5A7A52D26B6A5C50062B756 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -277,6 +281,7 @@
 				E564B11E26AC01EF002637A9 /* Genre.swift */,
 				E564B12026AC0203002637A9 /* Language.swift */,
 				E560797226B7E3E600D6C7B5 /* Production.swift */,
+				E5A0DF8426BD061E00C0FA11 /* Season.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -368,6 +373,7 @@
 				E55C503E26BBF0460059EBD3 /* FilmDescriptions.swift */,
 				E55C504026BBF0820059EBD3 /* FilmCasts.swift */,
 				E52C334626B13E5E0080031F /* FilmTrailer.swift */,
+				E5A0DF8626BD067C00C0FA11 /* FilmSeasons.swift */,
 				E50DBD7D26A2BA43005948E7 /* WebPlayerView.swift */,
 			);
 			path = Film;
@@ -437,8 +443,8 @@
 				E564B11C26ABFCDB002637A9 /* CustomDivider.swift */,
 				E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */,
 				E55C503C26BBE7550059EBD3 /* CustomPicker.swift */,
-				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
 				E50C1A2226A18B4F003CE717 /* FlipEffect.swift */,
+				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
 				E52C334826B146320080031F /* TitleComponent.swift */,
 				E5943AC126B934C200CF9836 /* GlassmorphismView */,
 				E57C8BB026B1208400D41473 /* PageView */,
@@ -597,6 +603,7 @@
 				E5C9574426B3ED91007B1B1D /* Int+Extension.swift in Sources */,
 				E55C503D26BBE7550059EBD3 /* CustomPicker.swift in Sources */,
 				E5C9574826B3F0B4007B1B1D /* BarView.swift in Sources */,
+				E5A0DF8526BD061E00C0FA11 /* Season.swift in Sources */,
 				E50C1A2326A18B50003CE717 /* FlipEffect.swift in Sources */,
 				E56A3BF22699622800494650 /* CategoryRow.swift in Sources */,
 				E54CC441269DB1D80083C6FE /* RoundedCorner.swift in Sources */,
@@ -621,6 +628,7 @@
 				E564B11D26ABFCDB002637A9 /* CustomDivider.swift in Sources */,
 				E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */,
 				E50254F826983E80000C6F03 /* Movie.swift in Sources */,
+				E5A0DF8726BD067C00C0FA11 /* FilmSeasons.swift in Sources */,
 				E564B11926ABFAE4002637A9 /* FilmDetails.swift in Sources */,
 				E5840A6626A7FD4E00E3F782 /* CustomTabBar.swift in Sources */,
 				E572603226A00D5B00864493 /* RoundedText.swift in Sources */,

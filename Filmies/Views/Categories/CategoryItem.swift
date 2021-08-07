@@ -19,18 +19,13 @@ struct CategoryItem: View {
     var width: CGFloat = 150
     var height: CGFloat = 220
     
-    var date: some View {
-        VStack {
-            if let movie = film as? Movie {
-                Text(movie.releaseYear)
-                    .font(.system(size: 9))
-                    .foregroundColor(.white)
-            } else if let tvShow = film as? TvShow {
-                Text(tvShow.releaseYear)
-                    .font(.system(size: 9))
-                    .foregroundColor(.white)
-            }
+    var releaseDate: String {
+        if let movie = film as? Movie {
+            return movie.releaseYear
+        } else if let tvShow = film as? TvShow {
+            return tvShow.firstAir
         }
+        return ""
     }
     
     var body: some View {
@@ -47,7 +42,11 @@ struct CategoryItem: View {
                         Circle()
                             .frame(width: 25, height: 25)
                             .foregroundColor(Color(K.BrandColors.pink))
-                            .overlay(date)
+                            .overlay(
+                                Text(releaseDate)
+                                    .font(.system(size: 9))
+                                    .foregroundColor(.white)
+                            )
                             .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 0)),
                         alignment: .topLeading
                     )

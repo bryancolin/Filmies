@@ -21,28 +21,30 @@ struct CardElementView: View {
     var height: CGFloat
     
     var body: some View {
-        CustomImage(urlString: film.posterUrl)
-            .frame(width: width, height: height)
-            .overlay(
-                Button(action: {
-                    showingModal.toggle()
-                }) {
-                    Text("View")
-                        .font(.caption)
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                        .padding(.vertical, 6)
-                        .padding(.horizontal, 25)
-                        .background(Color(K.BrandColors.pink))
-                        .clipShape(Capsule())
+        if width > 0 && height > 0 {
+            CustomImage(urlString: film.posterUrl)
+                .frame(width: width, height: height)
+                .cornerRadius(15)
+                .overlay(
+                    Button(action: {
+                        showingModal.toggle()
+                    }) {
+                        Text("View")
+                            .font(.caption)
+                            .fontWeight(.bold)
+                            .foregroundColor(.white)
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 25)
+                            .background(Color(K.BrandColors.pink))
+                            .clipShape(Capsule())
+                    }
+                    .padding(),
+                    alignment: .bottomLeading
+                )
+                .sheet(isPresented: $showingModal) {
+                    ModalView(film: film, category: category, showModal: self.$showingModal)
+                        .environmentObject(modelData)
                 }
-                .padding(),
-                alignment: .bottomLeading
-            )
-            .sheet(isPresented: $showingModal) {
-                ModalView(film: film, category: category, showModal: self.$showingModal)
-                    .environmentObject(modelData)
-            }
-            .cornerRadius(15)
+        }
     }
 }

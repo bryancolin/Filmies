@@ -9,13 +9,13 @@ import SwiftUI
 
 struct FilmDescriptions: View {
     
-    var type: FilmType
-    var date: String
-    var duration: String
+    let type: FilmType
+    let date: String
+    let duration: String
     
     var body: some View {
-        HorizontalComponent(title: type == .movie ? "Release Date" : "First Air Date", details: [date])
         HorizontalComponent(title: type == .movie ? "Runtime" : "Episode Runtime", details: [duration])
+        HorizontalComponent(title: type == .movie ? "Release Date" : "First Air Date", details: [date])
     }
 }
 
