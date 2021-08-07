@@ -4,15 +4,16 @@ An iOS app for movies lovers to browse and search for movies with an incredible 
 
 ## Features
 
-- Broswe Trending, Now Playing, Upcoming, & Top Rated Movies
-- Search For Movies
-- Add Movie as Favorites
+- Broswe Trending, Now Playing, Upcoming, & Top Rated Movies/Tv-Shows
+- Search For Movies/Tv-Shows
+- Add Movie/Tv-Shows as Favorites
 - View Movies Screen Time
 
 ## Requirements
 
 - iOS 14.0+ d
 - Xcode 12.5
+- TMDB API Key
 
 ## Setup
 
