@@ -6,7 +6,6 @@ target 'Filmies' do
   use_frameworks!
 
   # Pods for Filmies
-  pod 'Alamofire', '~> 5.4'
   pod 'SDWebImageSwiftUI'
 
 end
