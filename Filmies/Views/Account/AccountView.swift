@@ -22,12 +22,12 @@ struct AccountView: View {
                     GeometryReader { geometry in
                         TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold) {
                             HStack(alignment: .center) {
-                                ForEach(Array(colors.enumerated()), id: \.offset) { index, color in
+                                ForEach(0..<colors.count) { index in
                                     Button(action: {
                                         colors.rotateLeft(positions: index)
                                     }) {
                                         Circle()
-                                            .foregroundColor(color)
+                                            .foregroundColor(colors[index])
                                             .animation(.spring())
                                     }
                                 }

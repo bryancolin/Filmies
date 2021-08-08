@@ -29,12 +29,12 @@ struct TabBarButton: View {
                     withAnimation(.interactiveSpring(response: 0.6, dampingFraction: 0.5, blendDuration: 0.5)) {
                         selectedTab = image
                     }
-                }, label: {
+                }) {
                     Image(systemName: "\(image.rawValue)\(selectedTab == image ? ".fill" : "")")
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(Color(K.BrandColors.pink))
                         .offset(y: selectedTab == image ? -10 : 0)
-                })
+                }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             )
         }

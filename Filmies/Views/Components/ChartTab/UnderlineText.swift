@@ -17,14 +17,16 @@ struct UnderlineText: View {
         Button(action: {
             selectedIndex = id
         }) {
-            VStack(spacing: 0) {
+            VStack(spacing: 5) {
                 Text(title)
-                    .foregroundColor(id == selectedIndex ? Color(K.BrandColors.pink) : .white)
+                    .foregroundColor(.white)
                     .font(.caption2)
+                    .fontWeight(.semibold)
                 
                 Capsule()
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(K.BrandColors.pink))
                     .frame(height: id == selectedIndex ? 4 : 0)
+                    .padding(.horizontal)
             }
         }
     }
