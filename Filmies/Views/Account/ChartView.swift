@@ -24,9 +24,9 @@ struct ChartView: View {
                     .fontWeight(.semibold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
-
+                
                 Spacer()
-
+                
                 Text(getTotalHoursPerWeek().convert())
                     .foregroundColor(.white)
                     .font(.caption)
@@ -51,9 +51,7 @@ struct ChartView: View {
                     .frame(height: 250)
                 }
             }
-            .background(
-                Color.black.opacity(0.3)
-            )
+            .background(Blur(style: .dark))
             .cornerRadius(15)
             .padding(.horizontal, 10)
             .padding(.vertical)
