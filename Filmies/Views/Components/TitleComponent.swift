@@ -39,7 +39,6 @@ struct TitleComponent<Content>: View where Content : View {
             // Button
             content()
         }
-        .padding(.horizontal)
-        .padding(.vertical)
+        .padding()
     }
 }

@@ -18,37 +18,45 @@ struct ChartView: View {
         VStack {
             // Title
             HStack {
-                ScrollTabView(titles: ["Screen Time (Movies)"], selectedIndex: .constant(0))
-                
+                Text("Screen Time (Movies)")
+                    .foregroundColor(.white)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .lineLimit(1)
+                    .minimumScaleFactor(0.5)
+
                 Spacer()
-                
+
                 Text(getTotalHoursPerWeek().convert())
                     .foregroundColor(.white)
-                    .font(.body)
-                    .padding(.trailing)
+                    .font(.caption)
             }
+            .padding(.horizontal)
             
-            Picker(selection: $index, label: Text("")) {
-                Text("This Week").tag(0)
-                Text("Last Week").tag(1)
-            }
-            .pickerStyle(SegmentedPickerStyle())
-            .padding()
-            
-            // Bars
-            ZStack(alignment: .center) {
-                GeometryReader { geometry in
-                    let width = geometry.size.width / 2 * (1 / 7)
-                    HStack(alignment: .center, spacing: geometry.size.width / 14.5) {
-                        ForEach(titles, id: \.self) { title in
-                            let height = (CGFloat(getTotalHoursPerDay(movies[title]).thisWeek / 60), CGFloat(getTotalHoursPerDay(movies[title]).lastWeek / 60))
-                            BarView(title: title, width: width, height: height, index: $index)
+            VStack {
+                ChartTab(titles: ["This Week", "Last Week"], selectedIndex: $index)
+                
+                // Bars
+                ZStack(alignment: .center) {
+                    GeometryReader { geometry in
+                        let width = geometry.size.width / 2 * (1 / 7)
+                        HStack(alignment: .center, spacing: geometry.size.width / 14.5) {
+                            ForEach(titles, id: \.self) { title in
+                                let height = (CGFloat(getTotalHoursPerDay(movies[title]).thisWeek / 60), CGFloat(getTotalHoursPerDay(movies[title]).lastWeek / 60))
+                                BarView(title: title, width: width, height: height, index: $index)
+                            }
                         }
+                        .padding(.horizontal)
                     }
-                    .padding(.horizontal)
+                    .frame(height: 250)
                 }
-                .frame(height: 250)
             }
+            .background(
+                Color.black.opacity(0.3)
+            )
+            .cornerRadius(15)
+            .padding(.horizontal, 10)
+            .padding(.vertical)
         }
     }
     

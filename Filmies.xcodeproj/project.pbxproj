@@ -18,6 +18,8 @@
 		E515A15E2697FC95008D4FE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */; };
 		E52C334726B13E5F0080031F /* FilmTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C334626B13E5E0080031F /* FilmTrailer.swift */; };
 		E52C334926B146320080031F /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C334826B146320080031F /* TitleComponent.swift */; };
+		E54B4D4526BFC3E200BE5461 /* ChartTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4426BFC3E100BE5461 /* ChartTab.swift */; };
+		E54B4D4726BFC40F00BE5461 /* UnderlineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4626BFC40F00BE5461 /* UnderlineText.swift */; };
 		E54CC43A269D8DBE0083C6FE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC439269D8DBD0083C6FE /* CardView.swift */; };
 		E54CC43D269D8E8C0083C6FE /* CardElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43C269D8E8B0083C6FE /* CardElementView.swift */; };
 		E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43E269D8EC50083C6FE /* ModalView.swift */; };
@@ -92,6 +94,8 @@
 		E515A15F2697FC95008D4FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E52C334626B13E5E0080031F /* FilmTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTrailer.swift; sourceTree = "<group>"; };
 		E52C334826B146320080031F /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
+		E54B4D4426BFC3E100BE5461 /* ChartTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTab.swift; sourceTree = "<group>"; };
+		E54B4D4626BFC40F00BE5461 /* UnderlineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineText.swift; sourceTree = "<group>"; };
 		E54CC439269D8DBD0083C6FE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E54CC43C269D8E8B0083C6FE /* CardElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardElementView.swift; sourceTree = "<group>"; };
 		E54CC43E269D8EC50083C6FE /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -252,6 +256,15 @@
 				E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E54B4D4826BFC57A00BE5461 /* ChartTab */ = {
+			isa = PBXGroup;
+			children = (
+				E54B4D4426BFC3E100BE5461 /* ChartTab.swift */,
+				E54B4D4626BFC40F00BE5461 /* UnderlineText.swift */,
+			);
+			path = ChartTab;
 			sourceTree = "<group>";
 		};
 		E54CC43B269D8DC40083C6FE /* Card */ = {
@@ -446,6 +459,7 @@
 				E50C1A2226A18B4F003CE717 /* FlipEffect.swift */,
 				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
 				E52C334826B146320080031F /* TitleComponent.swift */,
+				E54B4D4826BFC57A00BE5461 /* ChartTab */,
 				E5943AC126B934C200CF9836 /* GlassmorphismView */,
 				E57C8BB026B1208400D41473 /* PageView */,
 				E5840A6D26A8036F00E3F782 /* ScrollTab */,
@@ -594,6 +608,7 @@
 				E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */,
 				E57C8BB626B1208500D41473 /* PageControl.swift in Sources */,
 				E55C504126BBF0820059EBD3 /* FilmCasts.swift in Sources */,
+				E54B4D4726BFC40F00BE5461 /* UnderlineText.swift in Sources */,
 				E574286B26BACCEF006CC990 /* Film.swift in Sources */,
 				E57C8BB826B1208500D41473 /* PageView.swift in Sources */,
 				E5840A6826A7FD6A00E3F782 /* TabBarButton.swift in Sources */,
@@ -609,6 +624,7 @@
 				E54CC441269DB1D80083C6FE /* RoundedCorner.swift in Sources */,
 				E5A7A52C26B6A5AD0062B756 /* Images.swift in Sources */,
 				E5840A6C26A8031800E3F782 /* Tab.swift in Sources */,
+				E54B4D4526BFC3E200BE5461 /* ChartTab.swift in Sources */,
 				E5C9574126B3EA0F007B1B1D /* Date+Extension.swift in Sources */,
 				E574286926BACCD1006CC990 /* TvShow.swift in Sources */,
 				E568627926A970A300A83FCB /* SearchView.swift in Sources */,
