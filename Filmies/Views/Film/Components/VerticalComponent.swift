@@ -14,7 +14,7 @@ struct VerticalComponent: View {
     var details: [String]
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             Text(title)
                 .fontWeight(.semibold)
                 .foregroundColor(.white)
@@ -25,18 +25,23 @@ struct VerticalComponent: View {
                 HStack(alignment: .top, spacing: 10) {
                     ForEach(0..<5) { index in
                         if index < details.count {
-                            VStack(alignment: .leading) {
-                                CustomImage(urlString: urls[index], placeholder: "user")
-                                    .frame(width: 75, height: 75)
-                                    .cornerRadius(50)
+                            Button(action: {
                                 
-                                Text(details[index])
-                                    .foregroundColor(.white)
-                                    .frame(width: 75)
-                                    .font(.caption)
-                                    .lineLimit(2)
-                                    .minimumScaleFactor(0.5)
+                            }) {
+                                VStack(alignment: .leading) {
+                                    CustomImage(urlString: urls[index], placeholder: "user")
+                                        .frame(width: 75, height: 75)
+                                        .cornerRadius(50)
+                                    
+                                    Text(details[index])
+                                        .foregroundColor(.white)
+                                        .frame(width: 75)
+                                        .font(.caption)
+                                        .lineLimit(2)
+                                        .minimumScaleFactor(0.5)
+                                }
                             }
+                            .padding(.vertical, 10)
                         }
                     }
                 }
