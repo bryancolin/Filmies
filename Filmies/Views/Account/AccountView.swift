@@ -20,7 +20,7 @@ struct AccountView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     GeometryReader { geometry in
-                        TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold) {
+                        TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold, firstContent: {}, secondContent: {
                             HStack(alignment: .center) {
                                 ForEach(0..<colors.count) { index in
                                     Button(action: {
@@ -33,7 +33,7 @@ struct AccountView: View {
                                 }
                             }
                             .frame(width: geometry.size.width * 0.25)
-                        }
+                        })
                     }
                     .frame(height: 75)
 
