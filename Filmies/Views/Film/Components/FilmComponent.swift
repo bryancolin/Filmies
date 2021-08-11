@@ -25,6 +25,7 @@ struct FilmComponent<Content>: View where Content : View {
                 content()
             }
         }
+        .foregroundColor(.white)
         .padding()
     }
 }

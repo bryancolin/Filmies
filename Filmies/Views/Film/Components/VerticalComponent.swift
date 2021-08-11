@@ -12,12 +12,12 @@ struct VerticalComponent: View {
     var title: String
     var urls: [String]
     var details: [String]
+    var subDetails: [String]?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(title)
                 .fontWeight(.semibold)
-                .foregroundColor(.white)
             
             CustomDivider()
             
@@ -25,21 +25,25 @@ struct VerticalComponent: View {
                 HStack(alignment: .top, spacing: 10) {
                     ForEach(0..<5) { index in
                         if index < details.count {
-                            Button(action: {
+                            VStack(alignment: .leading) {
+                                CustomImage(urlString: urls[index], placeholder: "user")
+                                    .frame(width: 75, height: 75)
+                                    .cornerRadius(50)
                                 
-                            }) {
                                 VStack(alignment: .leading) {
-                                    CustomImage(urlString: urls[index], placeholder: "user")
-                                        .frame(width: 75, height: 75)
-                                        .cornerRadius(50)
-                                    
                                     Text(details[index])
-                                        .foregroundColor(.white)
-                                        .frame(width: 75)
                                         .font(.caption)
-                                        .lineLimit(2)
-                                        .minimumScaleFactor(0.5)
+                                    
+                                    if let subDetails = subDetails {
+                                        Text(subDetails[index])
+                                            .foregroundColor(.gray)
+                                            .font(.caption2)
+                                    }
                                 }
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.5)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: 75)
                             }
                             .padding(.vertical, 10)
                         }
