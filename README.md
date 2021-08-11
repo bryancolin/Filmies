@@ -1,6 +1,6 @@
 # Filmies
 
-An iOS app for movies lovers to browse and search for movies with an incredible glassmorphism ui design.
+An iOS app for movie/tv-show lovers to browse and search for movies with an incredible glassmorphism ui design.
 
 ## Features
 
@@ -11,16 +11,18 @@ An iOS app for movies lovers to browse and search for movies with an incredible 
 
 ## Requirements
 
-- iOS 14.0+ d
+- iOS 14.0+ 
 - Xcode 12.5
-- TMDB API Key
+- The Movie Database (TMDb) API Key
 
 ## Setup
 
-To run this project, install it locally using CocoaPods:
+- To run this project, install it locally using CocoaPods:
 ```ruby
 $ pod install
 ```
+
+- Create Config.xcconfig file and store the API Key in the file
 
 
 
