@@ -23,9 +23,9 @@ struct CategoryHome: View {
             ScrollView(.vertical, showsIndicators: false) {
                 // Title
                 GeometryReader { geometry in
-                    TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {                        
+                    TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold, firstContent: {}, secondContent: {
                         CustomPicker(width: geometry.size.width * 0.2)
-                    }
+                    })
                 }
                 .frame(height: 75)
                 

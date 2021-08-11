@@ -22,12 +22,12 @@ struct ContentView: View {
                 AccountView()
             }
         }
+        .animation(.default)
         .overlay(
             CustomTabBar(selectedTab: $selectedTab)
                 .padding(.vertical),
             alignment: .bottom
         )
-        .animation(.default)
     }
 }
 

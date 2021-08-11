@@ -31,6 +31,10 @@ extension Date {
     }
     
     func isThisWeek() -> Bool {
-        return Calendar.current.isDate(self, equalTo: Date(), toGranularity: .weekOfYear)
+        return Calendar.current.isDateInThisWeek(self)
+    }
+    
+    func isLastWeek() -> Bool {
+        return Calendar.current.isDateInLastWeek(self)
     }
 }

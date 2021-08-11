@@ -11,7 +11,8 @@ struct BarView: View {
     
     var title: String
     var width: CGFloat
-    var height: CGFloat
+    var height: (thisWeek: CGFloat, lastWeek: CGFloat)
+    @Binding var index: Int
     
     @State private var progress: CGFloat = 0
     
@@ -21,12 +22,16 @@ struct BarView: View {
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: 200)
                     .foregroundColor(Color.black.opacity(0.3))
+                
                 RoundedRectangle(cornerRadius: 10)
                     .frame(height: progress * 200)
                     .foregroundColor(Color(K.BrandColors.pink))
                     .animation(.interpolatingSpring(mass: 1, stiffness: 100, damping: 17.5, initialVelocity: 0).speed(0.5))
+                    .onChange(of: index) { newValue in
+                        updateProgress()
+                    }
                     .onAppear {
-                        progress += (height < 6 ? (height/6) : 1)
+                        updateProgress()
                     }
                     .drawingGroup()
             }
@@ -35,6 +40,12 @@ struct BarView: View {
             Text(title.prefix(1))
                 .foregroundColor(.white)
         }
+    }
+    
+    func updateProgress() {
+        progress = 0
+        let h = index == 0 ? height.thisWeek : height.lastWeek
+        progress += (h < 6 ? (h/6) : 1)
     }
 }
 

@@ -25,7 +25,8 @@ struct FilmCasts: View {
         }
         
         if let actors = casts.cast {
-            VerticalComponent(title: "Starring", urls: actors.compactMap({ $0.imageURL }), details: actors.compactMap({ $0.name }))
+            VerticalComponent(title: "Starring", urls: actors.compactMap({ $0.imageURL }), details: actors.compactMap({ $0.name }),
+                              subDetails: actors.compactMap({ $0.character }))
         }
     }
 }

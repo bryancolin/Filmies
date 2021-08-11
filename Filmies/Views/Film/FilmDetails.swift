@@ -18,12 +18,13 @@ struct FilmDetails: View {
         return film is Movie ? 3 : 4
     }
     
+    let dateFormat = "E, dd MMMM yyyy"
+    
     var body: some View {
         TabView(selection: $index) {
             
             FilmComponent(title: "Overview") {
                 Text(film.description ?? "")
-                    .foregroundColor(.white)
                     .font(.caption)
                     .fixedSize(horizontal: false, vertical: true)
                 
@@ -32,18 +33,18 @@ struct FilmDetails: View {
                 HorizontalComponent(title: "Rating", details: [film.rate])
                 
                 if let movie = film as? Movie {
-                    FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: movie.duration ?? "")
+                    FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: dateFormat) ?? "", duration: movie.duration ?? "")
                 } else if let tvShow = film as? TvShow {
-                    FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: "dd/MM/yyyy") ?? "", duration: tvShow.duration ?? "")
-                    HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
+                    FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: dateFormat) ?? "", duration: tvShow.duration ?? "")
+                    HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: dateFormat) ?? ""])
                 }
                 
                 if let languages = film.languages {
-                    HorizontalComponent(title: "Languages", details: languages.compactMap( { $0.name }))
+                    HorizontalComponent(title: "Languages", details: languages.compactMap({ $0.name }))
                 }
                 
                 if let genres = film.genres {
-                    HorizontalComponent(title: "Genres", details: genres.compactMap( { $0.name }))
+                    HorizontalComponent(title: "Genres", details: genres.compactMap({ $0.name }))
                 }
             }
             .tag(0)

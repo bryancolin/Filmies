@@ -7,23 +7,24 @@
 
 import SwiftUI
 
-struct TitleComponent<Content>: View where Content : View {
+struct TitleComponent<FirstContent, SecondContent>: View where FirstContent : View, SecondContent : View {
     
     var name: String
     var color: Color
     var type: Font
     var weight: Font.Weight
-    let content: () -> Content
+    let firstContent: () -> FirstContent
+    let secondContent: () -> SecondContent
     
-    init(name: String, color: Color, type: Font, weight: Font.Weight, @ViewBuilder _ content: @escaping () -> Content) {
+    init(name: String, color: Color, type: Font, weight: Font.Weight, @ViewBuilder firstContent: @escaping () -> FirstContent, @ViewBuilder secondContent: @escaping () -> SecondContent) {
         self.name = name
         self.color = color
         self.type = type
         self.weight = weight
-        self.content = content
+        self.firstContent = firstContent
+        self.secondContent = secondContent
     }
     
-    // Title (Left Side) with Button (Right Side)
     var body: some View {
         HStack {
             // Title
@@ -34,12 +35,12 @@ struct TitleComponent<Content>: View where Content : View {
                 .lineLimit(2)
                 .minimumScaleFactor(0.5)
             
+            firstContent()
+            
             Spacer()
             
-            // Button
-            content()
+            secondContent()
         }
-        .padding(.horizontal)
-        .padding(.vertical)
+        .padding()
     }
 }

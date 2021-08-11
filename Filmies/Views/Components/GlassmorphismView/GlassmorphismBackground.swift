@@ -16,7 +16,6 @@ struct GlassmorphismBackground: View {
     var body: some View {
         ZStack {
             LinearGradient (gradient: Gradient(colors: backgroundColors), startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
             
             GeometryReader { geometry in
                 let width = (type == .left ? -1 : 1) * geometry.size.width
@@ -26,7 +25,7 @@ struct GlassmorphismBackground: View {
                 BlurCircle(color: circleColors[1], paddingNumber: 25, offsetX: -width/2.2)
                 BlurCircle(color: circleColors[2], paddingNumber: 50, offsetX: width/2.1, offsetY: height/2)
                 
-                Color.black.opacity(0.3).ignoresSafeArea()
+                Color.black.opacity(0.3)
             }
         }
         .ignoresSafeArea()

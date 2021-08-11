@@ -18,12 +18,6 @@ struct ScrollTabView: View {
             HStack {
                 ForEach(0..<titles.count) { index in
                     RoundedText(title: titles[index], id: index, selectedIndex: $selectedIndex, color: color)
-                        .animation(.easeInOut)
-                        .onTapGesture {
-                            if selectedIndex < titles.count {
-                                selectedIndex = index
-                            }
-                        }
                 }
             }
             .padding(.horizontal)

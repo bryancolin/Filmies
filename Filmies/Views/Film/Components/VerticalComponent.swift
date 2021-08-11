@@ -12,12 +12,12 @@ struct VerticalComponent: View {
     var title: String
     var urls: [String]
     var details: [String]
+    var subDetails: [String]?
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             Text(title)
                 .fontWeight(.semibold)
-                .foregroundColor(.white)
             
             CustomDivider()
             
@@ -30,13 +30,22 @@ struct VerticalComponent: View {
                                     .frame(width: 75, height: 75)
                                     .cornerRadius(50)
                                 
-                                Text(details[index])
-                                    .foregroundColor(.white)
-                                    .frame(width: 75)
-                                    .font(.caption)
-                                    .lineLimit(2)
-                                    .minimumScaleFactor(0.5)
+                                VStack(alignment: .leading) {
+                                    Text(details[index])
+                                        .font(.caption)
+                                    
+                                    if let subDetails = subDetails {
+                                        Text(subDetails[index])
+                                            .foregroundColor(.gray)
+                                            .font(.caption2)
+                                    }
+                                }
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.5)
+                                .multilineTextAlignment(.leading)
+                                .frame(width: 75)
                             }
+                            .padding(.vertical, 10)
                         }
                     }
                 }

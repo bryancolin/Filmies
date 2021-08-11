@@ -20,26 +20,26 @@ struct AccountView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
                     GeometryReader { geometry in
-                        TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold) {
+                        TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold, firstContent: {}, secondContent: {
                             HStack(alignment: .center) {
-                                ForEach(Array(colors.enumerated()), id: \.offset) { index, color in
+                                ForEach(0..<colors.count) { index in
                                     Button(action: {
                                         colors.rotateLeft(positions: index)
                                     }) {
                                         Circle()
-                                            .foregroundColor(color)
+                                            .foregroundColor(colors[index])
                                             .animation(.spring())
                                     }
                                 }
                             }
                             .frame(width: geometry.size.width * 0.25)
-                        }
+                        })
                     }
                     .frame(height: 75)
 
                     if let movies = modelData.films[K.MovieCategory.favorites] as? [Movie] {
                         let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
-                        ChartView(movies: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
+                        ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
                     }
                     
                     // Scroll Tab for Favorites Movies

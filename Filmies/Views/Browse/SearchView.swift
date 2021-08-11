@@ -22,10 +22,9 @@ struct SearchView: View {
             VStack(spacing: 10) {
                 // Title
                 GeometryReader { geometry in
-                    TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
-                        
+                    TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .bold, firstContent: {
                         CustomPicker(width: geometry.size.width * 0.2)
-                        
+                    }, secondContent: {
                         Button(action: {
                             numberOfColumns = numberOfColumns % 2 + 1
                         }) {
@@ -33,7 +32,7 @@ struct SearchView: View {
                                 .font(.system(size: 20, weight: .semibold))
                                 .foregroundColor(.white)
                         }
-                    }
+                    })
                 }
                 .frame(height: 75)
                 

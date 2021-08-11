@@ -49,16 +49,16 @@ struct ModalView: View {
                     FilmTrailer(film: film, category: category)
                     
                     // Title Description
-                    TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold) {
+                    TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold, firstContent: {}, secondContent: {
                         Button(action: {
                             isFavorite.toggle()
                             modelData.highlightFilm(type: filmType, param: film.category, id: film.id ?? 0, check: isFavorite)
-                        }, label: {
+                        }) {
                             Image(systemName: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill")
                                 .font(.system(size: 20, weight: .semibold))
                                 .foregroundColor(.white)
-                        })
-                    }
+                        }
+                    })
                 }
                 .background(Color.black.opacity(0.75))
                 .clipShape(RoundedRectangle(cornerRadius: 10))

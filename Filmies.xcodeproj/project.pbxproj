@@ -18,6 +18,10 @@
 		E515A15E2697FC95008D4FE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */; };
 		E52C334726B13E5F0080031F /* FilmTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C334626B13E5E0080031F /* FilmTrailer.swift */; };
 		E52C334926B146320080031F /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C334826B146320080031F /* TitleComponent.swift */; };
+		E54B4D4526BFC3E200BE5461 /* ChartTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4426BFC3E100BE5461 /* ChartTab.swift */; };
+		E54B4D4726BFC40F00BE5461 /* UnderlineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4626BFC40F00BE5461 /* UnderlineText.swift */; };
+		E54B4D4E26BFCF2B00BE5461 /* Calendar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4D26BFCF2B00BE5461 /* Calendar+Extension.swift */; };
+		E54B4D5026BFCF4A00BE5461 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4F26BFCF4A00BE5461 /* URLSession+Extension.swift */; };
 		E54CC43A269D8DBE0083C6FE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC439269D8DBD0083C6FE /* CardView.swift */; };
 		E54CC43D269D8E8C0083C6FE /* CardElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43C269D8E8B0083C6FE /* CardElementView.swift */; };
 		E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43E269D8EC50083C6FE /* ModalView.swift */; };
@@ -64,6 +68,7 @@
 		E5A7A52E26B6A5C50062B756 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7A52D26B6A5C50062B756 /* Photo.swift */; };
 		E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B3AF3026A0384B004B2DCC /* CustomColor.swift */; };
 		E5B5785926B506D4005D86BD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5785826B506D4005D86BD /* String+Extension.swift */; };
+		E5B7FFED26C013B800E5BC6D /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B7FFEC26C013B800E5BC6D /* Blur.swift */; };
 		E5C9574126B3EA0F007B1B1D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C9574026B3EA0F007B1B1D /* Date+Extension.swift */; };
 		E5C9574426B3ED91007B1B1D /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C9574326B3ED90007B1B1D /* Int+Extension.swift */; };
 		E5C9574626B3F097007B1B1D /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C9574526B3F097007B1B1D /* ChartView.swift */; };
@@ -92,6 +97,10 @@
 		E515A15F2697FC95008D4FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E52C334626B13E5E0080031F /* FilmTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTrailer.swift; sourceTree = "<group>"; };
 		E52C334826B146320080031F /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
+		E54B4D4426BFC3E100BE5461 /* ChartTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTab.swift; sourceTree = "<group>"; };
+		E54B4D4626BFC40F00BE5461 /* UnderlineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineText.swift; sourceTree = "<group>"; };
+		E54B4D4D26BFCF2B00BE5461 /* Calendar+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Extension.swift"; sourceTree = "<group>"; };
+		E54B4D4F26BFCF4A00BE5461 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 		E54CC439269D8DBD0083C6FE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E54CC43C269D8E8B0083C6FE /* CardElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardElementView.swift; sourceTree = "<group>"; };
 		E54CC43E269D8EC50083C6FE /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
@@ -139,6 +148,7 @@
 		E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E5B3AF3026A0384B004B2DCC /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		E5B5785826B506D4005D86BD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		E5B7FFEC26C013B800E5BC6D /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		E5C6F1582699A37C00631576 /* Epilogue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-Regular.ttf"; sourceTree = "<group>"; };
 		E5C9574026B3EA0F007B1B1D /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		E5C9574326B3ED90007B1B1D /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
@@ -254,6 +264,40 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		E54B4D4826BFC57A00BE5461 /* ChartTab */ = {
+			isa = PBXGroup;
+			children = (
+				E54B4D4426BFC3E100BE5461 /* ChartTab.swift */,
+				E54B4D4626BFC40F00BE5461 /* UnderlineText.swift */,
+			);
+			path = ChartTab;
+			sourceTree = "<group>";
+		};
+		E54B4D4926BFCEC900BE5461 /* Movie */ = {
+			isa = PBXGroup;
+			children = (
+				E50254F726983E80000C6F03 /* Movie.swift */,
+			);
+			path = Movie;
+			sourceTree = "<group>";
+		};
+		E54B4D4B26BFCED600BE5461 /* TvShow */ = {
+			isa = PBXGroup;
+			children = (
+				E54B4D4C26BFCEE600BE5461 /* Details */,
+				E574286826BACCD1006CC990 /* TvShow.swift */,
+			);
+			path = TvShow;
+			sourceTree = "<group>";
+		};
+		E54B4D4C26BFCEE600BE5461 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				E5A0DF8426BD061E00C0FA11 /* Season.swift */,
+			);
+			path = Details;
+			sourceTree = "<group>";
+		};
 		E54CC43B269D8DC40083C6FE /* Card */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,8 +313,8 @@
 				E55C503B26BBE7290059EBD3 /* Details */,
 				E5A0CBB8269845D20088F968 /* Films.swift */,
 				E574286A26BACCEF006CC990 /* Film.swift */,
-				E50254F726983E80000C6F03 /* Movie.swift */,
-				E574286826BACCD1006CC990 /* TvShow.swift */,
+				E54B4D4926BFCEC900BE5461 /* Movie */,
+				E54B4D4B26BFCED600BE5461 /* TvShow */,
 			);
 			path = Film;
 			sourceTree = "<group>";
@@ -281,7 +325,6 @@
 				E564B11E26AC01EF002637A9 /* Genre.swift */,
 				E564B12026AC0203002637A9 /* Language.swift */,
 				E560797226B7E3E600D6C7B5 /* Production.swift */,
-				E5A0DF8426BD061E00C0FA11 /* Season.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -428,11 +471,13 @@
 		E5C9574226B3EA15007B1B1D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E54B4D4D26BFCF2B00BE5461 /* Calendar+Extension.swift */,
+				E5663AC926B9457A00506BCA /* Collection+Extension.swift */,
 				E5C9574026B3EA0F007B1B1D /* Date+Extension.swift */,
 				E5CFD86626B3FBD400F2C6C8 /* Double+Extension.swift */,
 				E5C9574326B3ED90007B1B1D /* Int+Extension.swift */,
 				E5B5785826B506D4005D86BD /* String+Extension.swift */,
-				E5663AC926B9457A00506BCA /* Collection+Extension.swift */,
+				E54B4D4F26BFCF4A00BE5461 /* URLSession+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -440,12 +485,14 @@
 		E5DA9EB1269C47800021D279 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				E5B7FFEC26C013B800E5BC6D /* Blur.swift */,
 				E564B11C26ABFCDB002637A9 /* CustomDivider.swift */,
 				E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */,
 				E55C503C26BBE7550059EBD3 /* CustomPicker.swift */,
 				E50C1A2226A18B4F003CE717 /* FlipEffect.swift */,
 				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
 				E52C334826B146320080031F /* TitleComponent.swift */,
+				E54B4D4826BFC57A00BE5461 /* ChartTab */,
 				E5943AC126B934C200CF9836 /* GlassmorphismView */,
 				E57C8BB026B1208400D41473 /* PageView */,
 				E5840A6D26A8036F00E3F782 /* ScrollTab */,
@@ -594,6 +641,7 @@
 				E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */,
 				E57C8BB626B1208500D41473 /* PageControl.swift in Sources */,
 				E55C504126BBF0820059EBD3 /* FilmCasts.swift in Sources */,
+				E54B4D4726BFC40F00BE5461 /* UnderlineText.swift in Sources */,
 				E574286B26BACCEF006CC990 /* Film.swift in Sources */,
 				E57C8BB826B1208500D41473 /* PageView.swift in Sources */,
 				E5840A6826A7FD6A00E3F782 /* TabBarButton.swift in Sources */,
@@ -607,8 +655,10 @@
 				E50C1A2326A18B50003CE717 /* FlipEffect.swift in Sources */,
 				E56A3BF22699622800494650 /* CategoryRow.swift in Sources */,
 				E54CC441269DB1D80083C6FE /* RoundedCorner.swift in Sources */,
+				E54B4D4E26BFCF2B00BE5461 /* Calendar+Extension.swift in Sources */,
 				E5A7A52C26B6A5AD0062B756 /* Images.swift in Sources */,
 				E5840A6C26A8031800E3F782 /* Tab.swift in Sources */,
+				E54B4D4526BFC3E200BE5461 /* ChartTab.swift in Sources */,
 				E5C9574126B3EA0F007B1B1D /* Date+Extension.swift in Sources */,
 				E574286926BACCD1006CC990 /* TvShow.swift in Sources */,
 				E568627926A970A300A83FCB /* SearchView.swift in Sources */,
@@ -616,6 +666,8 @@
 				E56870C526B7F61E002BA55F /* VerticalComponent.swift in Sources */,
 				E563EB8526B25C8F00324CA6 /* AccountView.swift in Sources */,
 				E56870C426B7F61E002BA55F /* FilmComponent.swift in Sources */,
+				E5B7FFED26C013B800E5BC6D /* Blur.swift in Sources */,
+				E54B4D5026BFCF4A00BE5461 /* URLSession+Extension.swift in Sources */,
 				E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */,
 				E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */,
 				E55C503926BBE5020059EBD3 /* FilmType.swift in Sources */,
