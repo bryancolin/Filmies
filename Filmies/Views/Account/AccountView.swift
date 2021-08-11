@@ -12,30 +12,39 @@ struct AccountView: View {
     @EnvironmentObject var modelData: ModelData
     @State var colors = [Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)]
     
+    var background: some View {
+        GlassmorphismBackground(type: .left, circleColors: $colors, backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.blue)])
+    }
+    
+    var title: some View {
+        GeometryReader { geometry in
+            TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold, firstContent: {}, secondContent: {
+                HStack(alignment: .center) {
+                    ForEach(0..<colors.count) { index in
+                        Button(action: {
+                            colors.rotateLeft(positions: index)
+                        }) {
+                            Circle()
+                                .foregroundColor(colors[index])
+                                .animation(.spring())
+                        }
+                    }
+                }
+                .frame(width: geometry.size.width * 0.25)
+            })
+        }
+        .frame(height: 75)
+    }
+    
     var body: some View {
         ZStack(alignment: .top) {
             // Glassmorphism Background
-            GlassmorphismBackground(type: .left, circleColors: $colors, backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.blue)])
+           background
             
             ScrollView(.vertical, showsIndicators: false) {
                 VStack(alignment: .leading) {
-                    GeometryReader { geometry in
-                        TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold, firstContent: {}, secondContent: {
-                            HStack(alignment: .center) {
-                                ForEach(0..<colors.count) { index in
-                                    Button(action: {
-                                        colors.rotateLeft(positions: index)
-                                    }) {
-                                        Circle()
-                                            .foregroundColor(colors[index])
-                                            .animation(.spring())
-                                    }
-                                }
-                            }
-                            .frame(width: geometry.size.width * 0.25)
-                        })
-                    }
-                    .frame(height: 75)
+                    // Title
+                    title
 
                     if let movies = modelData.films[K.MovieCategory.favorites] as? [Movie] {
                         let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })

@@ -15,19 +15,27 @@ struct CategoryHome: View {
     @State var selectedIndex1 = 0
     @State var selectedIndex2 = 0
     
+    var background: some View {
+        GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)])
+    }
+    
+    var title: some View {
+        GeometryReader { geometry in
+            TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold, firstContent: {}, secondContent: {
+                CustomPicker(width: geometry.size.width * 0.2)
+            })
+        }
+        .frame(height: 75)
+    }
+    
     var body: some View {
         ZStack {
             // Glassmorphism Background
-            GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)])
+            background
             
             ScrollView(.vertical, showsIndicators: false) {
                 // Title
-                GeometryReader { geometry in
-                    TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold, firstContent: {}, secondContent: {
-                        CustomPicker(width: geometry.size.width * 0.2)
-                    })
-                }
-                .frame(height: 75)
+               title
                 
                 // Scroll Tab for Trending Movies (Day & Week)
                 ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex1)

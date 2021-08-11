@@ -10,8 +10,7 @@ import SwiftUI
 struct FilmDescriptions: View {
     
     let type: FilmType
-    let date: String
-    let duration: String
+    let date, duration: String
     
     var body: some View {
         HorizontalComponent(title: type == .movie ? "Runtime" : "Episode Runtime", details: [duration])
