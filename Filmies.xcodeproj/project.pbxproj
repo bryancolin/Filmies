@@ -16,6 +16,8 @@
 		E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E515A1582697FC85008D4FE4 /* ContentView.swift */; };
 		E515A15B2697FC95008D4FE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15A2697FC95008D4FE4 /* Assets.xcassets */; };
 		E515A15E2697FC95008D4FE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */; };
+		E52B8DD926C53AEF0032BC4A /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52B8DD826C53AEF0032BC4A /* CustomScrollView.swift */; };
+		E52B8DDB26C53DD00032BC4A /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52B8DDA26C53DD00032BC4A /* View+Extension.swift */; };
 		E52C334726B13E5F0080031F /* FilmTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C334626B13E5E0080031F /* FilmTrailer.swift */; };
 		E52C334926B146320080031F /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C334826B146320080031F /* TitleComponent.swift */; };
 		E54B4D4526BFC3E200BE5461 /* ChartTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4426BFC3E100BE5461 /* ChartTab.swift */; };
@@ -96,6 +98,8 @@
 		E515A15A2697FC95008D4FE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E515A15F2697FC95008D4FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E52B8DD826C53AEF0032BC4A /* CustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
+		E52B8DDA26C53DD00032BC4A /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		E52C334626B13E5E0080031F /* FilmTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTrailer.swift; sourceTree = "<group>"; };
 		E52C334826B146320080031F /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
 		E54B4D4426BFC3E100BE5461 /* ChartTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTab.swift; sourceTree = "<group>"; };
@@ -481,6 +485,7 @@
 				E5C9574326B3ED90007B1B1D /* Int+Extension.swift */,
 				E5B5785826B506D4005D86BD /* String+Extension.swift */,
 				E54B4D4F26BFCF4A00BE5461 /* URLSession+Extension.swift */,
+				E52B8DDA26C53DD00032BC4A /* View+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -500,6 +505,7 @@
 				E564B11C26ABFCDB002637A9 /* CustomDivider.swift */,
 				E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */,
 				E55C503C26BBE7550059EBD3 /* CustomPicker.swift */,
+				E52B8DD826C53AEF0032BC4A /* CustomScrollView.swift */,
 				E50C1A2226A18B4F003CE717 /* FlipEffect.swift */,
 				E54CC440269DB1D80083C6FE /* RoundedCorner.swift */,
 				E52C334826B146320080031F /* TitleComponent.swift */,
@@ -659,6 +665,7 @@
 				E54CC43D269D8E8C0083C6FE /* CardElementView.swift in Sources */,
 				E5943ABC26B92BFE00CF9836 /* BlurCircle.swift in Sources */,
 				E5C9574626B3F097007B1B1D /* ChartView.swift in Sources */,
+				E52B8DD926C53AEF0032BC4A /* CustomScrollView.swift in Sources */,
 				E5C9574426B3ED91007B1B1D /* Int+Extension.swift in Sources */,
 				E55C503D26BBE7550059EBD3 /* CustomPicker.swift in Sources */,
 				E5C9574826B3F0B4007B1B1D /* BarView.swift in Sources */,
@@ -697,6 +704,7 @@
 				E572603226A00D5B00864493 /* RoundedText.swift in Sources */,
 				E5FB89C326AAB1B500A496CB /* Crew.swift in Sources */,
 				E50254F626983E6B000C6F03 /* ModelData.swift in Sources */,
+				E52B8DDB26C53DD00032BC4A /* View+Extension.swift in Sources */,
 				E5FB89C126AAB1A100A496CB /* Cast.swift in Sources */,
 				E50DBD7E26A2BA43005948E7 /* WebPlayerView.swift in Sources */,
 				E5D592F426C4E5B800D318A8 /* ListItem.swift in Sources */,

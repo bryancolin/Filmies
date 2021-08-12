@@ -19,7 +19,7 @@ struct CardGrid: View {
     var body: some View {
         let columns = Array(repeating: GridItem(.flexible(), spacing: spacing), count: numberOfColumns)
         
-        ScrollView(.vertical, showsIndicators: false) {
+        CustomScrollView {
             if let films = modelData.films[category] {
                 LazyVGrid(columns: columns, spacing: spacing) {
                     ForEach(films) { film in
