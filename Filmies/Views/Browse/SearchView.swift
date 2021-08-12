@@ -51,7 +51,7 @@ struct SearchView: View {
                     
                     Button(action: {
                         if !searchText.isEmpty {
-                            modelData.searchFilm(type: modelData.selectedType.rawValue, name: searchText)
+                            modelData.fetchFilms(with: "search/\(modelData.selectedType.rawValue)", name: searchText)
                         }
                     }) {
                         Image(systemName: "arrow.up.forward.circle.fill")
@@ -67,7 +67,7 @@ struct SearchView: View {
                 // Card Grid
                 VStack(alignment: .center) {
                     if !modelData.isError {
-                        CardGrid(category: "search", numberOfColumns: $numberOfColumns)
+                        CardGrid(category: "search/\(modelData.selectedType.rawValue)", numberOfColumns: $numberOfColumns)
                     } else {
                         Text("Not Found")
                             .foregroundColor(.white)
