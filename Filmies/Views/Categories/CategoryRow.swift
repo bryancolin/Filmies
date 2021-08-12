@@ -15,6 +15,8 @@ struct CategoryRow: View {
     var color: Color
     @Binding var category: String
     
+    @State private var isPresented = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             // Title
@@ -28,12 +30,15 @@ struct CategoryRow: View {
                 Spacer()
                 
                 Button(action: {
-                    
+                    isPresented.toggle()
                 }) {
                     Text("see all")
                         .foregroundColor(color)
-                        .font(.caption)
+                        .font(.subheadline)
                         .padding(.trailing)
+                }
+                .fullScreenCover(isPresented: $isPresented) {
+                    ListItem(title: title, category: category)
                 }
             }
             .padding(.top, 5)
