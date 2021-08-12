@@ -16,7 +16,7 @@ struct GlassmorphismBackground: View {
     
     var body: some View {
         ZStack {
-            LinearGradient (gradient: Gradient(colors: backgroundColors), startPoint: .top, endPoint: .bottom)
+            LinearGradient(gradient: Gradient(colors: backgroundColors), startPoint: .top, endPoint: .bottom)
             
             GeometryReader { geometry in
                 let width = (type == .left ? -1 : 1) * geometry.size.width

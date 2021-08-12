@@ -21,9 +21,9 @@ struct HorizontalComponent: View {
             
             VStack(alignment: .trailing) {
                 if !details.isEmpty {
-                    ForEach(0..<5) { index in
-                        if index < details.count {
-                            Text(details[index])
+                    ForEach(0..<5) {
+                        if $0 < details.count {
+                            Text(details[$0])
                         }
                     }
                 } else {

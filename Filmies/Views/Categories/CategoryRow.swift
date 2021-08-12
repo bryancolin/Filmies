@@ -33,12 +33,13 @@ struct CategoryRow: View {
                     isPresented.toggle()
                 }) {
                     Text("see all")
-                        .foregroundColor(color)
+                        .foregroundColor(Color.white.opacity(0.5))
                         .font(.subheadline)
+                        .fontWeight(.light)
                         .padding(.trailing)
                 }
                 .fullScreenCover(isPresented: $isPresented) {
-                    ListItem(title: title, category: category)
+                    ListView(title: title, category: category)
                         .environmentObject(modelData)
                         .animation(.default)
                 }
@@ -46,13 +47,23 @@ struct CategoryRow: View {
             .padding(.top, 5)
             
             // Content
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: 0) {
-                    if let films = modelData.films[category] {
-                        ForEach(0..<20) { index in
-                            if index < films.count {
-                                CategoryItem(film: films[index], category: category)
-                                    .redacted(reason: modelData.isLoading ? .placeholder : [])
+            ScrollViewReader { proxyReader in
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(alignment: .top, spacing: 0) {
+                        if let films = modelData.films[category] {
+                            ForEach(0..<20) {
+                                if $0 < films.count {
+                                    CategoryItem(film: films[$0], category: category)
+                                        .id($0)
+                                        .redacted(reason: modelData.isLoading ? .placeholder : [])
+                                }
+                            }
+                        }
+                    }
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                            withAnimation(Animation.spring().delay(1)) {
+                                proxyReader.scrollTo(Int.random(in: 0..<19), anchor: .center)
                             }
                         }
                     }

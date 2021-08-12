@@ -15,6 +15,8 @@ struct CustomScrollView<Content>: View where Content: View {
     @State var startOffset: CGFloat = 0
     @State var isScrollToTop = false
     
+    private var scrollId = "SCROLL_TO_TOP"
+    
     init(@ViewBuilder _ content: @escaping () -> Content) {
         self.content = content
     }
@@ -23,7 +25,7 @@ struct CustomScrollView<Content>: View where Content: View {
         ScrollViewReader { proxyReader in
             ScrollView(.vertical, showsIndicators: false) {
                 content()
-                    .id("SCROLL_TO_TOP")
+                    .id(scrollId)
                     .overlay(
                         GeometryReader { proxy -> Color in
                             DispatchQueue.main.async {
@@ -45,7 +47,7 @@ struct CustomScrollView<Content>: View where Content: View {
                 Button(action: {
                     withAnimation(.linear(duration:  0.3)) {
                         isScrollToTop = true
-                        proxyReader.scrollTo("SCROLL_TO_TOP", anchor: .top)
+                        proxyReader.scrollTo(scrollId, anchor: .top)
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {

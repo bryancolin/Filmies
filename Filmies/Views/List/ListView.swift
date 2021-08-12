@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ListItem: View {
+struct ListView: View {
     
     @EnvironmentObject var modelData: ModelData
     @Environment(\.presentationMode) var presentationMode
@@ -35,7 +35,7 @@ struct ListItem: View {
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "arrow.backward")
-                            .font(.system(size: 25, weight: .semibold))
+                            .font(.system(size: 25))
                     }
                     .padding()
                     
@@ -44,32 +44,8 @@ struct ListItem: View {
                     
                     // Cards
                     if let films = modelData.films[category] {
-                        ForEach(films) { film in
-                            HStack(alignment: .top) {
-                                CategoryItem(film: film, category: category)
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(alignment: .top)
-                                
-                                VStack(alignment: .leading) {
-                                    if let tvShow = film as? TvShow {
-                                        Text(tvShow.name ?? "")
-                                            .font(.title3)
-                                            .fontWeight(.bold)
-                                            .padding(.bottom, 5)
-                                    } else {
-                                        Text(film.title ?? "")
-                                            .font(.title3)
-                                            .fontWeight(.bold)
-                                            .padding(.bottom, 5)
-                                    }
-                                    
-                                    Text(film.description)
-                                }
-                                .padding(.horizontal)
-                            }
-                            .frame(height: UIScreen.main.bounds.height / 3)
-                            .padding(.vertical)
-                            .redacted(reason: modelData.isLoading ? .placeholder : [])
+                        ForEach(films) {
+                            ListItem(film: $0, category: category)
                         }
                         
                         // Load More
@@ -96,7 +72,46 @@ struct ListItem: View {
 
 struct ListItem_Previews: PreviewProvider {
     static var previews: some View {
-        ListItem(title: "Now Playing", category: "movie/now_playing")
+        ListView(title: "Now Playing", category: "movie/now_playing")
             .environmentObject(ModelData())
+    }
+}
+
+struct ListItem: View {
+    
+    @EnvironmentObject var modelData: ModelData
+    
+    var film: Film
+    var category: String
+    
+    var title: String {
+        if let tvShow = film as? TvShow {
+            return tvShow.name ?? ""
+        }
+        return film.title ?? ""
+    }
+    
+    var body: some View {
+        HStack(alignment: .top) {
+            CategoryItem(film: film, category: category)
+                .padding(.leading, -15)
+            
+            VStack(alignment: .leading) {
+                Text(title)
+                    .font(.headline)
+                    .fontWeight(.bold)
+                    .padding(.bottom, 5)
+                
+                Text(film.description)
+                    .font(.subheadline)
+                    .lineLimit(5)
+                    .minimumScaleFactor(0.5)
+            }
+            .padding()
+        }
+        .background(Color.white.opacity(0.2))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .padding(.horizontal)
+        .redacted(reason: modelData.isLoading ? .placeholder : [])
     }
 }

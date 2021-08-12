@@ -39,10 +39,7 @@ final class ModelData: ObservableObject {
         let urlName = name.replacingOccurrences(of: " ", with: "+")
         let query = name.isEmpty ? "" : "&query=\(urlName)"
         
-        // Page Numbers
-        let page = "&page=\(pageNumber)"
-        
-        let fullURL = "\(url)/\(trend)\(param)" + apiKey + query + page
+        let fullURL = "\(url)/\(trend)\(param)" + apiKey + query + "&page=\(pageNumber)"
         
         URLSession.shared.request(url: URL(string: fullURL), expecting: Films.self) { [weak self] response in
             switch response {
@@ -80,7 +77,7 @@ final class ModelData: ObservableObject {
         let filmAtIndex = film.index
         
         if filmExists {
-            let fullURL = "\(url)/\(type.rawValue)/\(id)\(apiKey)&append_to_response=videos,casts,credits,images&include_image_language=en"
+            let fullURL = "\(url)/\(type.rawValue)/\(id)" + apiKey + "&append_to_response=videos,casts,credits,images&include_image_language=en"
             
             URLSession.shared.request(url: URL(string: fullURL), expecting: expecting) { [weak self] response in
                 switch response {

@@ -19,7 +19,8 @@ struct FilmDetails: View {
     
     var overview: some View {
         FilmComponent(title: "Overview") {
-            Text(film.description) 
+            Text(film.description)
+                .font(.subheadline)
                 .fixedSize(horizontal: false, vertical: true)
             
             CustomDivider()

@@ -41,9 +41,9 @@ struct ChartView: View {
                     GeometryReader { geometry in
                         let width = geometry.size.width / 2 * (1 / 7)
                         HStack(alignment: .center, spacing: geometry.size.width / 14.5) {
-                            ForEach(titles, id: \.self) { title in
-                                let height = (CGFloat(getTotalHoursPerDay(films[title]).thisWeek / 60), CGFloat(getTotalHoursPerDay(films[title]).lastWeek / 60))
-                                BarView(title: title, width: width, height: height, index: $index)
+                            ForEach(titles, id: \.self) {
+                                let height = (CGFloat(getTotalHoursPerDay(films[$0]).thisWeek / 60), CGFloat(getTotalHoursPerDay(films[$0]).lastWeek / 60))
+                                BarView(title: $0, width: width, height: height, index: $index)
                             }
                         }
                         .padding(.horizontal)
@@ -61,8 +61,8 @@ struct ChartView: View {
     // Total Hours of Watching Films In A Week
     func getTotalHoursPerWeek() -> Int {
         var hours = 0
-        for (_, allFilms) in films {
-            hours += index == 0 ? getTotalHoursPerDay(allFilms).thisWeek : getTotalHoursPerDay(allFilms).lastWeek
+        films.forEach {
+            hours += index == 0 ? getTotalHoursPerDay($0.value).thisWeek : getTotalHoursPerDay($0.value).lastWeek
         }
         
         return hours

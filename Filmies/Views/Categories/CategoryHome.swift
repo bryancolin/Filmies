@@ -43,8 +43,8 @@ struct CategoryHome: View {
                 // Scroll View
                 let subtitles = modelData.selectedType == .movie ? ["Now Playing", "Popular", "Upcoming", "Top Rated"] : ["Airing Today", "Popular", "On The Air", "Top Rated"]
                 
-                ForEach(0..<subtitles.count) { index in
-                    CategoryRow(title: subtitles[index], color: Color(K.BrandColors.pink), category: modelData.selectedType == .movie ? $modelData.movieParams[index + 2] : $modelData.tvShowParams[index + 2])
+                ForEach(0..<subtitles.count) {
+                    CategoryRow(title: subtitles[$0], color: Color(K.BrandColors.pink), category: modelData.selectedType == .movie ? $modelData.movieParams[$0 + 2] : $modelData.tvShowParams[$0 + 2])
                 }
             }
         }

@@ -34,7 +34,7 @@ struct CategoryItem: View {
                 if !modelData.isLoading {
                     showingModal.toggle()
                 }
-            }, label: {
+            }) {
                 CustomImage(urlString: film.posterUrl)
                     .frame(width: width, alignment: .leading)
                     .cornerRadius(8)
@@ -56,7 +56,7 @@ struct CategoryItem: View {
                         .frame(maxHeight: .infinity),
                         alignment: .topLeading
                     )
-            })
+            }
         }
         .padding(.leading, 15)
         .sheet(isPresented: $showingModal) {
