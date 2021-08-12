@@ -9,7 +9,15 @@ import Foundation
 
 class Film: Codable, Identifiable {
     let id: Int?
-    let title, description: String?
+    let title, overview: String?
+    var description: String {
+        if let text = overview, !text.isEmpty {
+            return text
+        }
+        
+        return String("No synopsis available yet")
+    }
+    
     let genres: [Genre]?
     let languages: [Language]?
     let rating: Double?
@@ -58,7 +66,7 @@ class Film: Codable, Identifiable {
     enum CodingKeys: String, CodingKey {
         case id
         case title = "original_title"
-        case description = "overview"
+        case overview
         case rating = "vote_average"
         case genres
         case languages = "spoken_languages"

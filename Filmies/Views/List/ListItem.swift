@@ -63,7 +63,7 @@ struct ListItem: View {
                                             .padding(.bottom, 5)
                                     }
                                     
-                                    Text(film.description ?? "No synopsis")
+                                    Text(film.description)
                                 }
                                 .padding(.horizontal)
                             }

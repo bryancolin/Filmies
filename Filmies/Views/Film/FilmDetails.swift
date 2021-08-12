@@ -19,8 +19,7 @@ struct FilmDetails: View {
     
     var overview: some View {
         FilmComponent(title: "Overview") {
-            Text(film.description ?? "")
-                .font(.caption)
+            Text(film.description) 
                 .fixedSize(horizontal: false, vertical: true)
             
             CustomDivider()
@@ -28,9 +27,9 @@ struct FilmDetails: View {
             HorizontalComponent(title: "Rating", details: [film.rate])
             
             if let movie = film as? Movie {
-                FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: dateFormat) ?? "", duration: movie.duration ?? "")
+                FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: dateFormat) ?? "", duration: movie.duration )
             } else if let tvShow = film as? TvShow {
-                FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: dateFormat) ?? "", duration: tvShow.duration ?? "")
+                FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: dateFormat) ?? "", duration: tvShow.duration )
                 HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: dateFormat) ?? ""])
             }
             
