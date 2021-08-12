@@ -47,9 +47,11 @@ struct CategoryRow: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(alignment: .top, spacing: 0) {
                     if let films = modelData.films[category] {
-                        ForEach(films) { film in
-                            CategoryItem(film: film, category: category)
-                                .redacted(reason: modelData.isLoading ? .placeholder : [])
+                        ForEach(0..<20) { index in
+                            if index < films.count {
+                                CategoryItem(film: films[index], category: category)
+                                    .redacted(reason: modelData.isLoading ? .placeholder : [])
+                            }
                         }
                     }
                 }
