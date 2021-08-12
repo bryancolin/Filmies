@@ -53,7 +53,11 @@ final class ModelData: ObservableObject {
                     if data.isEmpty {
                         self?.isError = true
                     } else {
-                        self?.films[param] = data
+                        if pageNumber == 1 {
+                            self?.films[param] = data
+                        } else {
+                            self?.films[param]! += data
+                        }
                     }
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4) {

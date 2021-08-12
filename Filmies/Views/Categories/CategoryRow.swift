@@ -39,6 +39,8 @@ struct CategoryRow: View {
                 }
                 .fullScreenCover(isPresented: $isPresented) {
                     ListItem(title: title, category: category)
+                        .environmentObject(modelData)
+                        .animation(.default)
                 }
             }
             .padding(.top, 5)

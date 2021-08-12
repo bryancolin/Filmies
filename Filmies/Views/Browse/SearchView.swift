@@ -67,7 +67,7 @@ struct SearchView: View {
                 // Card Grid
                 VStack(alignment: .center) {
                     if !modelData.isError {
-                        CardGrid(category: "search/\(modelData.selectedType.rawValue)", numberOfColumns: $numberOfColumns)
+                        CardGrid(category: "search/\(modelData.selectedType.rawValue)", numberOfColumns: $numberOfColumns, searchText: $searchText)
                     } else {
                         Text("Not Found")
                             .foregroundColor(.white)
