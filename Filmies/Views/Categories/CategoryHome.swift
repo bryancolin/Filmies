@@ -12,8 +12,7 @@ struct CategoryHome: View {
     
     @EnvironmentObject var modelData: ModelData
     
-    @State var selectedIndex1 = 0
-    @State var selectedIndex2 = 0
+    @State var selectedIndex = 0
     
     var background: some View {
         GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)])
@@ -35,20 +34,18 @@ struct CategoryHome: View {
             
             ScrollView(.vertical, showsIndicators: false) {
                 // Title
-               title
+                title
                 
                 // Scroll Tab for Trending Movies (Day & Week)
-                ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex1)
-                CardView(category: modelData.selectedType == .movie ? $modelData.movieParams[selectedIndex1] : $modelData.tvShowParams[selectedIndex1])
+                ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex)
+                CardView(category: modelData.selectedType == .movie ? $modelData.movieParams[selectedIndex] : $modelData.tvShowParams[selectedIndex])
                 
-                // Scroll Tab for Now Showing Movies
-                let titles = modelData.selectedType == .movie ? ["Now Playing", "Popular", "Upcoming"] : ["Airing Today", "Popular", "On The Air"]
-                ScrollTabView(titles: titles, selectedIndex: $selectedIndex2)
-                CategoryRow(category: modelData.selectedType == .movie ? $modelData.movieParams[selectedIndex2+2] : $modelData.tvShowParams[selectedIndex2+2])
+                // Scroll View
+                let subtitles = modelData.selectedType == .movie ? ["Now Playing", "Popular", "Upcoming", "Top Rated"] : ["Airing Today", "Popular", "On The Air", "Top Rated"]
                 
-                // Scroll Tab for Top Rated Movies
-                ScrollTabView(titles: ["Top Rated"], selectedIndex: .constant(0))
-                CategoryRow(category: modelData.selectedType == .movie ? $modelData.movieParams[modelData.movieParams.count-1] : $modelData.tvShowParams[modelData.tvShowParams.count-1])
+                ForEach(0..<subtitles.count) { index in
+                    CategoryRow(title: subtitles[index], color: Color(K.BrandColors.pink), category: modelData.selectedType == .movie ? $modelData.movieParams[index + 2] : $modelData.tvShowParams[index + 2])
+                }
             }
         }
     }

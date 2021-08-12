@@ -20,8 +20,8 @@ struct ChartView: View {
             HStack {
                 Text("Screen Time (Movies)")
                     .foregroundColor(.white)
-                    .font(.headline)
-                    .fontWeight(.semibold)
+                    .font(.title3)
+                    .fontWeight(.bold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
                 

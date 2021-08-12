@@ -51,13 +51,8 @@ struct AccountView: View {
                         ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
                     }
                     
-                    // Scroll Tab for Favorites Movies
-                    ScrollTabView(titles: ["Favorites Movies"], selectedIndex: .constant(0))
-                    CategoryRow(category: .constant(K.MovieCategory.favorites))
-                    
-                    // Scroll Tab for Favorites TvShows
-                    ScrollTabView(titles: ["Favorites TV Shows"], selectedIndex: .constant(0))
-                    CategoryRow(category: .constant(K.TvShowCategory.favorites))
+                    CategoryRow(title: "Favorite Movies", color: .white, category: .constant(K.MovieCategory.favorites))
+                    CategoryRow(title: "Favorite TV Shows", color: .white, category: .constant(K.TvShowCategory.favorites))
                 }
             }
         }

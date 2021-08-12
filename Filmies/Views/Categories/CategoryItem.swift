@@ -53,7 +53,6 @@ struct CategoryItem: View {
             })
         }
         .padding(.leading, 15)
-        .padding(.vertical)
         .sheet(isPresented: $showingModal) {
             ModalView(film: film, category: category, showModal: self.$showingModal)
                 .environmentObject(modelData)

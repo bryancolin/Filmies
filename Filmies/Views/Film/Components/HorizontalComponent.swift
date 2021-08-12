@@ -13,7 +13,7 @@ struct HorizontalComponent: View {
     var details: [String]
     
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .top) {
             Text(title)
                 .fontWeight(.semibold)
             
@@ -30,7 +30,6 @@ struct HorizontalComponent: View {
                     Text("-")
                 }
             }
-            .font(.caption)
             .multilineTextAlignment(.trailing)
             .padding(.bottom, 1)
         }
