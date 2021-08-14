@@ -11,9 +11,9 @@ class TvShow: Film {
     let name: String?
     
     var runTime: [Int]?
-    var duration: String? {
-        if let time = runTime {
-            return time.first?.convert() ?? String()
+    var duration: String {
+        if let time = runTime?.first {
+            return time.convert()
         }
         return String()
     }

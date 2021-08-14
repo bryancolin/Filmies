@@ -22,32 +22,50 @@ final class ModelData: ObservableObject {
     @Published var isError = false
     
     init() {
-        fetchFilms()
+        let _ = (movieParams + tvShowParams).map { fetchFilms(with: $0) }
+        
         loadFavoriteFilms(type: K.MovieCategory.favorites, key: K.UserDefaults.movieKey, expecting: [Movie].self)
         loadFavoriteFilms(type: K.TvShowCategory.favorites, key: K.UserDefaults.tvKey, expecting: [TvShow].self)
     }
     
-    func fetchFilms() {
+    func fetchFilms(with param: String, name: String = "", pageNumber: Int = 1) {
         isLoading = true
+        isError = false
         
-        for param in movieParams + tvShowParams {
-            let trend = param.contains("/day") || param.contains("/week") ? "trending/" : ""
-            
-            let fullURL = "\(url)/\(trend)\(param)\(apiKey)"
-            
-            URLSession.shared.request(url: URL(string: fullURL), expecting: Films.self) { [weak self] response in
-                switch response {
-                case .success(let result):
-                    DispatchQueue.main.async {
-                        self?.films[param] = result.all
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                            self?.isLoading = false
+        // Trending Params
+        let trend = param.contains("/day") || param.contains("/week") ? "trending/" : ""
+        
+        // Searching Films
+        let urlName = name.replacingOccurrences(of: " ", with: "+")
+        let query = name.isEmpty ? "" : "&query=\(urlName)"
+        
+        let fullURL = "\(url)/\(trend)\(param)" + apiKey + query + "&page=\(pageNumber)"
+        
+        URLSession.shared.request(url: URL(string: fullURL), expecting: Films.self) { [weak self] response in
+            switch response {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    guard let data = result.all else { return }
+                    
+                    if data.isEmpty {
+                        self?.isError = true
+                    } else {
+                        if pageNumber == 1 {
+                            self?.films[param] = data
+                        } else {
+                            self?.films[param]! += data
                         }
                     }
-                case .failure(let error):
-                    self?.isLoading = false
-                    print(error)
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                        self?.isLoading = false
+                    }
                 }
+                
+            case .failure(let error):
+                self?.isLoading = false
+                self?.isError = true
+                print(error)
             }
         }
     }
@@ -59,7 +77,7 @@ final class ModelData: ObservableObject {
         let filmAtIndex = film.index
         
         if filmExists {
-            let fullURL = "\(url)/\(type.rawValue)/\(id)\(apiKey)&append_to_response=videos,casts,credits,images&include_image_language=en"
+            let fullURL = "\(url)/\(type.rawValue)/\(id)" + apiKey + "&append_to_response=videos,casts,credits,images&include_image_language=en"
             
             URLSession.shared.request(url: URL(string: fullURL), expecting: expecting) { [weak self] response in
                 switch response {
@@ -74,37 +92,6 @@ final class ModelData: ObservableObject {
                 case .failure(let error):
                     print(error)
                 }
-            }
-        }
-    }
-    
-    func searchFilm(type: String, name: String) {
-        isLoading = true
-        isError = false
-        
-        let urlName = name.replacingOccurrences(of: " ", with: "+")
-        let fullURL = "\(url)/search/\(type)\(apiKey)&query=\(urlName)"
-        
-        URLSession.shared.request(url: URL(string: fullURL), expecting: Films.self) { [weak self] response in
-            switch response {
-            case .success(let result):
-                DispatchQueue.main.async {
-                    guard let data = result.all else { return }
-                    
-                    if data.isEmpty {
-                        self?.isError = true
-                    } else {
-                        self?.films["search"] = data
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                        self?.isLoading = false
-                    }
-                }
-            case .failure(let error):
-                self?.isLoading = false
-                self?.isLoading = true
-                print(error)
             }
         }
     }

@@ -22,8 +22,8 @@ struct CustomPicker: View {
     
     var body: some View {
         Picker(selection: $modelData.selectedType, label: Text("")) {
-            ForEach(FilmType.allCases, id: \.self) { type in
-                Text(type.rawValue.first?.uppercased() ?? "").tag(type)
+            ForEach(FilmType.allCases, id: \.self) {
+                Text($0.rawValue.first?.uppercased() ?? "").tag($0)
             }
         }
         .pickerStyle(SegmentedPickerStyle())

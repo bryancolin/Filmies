@@ -15,8 +15,8 @@ struct CustomTabBar: View {
     
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(Tab.allCases, id: \.self) { tabName in
-                TabBarButton(image: tabName, selectedTab: $selectedTab, tabPoints: $tabPoints)
+            ForEach(Tab.allCases, id: \.self) {
+                TabBarButton(image: $0, selectedTab: $selectedTab, tabPoints: $tabPoints)
             }
         }
         .padding(0)
@@ -28,8 +28,8 @@ struct CustomTabBar: View {
             Circle()
                 .fill(Color.white)
                 .frame(width: 10, height: 10)
-                .offset(x: getCurvePoint() - 20)
-            , alignment: .bottomLeading
+                .offset(x: getCurvePoint() - 20),
+            alignment: .bottomLeading
         )
         .cornerRadius(30)
         .padding(.horizontal)

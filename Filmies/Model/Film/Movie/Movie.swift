@@ -9,7 +9,7 @@ import Foundation
 
 class Movie: Film {
     var runTime: Int?
-    var duration: String? {
+    var duration: String {
         if let time = runTime {
             return time.convert()
         }

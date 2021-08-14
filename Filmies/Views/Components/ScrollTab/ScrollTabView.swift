@@ -16,8 +16,8 @@ struct ScrollTabView: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(0..<titles.count) { index in
-                    RoundedText(title: titles[index], id: index, selectedIndex: $selectedIndex, color: color)
+                ForEach(0..<titles.count) {
+                    RoundedText(title: titles[$0], id: $0, selectedIndex: $selectedIndex, color: color)
                 }
             }
             .padding(.horizontal)

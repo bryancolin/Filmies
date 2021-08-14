@@ -14,17 +14,19 @@ struct BarView: View {
     var height: (thisWeek: CGFloat, lastWeek: CGFloat)
     @Binding var index: Int
     
+    private let defaultHeight: CGFloat = 200
+    
     @State private var progress: CGFloat = 0
     
     var body: some View {
         VStack {
             ZStack(alignment: .bottom) {
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(height: 200)
+                Capsule()
+                    .frame(height: defaultHeight)
                     .foregroundColor(Color.black.opacity(0.3))
                 
-                RoundedRectangle(cornerRadius: 10)
-                    .frame(height: progress * 200)
+                Capsule()
+                    .frame(height: progress * defaultHeight)
                     .foregroundColor(Color(K.BrandColors.pink))
                     .animation(.interpolatingSpring(mass: 1, stiffness: 100, damping: 17.5, initialVelocity: 0).speed(0.5))
                     .onChange(of: index) { newValue in

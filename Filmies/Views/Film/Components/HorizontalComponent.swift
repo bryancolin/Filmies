@@ -13,7 +13,7 @@ struct HorizontalComponent: View {
     var details: [String]
     
     var body: some View {
-        HStack(alignment: .center) {
+        HStack(alignment: .top) {
             Text(title)
                 .fontWeight(.semibold)
             
@@ -21,16 +21,15 @@ struct HorizontalComponent: View {
             
             VStack(alignment: .trailing) {
                 if !details.isEmpty {
-                    ForEach(0..<5) { index in
-                        if index < details.count {
-                            Text(details[index])
+                    ForEach(0..<5) {
+                        if $0 < details.count {
+                            Text(details[$0])
                         }
                     }
                 } else {
                     Text("-")
                 }
             }
-            .font(.caption)
             .multilineTextAlignment(.trailing)
             .padding(.bottom, 1)
         }

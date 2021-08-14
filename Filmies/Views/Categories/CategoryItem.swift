@@ -34,26 +34,31 @@ struct CategoryItem: View {
                 if !modelData.isLoading {
                     showingModal.toggle()
                 }
-            }, label: {
+            }) {
                 CustomImage(urlString: film.posterUrl)
                     .frame(width: width, alignment: .leading)
                     .cornerRadius(8)
                     .overlay(
-                        Circle()
-                            .frame(width: 25, height: 25)
-                            .foregroundColor(Color(K.BrandColors.pink))
-                            .overlay(
-                                Text(releaseDate)
-                                    .font(.system(size: 9))
-                                    .foregroundColor(.white)
-                            )
-                            .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 0)),
+                        GeometryReader { geometry in
+                            let fontSize = min(9, geometry.size.width * 0.2)
+                            let circleWidth = min(50, geometry.size.width * 0.2)
+                            
+                            Circle()
+                                .frame(width: circleWidth, height: circleWidth)
+                                .foregroundColor(Color(K.BrandColors.pink))
+                                .overlay(
+                                    Text(releaseDate)
+                                        .font(.system(size: fontSize))
+                                        .foregroundColor(.white)
+                                )
+                                .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 0))
+                        }
+                        .frame(maxHeight: .infinity),
                         alignment: .topLeading
                     )
-            })
+            }
         }
         .padding(.leading, 15)
-        .padding(.vertical)
         .sheet(isPresented: $showingModal) {
             ModalView(film: film, category: category, showModal: self.$showingModal)
                 .environmentObject(modelData)

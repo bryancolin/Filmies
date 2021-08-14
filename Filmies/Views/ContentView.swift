@@ -25,7 +25,7 @@ struct ContentView: View {
         .animation(.default)
         .overlay(
             CustomTabBar(selectedTab: $selectedTab)
-                .padding(.vertical),
+                .padding(.bottom, getSafeArea().bottom == 0 ? 12 : 0),
             alignment: .bottom
         )
     }

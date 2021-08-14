@@ -14,64 +14,69 @@ struct FilmDetails: View {
     var film: Film
     
     @State var index = 0
-    var pageNumber: Int {
-        return film is Movie ? 3 : 4
+    private var pageNumber: Int { return film is Movie ? 3 : 4 }
+    
+    var overview: some View {
+        FilmComponent(title: "Overview") {
+            Text(film.description)
+                .font(.subheadline)
+                .fixedSize(horizontal: false, vertical: true)
+            
+            CustomDivider()
+            
+            HorizontalComponent(title: "Rating", details: [film.rate])
+            
+            if let movie = film as? Movie {
+                FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? "", duration: movie.duration )
+            } else if let tvShow = film as? TvShow {
+                FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? "", duration: tvShow.duration )
+                HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: K.dateFormat) ?? ""])
+            }
+            
+            if let languages = film.languages {
+                HorizontalComponent(title: "Languages", details: languages.compactMap{ $0.name })
+            }
+            
+            if let genres = film.genres {
+                HorizontalComponent(title: "Genres", details: genres.compactMap{ $0.name })
+            }
+        }
     }
     
-    let dateFormat = "E, dd MMMM yyyy"
+    var casts: some View {
+        FilmComponent(title: "Casts") {
+            if let movie = film as? Movie {
+                if let casts = movie.casts {
+                    FilmCasts(casts)
+                }
+            } else if let tvShow = film as? TvShow {
+                if let casts = tvShow.casts {
+                    FilmCasts(casts)
+                }
+            }
+        }
+    }
+    
+    var productions: some View {
+        FilmComponent(title: "Production") {
+            if let countries = film.productionCountries {
+                HorizontalComponent(title: "Countries", details: countries.compactMap{ $0.name })
+            }
+            
+            if let companies = film.productionCompanies {
+                HorizontalComponent(title: "Companies", details: companies.compactMap{ $0.name })
+            }
+        }
+    }
     
     var body: some View {
         TabView(selection: $index) {
             
-            FilmComponent(title: "Overview") {
-                Text(film.description ?? "")
-                    .font(.caption)
-                    .fixedSize(horizontal: false, vertical: true)
-                
-                CustomDivider()
-                
-                HorizontalComponent(title: "Rating", details: [film.rate])
-                
-                if let movie = film as? Movie {
-                    FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: dateFormat) ?? "", duration: movie.duration ?? "")
-                } else if let tvShow = film as? TvShow {
-                    FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: dateFormat) ?? "", duration: tvShow.duration ?? "")
-                    HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: dateFormat) ?? ""])
-                }
-                
-                if let languages = film.languages {
-                    HorizontalComponent(title: "Languages", details: languages.compactMap({ $0.name }))
-                }
-                
-                if let genres = film.genres {
-                    HorizontalComponent(title: "Genres", details: genres.compactMap({ $0.name }))
-                }
-            }
-            .tag(0)
+            overview.tag(0)
             
-            FilmComponent(title: "Casts") {
-                if let movie = film as? Movie {
-                    if let casts = movie.casts {
-                        FilmCasts(casts)
-                    }
-                } else if let tvShow = film as? TvShow {
-                    if let casts = tvShow.casts {
-                        FilmCasts(casts)
-                    }
-                }
-            }
-            .tag(1)
+            casts.tag(1)
             
-            FilmComponent(title: "Production") {
-                if let countries = film.productionCountries {
-                    HorizontalComponent(title: "Countries", details: countries.compactMap({ $0.name }))
-                }
-                
-                if let companies = film.productionCompanies {
-                    HorizontalComponent(title: "Companies", details: companies.compactMap({ $0.name }))
-                }
-            }
-            .tag(2)
+            productions.tag(2)
             
             if let tvShow = film as? TvShow {
                 FilmComponent(title: "Seasons") {
