@@ -34,8 +34,8 @@ struct CategoryRow: View {
                 }) {
                     Text("see all")
                         .foregroundColor(Color.white.opacity(0.5))
-                        .font(.subheadline)
-                        .fontWeight(.light)
+                        .font(.caption)
+                        .fontWeight(.semibold)
                         .padding(.trailing)
                 }
                 .fullScreenCover(isPresented: $isPresented) {

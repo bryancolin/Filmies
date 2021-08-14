@@ -19,7 +19,6 @@ struct ChartView: View {
             // Title
             HStack {
                 Text("Screen Time (Movies)")
-                    .foregroundColor(.white)
                     .font(.title3)
                     .fontWeight(.bold)
                     .lineLimit(1)
@@ -28,9 +27,11 @@ struct ChartView: View {
                 Spacer()
                 
                 Text(getTotalHoursPerWeek().convert())
-                    .foregroundColor(.white)
                     .font(.caption)
+                    .fontWeight(.semibold)
+                    .opacity(0.5)
             }
+            .foregroundColor(.white)
             .padding(.horizontal)
             
             VStack {

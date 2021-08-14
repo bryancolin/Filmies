@@ -23,7 +23,7 @@ struct CardGrid: View {
             if let films = modelData.films[category] {
                 LazyVGrid(columns: columns, spacing: spacing) {
                     ForEach(films) { film in
-                        CardGridItem(film: film)
+                        CardGridItem(film: film, category: category)
                             .redacted(reason: modelData.isLoading ? .placeholder : [])
                     }
                 }

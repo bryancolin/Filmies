@@ -11,6 +11,7 @@ struct CardGridItem: View {
     
     @EnvironmentObject var modelData: ModelData
     var film: Film
+    var category: String
     
     @State private var showingModal = false
     
@@ -24,7 +25,7 @@ struct CardGridItem: View {
                 .cornerRadius(15)
         }
         .sheet(isPresented: $showingModal) {
-            ModalView(film: film, category: "search/\(modelData.selectedType.rawValue)", showModal: self.$showingModal)
+            ModalView(film: film, category: category, showModal: self.$showingModal)
                 .environmentObject(modelData)
         }
     }

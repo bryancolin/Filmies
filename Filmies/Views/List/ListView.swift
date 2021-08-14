@@ -114,7 +114,7 @@ struct ListItem: View {
                 
                 Text(releaseDate)
                     .font(.caption2)
-                    .fontWeight(.light)
+                    .fontWeight(.regular)
                     .lineLimit(1)
                     
                     .padding(.vertical, 5)
@@ -122,6 +122,7 @@ struct ListItem: View {
                 Text(film.description)
                     .font(.subheadline)
                     .lineLimit(5)
+                    .opacity(0.5)
             }
             .minimumScaleFactor(0.5)
             .padding()
