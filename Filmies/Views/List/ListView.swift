@@ -49,7 +49,7 @@ struct ListView: View {
                         }
                         
                         // Load More
-                        if films.count % 20 == 0 {
+                        if films.count % 20 == 0 && !category.contains("favorites") {
                             Button(action: {
                                 modelData.fetchFilms(with: category, pageNumber: (films.count / 20) + 1)
                             }) {
