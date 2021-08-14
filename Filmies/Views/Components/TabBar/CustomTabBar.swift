@@ -28,8 +28,8 @@ struct CustomTabBar: View {
             Circle()
                 .fill(Color.white)
                 .frame(width: 10, height: 10)
-                .offset(x: getCurvePoint() - 20)
-            , alignment: .bottomLeading
+                .offset(x: getCurvePoint() - 20),
+            alignment: .bottomLeading
         )
         .cornerRadius(30)
         .padding(.horizontal)

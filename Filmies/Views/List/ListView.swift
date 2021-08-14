@@ -84,11 +84,21 @@ struct ListItem: View {
     var film: Film
     var category: String
     
-    var title: String {
+    private var title: String {
         if let tvShow = film as? TvShow {
             return tvShow.name ?? ""
         }
         return film.title ?? ""
+    }
+    
+    private var releaseDate: String {
+        if let movie = film as? Movie {
+            return movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? ""
+        } else if let tvShow = film as? TvShow {
+            return tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? ""
+        } else {
+            return ""
+        }
     }
     
     var body: some View {
@@ -100,13 +110,20 @@ struct ListItem: View {
                 Text(title)
                     .font(.headline)
                     .fontWeight(.bold)
-                    .padding(.bottom, 5)
+                    .lineLimit(2)
+                
+                Text(releaseDate)
+                    .font(.caption2)
+                    .fontWeight(.light)
+                    .lineLimit(1)
+                    
+                    .padding(.vertical, 5)
                 
                 Text(film.description)
                     .font(.subheadline)
                     .lineLimit(5)
-                    .minimumScaleFactor(0.5)
             }
+            .minimumScaleFactor(0.5)
             .padding()
         }
         .background(Color.white.opacity(0.2))

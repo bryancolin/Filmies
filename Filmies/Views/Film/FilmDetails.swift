@@ -15,7 +15,6 @@ struct FilmDetails: View {
     
     @State var index = 0
     private var pageNumber: Int { return film is Movie ? 3 : 4 }
-    private let dateFormat = "E, dd MMMM yyyy"
     
     var overview: some View {
         FilmComponent(title: "Overview") {
@@ -28,10 +27,10 @@ struct FilmDetails: View {
             HorizontalComponent(title: "Rating", details: [film.rate])
             
             if let movie = film as? Movie {
-                FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: dateFormat) ?? "", duration: movie.duration )
+                FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? "", duration: movie.duration )
             } else if let tvShow = film as? TvShow {
-                FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: dateFormat) ?? "", duration: tvShow.duration )
-                HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: dateFormat) ?? ""])
+                FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? "", duration: tvShow.duration )
+                HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: K.dateFormat) ?? ""])
             }
             
             if let languages = film.languages {
