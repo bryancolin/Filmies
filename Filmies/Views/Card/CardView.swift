@@ -16,9 +16,6 @@ struct CardView: View {
     @State var scrolled = 0
     @State var offsets: [CGFloat] = Array(repeating: 0, count: 20)
     
-    @State var flipped: Bool = false
-    @State var flip: Bool = false
-    
     var body: some View {
         ZStack {
             if let films = modelData.films[category] {

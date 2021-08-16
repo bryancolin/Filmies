@@ -20,7 +20,7 @@ struct CategoryHome: View {
     
     var title: some View {
         GeometryReader { geometry in
-            TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {
+            TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .semibold) {
                 CustomPicker(width: geometry.size.width * 0.2)
             }
         }
@@ -32,7 +32,7 @@ struct CategoryHome: View {
             // Glassmorphism Background
             background
             
-            ScrollView(.vertical, showsIndicators: false) {
+            ScrollView(showsIndicators: false) {
                 // Title
                 title
                 

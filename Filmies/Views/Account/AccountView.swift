@@ -18,7 +18,7 @@ struct AccountView: View {
     
     var title: some View {
         GeometryReader { geometry in
-            TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .bold) {
+            TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .semibold) {
                 HStack(alignment: .center) {
                     ForEach(0..<colors.count) { index in
                         Button(action: {
@@ -37,23 +37,21 @@ struct AccountView: View {
     }
     
     var body: some View {
-        ZStack(alignment: .top) {
+        ZStack {
             // Glassmorphism Background
-           background
+            background
             
-            ScrollView(.vertical, showsIndicators: false) {
-                VStack(alignment: .leading) {
-                    // Title
-                    title
-
-                    if let movies = modelData.films[K.MovieCategory.favorites] as? [Movie] {
-                        let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
-                        ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
-                    }
-                    
-                    CategoryRow(title: "Favorite Movies", color: .white, category: .constant(K.MovieCategory.favorites))
-                    CategoryRow(title: "Favorite TV Shows", color: .white, category: .constant(K.TvShowCategory.favorites))
+            ScrollView(showsIndicators: false) {
+                // Title
+                title
+                
+                if let movies = modelData.films[K.MovieCategory.favorites] as? [Movie] {
+                    let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
+                    ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
                 }
+                
+                CategoryRow(title: "Favorite Movies", color: .white, category: .constant(K.MovieCategory.favorites))
+                CategoryRow(title: "Favorite TV Shows", color: .white, category: .constant(K.TvShowCategory.favorites))
             }
         }
     }

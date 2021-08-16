@@ -24,7 +24,7 @@ struct CategoryRow: View {
                 Text(title)
                     .foregroundColor(color)
                     .font(.title3)
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .padding(.leading, 15)
                 
                 Spacer()

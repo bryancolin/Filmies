@@ -20,7 +20,7 @@ struct SearchView: View {
     
     var title: some View {
         GeometryReader { geometry in
-            TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
+            TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .semibold) {
                 CustomPicker(width: geometry.size.width * 0.2)
                 
             }
@@ -37,7 +37,7 @@ struct SearchView: View {
             // Glassmorphism Background
             background
             
-            VStack(spacing: 10) {
+            ScrollView(showsIndicators: false) {
                 // Title
                 title
                 
@@ -47,8 +47,10 @@ struct SearchView: View {
                         .font(.system(size: 20))
                     
                     TextField("Movies or tv-shows", text: $searchText, onCommit: {
-                        modelData.fetchFilms(with: "search/\(modelData.selectedType.rawValue)", name: searchText)
-                        isPresented.toggle()
+                        if !searchText.isEmpty {
+                            modelData.fetchFilms(with: "search/\(modelData.selectedType.rawValue)", name: searchText)
+                            isPresented.toggle()
+                        }
                     })
                     
                     if !searchText.isEmpty {
@@ -64,8 +66,6 @@ struct SearchView: View {
                 .background(Color.white)
                 .cornerRadius(5)
                 .padding(.horizontal)
-                
-                Spacer()
             }
             .fullScreenCover(isPresented: $isPresented) {
                 ListView(title: "Results", category: "search/\(modelData.selectedType.rawValue)", searchText: $searchText)
