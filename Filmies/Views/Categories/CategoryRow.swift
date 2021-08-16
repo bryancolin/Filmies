@@ -39,7 +39,7 @@ struct CategoryRow: View {
                         .padding(.trailing)
                 }
                 .fullScreenCover(isPresented: $isPresented) {
-                    ListView(title: title, category: category)
+                    ListView(title: title, category: category, searchText: .constant(""))
                         .environmentObject(modelData)
                         .animation(.default)
                 }

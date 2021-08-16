@@ -210,7 +210,7 @@
 				E54CC43B269D8DC40083C6FE /* Card */,
 				E5D592F526C4E5C000D318A8 /* List */,
 				E58A7F14269C0EB90066A4C7 /* Film */,
-				E568627A26A970AC00A83FCB /* Browse */,
+				E568627A26A970AC00A83FCB /* Search */,
 				E563EB8626B25C9500324CA6 /* Account */,
 				E5DA9EB1269C47800021D279 /* Components */,
 			);
@@ -310,6 +310,8 @@
 			children = (
 				E54CC439269D8DBD0083C6FE /* CardView.swift */,
 				E54CC43C269D8E8B0083C6FE /* CardElementView.swift */,
+				E568627D26A9835F00A83FCB /* CardGrid.swift */,
+				E5D82B0226AA7F18009182FE /* CardGridItem.swift */,
 			);
 			path = Card;
 			sourceTree = "<group>";
@@ -346,14 +348,12 @@
 			path = Account;
 			sourceTree = "<group>";
 		};
-		E568627A26A970AC00A83FCB /* Browse */ = {
+		E568627A26A970AC00A83FCB /* Search */ = {
 			isa = PBXGroup;
 			children = (
 				E568627826A970A300A83FCB /* SearchView.swift */,
-				E568627D26A9835F00A83FCB /* CardGrid.swift */,
-				E5D82B0226AA7F18009182FE /* CardGridItem.swift */,
 			);
-			path = Browse;
+			path = Search;
 			sourceTree = "<group>";
 		};
 		E56870C026B7F61E002BA55F /* Components */ = {

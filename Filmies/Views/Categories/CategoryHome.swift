@@ -20,9 +20,9 @@ struct CategoryHome: View {
     
     var title: some View {
         GeometryReader { geometry in
-            TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold, firstContent: {}, secondContent: {
+            TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .bold) {
                 CustomPicker(width: geometry.size.width * 0.2)
-            })
+            }
         }
         .frame(height: 75)
     }
