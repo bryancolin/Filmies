@@ -12,7 +12,6 @@ struct SearchView: View {
     @EnvironmentObject var modelData: ModelData
     
     @State private var searchText = ""
-    
     @State private var isPresented = false
     
     var background: some View {
@@ -23,10 +22,14 @@ struct SearchView: View {
         GeometryReader { geometry in
             TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .bold) {
                 CustomPicker(width: geometry.size.width * 0.2)
-               
+                
             }
         }
         .frame(height: 75)
+    }
+    
+    init() {
+        UITextField().returnKeyType = .search
     }
     
     var body: some View {
@@ -40,23 +43,26 @@ struct SearchView: View {
                 
                 // Search Bar
                 HStack {
-                    TextField("Type here...", text: $searchText)
+                    Image(systemName: "magnifyingglass")
+                        .font(.system(size: 20))
                     
-                    Button(action: {
-                        if !searchText.isEmpty {
-                            modelData.fetchFilms(with: "search/\(modelData.selectedType.rawValue)", name: searchText)
-                            isPresented.toggle()
+                    TextField("Movies or tv-shows", text: $searchText, onCommit: {
+                        modelData.fetchFilms(with: "search/\(modelData.selectedType.rawValue)", name: searchText)
+                        isPresented.toggle()
+                    })
+                    
+                    if !searchText.isEmpty {
+                        Button(action: { searchText = "" }) {
+                            Image(systemName: "xmark")
+                                .font(.system(size: 20))
                         }
-                    }) {
-                        Image(systemName: "arrow.up.forward.circle.fill")
-                            .font(.system(size: 25, weight: .semibold))
                     }
                 }
                 .accentColor(Color(K.BrandColors.pink))
                 .foregroundColor(Color(K.BrandColors.pink))
                 .padding(12)
                 .background(Color.white)
-                .cornerRadius(8)
+                .cornerRadius(5)
                 .padding(.horizontal)
                 
                 Spacer()
