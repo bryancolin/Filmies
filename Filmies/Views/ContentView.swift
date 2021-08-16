@@ -16,13 +16,14 @@ struct ContentView: View {
             switch selectedTab {
             case .house:
                 CategoryHome()
+                    .animation(.default)
             case .search:
                 SearchView()
             case .person:
                 AccountView()
+                    .animation(.default)
             }
         }
-        .animation(.default)
         .overlay(
             CustomTabBar(selectedTab: $selectedTab)
                 .padding(.bottom, getSafeArea().bottom == 0 ? 12 : 0),

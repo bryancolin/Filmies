@@ -14,6 +14,10 @@ struct SearchView: View {
     @State private var searchText = ""
     @State private var isPresented = false
     
+    init() {
+        UITextField().returnKeyType = .search
+    }
+    
     var background: some View {
         GlassmorphismBackground(type: .right, circleColors: .constant([Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)]), backgroundColors: [Color(K.BrandColors.purple), Color(K.BrandColors.pink)])
     }
@@ -28,50 +32,51 @@ struct SearchView: View {
         .frame(height: 75)
     }
     
-    init() {
-        UITextField().returnKeyType = .search
+    var searchBar: some View {
+        HStack {
+            Image(systemName: "magnifyingglass")
+                .font(.system(size: 20))
+            
+            TextField("Movies or tv-shows", text: $searchText, onCommit: {
+                if !searchText.isEmpty {
+                    modelData.fetchFilms(with: "search/\(modelData.selectedType.rawValue)", name: searchText)
+                    isPresented.toggle()
+                }
+            })
+            
+            if !searchText.isEmpty {
+                Button(action: { searchText = "" }) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 20))
+                }
+            }
+        }
+        .accentColor(Color(K.BrandColors.pink))
+        .foregroundColor(Color(K.BrandColors.pink))
+        .padding(12)
+        .background(Color.white)
+        .cornerRadius(5)
+        .padding(.horizontal)
     }
     
     var body: some View {
-        ZStack {
-            // Glassmorphism Background
-            background
+        // Glassmorphism Background
+        background
+        
+        ScrollView(showsIndicators: false) {
+            // Title
+            title
             
-            ScrollView(showsIndicators: false) {
-                // Title
-                title
-                
-                // Search Bar
-                HStack {
-                    Image(systemName: "magnifyingglass")
-                        .font(.system(size: 20))
-                    
-                    TextField("Movies or tv-shows", text: $searchText, onCommit: {
-                        if !searchText.isEmpty {
-                            modelData.fetchFilms(with: "search/\(modelData.selectedType.rawValue)", name: searchText)
-                            isPresented.toggle()
-                        }
-                    })
-                    
-                    if !searchText.isEmpty {
-                        Button(action: { searchText = "" }) {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 20))
-                        }
-                    }
+            // Pinned Search Bar
+            LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
+                Section(header: searchBar) {
+                    //Content
                 }
-                .accentColor(Color(K.BrandColors.pink))
-                .foregroundColor(Color(K.BrandColors.pink))
-                .padding(12)
-                .background(Color.white)
-                .cornerRadius(5)
-                .padding(.horizontal)
             }
-            .fullScreenCover(isPresented: $isPresented) {
-                ListView(title: "Results", category: "search/\(modelData.selectedType.rawValue)", searchText: $searchText)
-                    .environmentObject(modelData)
-                    .animation(.default)
-            }
+        }
+        .fullScreenCover(isPresented: $isPresented) {
+            ListView(title: "Results", category: "search/\(modelData.selectedType.rawValue)", searchText: $searchText)
+                .environmentObject(modelData)
         }
     }
 }

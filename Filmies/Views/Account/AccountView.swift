@@ -37,22 +37,20 @@ struct AccountView: View {
     }
     
     var body: some View {
-        ZStack {
-            // Glassmorphism Background
-            background
+        // Glassmorphism Background
+        background
+        
+        ScrollView(showsIndicators: false) {
+            // Title
+            title
             
-            ScrollView(showsIndicators: false) {
-                // Title
-                title
-                
-                if let movies = modelData.films[K.MovieCategory.favorites] as? [Movie] {
-                    let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
-                    ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
-                }
-                
-                CategoryRow(title: "Favorite Movies", color: .white, category: .constant(K.MovieCategory.favorites))
-                CategoryRow(title: "Favorite TV Shows", color: .white, category: .constant(K.TvShowCategory.favorites))
+            if let movies = modelData.films[K.MovieCategory.favorites] as? [Movie] {
+                let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
+                ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
             }
+            
+            CategoryRow(title: "Favorite Movies", color: .white, category: .constant(K.MovieCategory.favorites))
+            CategoryRow(title: "Favorite TV Shows", color: .white, category: .constant(K.TvShowCategory.favorites))
         }
     }
 }
