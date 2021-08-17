@@ -49,8 +49,8 @@ struct AccountView: View {
                 ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
             }
             
-            CategoryRow(title: "Favorite Movies", color: .white, category: .constant(K.MovieCategory.favorites))
-            CategoryRow(title: "Favorite TV Shows", color: .white, category: .constant(K.TvShowCategory.favorites))
+            CategoryRow(title: "Favorite Movies", color: .white, category: K.MovieCategory.favorites)
+            CategoryRow(title: "Favorite TV Shows", color: .white, category: K.TvShowCategory.favorites)
         }
     }
 }

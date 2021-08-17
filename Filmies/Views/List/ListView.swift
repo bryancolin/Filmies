@@ -17,11 +17,7 @@ struct ListView: View {
     @Binding var searchText: String
     
     @State private var numberOfColumns = 2
-    
-    @State var scrollViewOffset: CGFloat = 0
-    @State var startOffset: CGFloat = 0
-    @State var isScrollToTop = false
-    
+
     var background: some View {
         GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color.black], blurRadius: 100)
     }

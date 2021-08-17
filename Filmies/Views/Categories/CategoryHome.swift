@@ -37,13 +37,13 @@ struct CategoryHome: View {
             
             // Scroll Tab for Trending Movies (Day & Week)
             ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex)
-            CardView(category: modelData.selectedType == .movie ? $modelData.movieParams[selectedIndex] : $modelData.tvShowParams[selectedIndex])
+            CardView(category: modelData.selectedType == .movie ? modelData.movieParams[selectedIndex] : modelData.tvShowParams[selectedIndex])
             
             // Scroll View
-            let subtitles = modelData.selectedType == .movie ? ["Now Playing", "Popular", "Upcoming", "Top Rated"] : ["Airing Today", "Popular", "On The Air", "Top Rated"]
+            let subtitles = [(modelData.selectedType == .movie ? "Now Playing" : "Airing Today"), "Top Rated"]
             
             ForEach(0..<subtitles.count) {
-                CategoryRow(title: subtitles[$0], color: Color(K.BrandColors.pink), category: modelData.selectedType == .movie ? $modelData.movieParams[$0 + 2] : $modelData.tvShowParams[$0 + 2])
+                CategoryRow(title: subtitles[$0], color: Color(K.BrandColors.pink), category: modelData.selectedType == .movie ? modelData.movieParams[$0 + 2] : modelData.tvShowParams[$0 + 2])
             }
         }
     }

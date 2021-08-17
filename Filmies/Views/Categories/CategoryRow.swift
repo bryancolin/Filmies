@@ -13,7 +13,7 @@ struct CategoryRow: View {
     
     var title: String
     var color: Color
-    @Binding var category: String
+    var category: String
     
     @State private var isPresented = false
     
@@ -54,16 +54,8 @@ struct CategoryRow: View {
                             ForEach(0..<20) {
                                 if $0 < films.count {
                                     CategoryItem(film: films[$0], category: category)
-                                        .id($0)
                                         .redacted(reason: modelData.isLoading ? .placeholder : [])
                                 }
-                            }
-                        }
-                    }
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                            withAnimation(Animation.spring().delay(1)) {
-                                proxyReader.scrollTo(Int.random(in: 0..<19), anchor: .center)
                             }
                         }
                     }

@@ -12,8 +12,8 @@ final class ModelData: ObservableObject {
     private let url = "https://api.themoviedb.org/3"
     private let apiKey = "?api_key=\(Bundle.main.infoDictionary?["API_KEY"] as? String ?? "")"
     
-    var movieParams = ["movie/day", "movie/week", "movie/now_playing", "movie/popular", "movie/upcoming", "movie/top_rated"]
-    var tvShowParams = ["tv/day", "tv/week", "tv/airing_today", "tv/popular", "tv/on_the_air", "tv/top_rated"]
+    var movieParams = ["movie/day", "movie/week", "movie/now_playing", "movie/top_rated", "movie/popular", "movie/upcoming"]
+    var tvShowParams = ["tv/day", "tv/week", "tv/airing_today", "tv/top_rated", "tv/popular", "tv/on_the_air"]
     
     @Published var films = [String: [Film]]()
     @Published var selectedType: FilmType = .movie
