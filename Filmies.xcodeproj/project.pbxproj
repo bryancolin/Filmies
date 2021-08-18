@@ -10,6 +10,7 @@
 		27147AFF2124A97E06A86996 /* Pods_Filmies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E1DF6C58740873839F5188D /* Pods_Filmies.framework */; };
 		E50254F626983E6B000C6F03 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50254F526983E6B000C6F03 /* ModelData.swift */; };
 		E50254F826983E80000C6F03 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50254F726983E80000C6F03 /* Movie.swift */; };
+		E503173D26CCB914009155E7 /* ListItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = E503173C26CCB914009155E7 /* ListItem.swift */; };
 		E50C1A2326A18B50003CE717 /* FlipEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50C1A2226A18B4F003CE717 /* FlipEffect.swift */; };
 		E50DBD7E26A2BA43005948E7 /* WebPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DBD7D26A2BA43005948E7 /* WebPlayerView.swift */; };
 		E515A1572697FC85008D4FE4 /* FilmiesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E515A1562697FC85008D4FE4 /* FilmiesApp.swift */; };
@@ -91,6 +92,7 @@
 		0E1DF6C58740873839F5188D /* Pods_Filmies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filmies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50254F526983E6B000C6F03 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		E50254F726983E80000C6F03 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		E503173C26CCB914009155E7 /* ListItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItem.swift; sourceTree = "<group>"; };
 		E50C1A2226A18B4F003CE717 /* FlipEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlipEffect.swift; sourceTree = "<group>"; };
 		E50DBD7D26A2BA43005948E7 /* WebPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebPlayerView.swift; sourceTree = "<group>"; };
 		E515A1532697FC85008D4FE4 /* Filmies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Filmies.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -497,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				E5D592F326C4E5B800D318A8 /* ListView.swift */,
+				E503173C26CCB914009155E7 /* ListItem.swift */,
 			);
 			path = List;
 			sourceTree = "<group>";
@@ -699,6 +702,7 @@
 				E5943ABE26B9345000CF9836 /* Direction.swift in Sources */,
 				E56870C626B7F61E002BA55F /* HorizontalComponent.swift in Sources */,
 				E5840A6A26A7FD7B00E3F782 /* TabCurve.swift in Sources */,
+				E503173D26CCB914009155E7 /* ListItem.swift in Sources */,
 				E564B11D26ABFCDB002637A9 /* CustomDivider.swift in Sources */,
 				E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */,
 				E50254F826983E80000C6F03 /* Movie.swift in Sources */,
