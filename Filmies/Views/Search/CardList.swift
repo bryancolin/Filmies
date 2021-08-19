@@ -52,7 +52,7 @@ struct CardList: View {
         .frame(height: 100)
         .cornerRadius(8)
         .fullScreenCover(isPresented: $isPresented) {
-            ListView(title: title.capitalized, category: category, searchText: .constant(""))
+            ListView(title: title, category: category, searchText: .constant(""))
                 .environmentObject(modelData)
                 .animation(.default)
         }
