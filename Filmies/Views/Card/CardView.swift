@@ -10,14 +10,12 @@ import SDWebImageSwiftUI
 
 struct CardView: View {
     
-    @Binding var category: String
     @EnvironmentObject var modelData: ModelData
+    
+    var category: String
     
     @State var scrolled = 0
     @State var offsets: [CGFloat] = Array(repeating: 0, count: 20)
-    
-    @State var flipped: Bool = false
-    @State var flip: Bool = false
     
     var body: some View {
         ZStack {

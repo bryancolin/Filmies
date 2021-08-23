@@ -26,7 +26,7 @@ struct VerticalComponent: View {
                     ForEach(0..<5) { index in
                         if index < details.count {
                             VStack(alignment: .leading) {
-                                CustomImage(urlString: urls[index], placeholder: "user")
+                                CustomImage(urlString: urls[index], placeholder: details[index])
                                     .frame(width: 75, height: 75)
                                     .cornerRadius(50)
                                 

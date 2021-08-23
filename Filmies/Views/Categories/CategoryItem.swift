@@ -51,7 +51,7 @@ struct CategoryItem: View {
                                         .font(.system(size: fontSize))
                                         .foregroundColor(.white)
                                 )
-                                .padding(EdgeInsets(top: 5, leading: 5, bottom: 0, trailing: 0))
+                                .padding(5)
                         }
                         .frame(maxHeight: .infinity),
                         alignment: .topLeading

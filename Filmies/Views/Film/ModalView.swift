@@ -49,7 +49,7 @@ struct ModalView: View {
                     FilmTrailer(film: film, category: category)
                     
                     // Title Description
-                    TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold, firstContent: {}, secondContent: {
+                    TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold) {
                         Button(action: {
                             isFavorite.toggle()
                             modelData.highlightFilm(type: filmType, param: film.category, id: film.id ?? 0, check: isFavorite)
@@ -58,7 +58,7 @@ struct ModalView: View {
                                 .font(.system(size: 20, weight: .semibold))
                                 .foregroundColor(.white)
                         }
-                    })
+                    }
                 }
                 .background(Color.black.opacity(0.75))
                 .clipShape(RoundedRectangle(cornerRadius: 10))

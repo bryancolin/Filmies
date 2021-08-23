@@ -17,11 +17,11 @@ struct K {
     }
     
     struct MovieCategory {
-        static let favorites = "favoriteMovies"
+        static let favorites = "movie/favorites"
     }
     
     struct TvShowCategory {
-        static let favorites = "favoriteTvShows"
+        static let favorites = "tv/favorites"
     }
     
     struct BrandColors {

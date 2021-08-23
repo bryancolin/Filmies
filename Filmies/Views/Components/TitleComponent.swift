@@ -7,22 +7,20 @@
 
 import SwiftUI
 
-struct TitleComponent<FirstContent, SecondContent>: View where FirstContent : View, SecondContent : View {
+struct TitleComponent<Content>: View where Content : View {
     
     var name: String
     var color: Color
     var type: Font
     var weight: Font.Weight
-    let firstContent: () -> FirstContent
-    let secondContent: () -> SecondContent
+    let content: () -> Content
     
-    init(name: String, color: Color, type: Font, weight: Font.Weight, @ViewBuilder firstContent: @escaping () -> FirstContent, @ViewBuilder secondContent: @escaping () -> SecondContent) {
+    init(name: String, color: Color, type: Font, weight: Font.Weight, @ViewBuilder _ content: @escaping () -> Content) {
         self.name = name
         self.color = color
         self.type = type
         self.weight = weight
-        self.firstContent = firstContent
-        self.secondContent = secondContent
+        self.content = content
     }
     
     var body: some View {
@@ -35,11 +33,9 @@ struct TitleComponent<FirstContent, SecondContent>: View where FirstContent : Vi
                 .lineLimit(2)
                 .minimumScaleFactor(0.5)
             
-            firstContent()
-            
             Spacer()
             
-            secondContent()
+            content()
         }
         .padding()
     }

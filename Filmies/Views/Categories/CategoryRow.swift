@@ -13,7 +13,7 @@ struct CategoryRow: View {
     
     var title: String
     var color: Color
-    @Binding var category: String
+    var category: String
     
     @State private var isPresented = false
     
@@ -24,7 +24,7 @@ struct CategoryRow: View {
                 Text(title)
                     .foregroundColor(color)
                     .font(.title3)
-                    .fontWeight(.bold)
+                    .fontWeight(.semibold)
                     .padding(.leading, 15)
                 
                 Spacer()
@@ -34,12 +34,12 @@ struct CategoryRow: View {
                 }) {
                     Text("see all")
                         .foregroundColor(Color.white.opacity(0.5))
-                        .font(.subheadline)
-                        .fontWeight(.light)
+                        .font(.caption)
+                        .fontWeight(.semibold)
                         .padding(.trailing)
                 }
                 .fullScreenCover(isPresented: $isPresented) {
-                    ListView(title: title, category: category)
+                    ListView(title: title, category: category, searchText: .constant(""))
                         .environmentObject(modelData)
                         .animation(.default)
                 }
@@ -54,16 +54,8 @@ struct CategoryRow: View {
                             ForEach(0..<20) {
                                 if $0 < films.count {
                                     CategoryItem(film: films[$0], category: category)
-                                        .id($0)
                                         .redacted(reason: modelData.isLoading ? .placeholder : [])
                                 }
-                            }
-                        }
-                    }
-                    .onAppear {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                            withAnimation(Animation.spring().delay(1)) {
-                                proxyReader.scrollTo(Int.random(in: 0..<19), anchor: .center)
                             }
                         }
                     }

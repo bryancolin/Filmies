@@ -14,11 +14,10 @@ struct ListView: View {
     
     var title: String
     var category: String
+    @Binding var searchText: String
     
-    @State var scrollViewOffset: CGFloat = 0
-    @State var startOffset: CGFloat = 0
-    @State var isScrollToTop = false
-    
+    @State private var numberOfColumns = 2
+
     var background: some View {
         GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color.black], blurRadius: 100)
     }
@@ -40,18 +39,25 @@ struct ListView: View {
                     .padding()
                     
                     // Title
-                    TitleComponent(name: title, color: .white, type: .largeTitle, weight: .bold, firstContent: {}, secondContent: {})
+                    TitleComponent(name: title, color: .white, type: .largeTitle, weight: .bold) {
+                        Button(action: {
+                            numberOfColumns = numberOfColumns % 2 + 1
+                        }) {
+                            Image(systemName: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
+                                .font(.system(size: 20, weight: .semibold))
+                        }
+                    }
                     
                     // Cards
-                    if let films = modelData.films[category] {
+                    if let films = modelData.films[category], !modelData.isError {
                         ForEach(films) {
                             ListItem(film: $0, category: category)
                         }
                         
                         // Load More
-                        if films.count % 20 == 0 {
+                        if films.count % 20 == 0 && !category.contains("favorites") {
                             Button(action: {
-                                modelData.fetchFilms(with: category, pageNumber: (films.count / 20) + 1)
+                                modelData.fetchFilms(with: category, name: searchText, pageNumber: (films.count / 20) + 1)
                             }) {
                                 RoundedRectangle(cornerRadius: 8)
                                     .frame(height: 50)
@@ -63,6 +69,10 @@ struct ListView: View {
                             }
                             .padding()
                         }
+                    } else {
+                        Text("Not Found")
+                            .font(.caption2)
+                            .padding(.horizontal)
                     }
                 }
             }
@@ -72,63 +82,7 @@ struct ListView: View {
 
 struct ListItem_Previews: PreviewProvider {
     static var previews: some View {
-        ListView(title: "Now Playing", category: "movie/now_playing")
+        ListView(title: "Now Playing", category: "movie/now_playing", searchText: .constant(""))
             .environmentObject(ModelData())
-    }
-}
-
-struct ListItem: View {
-    
-    @EnvironmentObject var modelData: ModelData
-    
-    var film: Film
-    var category: String
-    
-    private var title: String {
-        if let tvShow = film as? TvShow {
-            return tvShow.name ?? ""
-        }
-        return film.title ?? ""
-    }
-    
-    private var releaseDate: String {
-        if let movie = film as? Movie {
-            return movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? ""
-        } else if let tvShow = film as? TvShow {
-            return tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? ""
-        } else {
-            return ""
-        }
-    }
-    
-    var body: some View {
-        HStack(alignment: .top) {
-            CategoryItem(film: film, category: category)
-                .padding(.leading, -15)
-            
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.headline)
-                    .fontWeight(.bold)
-                    .lineLimit(2)
-                
-                Text(releaseDate)
-                    .font(.caption2)
-                    .fontWeight(.light)
-                    .lineLimit(1)
-                    
-                    .padding(.vertical, 5)
-                
-                Text(film.description)
-                    .font(.subheadline)
-                    .lineLimit(5)
-            }
-            .minimumScaleFactor(0.5)
-            .padding()
-        }
-        .background(Color.white.opacity(0.2))
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .padding(.horizontal)
-        .redacted(reason: modelData.isLoading ? .placeholder : [])
     }
 }
