@@ -39,23 +39,21 @@ struct ListItem: View {
             
             VStack(alignment: .leading) {
                 Text(title)
-                    .font(.headline)
+                    .font(.title3)
                     .fontWeight(.bold)
                     .lineLimit(2)
                 
                 Text(releaseDate)
-                    .font(.caption2)
+                    .font(.caption)
                     .fontWeight(.regular)
                     .lineLimit(1)
-                    
                     .padding(.vertical, 5)
                 
                 Text(film.description)
-                    .font(.subheadline)
-                    .lineLimit(5)
+                    .font(.headline)
+                    .lineLimit(3)
                     .opacity(0.5)
             }
-            .minimumScaleFactor(0.5)
             .padding()
         }
         .background(Color.white.opacity(0.2))

@@ -49,7 +49,7 @@ struct ListView: View {
                     }
                     
                     // Cards
-                    if let films = modelData.films[category], !modelData.isError {
+                    if let films = modelData.films[category] {
                         ForEach(films) {
                             ListItem(film: $0, category: category)
                         }
@@ -69,9 +69,9 @@ struct ListView: View {
                             }
                             .padding()
                         }
-                    } else {
+                    } else if modelData.isError {
                         Text("Not Found")
-                            .font(.caption2)
+                            .font(.caption)
                             .padding(.horizontal)
                     }
                 }

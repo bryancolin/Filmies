@@ -47,15 +47,14 @@ struct CategoryRow: View {
             .padding(.top, 5)
             
             // Content
-            ScrollViewReader { proxyReader in
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(alignment: .top, spacing: 0) {
-                        if let films = modelData.films[category] {
-                            ForEach(0..<20) {
-                                if $0 < films.count {
-                                    CategoryItem(film: films[$0], category: category)
-                                        .redacted(reason: modelData.isLoading ? .placeholder : [])
-                                }
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(alignment: .top, spacing: 0) {
+                    if let films = modelData.films[category] {
+                        ForEach(0..<20) {
+                            if $0 < films.count {
+                                CategoryItem(film: films[$0], category: category)
+                                    .redacted(reason: modelData.isLoading ? .placeholder : [])
+                                    .padding(.trailing, $0 == 19 ? 15 : 0)
                             }
                         }
                     }
