@@ -4,10 +4,11 @@ An iOS app for movie/tv-show lovers to browse and search for movies with an incr
 
 ## Features
 
-- Broswe Trending, Now Playing, Upcoming, & Top Rated Movies/Tv-Shows
+- Browse Trending, Now Playing, Upcoming, Popular & Top Rated Movies/Tv-Shows
 - Search For Movies/Tv-Shows
 - Add Movie/Tv-Shows as Favorites
-- View Movies Screen Time
+- View Movies Screen Time (All Time)
+- View Actor/Actress Profiles
 
 ## Requirements
 
