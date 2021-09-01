@@ -18,6 +18,8 @@ struct People: Codable, Identifiable {
         return String()
     }
     
+    let movieCredits, tvCredits: Credits?
+    
     enum CodingKeys: String, CodingKey {
         case id
         case name
@@ -27,5 +29,8 @@ struct People: Codable, Identifiable {
         case deathday
         case department = "known_for_department"
         case profilePath = "profile_path"
+        
+        case movieCredits = "movie_credits"
+        case tvCredits = "tv_credits"
     }
 }

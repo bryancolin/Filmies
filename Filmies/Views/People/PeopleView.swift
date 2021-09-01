@@ -47,23 +47,16 @@ struct PeopleView: View {
                     
                     VStack(alignment: .leading) {
                         HorizontalComponent(title: "From", details: [people.birthPlace ?? "-"])
-                        HorizontalComponent(title: "Date of Birth", details: [people.birthday ?? "-"])
+                        HorizontalComponent(title: "Date of Birth", details: [people.birthday?.toDate().toString(format: K.dateFormat) ?? "-"])
                         
                         Text(people.biography ?? "")
                             .font(.subheadline)
                             .fixedSize(horizontal: false, vertical: true)
                         
-                        Text("Movies")
-                            .foregroundColor(.white)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .padding(.vertical)
-                        
-                        Text("TV Shows")
-                            .foregroundColor(.white)
-                            .font(.title3)
-                            .fontWeight(.semibold)
-                            .padding(.vertical)
+                        CategoryRow(title: "Movies", color: .white, category: "person/\(id)/movie")
+                            .padding(.horizontal, -15)
+                        CategoryRow(title: "Tv Shows", color: .white, category: "person/\(id)/tv")
+                            .padding(.horizontal, -15)
                     }
                     .padding()
                 }

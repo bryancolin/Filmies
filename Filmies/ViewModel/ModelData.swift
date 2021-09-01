@@ -167,15 +167,16 @@ final class ModelData: ObservableObject {
     }
     
     func fetchPeople(id: Int) {
-
-        let fullURL = "\(url)/person/\(id)" + apiKey
+        let fullURL = "\(url)/person/\(id)" + apiKey + "&append_to_response=movie_credits,tv_credits&include_image_language=en"
         
         URLSession.shared.request(url: URL(string: fullURL), expecting: People.self) { [weak self] response in
             switch response {
             case .success(let result):
-                print(result)
                 DispatchQueue.main.async {
                     self?.people[result.id ?? 0] = result
+                    
+                    self?.films["person/\(id)/movie"] = result.movieCredits?.all
+                    self?.films["person/\(id)/tv"] = result.tvCredits?.all
                 }
             case .failure(let error):
                 print(error)
