@@ -18,6 +18,8 @@ final class ModelData: ObservableObject {
     @Published var films = [String: [Film]]()
     @Published var selectedType: FilmType = .movie
     
+    @Published var people = [Int: People]()
+    
     @Published var isLoading = false
     @Published var isError = false
     
@@ -161,6 +163,23 @@ final class ModelData: ObservableObject {
         if let encoded = try? encoder.encode(films[type]) {
             print(String(data: encoded, encoding: .utf8)!)
             UserDefaults.standard.set(encoded, forKey: key)
+        }
+    }
+    
+    func fetchPeople(id: Int) {
+
+        let fullURL = "\(url)/person/\(id)" + apiKey
+        
+        URLSession.shared.request(url: URL(string: fullURL), expecting: People.self) { [weak self] response in
+            switch response {
+            case .success(let result):
+                print(result)
+                DispatchQueue.main.async {
+                    self?.people[result.id ?? 0] = result
+                }
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }
