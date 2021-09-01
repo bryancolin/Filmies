@@ -12,31 +12,55 @@ struct PeopleView: View {
     @EnvironmentObject var modelData: ModelData
     @Environment(\.presentationMode) var presentationMode
     
+    var edges = UIApplication.shared.windows.first?.safeAreaInsets
+    @State var opacity: Double = 1
+    
     var id: Int
     
     var background: some View {
         GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color.black], blurRadius: 100)
     }
     
+    var header: some View {
+        // Back Button
+        HStack {
+            Button(action: {
+                presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "arrow.backward")
+                    .font(.system(size: 25))
+            }
+            
+            Spacer()
+            
+            if let people = modelData.people[id] {
+                Text(people.name ?? "")
+                    .font(.title3)
+                    .opacity(opacity)
+            }
+            
+            Spacer()
+            
+            Button(action: {}) {
+                Image(systemName: "star")
+                    .font(.system(size: 20))
+            }
+        }
+        .padding()
+        .padding(.top, edges!.top)
+        .background(Blur(style: .dark).opacity(opacity))
+        
+    }
+    
     var body: some View {
-        ZStack {
+        ZStack(alignment: .topLeading) {
             // Background
             background
+            
             // Component
             ScrollView(.vertical, showsIndicators: false) {
                 if let people = modelData.people[id] {
                     CustomImage(urlString: people.profileURL, placeholder: people.name ?? "")
-                        .overlay(
-                            Button(action: {
-                                presentationMode.wrappedValue.dismiss()
-                            }) {
-                                Image(systemName: "arrow.backward")
-                                    .font(.system(size: 25))
-                            }
-                            .padding(.horizontal)
-                            .padding(.top, 40),
-                            alignment: .topLeading
-                        )
                         .overlay(
                             Text(people.name ?? "")
                                 .font(.title)
@@ -44,6 +68,25 @@ struct PeopleView: View {
                             alignment: .bottomTrailing
                         )
                         .frame(maxWidth: UIScreen.main.bounds.width)
+                        .overlay(
+                            GeometryReader { proxy -> Color in
+                                DispatchQueue.main.async {
+                                    let offset = proxy.frame(in:. global).minY + UIScreen.main.bounds.height / 2
+                                    
+                                    if offset < 80 {
+                                        if offset > 0 {
+                                            let opacity_value = (80 -  offset) / 80
+                                            self.opacity = Double(opacity_value)
+                                            return
+                                        }
+                                        self.opacity = 1
+                                    } else {
+                                        self.opacity = 0
+                                    }
+                                }
+                                return Color.clear
+                            }
+                        )
                     
                     VStack(alignment: .leading) {
                         HorizontalComponent(title: "From", details: [people.birthPlace ?? "-"])
@@ -53,14 +96,17 @@ struct PeopleView: View {
                             .font(.subheadline)
                             .fixedSize(horizontal: false, vertical: true)
                         
-                        CategoryRow(title: "Movies", color: .white, category: "person/\(id)/movie")
-                            .padding(.horizontal, -15)
-                        CategoryRow(title: "Tv Shows", color: .white, category: "person/\(id)/tv")
-                            .padding(.horizontal, -15)
+                        VStack {
+                            CategoryRow(title: "Movies", color: .white, category: "person/\(id)/movie")
+                            CategoryRow(title: "Tv Shows", color: .white, category: "person/\(id)/tv")
+                        }
+                        .padding(.horizontal, -15)
                     }
                     .padding()
                 }
             }
+            
+            header
         }
         .ignoresSafeArea()
         .onAppear {
