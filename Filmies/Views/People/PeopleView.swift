@@ -97,8 +97,8 @@ struct PeopleView: View {
                             .fixedSize(horizontal: false, vertical: true)
                         
                         VStack {
-                            CategoryRow(title: "Movies", color: .white, category: "person/\(id)/movie")
-                            CategoryRow(title: "Tv Shows", color: .white, category: "person/\(id)/tv")
+                            CategoryRow(title: "Movies", color: .white, category: String(id) + K.People.movie)
+                            CategoryRow(title: "Tv Shows", color: .white, category: String(id) + K.People.tv)
                         }
                         .padding(.horizontal, -15)
                     }

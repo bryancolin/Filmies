@@ -12,8 +12,8 @@ final class ModelData: ObservableObject {
     private let url = "https://api.themoviedb.org/3"
     private let apiKey = "?api_key=\(Bundle.main.infoDictionary?["API_KEY"] as? String ?? "")"
     
-    var movieParams = ["movie/day", "movie/week", "movie/now_playing", "movie/top_rated", "movie/popular", "movie/upcoming"]
-    var tvShowParams = ["tv/day", "tv/week", "tv/airing_today", "tv/top_rated", "tv/popular", "tv/on_the_air"]
+    var movieParams = [K.Movie.daily, K.Movie.weekly, K.Movie.nowPlaying, K.Movie.topRated, K.Movie.popular, K.Movie.popular]
+    var tvShowParams = [K.Tv.daily, K.Tv.weekly, K.Tv.airingToday, K.Tv.topRated, K.Tv.popular, K.Tv.onAir]
     
     @Published var films = [String: [Film]]()
     @Published var selectedType: FilmType = .movie
@@ -26,22 +26,19 @@ final class ModelData: ObservableObject {
     init() {
         let _ = (movieParams + tvShowParams).map { fetchFilms(with: $0) }
         
-        loadFavoriteFilms(type: K.MovieCategory.favorites, key: K.UserDefaults.movieKey, expecting: [Movie].self)
-        loadFavoriteFilms(type: K.TvShowCategory.favorites, key: K.UserDefaults.tvKey, expecting: [TvShow].self)
+        loadFavoriteFilms(type: K.Movie.favorites, key: K.UserDefaults.movieKey, expecting: [Movie].self)
+        loadFavoriteFilms(type: K.Tv.favorites, key: K.UserDefaults.tvKey, expecting: [TvShow].self)
     }
     
     func fetchFilms(with param: String, name: String = "", pageNumber: Int = 1) {
         isLoading = true
         isError = false
         
-        // Trending Params
-        let trend = param.contains("/day") || param.contains("/week") ? "trending/" : ""
-        
         // Searching Films
         let urlName = name.replacingOccurrences(of: " ", with: "+")
         let query = name.isEmpty ? "" : "&query=\(urlName)"
         
-        let fullURL = "\(url)/\(trend)\(param)" + apiKey + query + "&page=\(pageNumber)"
+        let fullURL = "\(url)/\(param)" + apiKey + query + "&page=\(pageNumber)"
         
         URLSession.shared.request(url: URL(string: fullURL), expecting: Films.self) { [weak self] response in
             switch response {
@@ -128,7 +125,7 @@ final class ModelData: ObservableObject {
             }
         }
         
-        saveFavoriteFilms(type: type, key: type == K.MovieCategory.favorites ? K.UserDefaults.movieKey : K.UserDefaults.tvKey)
+        saveFavoriteFilms(type: type, key: type == K.Movie.favorites ? K.UserDefaults.movieKey : K.UserDefaults.tvKey)
     }
     
     func findFilm(param: String, id: Int) -> (exists: Bool, index: Int) {
@@ -175,8 +172,8 @@ final class ModelData: ObservableObject {
                 DispatchQueue.main.async {
                     self?.people[result.id ?? 0] = result
                     
-                    self?.films["person/\(id)/movie"] = result.movieCredits?.all
-                    self?.films["person/\(id)/tv"] = result.tvCredits?.all
+                    self?.films[String(id) + K.People.movie] = result.movieCredits?.all
+                    self?.films[String(id) + K.People.tv] = result.tvCredits?.all
                 }
             case .failure(let error):
                 print(error)

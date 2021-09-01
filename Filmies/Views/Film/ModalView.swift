@@ -28,7 +28,7 @@ struct ModalView: View {
     }
     
     var filmType: String {
-        return film is Movie ? K.MovieCategory.favorites : K.TvShowCategory.favorites
+        return film is Movie ? K.Movie.favorites : K.Tv.favorites
     }
     
     var transition: AnyTransition {

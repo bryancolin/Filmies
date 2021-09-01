@@ -21,7 +21,7 @@ struct FilmTrailer: View {
         }) {
             if !officialTrailers.isEmpty {
                 VStack {
-                    if officialTrailers.count > 1 && category != K.MovieCategory.favorites {
+                    if officialTrailers.count > 1 && category != K.Movie.favorites {
                         PageView(pages: officialTrailers.compactMap{ WebPlayerView(urlString: $0.youtubeURL, loadOnce: true)},
                                  alignment: .topTrailing)
                     } else {
