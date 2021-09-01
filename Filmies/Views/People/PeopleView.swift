@@ -12,6 +12,8 @@ struct PeopleView: View {
     @EnvironmentObject var modelData: ModelData
     @Environment(\.presentationMode) var presentationMode
     
+    var id: Int
+    
     var background: some View {
         GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color.black], blurRadius: 100)
     }
@@ -22,44 +24,54 @@ struct PeopleView: View {
             background
             // Component
             ScrollView(.vertical, showsIndicators: false) {
-                CustomImage(urlString: "")
-                    .frame(height: UIScreen.main.bounds.height / 3)
-                    .overlay(
-                        Button(action: {
-                            presentationMode.wrappedValue.dismiss()
-                        }) {
-                            Image(systemName: "arrow.backward")
-                                .font(.system(size: 25))
-                        }
-                        .padding(.horizontal)
-                        .padding(.top, 40),
-                        alignment: .topLeading
-                    )
-                    .overlay(
-                        Text("Name")
-                            .font(.title)
-                            .padding(),
-                        alignment: .bottomTrailing
-                    )
+                if let people = modelData.people[id] {
+                    CustomImage(urlString: people.profileURL, placeholder: people.name ?? "")
+                        .overlay(
+                            Button(action: {
+                                presentationMode.wrappedValue.dismiss()
+                            }) {
+                                Image(systemName: "arrow.backward")
+                                    .font(.system(size: 25))
+                            }
+                            .padding(.horizontal)
+                            .padding(.top, 40),
+                            alignment: .topLeading
+                        )
+                        .overlay(
+                            Text(people.name ?? "")
+                                .font(.title)
+                                .padding(),
+                            alignment: .bottomTrailing
+                        )
+                        .frame(maxWidth: UIScreen.main.bounds.width)
                     
-                VStack(alignment: .leading) {
-                    HorizontalComponent(title: "From", details: [""])
-                    HorizontalComponent(title: "Date of Birth", details: [""])
-                    
-                    Text("Description")
-                        .font(.subheadline)
-                        .fixedSize(horizontal: false, vertical: true)
-                    
-                    Text("Movies")
-                        .foregroundColor(.white)
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                    
-                    CategoryRow(title: "Movies", color: .white, category: "movie/now_playing")
+                    VStack(alignment: .leading) {
+                        HorizontalComponent(title: "From", details: [people.birthPlace ?? "-"])
+                        HorizontalComponent(title: "Date of Birth", details: [people.birthday ?? "-"])
+                        
+                        Text(people.biography ?? "")
+                            .font(.subheadline)
+                            .fixedSize(horizontal: false, vertical: true)
+                        
+                        Text("Movies")
+                            .foregroundColor(.white)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .padding(.vertical)
+                        
+                        Text("TV Shows")
+                            .foregroundColor(.white)
+                            .font(.title3)
+                            .fontWeight(.semibold)
+                            .padding(.vertical)
+                    }
+                    .padding()
                 }
-                .padding()
             }
         }
         .ignoresSafeArea()
+        .onAppear {
+            modelData.fetchPeople(id: id)
+        }
     }
 }
