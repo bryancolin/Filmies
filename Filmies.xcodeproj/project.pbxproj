@@ -452,8 +452,8 @@
 				E564B11826ABFAE4002637A9 /* FilmDetails.swift */,
 				E55C503E26BBF0460059EBD3 /* FilmDescriptions.swift */,
 				E55C504026BBF0820059EBD3 /* FilmCasts.swift */,
-				E52C334626B13E5E0080031F /* FilmTrailer.swift */,
 				E5A0DF8626BD067C00C0FA11 /* FilmSeasons.swift */,
+				E52C334626B13E5E0080031F /* FilmTrailer.swift */,
 				E50DBD7D26A2BA43005948E7 /* WebPlayerView.swift */,
 			);
 			path = Film;

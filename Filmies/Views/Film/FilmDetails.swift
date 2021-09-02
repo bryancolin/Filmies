@@ -45,14 +45,10 @@ struct FilmDetails: View {
     
     var casts: some View {
         FilmComponent(title: "Casts") {
-            if let movie = film as? Movie {
-                if let casts = movie.casts {
-                    FilmCasts(casts)
-                }
-            } else if let tvShow = film as? TvShow {
-                if let casts = tvShow.casts {
-                    FilmCasts(casts)
-                }
+            if let movie = film as? Movie, let casts = movie.casts {
+                FilmCasts(casts)
+            } else if let tvShow = film as? TvShow, let casts = tvShow.casts {
+                FilmCasts(casts)
             }
         }
     }
@@ -69,6 +65,14 @@ struct FilmDetails: View {
         }
     }
     
+    var seasons: some View {
+        FilmComponent(title: "Seasons") {
+            if let tvShow = film as? TvShow, let seasons = tvShow.seasons {
+                FilmSeasons(seasons, poster: film.posterUrl)
+            }
+        }
+    }
+    
     var body: some View {
         TabView(selection: $index) {
             
@@ -78,13 +82,8 @@ struct FilmDetails: View {
             
             productions.tag(2)
             
-            if let tvShow = film as? TvShow {
-                FilmComponent(title: "Seasons") {
-                    if let seasons = tvShow.seasons {
-                        FilmSeasons(seasons: seasons)
-                    }
-                }
-                .tag(3)
+            if film is TvShow {
+                seasons.tag(3)
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
