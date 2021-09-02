@@ -78,6 +78,20 @@ struct CardView: View {
         .cornerRadius(15)
         .padding()
         .redacted(reason: modelData.isLoading ? .placeholder : [])
+        .overlay(
+            Button(action: {
+                scrolled = 0
+                offsets = Array(repeating: 0, count: 20)
+            }) {
+                Image(systemName: "arrow.counterclockwise")
+                    .font(.system(size: 20))
+                    .foregroundColor(.white)
+            }
+            .padding()
+            .opacity(scrolled > 4 ? 1 : 0)
+            .offset(y: -55),
+            alignment: .topTrailing
+        )
     }
     
     func calculateWidth() -> CGFloat {
