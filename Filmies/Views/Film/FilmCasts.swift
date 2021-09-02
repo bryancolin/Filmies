@@ -17,15 +17,15 @@ struct FilmCasts: View {
     
     var body: some View {
         if let crews = casts.crewCategories["Director"] {
-            VerticalComponent(title: "Director", urls: crews.compactMap{ $0.imageURL }, details: crews.compactMap{ $0.name }, id: crews.compactMap{ $0.id })
+            VerticalComponent(title: "Director", urls: crews.compactMap{ $0.profileURL }, details: crews.compactMap{ $0.name }, id: crews.compactMap{ $0.id })
         }
         
         if let crews = casts.crewCategories["Writer"] {
-            VerticalComponent(title: "Writer", urls: crews.compactMap{ $0.imageURL }, details: crews.compactMap{ $0.name }, id: crews.compactMap{ $0.id })
+            VerticalComponent(title: "Writer", urls: crews.compactMap{ $0.profileURL }, details: crews.compactMap{ $0.name }, id: crews.compactMap{ $0.id })
         }
         
         if let actors = casts.cast {
-            VerticalComponent(title: "Starring", urls: actors.compactMap{ $0.imageURL }, details: actors.compactMap{ $0.name },
+            VerticalComponent(title: "Starring", urls: actors.compactMap{ $0.profileURL }, details: actors.compactMap{ $0.name },
                               subDetails: actors.compactMap{ $0.character }, id: actors.compactMap{ $0.id })
         }
     }

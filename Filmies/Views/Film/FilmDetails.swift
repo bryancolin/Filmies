@@ -49,7 +49,7 @@ struct FilmDetails: View {
                 FilmCasts(casts)
             } else if let tvShow = film as? TvShow, let casts = tvShow.casts, let creators = tvShow.creators {
                 if !creators.isEmpty {
-                    VerticalComponent(title: "Creators", urls: creators.compactMap{ $0.imageURL }, details: creators.compactMap{ $0.name }, id: creators.compactMap{ $0.id })
+                    VerticalComponent(title: "Creators", urls: creators.compactMap{ $0.profileURL }, details: creators.compactMap{ $0.name }, id: creators.compactMap{ $0.id })
                 }
                 FilmCasts(casts)
             }
@@ -71,7 +71,7 @@ struct FilmDetails: View {
     var seasons: some View {
         FilmComponent(title: "Seasons") {
             if let tvShow = film as? TvShow, let seasons = tvShow.seasons {
-                FilmSeasons(seasons, poster: film.posterUrl)
+                FilmSeasons(seasons, poster: film.posterURL)
             }
         }
     }

@@ -22,7 +22,7 @@ struct CardList: View {
         }) {
             ZStack(alignment: .bottomTrailing) {
                 if let movies =  modelData.films[category] {
-                    CustomImage(urlString: movies.first?.posterUrl ?? "")
+                    CustomImage(urlString: movies.first?.posterURL ?? "")
                         .frame(width: 75, height: 100)
                         .cornerRadius(5)
                         .blur(radius: 1)

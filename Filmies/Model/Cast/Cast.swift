@@ -12,9 +12,9 @@ struct Cast: Codable, Identifiable {
     let name, character, department: String?
     let order: Int?
     
-    let profilePicture: String?
-    var imageURL: String {
-        if let url = profilePicture {
+    let profilePath: String?
+    var profileURL: String {
+        if let url = profilePath {
             return String("https://image.tmdb.org/t/p/w500" + url)
         }
         return String()
@@ -26,6 +26,6 @@ struct Cast: Codable, Identifiable {
         case character
         case department = "known_for_department"
         case order
-        case profilePicture = "profile_path"
+        case profilePath = "profile_path"
     }
 }

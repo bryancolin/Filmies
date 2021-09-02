@@ -10,7 +10,7 @@ import Foundation
 struct Creator: Codable, Identifiable {
     let id: Int?
     let name, profilePath: String?
-    var imageURL: String {
+    var profileURL: String {
         if let url = profilePath {
             return String("https://image.tmdb.org/t/p/w500" + url)
         }

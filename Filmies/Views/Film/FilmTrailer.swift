@@ -30,7 +30,7 @@ struct FilmTrailer: View {
                 }
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
             } else {
-                CustomImage(urlString: film.backdropUrl.isEmpty ? film.posterUrl : film.backdropUrl)
+                CustomImage(urlString: film.backdropURL.isEmpty ? film.posterURL : film.backdropURL)
             }
         }
     }

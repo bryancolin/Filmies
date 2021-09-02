@@ -21,7 +21,7 @@ struct FilmSeasons: View {
         ForEach(seasons) { season in
             VStack(alignment: .leading) {
                 HStack {
-                    CustomImage(urlString: !season.posterUrl.isEmpty ? season.posterUrl : poster)
+                    CustomImage(urlString: !season.posterURL.isEmpty ? season.posterURL : poster)
                         .frame(width: 100)
                         .cornerRadius(8)
                     
