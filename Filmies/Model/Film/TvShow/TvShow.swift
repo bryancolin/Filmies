@@ -28,6 +28,7 @@ class TvShow: Film {
     
     let lastAirDate: String?
     
+    let creators: [Creator]?
     let casts: Casts?
     let seasons: [Season]?
     
@@ -37,6 +38,7 @@ class TvShow: Film {
         case firstAirDate = "first_air_date"
         case lastAirDate = "last_air_date"
         
+        case creators = "created_by"
         case casts = "credits"
         case seasons
     }
@@ -48,6 +50,7 @@ class TvShow: Film {
         self.runTime = try container.decodeIfPresent([Int].self, forKey: .runTime)
         self.firstAirDate = try container.decodeIfPresent(String.self, forKey: .firstAirDate)
         self.lastAirDate = try container.decodeIfPresent(String.self, forKey: .lastAirDate)
+        self.creators = try container.decodeIfPresent([Creator].self, forKey: .creators)
         self.casts = try container.decodeIfPresent(Casts.self, forKey: .casts)
         self.seasons = try container.decodeIfPresent([Season].self, forKey: .seasons)
         
@@ -61,6 +64,7 @@ class TvShow: Film {
         try container.encode(runTime, forKey: .runTime)
         try container.encode(firstAirDate, forKey: .firstAirDate)
         try container.encode(lastAirDate, forKey: .lastAirDate)
+        try container.encode(creators, forKey: .creators)
         try container.encode(casts, forKey: .casts)
         try container.encode(seasons, forKey: .seasons)
         

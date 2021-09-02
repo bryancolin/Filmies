@@ -19,7 +19,7 @@ struct CategoryRow: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            if let films = modelData.films[category] {
+            if let films = modelData.films[category], !films.isEmpty {
                 // Title
                 HStack {
                     Text(title)
