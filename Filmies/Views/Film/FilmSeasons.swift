@@ -25,10 +25,17 @@ struct FilmSeasons: View {
                         .frame(width: 100)
                         .cornerRadius(8)
                     
-                    VStack {
-                        HorizontalComponent(title: "Season", details: [String(season.number ?? 0)])
-                        HorizontalComponent(title: "Total Episode", details: [String(season.totalEpisode ?? 0)])
-                        HorizontalComponent(title: "Air Date", details: [season.airDate?.toDate().toString(format: "dd/MM/yyyy") ?? ""])
+                    VStack(alignment: .leading) {
+                        Text("Season \(season.number ?? 0)")
+                            .fontWeight(.bold)
+                        
+                        HStack {
+                            Text(String(season.totalEpisode ?? 0))
+                            Text("•")
+                            Text(season.airDate?.toDate().toString(format: "dd/MM/yyyy") ?? "")
+                        }
+                        .font(.caption)
+                        .opacity(0.5)
                     }
                 }
             }

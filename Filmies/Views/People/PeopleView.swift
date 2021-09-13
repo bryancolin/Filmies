@@ -64,6 +64,7 @@ struct PeopleView: View {
                         .overlay(
                             Text(people.name ?? "")
                                 .font(.title)
+                                .lineLimit(2)
                                 .padding(),
                             alignment: .bottomTrailing
                         )
