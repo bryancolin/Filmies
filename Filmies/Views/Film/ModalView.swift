@@ -55,7 +55,6 @@ struct ModalView: View {
                             modelData.highlightFilm(type: filmType, param: film.category, id: film.id ?? 0, check: isFavorite)
                         }) {
                             Image(systemName: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill")
-                                .font(.system(size: 20, weight: .semibold))
                                 .foregroundColor(.white)
                         }
                     }

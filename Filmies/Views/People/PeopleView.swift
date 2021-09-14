@@ -28,7 +28,6 @@ struct PeopleView: View {
                 presentationMode.wrappedValue.dismiss()
             }) {
                 Image(systemName: "arrow.backward")
-                    .font(.system(size: 25))
             }
             
             Spacer()
@@ -43,7 +42,6 @@ struct PeopleView: View {
             
             Button(action: {}) {
                 Image(systemName: "star")
-                    .font(.system(size: 20))
             }
         }
         .padding()
