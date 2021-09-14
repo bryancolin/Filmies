@@ -19,8 +19,13 @@ struct FilmComponent<Content>: View where Content : View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            RoundedText(title: title, selectedIndex: .constant(0), color: .secondary)
+            // Title
+            HStack {
+                RoundedText(title: title, selectedIndex: .constant(0), color: .secondary)
+                Spacer()
+            }
             
+            // Body
             ScrollView(showsIndicators: false) {
                 content()
             }

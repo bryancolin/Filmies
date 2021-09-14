@@ -44,13 +44,13 @@ struct AccountView: View {
             // Title
             title
             
-            if let movies = modelData.films[K.MovieCategory.favorites] as? [Movie] {
+            if let movies = modelData.films[K.Movie.favorites] as? [Movie] {
                 let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.fullDayName() })
                 ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
             }
             
-            CategoryRow(title: "Favorite Movies", color: .white, category: K.MovieCategory.favorites)
-            CategoryRow(title: "Favorite TV Shows", color: .white, category: K.TvShowCategory.favorites)
+            CategoryRow(title: "Favorite Movies", color: .white, category: K.Movie.favorites)
+            CategoryRow(title: "Favorite TV Shows", color: .white, category: K.Tv.favorites)
         }
     }
 }

@@ -14,24 +14,34 @@ struct FilmDetails: View {
     var film: Film
     
     @State var index = 0
-    private var pageNumber: Int { return film is Movie ? 3 : 4 }
+    private var pageNumber: Int { return film is Movie ? 2 : 3 }
     
     var overview: some View {
         FilmComponent(title: "Overview") {
+            
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    Text(film.rate)
+                    Text("|")
+                    
+                    if let movie = film as? Movie {
+                        Text(movie.duration)
+                        Text("|")
+                        Text(movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? "")
+                    } else if let tvShow = film as? TvShow {
+                        Text(tvShow.duration)
+                        Text("|")
+                        Text("\(tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? "") - \(tvShow.lastAirDate?.toDate().toString(format: K.dateFormat) ?? "")")
+                    }
+                }
+            }
+            .font(.caption)
+            
             Text(film.description)
                 .font(.subheadline)
                 .fixedSize(horizontal: false, vertical: true)
             
             CustomDivider()
-            
-            HorizontalComponent(title: "Rating", details: [film.rate])
-            
-            if let movie = film as? Movie {
-                FilmDescriptions(type: .movie, date: movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? "", duration: movie.duration )
-            } else if let tvShow = film as? TvShow {
-                FilmDescriptions(type: .tvShow, date: tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? "", duration: tvShow.duration )
-                HorizontalComponent(title: "Last Air Date", details: [tvShow.lastAirDate?.toDate().toString(format: K.dateFormat) ?? ""])
-            }
             
             if let languages = film.languages {
                 HorizontalComponent(title: "Languages", details: languages.compactMap{ $0.name })
@@ -40,31 +50,34 @@ struct FilmDetails: View {
             if let genres = film.genres {
                 HorizontalComponent(title: "Genres", details: genres.compactMap{ $0.name })
             }
+            
+            if let countries = film.productionCountries {
+                HorizontalComponent(title: "Production Countries", details: countries.compactMap{ $0.name })
+            }
+            
+            if let companies = film.productionCompanies {
+                HorizontalComponent(title: "Production Companies", details: companies.compactMap{ $0.name })
+            }
         }
     }
     
     var casts: some View {
         FilmComponent(title: "Casts") {
-            if let movie = film as? Movie {
-                if let casts = movie.casts {
-                    FilmCasts(casts)
+            if let movie = film as? Movie, let casts = movie.casts {
+                FilmCasts(casts)
+            } else if let tvShow = film as? TvShow, let casts = tvShow.casts, let creators = tvShow.creators {
+                if !creators.isEmpty {
+                    VerticalComponent(title: "Creators", urls: creators.compactMap{ $0.profileURL }, details: creators.compactMap{ $0.name }, id: creators.compactMap{ $0.id })
                 }
-            } else if let tvShow = film as? TvShow {
-                if let casts = tvShow.casts {
-                    FilmCasts(casts)
-                }
+                FilmCasts(casts)
             }
         }
     }
     
-    var productions: some View {
-        FilmComponent(title: "Production") {
-            if let countries = film.productionCountries {
-                HorizontalComponent(title: "Countries", details: countries.compactMap{ $0.name })
-            }
-            
-            if let companies = film.productionCompanies {
-                HorizontalComponent(title: "Companies", details: companies.compactMap{ $0.name })
+    var seasons: some View {
+        FilmComponent(title: "Seasons") {
+            if let tvShow = film as? TvShow, let seasons = tvShow.seasons {
+                FilmSeasons(seasons, poster: film.posterURL)
             }
         }
     }
@@ -76,15 +89,8 @@ struct FilmDetails: View {
             
             casts.tag(1)
             
-            productions.tag(2)
-            
-            if let tvShow = film as? TvShow {
-                FilmComponent(title: "Seasons") {
-                    if let seasons = tvShow.seasons {
-                        FilmSeasons(seasons: seasons)
-                    }
-                }
-                .tag(3)
+            if film is TvShow {
+                seasons.tag(2)
             }
         }
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))

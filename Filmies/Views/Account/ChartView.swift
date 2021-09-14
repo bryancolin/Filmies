@@ -13,6 +13,7 @@ struct ChartView: View {
     var titles: [String]
     
     @State var index = 0
+    @State var barHeights: [CGFloat]  = Array(repeating: 0, count: 7)
     
     var body: some View {
         VStack {
@@ -35,16 +36,21 @@ struct ChartView: View {
             .padding(.horizontal)
             
             VStack {
-                ChartTab(titles: ["This Week", "Last Week"], selectedIndex: $index)
+                AnotherChartTab(title: index == 0 ? "This Week" : "Previous \(index < -1 ? String(abs(index)) : "") Week", selectedIndex: $index)
                 
                 // Bars
                 ZStack(alignment: .center) {
                     GeometryReader { geometry in
                         let width = geometry.size.width / 2 * (1 / 7)
                         HStack(alignment: .center, spacing: geometry.size.width / 14.5) {
-                            ForEach(titles, id: \.self) {
-                                let height = (CGFloat(getTotalHoursPerDay(films[$0]).thisWeek / 60), CGFloat(getTotalHoursPerDay(films[$0]).lastWeek / 60))
-                                BarView(title: $0, width: width, height: height, index: $index)
+                            ForEach(Array(titles.enumerated()), id: \.offset) { id, title in
+                                BarView(title: title, width: width, height: $barHeights[id])
+                                    .onChange(of: index) { newValue in
+                                        getBarHeights(index: id, title: title)
+                                    }
+                                    .onAppear {
+                                        getBarHeights(index: id, title: title)
+                                    }
                             }
                         }
                         .padding(.horizontal)
@@ -59,38 +65,30 @@ struct ChartView: View {
         }
     }
     
+    func getBarHeights(index: Int, title: String) {
+        barHeights[index] = CGFloat(getTotalHoursPerDay(films[title]) / 60)
+    }
+    
     // Total Hours of Watching Films In A Week
     func getTotalHoursPerWeek() -> Int {
         var hours = 0
         films.forEach {
-            hours += index == 0 ? getTotalHoursPerDay($0.value).thisWeek : getTotalHoursPerDay($0.value).lastWeek
+            hours += getTotalHoursPerDay($0.value)
         }
         
         return hours
     }
     
     // Total Hours of Watching Films In A Day
-    func getTotalHoursPerDay(_ films: [Film]?) -> (thisWeek: Int, lastWeek: Int) {
-        return (
-            films?.compactMap { film -> Int in
-                if let movie = film as? Movie {
-                    return film.addedDate.isThisWeek() ? (movie.runTime ?? 0) : 0
-                } else if let tvShow = film as? TvShow {
-                    return film.addedDate.isThisWeek() ? (tvShow.runTime?.first ?? 0) : 0
-                } else {
-                    return 0
-                }
-            }.reduce(0, +) ?? 0,
-            
-            films?.compactMap { film -> Int in
-                if let movie = film as? Movie {
-                    return film.addedDate.isLastWeek() ? (movie.runTime ?? 0) : 0
-                } else if let tvShow = film as? TvShow {
-                    return film.addedDate.isLastWeek() ? (tvShow.runTime?.first ?? 0) : 0
-                } else {
-                    return 0
-                }
-            }.reduce(0, +) ?? 0
-        )
+    func getTotalHoursPerDay(_ films: [Film]?) -> Int {
+        return films?.compactMap { film -> Int in
+            if let movie = film as? Movie {
+                return film.addedDate.getWeek(index: index) ? (movie.runTime ?? 0) : 0
+            } else if let tvShow = film as? TvShow {
+                return film.addedDate.getWeek(index: index) ? (tvShow.runTime?.first ?? 0) : 0
+            } else {
+                return 0
+            }
+        }.reduce(0, +) ?? 0
     }
 }

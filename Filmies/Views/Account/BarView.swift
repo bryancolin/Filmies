@@ -11,8 +11,7 @@ struct BarView: View {
     
     var title: String
     var width: CGFloat
-    var height: (thisWeek: CGFloat, lastWeek: CGFloat)
-    @Binding var index: Int
+    @Binding var height: CGFloat
     
     private let defaultHeight: CGFloat = 200
     
@@ -29,7 +28,7 @@ struct BarView: View {
                     .frame(height: progress * defaultHeight)
                     .foregroundColor(Color(K.BrandColors.pink))
                     .animation(.interpolatingSpring(mass: 1, stiffness: 100, damping: 17.5, initialVelocity: 0).speed(0.5))
-                    .onChange(of: index) { newValue in
+                    .onChange(of: height) { newValue in
                         updateProgress()
                     }
                     .onAppear {
@@ -46,7 +45,7 @@ struct BarView: View {
     
     func updateProgress() {
         progress = 0
-        let h = index == 0 ? height.thisWeek : height.lastWeek
+        let h = height
         progress += (h < 6 ? (h/6) : 1)
     }
 }

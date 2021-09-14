@@ -28,7 +28,7 @@ struct ModalView: View {
     }
     
     var filmType: String {
-        return film is Movie ? K.MovieCategory.favorites : K.TvShowCategory.favorites
+        return film is Movie ? K.Movie.favorites : K.Tv.favorites
     }
     
     var transition: AnyTransition {
@@ -55,7 +55,6 @@ struct ModalView: View {
                             modelData.highlightFilm(type: filmType, param: film.category, id: film.id ?? 0, check: isFavorite)
                         }) {
                             Image(systemName: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill")
-                                .font(.system(size: 20, weight: .semibold))
                                 .foregroundColor(.white)
                         }
                     }

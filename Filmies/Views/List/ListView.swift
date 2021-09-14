@@ -34,7 +34,6 @@ struct ListView: View {
                         presentationMode.wrappedValue.dismiss()
                     }) {
                         Image(systemName: "arrow.backward")
-                            .font(.system(size: 25))
                     }
                     .padding()
                     
@@ -44,12 +43,11 @@ struct ListView: View {
                             numberOfColumns = numberOfColumns % 2 + 1
                         }) {
                             Image(systemName: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
-                                .font(.system(size: 20, weight: .semibold))
                         }
                     }
                     
                     // Cards
-                    if let films = modelData.films[category], !modelData.isError {
+                    if let films = modelData.films[category] {
                         ForEach(films) {
                             ListItem(film: $0, category: category)
                         }
@@ -69,9 +67,9 @@ struct ListView: View {
                             }
                             .padding()
                         }
-                    } else {
+                    } else if modelData.isError {
                         Text("Not Found")
-                            .font(.caption2)
+                            .font(.caption)
                             .padding(.horizontal)
                     }
                 }

@@ -13,7 +13,7 @@ struct Season: Codable, Identifiable {
     let number, totalEpisode: Int?
 
     let posterPath: String?
-    var posterUrl: String {
+    var posterURL: String {
         if let url = posterPath {
             return String("https://image.tmdb.org/t/p/w500" + url)
         }

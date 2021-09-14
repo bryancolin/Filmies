@@ -31,15 +31,15 @@ class Film: Codable, Identifiable {
     let productionCompanies, productionCountries: [Production]?
     
     let backdropPath: String?
-    var backdropUrl: String {
+    var backdropURL: String {
         if let url = backdropPath {
             return String("https://image.tmdb.org/t/p/w500" + url)
         }
-        return posterUrl
+        return posterURL
     }
     
     let posterPath: String?
-    var posterUrl: String {
+    var posterURL: String {
         if let url = posterPath {
             return String("https://image.tmdb.org/t/p/w500" + url)
         }
@@ -91,6 +91,6 @@ class Film: Codable, Identifiable {
                 return images[index].url
             }
         }
-        return posterUrl
+        return posterURL
     }
 }

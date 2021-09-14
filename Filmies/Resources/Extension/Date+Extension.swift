@@ -30,6 +30,10 @@ extension Date {
         return formatter.string(from: self)
     }
     
+    func getWeek(index: Int) -> Bool {
+        return Calendar.current.isDateInWeekOf(self, weekOfYear: index)
+    }
+    
     func isThisWeek() -> Bool {
         return Calendar.current.isDateInThisWeek(self)
     }

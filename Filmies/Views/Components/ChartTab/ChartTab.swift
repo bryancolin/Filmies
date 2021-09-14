@@ -23,8 +23,41 @@ struct ChartTab: View {
         .padding()
     }
 }
+
 struct ChartTab_Previews: PreviewProvider {
     static var previews: some View {
         ChartTab(titles: ["One", "Two"], selectedIndex: .constant(0))
+    }
+}
+
+struct AnotherChartTab: View {
+    
+    var title: String
+    @Binding var selectedIndex: Int
+    
+    var body: some View {
+        HStack {
+            Button(action: {
+                selectedIndex -= 1
+            }) {
+                Image(systemName: "arrowtriangle.left.fill")
+            }
+            
+            Spacer()
+            
+            Text(title)
+            
+            Spacer()
+            
+            Button(action: {
+                selectedIndex += 1
+            }) {
+                Image(systemName: "arrowtriangle.right.fill")
+            }
+            .opacity(selectedIndex == 0 ? 0 : 1)
+            .disabled(selectedIndex == 0 ? true : false)
+        }
+        .foregroundColor(.white)
+        .padding()
     }
 }

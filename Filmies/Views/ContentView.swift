@@ -10,18 +10,20 @@ import SwiftUI
 struct ContentView: View {
     
     @State var selectedTab: Tab = .house
-        
+    
     var body: some View {
         ZStack {
-            switch selectedTab {
-            case .house:
-                CategoryHome()
-                    .animation(.default)
-            case .search:
-                SearchView()
-            case .person:
-                AccountView()
-                    .animation(.default)
+            Group {
+                switch selectedTab {
+                case .house:
+                    CategoryHome()
+                        .animation(.default)
+                case .search:
+                    SearchView()
+                case .person:
+                    AccountView()
+                        .animation(.default)
+                }
             }
         }
         .overlay(

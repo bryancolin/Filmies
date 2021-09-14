@@ -21,7 +21,7 @@ struct FilmTrailer: View {
         }) {
             if !officialTrailers.isEmpty {
                 VStack {
-                    if officialTrailers.count > 1 && category != K.MovieCategory.favorites {
+                    if officialTrailers.count > 1 && category != K.Movie.favorites {
                         PageView(pages: officialTrailers.compactMap{ WebPlayerView(urlString: $0.youtubeURL, loadOnce: true)},
                                  alignment: .topTrailing)
                     } else {
@@ -30,7 +30,7 @@ struct FilmTrailer: View {
                 }
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
             } else {
-                CustomImage(urlString: film.backdropUrl.isEmpty ? film.posterUrl : film.backdropUrl)
+                CustomImage(urlString: film.backdropURL.isEmpty ? film.posterURL : film.backdropURL)
             }
         }
     }
