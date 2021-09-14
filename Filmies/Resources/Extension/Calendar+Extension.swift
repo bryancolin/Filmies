@@ -9,6 +9,13 @@ import Foundation
 
 extension Calendar {
     
+    func isDateInWeekOf(_ date: Date, weekOfYear: Int) -> Bool {
+        guard let week = self.date(byAdding: DateComponents(weekOfYear: weekOfYear), to: Date()) else {
+            return false
+        }
+        return isDate(date, equalTo: week, toGranularity: .weekOfYear)
+    }
+    
     func isDateInThisWeek(_ date: Date) -> Bool {
         return isDate(date, equalTo: Date(), toGranularity: .weekOfYear)
     }
