@@ -19,27 +19,26 @@ struct FilmSeasons: View {
     
     var body: some View {
         ForEach(seasons) { season in
-            VStack(alignment: .leading) {
-                HStack {
-                    CustomImage(urlString: !season.posterURL.isEmpty ? season.posterURL : poster)
-                        .frame(width: 100)
-                        .cornerRadius(8)
+            HStack {
+                CustomImage(urlString: !season.posterURL.isEmpty ? season.posterURL : poster)
+                    .frame(width: 100)
+                    .cornerRadius(8)
+                
+                VStack(alignment: .leading) {
+                    Text("Season \(season.number ?? 0)")
+                        .fontWeight(.bold)
                     
-                    VStack(alignment: .leading) {
-                        Text("Season \(season.number ?? 0)")
-                            .fontWeight(.bold)
-                        
-                        HStack {
-                            Text(String(season.totalEpisode ?? 0))
-                            Text("•")
-                            Text(season.airDate?.toDate().toString(format: "dd/MM/yyyy") ?? "")
-                        }
-                        .font(.caption)
-                        .opacity(0.5)
+                    HStack {
+                        Text("\(season.totalEpisode ?? 0) episodes")
+                        Text("•")
+                        Text(season.airDate?.toDate().toString(format: "dd/MM/yyyy") ?? "")
                     }
+                    .font(.caption)
+                    .opacity(0.5)
                 }
+                
+                Spacer()
             }
         }
-        
     }
 }
