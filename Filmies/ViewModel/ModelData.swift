@@ -34,9 +34,9 @@ final class ModelData: ObservableObject {
         isLoading = true
         isError = false
         
-        // Searching Films
-        let urlName = name.replacingOccurrences(of: " ", with: "+")
-        let query = name.isEmpty ? "" : "&query=\(urlName)"
+        // Searching Films (Encoding Query)
+        let urlName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let query = name.isEmpty ? "" : "&query=\(urlName ?? "")"
         
         let fullURL = "\(url)/\(param)" + apiKey + query + "&page=\(pageNumber)"
         
