@@ -71,7 +71,7 @@ struct PeopleView: View {
                             GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
                                     let offset = proxy.frame(in:. global).minY + UIScreen.main.bounds.height / 2
-                                    
+
                                     if offset < 80 {
                                         if offset > 0 {
                                             let opacity_value = (80 -  offset) / 80
@@ -108,8 +108,8 @@ struct PeopleView: View {
             header
         }
         .ignoresSafeArea()
-        .onAppear {
-            modelData.fetchPeople(id: id)
+        .task {
+            await modelData.fetchPeople(id: id)
         }
     }
 }

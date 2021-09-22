@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+extension View {
+    func placeholder<Content: View>(
+        when shouldShow: Bool,
+        alignment: Alignment = .leading,
+        @ViewBuilder placeholder: () -> Content) -> some View {
+            
+            ZStack(alignment: alignment) {
+                placeholder().opacity(shouldShow ? 1 : 0)
+                self
+            }
+        }
+}
+
 struct SearchView: View {
     
     @EnvironmentObject var modelData: ModelData
@@ -32,12 +45,19 @@ struct SearchView: View {
             Image(systemName: "magnifyingglass")
                 .font(.system(size: 20))
             
-            TextField("Movies or tv-shows", text: $searchText, onCommit: {
-                if !searchText.isEmpty {
-                    modelData.fetchFilms(with: "search/\(modelData.selectedType.rawValue)", name: searchText)
-                    isPresented.toggle()
+            TextField("", text: $searchText)
+                .submitLabel(.search)
+                .onSubmit {
+                    if !searchText.isEmpty {
+                        Task {
+                            await modelData.fetchFilms(with: "search/\(modelData.selectedType.rawValue)", name: searchText)
+                        }
+                        isPresented.toggle()
+                    }
                 }
-            })
+                .placeholder(when: searchText.isEmpty) {
+                    Text("Movies or TV-shows").foregroundColor(.gray)
+                }
             
             if !searchText.isEmpty {
                 Button(action: { searchText = "" }) {

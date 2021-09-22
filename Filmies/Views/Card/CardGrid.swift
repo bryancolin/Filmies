@@ -31,7 +31,9 @@ struct CardGrid: View {
                 
                 if films.count % 20 == 0 {
                     Button(action: {
-                        modelData.fetchFilms(with: category, name: searchText, pageNumber: (films.count / 20) + 1)
+                        Task {
+                            await modelData.fetchFilms(with: category, name: searchText, pageNumber: (films.count / 20) + 1)
+                        }
                     }) {
                         RoundedRectangle(cornerRadius: 8)
                             .foregroundColor(.white)

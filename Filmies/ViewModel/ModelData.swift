@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 final class ModelData: ObservableObject {
     
     private let url = "https://api.themoviedb.org/3"
@@ -24,13 +25,15 @@ final class ModelData: ObservableObject {
     @Published var isError = false
     
     init() {
-        let _ = (movieParams + tvShowParams).map { fetchFilms(with: $0) }
+        Task {
+            for param in (movieParams + tvShowParams) { await fetchFilms(with: param) }
+        }
         
         loadFavoriteFilms(type: K.Movie.favorites, key: K.UserDefaults.movieKey, expecting: [Movie].self)
         loadFavoriteFilms(type: K.Tv.favorites, key: K.UserDefaults.tvKey, expecting: [TvShow].self)
     }
     
-    func fetchFilms(with param: String, name: String = "", pageNumber: Int = 1) {
+    func fetchFilms(with param: String, name: String = "", pageNumber: Int = 1) async {
         isLoading = true
         isError = false
         
@@ -40,36 +43,31 @@ final class ModelData: ObservableObject {
         
         let fullURL = "\(url)/\(param)" + apiKey + query + "&page=\(pageNumber)"
         
-        URLSession.shared.request(url: URL(string: fullURL), expecting: Films.self) { [weak self] response in
-            switch response {
-            case .success(let result):
-                DispatchQueue.main.async {
-                    guard let data = result.all else { return }
-                    
-                    if data.isEmpty {
-                        self?.isError = true
-                    } else {
-                        if pageNumber == 1 {
-                            self?.films[param] = data
-                        } else {
-                            self?.films[param]! += data
-                        }
-                    }
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                        self?.isLoading = false
-                    }
+        do {
+            let result = try await URLSession.shared.request(url: URL(string: fullURL), expecting: Films.self)
+            guard let data = result.all else { return }
+            
+            if data.isEmpty {
+                isError = true
+            } else {
+                if pageNumber == 1 {
+                    films[param] = data
+                } else {
+                    films[param]! += data
                 }
-                
-            case .failure(let error):
-                self?.isLoading = false
-                self?.isError = true
-                print(error)
             }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                self.isLoading = false
+            }
+        } catch {
+            isLoading = false
+            isError = true
+            print(error)
         }
     }
     
-    func fetchFilmDetails<T: Codable>(type: FilmType, param: String, id: Int, expecting: T.Type) {
+    func fetchFilmDetails<T: Codable>(type: FilmType, param: String, id: Int, expecting: T.Type) async {
         
         let film = findFilm(param: param, id: id)
         let filmExists = film.exists
@@ -78,19 +76,15 @@ final class ModelData: ObservableObject {
         if filmExists {
             let fullURL = "\(url)/\(type.rawValue)/\(id)" + apiKey + "&append_to_response=videos,casts,credits,images&include_image_language=en"
             
-            URLSession.shared.request(url: URL(string: fullURL), expecting: expecting) { [weak self] response in
-                switch response {
-                case .success(let result):
-                    DispatchQueue.main.async {
-                        if let film = result as? Film {
-                            film.category = param
-                            film.details = true
-                            self?.films[param]?[filmAtIndex] = film
-                        }
-                    }
-                case .failure(let error):
-                    print(error)
+            do {
+                let result = try await URLSession.shared.request(url: URL(string: fullURL), expecting: expecting)
+                if let film = result as? Film {
+                    film.category = param
+                    film.details = true
+                    films[param]?[filmAtIndex] = film
                 }
+            } catch {
+                print(error)
             }
         }
     }
@@ -163,19 +157,16 @@ final class ModelData: ObservableObject {
         }
     }
     
-    func fetchPeople(id: Int) {
+    func fetchPeople(id: Int) async {
         let fullURL = "\(url)/person/\(id)" + apiKey + "&append_to_response=movie_credits,tv_credits&include_image_language=en"
         
-        URLSession.shared.request(url: URL(string: fullURL), expecting: People.self) { [weak self] response in
-            switch response {
-            case .success(let result):
-                DispatchQueue.main.async {
-                    self?.people[result.id ?? 0] = result
-                    
-                    self?.films[String(id) + K.People.movie] = result.movieCredits?.all
-                    self?.films[String(id) + K.People.tv] = result.tvCredits?.all
-                }
-            case .failure(let error):
+        if people[id] == nil {
+            do {
+                let result = try await URLSession.shared.request(url: URL(string: fullURL), expecting: People.self)
+                people[result.id ?? 0] = result
+                films[String(id) + K.People.movie] = result.movieCredits?.all
+                films[String(id) + K.People.tv] = result.tvCredits?.all
+            } catch {
                 print(error)
             }
         }
