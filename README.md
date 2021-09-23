@@ -12,8 +12,8 @@ An iOS app for movie/tv-show lovers to browse and search for movies with an incr
 
 ## Requirements
 
-- iOS 14.0+ 
-- Xcode 12.5
+- iOS 15.0+ 
+- Xcode 13
 - The Movie Database (TMDb) API Key
 
 ## Setup
