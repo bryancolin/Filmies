@@ -55,16 +55,18 @@ struct ListView: View {
                         // Load More
                         if films.count % 20 == 0 && !category.contains("favorites") {
                             Button(action: {
-                                modelData.fetchFilms(with: category, name: searchText, pageNumber: (films.count / 20) + 1)
+                                Task {
+                                    await modelData.fetchFilms(with: category, name: searchText, pageNumber: (films.count / 20) + 1)
+                                }
                             }) {
-                                RoundedRectangle(cornerRadius: 8)
-                                    .frame(height: 50)
-                                    .overlay(
-                                        Text("Load more")
-                                            .fontWeight(.bold)
-                                            .foregroundColor(Color(K.BrandColors.pink))
-                                    )
+                                Text("Load more")
+                                    .fontWeight(.bold)
+                                    .foregroundColor(Color(K.BrandColors.pink))
+                                    .frame(maxWidth: .infinity)
                             }
+                            .tint(.white)
+                            .buttonStyle(.bordered)
+                            .controlSize(.large)
                             .padding()
                         }
                     } else if modelData.isError {

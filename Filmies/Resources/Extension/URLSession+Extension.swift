@@ -14,6 +14,18 @@ extension URLSession {
         case invalidData
     }
     
+    func request<T: Codable>(url: URL?, expecting: T.Type) async throws -> T {
+        guard let url = url else { throw CustomError.invalidUrl }
+        
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            let result = try JSONDecoder().decode(expecting, from: data)
+            return result
+        } catch {
+            throw CustomError.invalidData
+        }
+    }
+    
     func request<T: Codable>(url: URL?, expecting: T.Type, completion: @escaping (Result<T, Error>) -> Void) {
         guard let url = url else {
             completion(.failure(CustomError.invalidUrl))

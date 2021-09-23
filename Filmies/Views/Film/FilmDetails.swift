@@ -97,12 +97,11 @@ struct FilmDetails: View {
         .frame(height: UIScreen.main.bounds.height - 100)
         .background(Color.black.opacity(0.75))
         .clipShape(RoundedRectangle(cornerRadius: 10))
-        .overlay(
+        .overlay(alignment: .topTrailing) {
             PageControl(numberOfPages: pageNumber, currentpage: $index)
                 .frame(width: CGFloat(pageNumber * 18))
-                .padding(),
-            alignment: .topTrailing
-        )
+                .padding()
+        }
     }
 }
 

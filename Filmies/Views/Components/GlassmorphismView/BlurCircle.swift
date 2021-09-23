@@ -26,7 +26,7 @@ struct BlurCircle: View {
             .shadow(radius: shadowRadius)
             .offset(x: (isAppear ? 1 : -1) * offsetX,
                     y: offsetY)
-            .animation(.interpolatingSpring(mass: 1, stiffness: 100, damping: 5, initialVelocity: 0))
+            .animation(.interpolatingSpring(mass: 1, stiffness: 100, damping: 5, initialVelocity: 0), value: isAppear)
             .onAppear {
                 isAppear.toggle()
             }

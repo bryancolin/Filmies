@@ -26,7 +26,7 @@ struct CustomScrollView<Content>: View where Content: View {
             ScrollView(.vertical, showsIndicators: false) {
                 content()
                     .id(scrollId)
-                    .overlay(
+                    .overlay(alignment: .top) {
                         GeometryReader { proxy -> Color in
                             DispatchQueue.main.async {
                                 let offset = proxy.frame(in:. global).minY
@@ -37,13 +37,11 @@ struct CustomScrollView<Content>: View where Content: View {
                                 
                                 self.scrollViewOffset = offset - startOffset
                             }
-                            
                             return Color.clear
-                        },
-                        alignment: .top
-                    )
+                        }
+                    }
             }
-            .overlay(
+            .safeAreaInset(edge: .bottom, alignment: .trailing, spacing: 0) {
                 Button(action: {
                     withAnimation(.linear(duration:  0.3)) {
                         isScrollToTop = true
@@ -62,13 +60,12 @@ struct CustomScrollView<Content>: View where Content: View {
                         .clipShape(Circle())
                 }
                 .buttonStyle(BorderlessButtonStyle())
-                .padding(.trailing)
-                .padding(.bottom, getSafeArea().bottom == 0 ? 12 : 0)
+                .padding()
                 .opacity(-scrollViewOffset > 450 ? 1 : 0)
-                .animation(.easeInOut)
-                .disabled(isScrollToTop),
-                alignment: .bottomTrailing
-            )
+                .animation(.easeInOut, value: scrollViewOffset)
+                .disabled(isScrollToTop)
+            }
+            
         }
         .foregroundColor(.white)
     }

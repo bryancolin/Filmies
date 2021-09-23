@@ -15,6 +15,21 @@ struct ChartView: View {
     @State var index = 0
     @State var barHeights: [CGFloat]  = Array(repeating: 0, count: 7)
     
+    var drag: some Gesture {
+        DragGesture(minimumDistance: 0, coordinateSpace: .local)
+            .onEnded({ value in
+                // Left
+                if value.translation.width < 0 && index < 0 {
+                    index += 1
+                }
+                
+                // Right
+                if value.translation.width > 0 {
+                    index -= 1
+                }
+            })
+    }
+    
     var body: some View {
         VStack {
             // Title
@@ -36,7 +51,10 @@ struct ChartView: View {
             .padding(.horizontal)
             
             VStack {
-                AnotherChartTab(title: index == 0 ? "This Week" : "Previous \(index < -1 ? String(abs(index)) : "") Week", selectedIndex: $index)
+                if let startOfWeek = Date().getWeekInterval(weekOfYear: index).startOfWeek, let endOfWeek = Date().getWeekInterval(weekOfYear: index).endOfWeek {
+                    AnotherChartTab(title: "\(startOfWeek.toString(format: "dd/MM/yy"))-\(endOfWeek.toString(format: "dd/MM/yy"))", selectedIndex: $index)
+                        .gesture(drag)
+                }
                 
                 // Bars
                 ZStack(alignment: .center) {

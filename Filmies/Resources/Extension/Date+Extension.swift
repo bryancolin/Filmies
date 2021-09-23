@@ -34,6 +34,10 @@ extension Date {
         return Calendar.current.isDateInWeekOf(self, weekOfYear: index)
     }
     
+    func getWeekInterval(weekOfYear: Int) -> (startOfWeek: Date?, endOfWeek: Date?) {
+        return (Calendar.current.startOfWeek(weekOfYear: weekOfYear), Calendar.current.endOfWeek(weekOfYear: weekOfYear))
+    }
+    
     func isThisWeek() -> Bool {
         return Calendar.current.isDateInThisWeek(self)
     }
