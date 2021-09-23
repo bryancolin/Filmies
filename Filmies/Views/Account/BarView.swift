@@ -27,7 +27,7 @@ struct BarView: View {
                 Capsule()
                     .frame(height: progress * defaultHeight)
                     .foregroundColor(Color(K.BrandColors.pink))
-                    .animation(.interpolatingSpring(mass: 1, stiffness: 100, damping: 17.5, initialVelocity: 0).speed(0.5))
+                    .animation(.interpolatingSpring(mass: 1, stiffness: 100, damping: 17.5, initialVelocity: 0).speed(0.5), value: progress)
                     .onChange(of: height) { newValue in
                         updateProgress()
                     }

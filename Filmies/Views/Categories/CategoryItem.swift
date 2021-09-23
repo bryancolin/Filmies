@@ -38,7 +38,7 @@ struct CategoryItem: View {
                 CustomImage(urlString: film.posterURL)
                     .frame(width: width, alignment: .leading)
                     .cornerRadius(8)
-                    .overlay(
+                    .overlay(alignment: .topLeading) {
                         GeometryReader { geometry in
                             let fontSize = min(9, geometry.size.width * 0.2)
                             let circleWidth = min(50, geometry.size.width * 0.2)
@@ -53,9 +53,7 @@ struct CategoryItem: View {
                                 )
                                 .padding(5)
                         }
-                        .frame(maxHeight: .infinity),
-                        alignment: .topLeading
-                    )
+                    }
             }
         }
         .padding(.leading, 15)

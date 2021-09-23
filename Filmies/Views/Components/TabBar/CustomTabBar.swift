@@ -24,13 +24,12 @@ struct CustomTabBar: View {
             Color.white
                 .clipShape(TabCurve(tabPoint: getCurvePoint() - 15))
         )
-        .overlay(
+        .overlay(alignment: .bottomLeading) {
             Circle()
                 .fill(Color.white)
                 .frame(width: 10, height: 10)
-                .offset(x: getCurvePoint() - 20),
-            alignment: .bottomLeading
-        )
+                .offset(x: getCurvePoint() - 20)   
+        }
         .cornerRadius(30)
         .padding(.horizontal)
     }

@@ -24,7 +24,7 @@ struct CardElementView: View {
             CustomImage(urlString: film.posterURL)
                 .frame(width: width, height: height)
                 .cornerRadius(15)
-                .overlay(
+                .overlay(alignment: .bottomLeading) {
                     Button(action: {
                         showingModal.toggle()
                     }) {
@@ -37,9 +37,8 @@ struct CardElementView: View {
                             .background(Color(K.BrandColors.pink))
                             .clipShape(Capsule())
                     }
-                    .padding(),
-                    alignment: .bottomLeading
-                )
+                    .padding()
+                }
                 .sheet(isPresented: $showingModal) {
                     ModalView(film: film, category: category, showModal: self.$showingModal)
                         .environmentObject(modelData)

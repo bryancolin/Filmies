@@ -12,7 +12,6 @@ struct PeopleView: View {
     @EnvironmentObject var modelData: ModelData
     @Environment(\.presentationMode) var presentationMode
     
-    var edges = UIApplication.shared.windows.first?.safeAreaInsets
     @State var opacity: Double = 1
     
     var id: Int
@@ -45,9 +44,8 @@ struct PeopleView: View {
             }
         }
         .padding()
-        .padding(.top, edges!.top)
+        .padding(.top)
         .background(Blur(style: .dark).opacity(opacity))
-        
     }
     
     var body: some View {
@@ -71,7 +69,7 @@ struct PeopleView: View {
                             GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
                                     let offset = proxy.frame(in:. global).minY + UIScreen.main.bounds.height / 2
-
+                                    
                                     if offset < 80 {
                                         if offset > 0 {
                                             let opacity_value = (80 -  offset) / 80
@@ -104,10 +102,12 @@ struct PeopleView: View {
                     .padding()
                 }
             }
-            
-            header
         }
         .ignoresSafeArea()
+        .safeAreaInset(edge: .top) {
+            header
+                .ignoresSafeArea()
+        }
         .task {
             await modelData.fetchPeople(id: id)
         }

@@ -26,11 +26,10 @@ struct ContentView: View {
                 }
             }
         }
-        .overlay(
+        .safeAreaInset(edge: .bottom) {
             CustomTabBar(selectedTab: $selectedTab)
-                .padding(.bottom, getSafeArea().bottom == 0 ? 12 : 0),
-            alignment: .bottom
-        )
+                .padding(.vertical)
+        }
     }
 }
 
