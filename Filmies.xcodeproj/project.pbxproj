@@ -18,6 +18,15 @@
 		E515A15B2697FC95008D4FE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15A2697FC95008D4FE4 /* Assets.xcassets */; };
 		E515A15E2697FC95008D4FE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */; };
 		E52294B026E0D02900DD3E09 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52294AF26E0D02700DD3E09 /* Creator.swift */; };
+		E5269CF926FC6AEA0061E48E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5269CF826FC6AEA0061E48E /* WidgetKit.framework */; };
+		E5269CFB26FC6AEB0061E48E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5269CFA26FC6AEA0061E48E /* SwiftUI.framework */; };
+		E5269CFE26FC6AEB0061E48E /* FilmiesWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5269CFD26FC6AEB0061E48E /* FilmiesWidget.swift */; };
+		E5269D0126FC6AF80061E48E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5269D0026FC6AF80061E48E /* Assets.xcassets */; };
+		E5269D0326FC6AF90061E48E /* FilmiesWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E5269CFF26FC6AEB0061E48E /* FilmiesWidget.intentdefinition */; };
+		E5269D0426FC6AF90061E48E /* FilmiesWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E5269CFF26FC6AEB0061E48E /* FilmiesWidget.intentdefinition */; };
+		E5269D0726FC6AF90061E48E /* FilmiesWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = E5269CF726FC6AEA0061E48E /* FilmiesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		E5269D0D26FC6F0F0061E48E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15A2697FC95008D4FE4 /* Assets.xcassets */; };
+		E5269D0E26FC6F9D0061E48E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E577698E26A6F6220076D7CF /* Constants.swift */; };
 		E52B8DD926C53AEF0032BC4A /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52B8DD826C53AEF0032BC4A /* CustomScrollView.swift */; };
 		E52B8DDB26C53DD00032BC4A /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52B8DDA26C53DD00032BC4A /* View+Extension.swift */; };
 		E52C334726B13E5F0080031F /* FilmTrailer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52C334626B13E5E0080031F /* FilmTrailer.swift */; };
@@ -92,6 +101,30 @@
 		E5FFD17C26A6C09D00FDD685 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		E5269D0526FC6AF90061E48E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E515A14B2697FC85008D4FE4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5269CF626FC6AEA0061E48E;
+			remoteInfo = FilmiesWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E5269D0826FC6AF90061E48E /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				E5269D0726FC6AF90061E48E /* FilmiesWidgetExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0E1DF6C58740873839F5188D /* Pods_Filmies.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Filmies.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E50254F526983E6B000C6F03 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
@@ -106,6 +139,13 @@
 		E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E515A15F2697FC95008D4FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E52294AF26E0D02700DD3E09 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
+		E5269CF726FC6AEA0061E48E /* FilmiesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FilmiesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5269CF826FC6AEA0061E48E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		E5269CFA26FC6AEA0061E48E /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		E5269CFD26FC6AEB0061E48E /* FilmiesWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmiesWidget.swift; sourceTree = "<group>"; };
+		E5269CFF26FC6AEB0061E48E /* FilmiesWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = FilmiesWidget.intentdefinition; sourceTree = "<group>"; };
+		E5269D0026FC6AF80061E48E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E5269D0226FC6AF80061E48E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E52B8DD826C53AEF0032BC4A /* CustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
 		E52B8DDA26C53DD00032BC4A /* View+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extension.swift"; sourceTree = "<group>"; };
 		E52C334626B13E5E0080031F /* FilmTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTrailer.swift; sourceTree = "<group>"; };
@@ -193,6 +233,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5269CF426FC6AEA0061E48E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5269CFB26FC6AEB0061E48E /* SwiftUI.framework in Frameworks */,
+				E5269CF926FC6AEA0061E48E /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -209,6 +258,8 @@
 			isa = PBXGroup;
 			children = (
 				0E1DF6C58740873839F5188D /* Pods_Filmies.framework */,
+				E5269CF826FC6AEA0061E48E /* WidgetKit.framework */,
+				E5269CFA26FC6AEA0061E48E /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -247,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				E515A1552697FC85008D4FE4 /* Filmies */,
+				E5269CFC26FC6AEB0061E48E /* FilmiesWidget */,
 				E515A1542697FC85008D4FE4 /* Products */,
 				5B32ED206E6D00D211A85DCE /* Pods */,
 				695B4E8BED49C07B9CE95EB0 /* Frameworks */,
@@ -257,6 +309,7 @@
 			isa = PBXGroup;
 			children = (
 				E515A1532697FC85008D4FE4 /* Filmies.app */,
+				E5269CF726FC6AEA0061E48E /* FilmiesWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -283,6 +336,17 @@
 				E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E5269CFC26FC6AEB0061E48E /* FilmiesWidget */ = {
+			isa = PBXGroup;
+			children = (
+				E5269CFD26FC6AEB0061E48E /* FilmiesWidget.swift */,
+				E5269CFF26FC6AEB0061E48E /* FilmiesWidget.intentdefinition */,
+				E5269D0026FC6AF80061E48E /* Assets.xcassets */,
+				E5269D0226FC6AF80061E48E /* Info.plist */,
+			);
+			path = FilmiesWidget;
 			sourceTree = "<group>";
 		};
 		E54B4D4826BFC57A00BE5461 /* ChartTab */ = {
@@ -583,15 +647,34 @@
 				E515A1502697FC85008D4FE4 /* Frameworks */,
 				E515A1512697FC85008D4FE4 /* Resources */,
 				2A5902329FA0E233AC387149 /* [CP] Embed Pods Frameworks */,
+				E5269D0826FC6AF90061E48E /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E5269D0626FC6AF90061E48E /* PBXTargetDependency */,
 			);
 			name = Filmies;
 			productName = Filmies;
 			productReference = E515A1532697FC85008D4FE4 /* Filmies.app */;
 			productType = "com.apple.product-type.application";
+		};
+		E5269CF626FC6AEA0061E48E /* FilmiesWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5269D0B26FC6AF90061E48E /* Build configuration list for PBXNativeTarget "FilmiesWidgetExtension" */;
+			buildPhases = (
+				E5269CF326FC6AEA0061E48E /* Sources */,
+				E5269CF426FC6AEA0061E48E /* Frameworks */,
+				E5269CF526FC6AEA0061E48E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FilmiesWidgetExtension;
+			productName = FilmiesWidgetExtension;
+			productReference = E5269CF726FC6AEA0061E48E /* FilmiesWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -599,11 +682,14 @@
 		E515A14B2697FC85008D4FE4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1250;
+				LastSwiftUpdateCheck = 1300;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					E515A1522697FC85008D4FE4 = {
 						CreatedOnToolsVersion = 12.5.1;
+					};
+					E5269CF626FC6AEA0061E48E = {
+						CreatedOnToolsVersion = 13.0;
 					};
 				};
 			};
@@ -621,6 +707,7 @@
 			projectRoot = "";
 			targets = (
 				E515A1522697FC85008D4FE4 /* Filmies */,
+				E5269CF626FC6AEA0061E48E /* FilmiesWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -633,6 +720,15 @@
 				E551B052269C6C0D005D9613 /* Launch Screen.storyboard in Resources */,
 				E515A15E2697FC95008D4FE4 /* Preview Assets.xcassets in Resources */,
 				E515A15B2697FC95008D4FE4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5269CF526FC6AEA0061E48E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5269D0D26FC6F0F0061E48E /* Assets.xcassets in Resources */,
+				E5269D0126FC6AF80061E48E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -737,6 +833,7 @@
 				E564B11D26ABFCDB002637A9 /* CustomDivider.swift in Sources */,
 				E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */,
 				E50254F826983E80000C6F03 /* Movie.swift in Sources */,
+				E5269D0426FC6AF90061E48E /* FilmiesWidget.intentdefinition in Sources */,
 				E5A0DF8726BD067C00C0FA11 /* FilmSeasons.swift in Sources */,
 				E564B11926ABFAE4002637A9 /* FilmDetails.swift in Sources */,
 				E5840A6626A7FD4E00E3F782 /* CustomTabBar.swift in Sources */,
@@ -767,7 +864,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E5269CF326FC6AEA0061E48E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E5269D0326FC6AF90061E48E /* FilmiesWidget.intentdefinition in Sources */,
+				E5269CFE26FC6AEB0061E48E /* FilmiesWidget.swift in Sources */,
+				E5269D0E26FC6F9D0061E48E /* Constants.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E5269D0626FC6AF90061E48E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5269CF626FC6AEA0061E48E /* FilmiesWidgetExtension */;
+			targetProxy = E5269D0526FC6AF90061E48E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		E515A1602697FC95008D4FE4 /* Debug */ = {
@@ -892,6 +1007,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = ED199E9CE3D2131CC83C5A04 /* Pods-Filmies.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -915,6 +1031,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EAE79C3C2D7E56BD45275267 /* Pods-Filmies.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
@@ -929,6 +1046,62 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bryancolin.Filmies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E5269D0926FC6AF90061E48E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QL7B6ZXFS7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FilmiesWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FilmiesWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bryancolin.Filmies.FilmiesWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E5269D0A26FC6AF90061E48E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = QL7B6ZXFS7;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FilmiesWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = FilmiesWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bryancolin.Filmies.FilmiesWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -951,6 +1124,15 @@
 			buildConfigurations = (
 				E515A1632697FC95008D4FE4 /* Debug */,
 				E515A1642697FC95008D4FE4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5269D0B26FC6AF90061E48E /* Build configuration list for PBXNativeTarget "FilmiesWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5269D0926FC6AF90061E48E /* Debug */,
+				E5269D0A26FC6AF90061E48E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
