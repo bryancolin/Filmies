@@ -1,0 +1,424 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "poster_path": "/xmbU4JTUm8rsdtn7Y3Fcm30GpeT.jpg",
+            "video": false,
+            "vote_average": 7.8,
+            "overview": "A bank teller called Guy realizes he is a background character in an open world video game called Free City that will soon go offline.",
+            "release_date": "2021-08-11",
+            "vote_count": 926,
+            "adult": false,
+            "backdrop_path": "/8Y43POKjjKDGI9MH89NW0NAzzp8.jpg",
+            "title": "Free Guy",
+            "id": 550988,
+            "genre_ids": [
+                35,
+                28,
+                12,
+                878
+            ],
+            "original_language": "en",
+            "original_title": "Free Guy",
+            "popularity": 1974.787,
+            "media_type": "movie"
+        },
+        {
+            "original_title": "The Starling",
+            "poster_path": "/gPkaPGNbjZCeRurSYGi0JD63DBa.jpg",
+            "video": false,
+            "vote_average": 7.3,
+            "overview": "A woman adjusting to life after a loss contends with a feisty bird that's taken over her garden — and a husband who's struggling to find a way forward.",
+            "release_date": "2021-09-17",
+            "id": 468225,
+            "adult": false,
+            "backdrop_path": "/1tDelhmpG8KzFdU3QvOhBScm4sS.jpg",
+            "vote_count": 17,
+            "genre_ids": [
+                35,
+                18
+            ],
+            "title": "The Starling",
+            "original_language": "en",
+            "popularity": 26.774,
+            "media_type": "movie"
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/ck8zSCD4YppPjMbA8h6GDcPJPhH.jpg",
+            "genre_ids": [
+                53
+            ],
+            "vote_count": 79,
+            "original_language": "en",
+            "original_title": "Intrusion",
+            "poster_path": "/o6ozTBflWXlBje0uxJv4m6s4HTq.jpg",
+            "title": "Intrusion",
+            "video": false,
+            "vote_average": 6.6,
+            "id": 785752,
+            "overview": "When a husband and wife move to a small town, a home invasion leaves the wife traumatized and suspicious that those around her might not be who they seem.",
+            "release_date": "2021-09-22",
+            "popularity": 131.498,
+            "media_type": "movie"
+        },
+        {
+            "genre_ids": [
+                18
+            ],
+            "original_language": "en",
+            "original_title": "Birds of Paradise",
+            "poster_path": "/h3v0rsQvik8yMh3LStRiDu0GTHP.jpg",
+            "title": "Birds of Paradise",
+            "vote_average": 7,
+            "vote_count": 11,
+            "overview": "Two dancers at an elite ballet academy in Paris must compete for a contract to join the highly coveted Opéra National de Paris as they confront their competitive nature, sexual awakenings and how far they would go to win.",
+            "release_date": "2021-09-23",
+            "video": false,
+            "id": 667969,
+            "adult": false,
+            "backdrop_path": "/5n5BWIljsaeKf5wzwohjKuI7dG4.jpg",
+            "popularity": 69.689,
+            "media_type": "movie"
+        },
+        {
+            "poster_path": "/cGLL4SY6jFjjUZkz2eFxgtCtGgK.jpg",
+            "video": false,
+            "vote_average": 6.8,
+            "overview": "A group of families on a tropical holiday discover that the secluded beach where they are staying is somehow causing them to age rapidly – reducing their entire lives into a single day.",
+            "release_date": "2021-07-21",
+            "vote_count": 866,
+            "adult": false,
+            "backdrop_path": "/iTgM25ftE7YtFgZwUZupVp8A61S.jpg",
+            "title": "Old",
+            "id": 631843,
+            "genre_ids": [
+                9648,
+                53,
+                27
+            ],
+            "original_language": "en",
+            "original_title": "Old",
+            "popularity": 2594.521,
+            "media_type": "movie"
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/ugukqzx4gSzBd1yzmbWEHLkpGaS.jpg",
+            "genre_ids": [
+                16,
+                10751,
+                14,
+                35,
+                10402,
+                12
+            ],
+            "vote_count": 22,
+            "original_language": "en",
+            "original_title": "My Little Pony: A New Generation",
+            "poster_path": "/hzq5XRGgm6NDMOW1idUvbpGqEkv.jpg",
+            "title": "My Little Pony: A New Generation",
+            "video": false,
+            "vote_average": 8.7,
+            "id": 597316,
+            "overview": "Equestria's divided. But a bright-eyed hero believes Earth Ponies, Pegasi and Unicorns should be pals — and, hoof to heart, she’s determined to prove it.",
+            "release_date": "2021-09-23",
+            "popularity": 174.867,
+            "media_type": "movie"
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/dsdbViTNjLu4DbgkkYmuY4xDQ20.jpg",
+            "genre_ids": [
+                27,
+                53,
+                9648
+            ],
+            "original_language": "en",
+            "original_title": "Escape Room: Tournament of Champions",
+            "poster_path": "/jGYJyPzVgrVV2bgClI9uvEZgVLE.jpg",
+            "vote_count": 408,
+            "id": 585216,
+            "vote_average": 7.1,
+            "video": false,
+            "overview": "Six people unwittingly find themselves locked in another series of escape rooms, slowly uncovering what they have in common to survive as they discover all the games that they've played before.",
+            "release_date": "2021-07-01",
+            "title": "Escape Room: Tournament of Champions",
+            "popularity": 1146.106,
+            "media_type": "movie"
+        },
+        {
+            "genre_ids": [
+                28,
+                12,
+                18,
+                878
+            ],
+            "original_language": "en",
+            "original_title": "Dune",
+            "poster_path": "/s1FhMAr91WL8D5DeHOcuBELtiHJ.jpg",
+            "title": "Dune",
+            "vote_average": 8.2,
+            "vote_count": 890,
+            "overview": "Paul Atreides, a brilliant and gifted young man born into a great destiny beyond his understanding, must travel to the most dangerous planet in the universe to ensure the future of his family and his people. As malevolent forces explode into conflict over the planet's exclusive supply of the most precious resource in existence-a commodity capable of unlocking humanity's greatest potential-only those who can conquer their fear will survive.",
+            "release_date": "2021-09-15",
+            "video": false,
+            "id": 438631,
+            "adult": false,
+            "backdrop_path": "/aknvFyJUQQoZFtmFnYzKi4vGv4J.jpg",
+            "popularity": 407.624,
+            "media_type": "movie"
+        },
+        {
+            "original_language": "en",
+            "original_title": "Black Widow",
+            "poster_path": "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
+            "title": "Black Widow",
+            "vote_average": 7.7,
+            "overview": "Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by a force that will stop at nothing to bring her down, Natasha must deal with her history as a spy and the broken relationships left in her wake long before she became an Avenger.",
+            "release_date": "2021-07-07",
+            "vote_count": 5140,
+            "adult": false,
+            "backdrop_path": "/keIxh0wPr2Ymj0Btjh4gW7JJ89e.jpg",
+            "id": 497698,
+            "genre_ids": [
+                28,
+                12,
+                53,
+                878
+            ],
+            "video": false,
+            "popularity": 1434.802,
+            "media_type": "movie"
+        },
+        {
+            "backdrop_path": "/xXHZeb1yhJvnSHPzZDqee0zfMb6.jpg",
+            "overview": "Dominic Toretto and his crew battle the most skilled assassin and high-performance driver they've ever encountered: his forsaken brother.",
+            "genre_ids": [
+                28,
+                80,
+                53
+            ],
+            "original_language": "en",
+            "original_title": "F9",
+            "poster_path": "/bOFaAXmWWXC3Rbv4u4uM9ZSzRXP.jpg",
+            "id": 385128,
+            "title": "F9",
+            "vote_average": 7.5,
+            "vote_count": 3775,
+            "release_date": "2021-05-19",
+            "video": false,
+            "adult": false,
+            "popularity": 1102.779,
+            "media_type": "movie"
+        },
+        {
+            "original_language": "en",
+            "original_title": "Infinite",
+            "poster_path": "/niw2AKHz6XmwiRMLWaoyAOAti0G.jpg",
+            "title": "Infinite",
+            "vote_average": 7.4,
+            "overview": "Evan McCauley has skills he never learned and memories of places he has never visited. Self-medicated and on the brink of a mental breakdown, a secret group that call themselves “Infinites” come to his rescue, revealing that his memories are real.",
+            "release_date": "2021-06-10",
+            "vote_count": 1106,
+            "adult": false,
+            "backdrop_path": "/tUwgWj9EUK70qqkIlkwzMejc9wJ.jpg",
+            "id": 581726,
+            "genre_ids": [
+                878,
+                28,
+                53
+            ],
+            "video": false,
+            "popularity": 978.437,
+            "media_type": "movie"
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/8yhWlFcJ8zCqjfCvLy3lWFuawR1.jpg",
+            "genre_ids": [
+                878,
+                53,
+                9648,
+                10749
+            ],
+            "original_language": "en",
+            "original_title": "Reminiscence",
+            "poster_path": "/17siH6wJRQ2jZiqz9BWUhy1UtZ.jpg",
+            "vote_count": 656,
+            "id": 579047,
+            "vote_average": 7.2,
+            "video": false,
+            "overview": "Nicolas Bannister, a rugged and solitary veteran living in a near-future Miami flooded by rising seas, is an expert in a dangerous occupation: he offers clients the chance to relive any memory they desire. His life changes when he meets a mysterious young woman named Mae. What begins as a simple matter of lost and found becomes a passionate love affair. But when a different client's memories implicate Mae in a series of violent crimes, Bannister must delve through the dark world of the past to uncover the truth about the woman he fell for.",
+            "release_date": "2021-08-19",
+            "title": "Reminiscence",
+            "popularity": 233.177,
+            "media_type": "movie"
+        },
+        {
+            "title": "Shang-Chi and the Legend of the Ten Rings",
+            "original_language": "en",
+            "original_title": "Shang-Chi and the Legend of the Ten Rings",
+            "poster_path": "/xeItgLK9qcafxbd8kYgv7XnMEog.jpg",
+            "id": 566525,
+            "video": false,
+            "vote_average": 7.8,
+            "overview": "Shang-Chi must confront the past he thought he left behind when he is drawn into the web of the mysterious Ten Rings organization.",
+            "release_date": "2021-09-01",
+            "adult": false,
+            "backdrop_path": "/uizrxdqIl1a4c9UIhSdPM3o6u0f.jpg",
+            "vote_count": 1031,
+            "genre_ids": [
+                28,
+                12,
+                14
+            ],
+            "popularity": 1987.276,
+            "media_type": "movie"
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/bhTMwf7XO4mbk4plgvFjq7tzoWt.jpg",
+            "genre_ids": [
+                18
+            ],
+            "id": 683641,
+            "original_language": "de",
+            "original_title": "Je suis Karl",
+            "overview": "After most of her family is murdered in a terrorist bombing, a young woman is unknowingly lured into joining the very group that killed them.",
+            "poster_path": "/b25r8oFFSVagLyXmHK5MbHgI9Nh.jpg",
+            "release_date": "2021-09-16",
+            "title": "Je suis Karl",
+            "video": false,
+            "vote_average": 5.5,
+            "vote_count": 2,
+            "popularity": 23.016,
+            "media_type": "movie"
+        },
+        {
+            "overview": "Mike Milo, a one-time rodeo star and washed-up horse breeder, takes a job from an ex-boss to bring the man's young son home from Mexico.",
+            "release_date": "2021-09-16",
+            "id": 749274,
+            "adult": false,
+            "backdrop_path": "/g6wufgtycJCP508tlC3crSYFCgC.jpg",
+            "genre_ids": [
+                37,
+                18
+            ],
+            "vote_count": 97,
+            "original_language": "en",
+            "original_title": "Cry Macho",
+            "poster_path": "/nMFWfwer3IYTALLEiNno4SaVMbE.jpg",
+            "title": "Cry Macho",
+            "video": false,
+            "vote_average": 7,
+            "popularity": 469.066,
+            "media_type": "movie"
+        },
+        {
+            "title": "Candyman",
+            "adult": false,
+            "backdrop_path": "/mHU833IrBRfZ3hhzEQsiiw2D8Nc.jpg",
+            "id": 565028,
+            "genre_ids": [
+                27,
+                53
+            ],
+            "original_language": "en",
+            "original_title": "Candyman",
+            "poster_path": "/dqoshZPLNsXlC1qtz5n34raUyrE.jpg",
+            "video": false,
+            "vote_average": 6.6,
+            "vote_count": 326,
+            "overview": "Anthony and his partner move into a loft in the now gentrified Cabrini-Green, and after a chance encounter with an old-timer exposes Anthony to the true story behind Candyman, he unknowingly opens a door to a complex past that unravels his own sanity and unleashes a terrifying wave of violence.",
+            "release_date": "2021-08-25",
+            "popularity": 1060.428,
+            "media_type": "movie"
+        },
+        {
+            "original_language": "en",
+            "original_title": "The Suicide Squad",
+            "poster_path": "/kb4s0ML0iVZlG6wAKbbs9NAm6X.jpg",
+            "title": "The Suicide Squad",
+            "vote_average": 7.9,
+            "overview": "Supervillains Harley Quinn, Bloodsport, Peacemaker and a collection of nutty cons at Belle Reve prison join the super-secret, super-shady Task Force X as they are dropped off at the remote, enemy-infused island of Corto Maltese.",
+            "release_date": "2021-07-28",
+            "vote_count": 4060,
+            "adult": false,
+            "backdrop_path": "/jlGmlFOcfo8n5tURmhC7YVd4Iyy.jpg",
+            "id": 436969,
+            "genre_ids": [
+                28,
+                12,
+                14,
+                35
+            ],
+            "video": false,
+            "popularity": 2200.687,
+            "media_type": "movie"
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/vkIJ2QgcKMJRvi6pBW4Tr2kgLdy.jpg",
+            "genre_ids": [
+                80,
+                53
+            ],
+            "vote_count": 289,
+            "original_language": "fr",
+            "original_title": "BAC Nord",
+            "poster_path": "/nLanxl7Xhfbd5s8FxPy8jWZw4rv.jpg",
+            "title": "The Stronghold",
+            "video": false,
+            "vote_average": 8,
+            "id": 637534,
+            "overview": "A police brigade working in the dangerous northern neighborhoods of Marseille, where the level of crime is higher than anywhere else in France.",
+            "release_date": "2021-08-18",
+            "popularity": 1045.855,
+            "media_type": "movie"
+        },
+        {
+            "original_title": "A Menina Que Matou os Pais",
+            "poster_path": "/7gqZyGlLjNKXIk8RBswqAGJygVz.jpg",
+            "video": false,
+            "vote_average": 6,
+            "overview": "A psychological thriller surrounding the real murders of Manfred and Marísia von Richthofen orchestrated by their own daughter, Suzane, along with her boyfriend and brother-in-law, the Cravinhos brothers.",
+            "release_date": "2021-09-24",
+            "id": 608804,
+            "adult": false,
+            "backdrop_path": "/6RSmdzLx5Y975kKREVfa1KdCYMS.jpg",
+            "vote_count": 22,
+            "genre_ids": [
+                80,
+                18,
+                53
+            ],
+            "title": "The Girl Who Killed Her Parents",
+            "original_language": "pt",
+            "popularity": 52.706,
+            "media_type": "movie"
+        },
+        {
+            "adult": false,
+            "backdrop_path": "/aO9Nnv9GdwiPdkNO79TISlQ5bbG.jpg",
+            "genre_ids": [
+                28,
+                12
+            ],
+            "original_language": "en",
+            "original_title": "Snake Eyes: G.I. Joe Origins",
+            "poster_path": "/uIXF0sQGXOxQhbaEaKOi2VYlIL0.jpg",
+            "vote_count": 471,
+            "id": 568620,
+            "vote_average": 7,
+            "video": false,
+            "overview": "After saving the life of their heir apparent, tenacious loner Snake Eyes is welcomed into an ancient Japanese clan called the Arashikage where he is taught the ways of the ninja warrior. But, when secrets from his past are revealed, Snake Eyes' honor and allegiance will be tested – even if that means losing the trust of those closest to him.",
+            "release_date": "2021-07-22",
+            "title": "Snake Eyes: G.I. Joe Origins",
+            "popularity": 1078.181,
+            "media_type": "movie"
+        }
+    ],
+    "total_pages": 1000,
+    "total_results": 20000
+}

@@ -7,7 +7,6 @@
 
 import Foundation
 
-@MainActor
 final class ModelData: ObservableObject {
     
     private let url = "https://api.themoviedb.org/3"
@@ -33,6 +32,7 @@ final class ModelData: ObservableObject {
         loadFavoriteFilms(type: K.Tv.favorites, key: K.UserDefaults.tvKey, expecting: [TvShow].self)
     }
     
+    @MainActor
     func fetchFilms(with param: String, name: String = "", pageNumber: Int = 1) async {
         isLoading = true
         isError = false
@@ -67,6 +67,7 @@ final class ModelData: ObservableObject {
         }
     }
     
+    @MainActor
     func fetchFilmDetails<T: Codable>(type: FilmType, param: String, id: Int, expecting: T.Type) async {
         
         let film = findFilm(param: param, id: id)
@@ -157,6 +158,7 @@ final class ModelData: ObservableObject {
         }
     }
     
+    @MainActor
     func fetchPeople(id: Int) async {
         let fullURL = "\(url)/person/\(id)" + apiKey + "&append_to_response=movie_credits,tv_credits&include_image_language=en"
         

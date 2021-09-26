@@ -10,21 +10,27 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+    
+    let modelData = ModelData()
+    let films = Film.getPlaceholderData()
+    
     func placeholder(in context: Context) -> Model {
-        Model(date: Date(), data: Detail.placeholderData)
+        Model(date: Date(), data: films)
     }
     
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Model) -> ()) {
-        let entry = Model(date: Date(), data: Detail.placeholderData)
+        let entry = Model(date: Date(), data: films)
         completion(entry)
     }
     
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         Task {
+            await modelData.fetchFilms(with: K.Movie.daily)
+            
             let currentDate = Date()
             let nextUpdate = Calendar.current.date(byAdding: .hour, value: 24, to: currentDate)
             
-            let data = await Model(date: currentDate, data: getData())
+            let data = Model(date: currentDate, data: modelData.films[K.Movie.daily] ?? films)
             let timeline = Timeline(entries: [data], policy: .after(nextUpdate!))
             
             completion(timeline)
@@ -32,24 +38,9 @@ struct Provider: IntentTimelineProvider {
     }
 }
 
-func getData() async -> [Detail] {
-    let url = "https://api.themoviedb.org/3/trending/movie/day?api_key=\(Bundle.main.infoDictionary?["API_KEY"] as? String ?? "")"
-    
-    do {
-        let result = try await URLSession.shared.request(url: URL(string: url), expecting: JSONData.self)
-        if let results = result.all {
-            return results
-        }
-    } catch {
-        print(error.localizedDescription)
-    }
-    
-    return Detail.placeholderData
-}
-
 struct Model: TimelineEntry {
     let date: Date
-    let data: [Detail]
+    let data: [Film]
 }
 
 struct FilmiesWidgetEntryView : View {
@@ -76,13 +67,13 @@ struct FilmiesWidget: Widget {
 struct FilmiesWidget_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FilmiesWidgetEntryView(entry: Model(date: Date(), data: Detail.placeholderData))
+            FilmiesWidgetEntryView(entry: Model(date: Date(), data: Film.getPlaceholderData()))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
             
-            FilmiesWidgetEntryView(entry: Model(date: Date(), data: Detail.placeholderData))
+            FilmiesWidgetEntryView(entry: Model(date: Date(), data: Film.getPlaceholderData()))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
             
-            FilmiesWidgetEntryView(entry: Model(date: Date(), data: Detail.placeholderData))
+            FilmiesWidgetEntryView(entry: Model(date: Date(), data: Film.getPlaceholderData()))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
         }
     }

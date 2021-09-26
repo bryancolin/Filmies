@@ -94,3 +94,29 @@ class Film: Codable, Identifiable {
         return posterURL
     }
 }
+
+extension Film {
+    
+    static func getPlaceholderData() -> [Film] {
+        let data: Data
+        
+        guard let file = Bundle.main.url(forResource: "sampleData.json", withExtension: nil) else { fatalError("Couldn't find file in main bundle.") }
+        
+        do {
+            data = try Data(contentsOf: file)
+        } catch {
+            fatalError("Couldn't load file from main bundle")
+        }
+        
+        do {
+            let result = try JSONDecoder().decode(Films.self, from: data)
+            if let films  = result.all {
+                return films
+            }
+        } catch {
+            fatalError("Couldn't parse file.")
+        }
+        
+        return [Film]()
+    }
+}
