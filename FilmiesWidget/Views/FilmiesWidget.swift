@@ -18,19 +18,20 @@ struct Provider: IntentTimelineProvider {
         Model(date: Date(), data: films)
     }
     
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Model) -> ()) {
+    func getSnapshot(for configuration: FilmiesConfigurationIntent, in context: Context, completion: @escaping (Model) -> ()) {
         let entry = Model(date: Date(), data: films)
         completion(entry)
     }
     
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+    func getTimeline(for configuration: FilmiesConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         Task {
-            await modelData.fetchFilms(with: K.Movie.daily)
+            let config = configuration.ShowMovieOrTV == .movie ? K.Movie.daily : K.Tv.daily
+            await modelData.fetchFilms(with: config)
             
             let currentDate = Date()
             let nextUpdate = Calendar.current.date(byAdding: .hour, value: 24, to: currentDate)
             
-            let data = Model(date: currentDate, data: modelData.films[K.Movie.daily] ?? films)
+            let data = Model(date: currentDate, data: modelData.films[config] ?? films)
             let timeline = Timeline(entries: [data], policy: .after(nextUpdate!))
             
             completion(timeline)
@@ -56,11 +57,11 @@ struct FilmiesWidget: Widget {
     let kind: String = "FilmiesWidget"
     
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
+        IntentConfiguration(kind: kind, intent: FilmiesConfigurationIntent.self, provider: Provider()) { entry in
             FilmiesWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Filmies Launcher")
-        .description("Display Trending Movies.")
+        .description("Display Trending Films.")
     }
 }
 

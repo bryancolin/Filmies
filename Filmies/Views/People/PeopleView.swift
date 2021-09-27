@@ -12,7 +12,7 @@ struct PeopleView: View {
     @EnvironmentObject var modelData: ModelData
     @Environment(\.presentationMode) var presentationMode
     
-    @State var opacity: Double = 1
+    @State var opacity: Double = 0
     
     var id: Int
     
@@ -65,7 +65,7 @@ struct PeopleView: View {
                             alignment: .bottomTrailing
                         )
                         .frame(maxWidth: UIScreen.main.bounds.width)
-                        .overlay(
+                        .overlay(alignment: .topTrailing) {
                             GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
                                     let offset = proxy.frame(in:. global).minY + UIScreen.main.bounds.height / 2
@@ -83,7 +83,7 @@ struct PeopleView: View {
                                 }
                                 return Color.clear
                             }
-                        )
+                        }
                     
                     VStack(alignment: .leading) {
                         HorizontalComponent(title: "From", details: [people.birthPlace ?? "-"])

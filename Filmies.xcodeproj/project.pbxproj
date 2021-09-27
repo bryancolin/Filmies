@@ -132,6 +132,8 @@
 		E5FB89BE26AAAB3400A496CB /* Casts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FB89BD26AAAB3300A496CB /* Casts.swift */; };
 		E5FB89C126AAB1A100A496CB /* Cast.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FB89C026AAB1A100A496CB /* Cast.swift */; };
 		E5FB89C326AAB1B500A496CB /* Crew.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FB89C226AAB1B500A496CB /* Crew.swift */; };
+		E5FD63372701BA6000220CA7 /* FilmiesConfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E5FD63362701BA6000220CA7 /* FilmiesConfiguration.intentdefinition */; };
+		E5FD63382701BA6000220CA7 /* FilmiesConfiguration.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = E5FD63362701BA6000220CA7 /* FilmiesConfiguration.intentdefinition */; };
 		E5FFD17C26A6C09D00FDD685 /* CustomImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */; };
 /* End PBXBuildFile section */
 
@@ -255,6 +257,7 @@
 		E5FB89BD26AAAB3300A496CB /* Casts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Casts.swift; sourceTree = "<group>"; };
 		E5FB89C026AAB1A100A496CB /* Cast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cast.swift; sourceTree = "<group>"; };
 		E5FB89C226AAB1B500A496CB /* Crew.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crew.swift; sourceTree = "<group>"; };
+		E5FD63362701BA6000220CA7 /* FilmiesConfiguration.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = FilmiesConfiguration.intentdefinition; sourceTree = "<group>"; };
 		E5FFD17B26A6C09C00FDD685 /* CustomImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImage.swift; sourceTree = "<group>"; };
 		EAE79C3C2D7E56BD45275267 /* Pods-Filmies.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmies.release.xcconfig"; path = "Target Support Files/Pods-Filmies/Pods-Filmies.release.xcconfig"; sourceTree = "<group>"; };
 		ED199E9CE3D2131CC83C5A04 /* Pods-Filmies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Filmies.debug.xcconfig"; path = "Target Support Files/Pods-Filmies/Pods-Filmies.debug.xcconfig"; sourceTree = "<group>"; };
@@ -378,6 +381,7 @@
 			isa = PBXGroup;
 			children = (
 				E5269CFF26FC6AEB0061E48E /* FilmiesWidget.intentdefinition */,
+				E5FD63362701BA6000220CA7 /* FilmiesConfiguration.intentdefinition */,
 				E53AD03526FEE5D40034DE21 /* Views */,
 				E5269D0026FC6AF80061E48E /* Assets.xcassets */,
 				E5269D0226FC6AF80061E48E /* Info.plist */,
@@ -865,6 +869,7 @@
 				E558D2C826DF3643007A1801 /* PeopleView.swift in Sources */,
 				E563EB8526B25C8F00324CA6 /* AccountView.swift in Sources */,
 				E56870C426B7F61E002BA55F /* FilmComponent.swift in Sources */,
+				E5FD63372701BA6000220CA7 /* FilmiesConfiguration.intentdefinition in Sources */,
 				E5B7FFED26C013B800E5BC6D /* Blur.swift in Sources */,
 				E54B4D5026BFCF4A00BE5461 /* URLSession+Extension.swift in Sources */,
 				E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */,
@@ -948,6 +953,7 @@
 				E5269D0E26FC6F9D0061E48E /* Constants.swift in Sources */,
 				E53AD01926FED9F40034DE21 /* Film.swift in Sources */,
 				E53AD02726FEE02A0034DE21 /* CustomColor.swift in Sources */,
+				E5FD63382701BA6000220CA7 /* FilmiesConfiguration.intentdefinition in Sources */,
 				E53AD02926FEE0300034DE21 /* FilmType.swift in Sources */,
 				E53AD01E26FEDA170034DE21 /* Creator.swift in Sources */,
 				E53AD01526FED9E70034DE21 /* Genre.swift in Sources */,

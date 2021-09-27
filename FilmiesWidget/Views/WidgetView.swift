@@ -10,6 +10,13 @@ import SwiftUI
 struct WidgetView: View {
     
     var entry: Model
+    var title: String {
+        if let film = entry.data.first, film is Movie {
+            return "Movies"
+        } else {
+            return "TV Shows"
+        }
+    }
     
     @Environment(\.widgetFamily) var family
     
@@ -20,8 +27,10 @@ struct WidgetView: View {
             LinearGradient(gradient: Gradient(colors: [Color(K.BrandColors.blue), Color(K.BrandColors.purple)]), startPoint: .top, endPoint: .bottom)
             
             VStack(alignment: .leading) {
-                Text("Trending")
+                Text("Trending (\(title))")
                     .foregroundColor(Color(K.BrandColors.pink))
+                    .fontWeight(.bold)
+                    .lineLimit(1)
                 
                 switch family {
                 case .systemSmall:
