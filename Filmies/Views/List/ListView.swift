@@ -30,19 +30,15 @@ struct ListView: View {
             CustomScrollView {
                 VStack(alignment: .leading) {
                     // Back Button
-                    Button(action: {
+                    IconButton(title: "arrow.backward") {
                         presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "arrow.backward")
                     }
                     .padding()
                     
                     // Title
                     TitleComponent(name: title, color: .white, type: .largeTitle, weight: .bold) {
-                        Button(action: {
+                        IconButton(title: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill") {
                             numberOfColumns = numberOfColumns % 2 + 1
-                        }) {
-                            Image(systemName: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
                         }
                     }
                     

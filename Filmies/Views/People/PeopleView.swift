@@ -23,11 +23,7 @@ struct PeopleView: View {
     var header: some View {
         // Back Button
         HStack {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "arrow.backward")
-            }
+            IconButton(title: "arrow.backward") { presentationMode.wrappedValue.dismiss() }
             
             Spacer()
             
@@ -39,9 +35,7 @@ struct PeopleView: View {
             
             Spacer()
             
-            Button(action: {}) {
-                Image(systemName: "star")
-            }
+            IconButton(title: "star") {}
         }
         .padding()
         .padding(.top)
@@ -85,7 +79,7 @@ struct PeopleView: View {
                             }
                         }
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading) {  
                         HorizontalComponent(title: "From", details: [people.birthPlace ?? "-"])
                         HorizontalComponent(title: "Date of Birth", details: [people.birthday?.toDate().toString(format: K.dateFormat) ?? "-"])
                         

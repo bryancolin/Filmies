@@ -47,9 +47,7 @@ struct SearchView: View {
                 }
             
             if !searchText.isEmpty {
-                Button(action: { searchText = "" }) {
-                    Image(systemName: "xmark")
-                }
+                IconButton(title: "xmark") { searchText = "" }
             }
         }
         .accentColor(Color(K.BrandColors.pink))

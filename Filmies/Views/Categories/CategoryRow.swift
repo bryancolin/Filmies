@@ -21,15 +21,7 @@ struct CategoryRow: View {
         VStack(alignment: .leading) {
             if let films = modelData.films[category], !films.isEmpty {
                 // Title
-                HStack {
-                    Text(title)
-                        .foregroundColor(color)
-                        .font(.title3)
-                        .fontWeight(.semibold)
-                        .padding(.leading, 15)
-                    
-                    Spacer()
-                    
+                TitleComponent(name: title, color: color, type: .title3, weight: .semibold) {
                     Button(action: {
                         isPresented.toggle()
                     }) {
@@ -37,14 +29,13 @@ struct CategoryRow: View {
                             .foregroundColor(Color.white.opacity(0.5))
                             .font(.caption)
                             .fontWeight(.semibold)
-                            .padding(.trailing)
                     }
                     .fullScreenCover(isPresented: $isPresented) {
                         ListView(title: title, category: category, searchText: .constant(""))
                             .environmentObject(modelData)
                     }
                 }
-                .padding(.top, 5)
+                .padding(.vertical, -10)
                 
                 // Content
                 ScrollView(.horizontal, showsIndicators: false) {

@@ -50,13 +50,11 @@ struct ModalView: View {
                     
                     // Title Description
                     TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold) {
-                        Button(action: {
+                        IconButton(title: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill") {
                             isFavorite.toggle()
                             modelData.highlightFilm(type: filmType, param: film.category, id: film.id ?? 0, check: isFavorite)
-                        }) {
-                            Image(systemName: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill")
-                                .foregroundColor(.white)
                         }
+                        .foregroundColor(.white)
                     }
                 }
                 .background(Color.black.opacity(0.75))
