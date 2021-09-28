@@ -6,9 +6,19 @@
 //
 
 import Foundation
+import SwiftUI
+
+protocol FileDocument {
+    
+    static var documentsFolder: URL { get }
+    
+    func loadFavoriteFilms<T: Codable>(type: String, key: String, expecting: T.Type)
+    func saveFavoriteFilms(type: String, key: String)
+}
 
 final class ModelData: ObservableObject {
     
+    // URL
     private let url = "https://api.themoviedb.org/3"
     private let apiKey = "?api_key=\(Bundle.main.infoDictionary?["API_KEY"] as? String ?? "")"
     
@@ -28,8 +38,8 @@ final class ModelData: ObservableObject {
             for param in (movieParams + tvShowParams) { await fetchFilms(with: param) }
         }
         
-        loadFavoriteFilms(type: K.Movie.favorites, key: K.UserDefaults.movieKey, expecting: [Movie].self)
-        loadFavoriteFilms(type: K.Tv.favorites, key: K.UserDefaults.tvKey, expecting: [TvShow].self)
+        loadFavoriteFilms(type: K.Movie.favorites, key: K.FileDocument.movieKey, expecting: [Movie].self)
+        loadFavoriteFilms(type: K.Tv.favorites, key: K.FileDocument.tvKey, expecting: [TvShow].self)
     }
     
     @MainActor
@@ -120,7 +130,7 @@ final class ModelData: ObservableObject {
             }
         }
         
-        saveFavoriteFilms(type: type, key: type == K.Movie.favorites ? K.UserDefaults.movieKey : K.UserDefaults.tvKey)
+        saveFavoriteFilms(type: type, key: type == K.Movie.favorites ? K.FileDocument.movieKey : K.FileDocument.tvKey)
     }
     
     func findFilm(param: String, id: Int) -> (exists: Bool, index: Int) {
@@ -132,30 +142,6 @@ final class ModelData: ObservableObject {
             }
         }
         return (exists: false, index: 0)
-    }
-    
-    // Load from User Defaults
-    func loadFavoriteFilms<T: Codable>(type: String, key: String, expecting: T.Type) {
-        if let data = UserDefaults.standard.data(forKey: key) {
-            if let decoded = try? JSONDecoder().decode(expecting, from: data) {
-                DispatchQueue.main.async { [self] in
-                    if let datas = decoded as? [Film] {
-                        films[type] = datas.sorted(by: { $0.addedAt ?? 0 > $1.addedAt ?? 0 })
-                    }
-                }
-            }
-        }
-    }
-    
-    // Store in User Defaults
-    func saveFavoriteFilms(type: String, key: String) {
-        let encoder = JSONEncoder()
-        encoder.outputFormatting = .prettyPrinted
-        
-        if let encoded = try? encoder.encode(films[type]) {
-            print(String(data: encoded, encoding: .utf8)!)
-            UserDefaults.standard.set(encoded, forKey: key)
-        }
     }
     
     @MainActor
@@ -170,6 +156,56 @@ final class ModelData: ObservableObject {
                 films[String(id) + K.People.tv] = result.tvCredits?.all
             } catch {
                 print(error)
+            }
+        }
+    }
+}
+
+//MARK: - Document Folder
+
+extension ModelData: FileDocument {
+    
+    // Document
+    static var documentsFolder: URL {
+        do {
+            return try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+        } catch {
+            fatalError("Can't find documents directory.")
+        }
+    }
+    
+    // Load from Documents Folder
+    func loadFavoriteFilms<T: Codable>(type: String, key: String, expecting: T.Type) {
+        let fileURL: URL = ModelData.documentsFolder.appendingPathComponent("\(key).data")
+        
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let data = try? Data(contentsOf: fileURL) else { return }
+            guard let decoded = try? JSONDecoder().decode(expecting, from: data) else { fatalError("Can't decode saved data.") }
+            
+            DispatchQueue.main.async {
+                if let datas = decoded as? [Film] {
+                    self?.films[type] = datas.sorted(by: { $0.addedAt ?? 0 > $1.addedAt ?? 0})
+                }
+            }
+        }
+    }
+    
+    // Store in Documents Folder
+    func saveFavoriteFilms(type: String, key: String) {
+        let fileURL: URL = ModelData.documentsFolder.appendingPathComponent("\(key).data")
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let encoded = try? encoder.encode(self?.films[type]) else { fatalError("Can't write to file.") }
+            print(String(data: encoded, encoding: .utf8)!)
+            
+            do {
+                let outfile = fileURL
+                try encoded.write(to: outfile)
+            } catch {
+                fatalError("Can't write to file")
             }
         }
     }
