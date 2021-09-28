@@ -42,7 +42,6 @@ struct CategoryRow: View {
                     .fullScreenCover(isPresented: $isPresented) {
                         ListView(title: title, category: category, searchText: .constant(""))
                             .environmentObject(modelData)
-                            .animation(.default)
                     }
                 }
                 .padding(.top, 5)

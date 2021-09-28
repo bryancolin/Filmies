@@ -77,7 +77,6 @@ struct VerticalComponentDetails: View {
         .fullScreenCover(isPresented: $isPresented) {
             PeopleView(id: id)
                 .environmentObject(modelData)
-                .animation(.default)
         }
     }
 }

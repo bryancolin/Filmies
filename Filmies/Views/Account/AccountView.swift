@@ -26,7 +26,6 @@ struct AccountView: View {
                         }) {
                             Circle()
                                 .foregroundColor(colors[index])
-                                .animation(.spring())
                         }
                     }
                 }

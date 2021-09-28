@@ -70,7 +70,7 @@ struct SearchView: View {
             
             // Pinned Search Bar
             LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
-                Section(header: searchBar) {
+                Section(header: searchBar.animation(.none)) {
                     //Content
                     let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 2)
                     

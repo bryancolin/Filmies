@@ -77,6 +77,7 @@ struct ListView: View {
                 }
             }
         }
+        .animation(.default)
     }
 }
 

@@ -103,6 +103,7 @@ struct PeopleView: View {
                 }
             }
         }
+        .animation(.default)
         .ignoresSafeArea()
         .safeAreaInset(edge: .top) {
             header
