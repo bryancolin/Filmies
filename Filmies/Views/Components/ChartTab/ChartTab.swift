@@ -37,7 +37,11 @@ struct AnotherChartTab: View {
     
     var body: some View {
         HStack {
-            IconButton(title: "arrowtriangle.left.fill") { selectedIndex -= 1 }
+            IconButton(title: "chevron.left") {
+                withAnimation {
+                    selectedIndex -= 1
+                }
+            }
             
             Spacer()
             
@@ -45,7 +49,11 @@ struct AnotherChartTab: View {
             
             Spacer()
             
-            IconButton(title: "arrowtriangle.right.fill") { selectedIndex += 1 }
+            IconButton(title: "chevron.right") {
+                withAnimation {
+                    selectedIndex += 1
+                }
+            }
             .opacity(selectedIndex == 0 ? 0 : 1)
             .disabled(selectedIndex == 0 ? true : false)
             

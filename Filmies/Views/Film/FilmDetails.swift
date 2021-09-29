@@ -19,23 +19,11 @@ struct FilmDetails: View {
     var overview: some View {
         FilmComponent(title: "Overview") {
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    Text(film.rate)
-                    Text("|")
-                    
-                    if let movie = film as? Movie {
-                        Text(movie.duration)
-                        Text("|")
-                        Text(movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? "")
-                    } else if let tvShow = film as? TvShow {
-                        Text(tvShow.duration)
-                        Text("|")
-                        Text("\(tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? "") - \(tvShow.lastAirDate?.toDate().toString(format: K.dateFormat) ?? "")")
-                    }
-                }
+            if let movie = film as? Movie {
+                FilmDescriptions(date: movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? "", duration: movie.duration, rate: film.rate)
+            } else if let tvShow = film as? TvShow {
+                FilmDescriptions(date: tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? "", duration: tvShow.duration, rate: film.rate)
             }
-            .font(.caption)
             
             Text(film.description)
                 .font(.subheadline)

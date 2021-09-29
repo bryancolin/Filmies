@@ -15,6 +15,8 @@ struct ListItem: View {
     var film: Film
     var category: String
     
+    @Binding var numberOfColumns: Int
+    
     private var title: String {
         if let tvShow = film as? TvShow {
             return tvShow.name ?? ""
@@ -37,24 +39,26 @@ struct ListItem: View {
             CategoryItem(film: film, category: category)
                 .padding(.leading, -15)
             
-            VStack(alignment: .leading) {
-                Text(title)
-                    .font(.title3)
-                    .fontWeight(.bold)
-                    .lineLimit(2)
-                
-                Text(releaseDate)
-                    .font(.caption)
-                    .fontWeight(.regular)
-                    .lineLimit(1)
-                    .padding(.vertical, 5)
-                
-                Text(film.description)
-                    .font(.headline)
-                    .lineLimit(3)
-                    .opacity(0.5)
+            if numberOfColumns % 2 != 0 {
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.title3)
+                        .fontWeight(.bold)
+                        .lineLimit(2)
+                    
+                    Text(releaseDate)
+                        .font(.caption)
+                        .fontWeight(.regular)
+                        .lineLimit(1)
+                        .padding(.vertical, 5)
+                    
+                    Text(film.description)
+                        .font(.headline)
+                        .lineLimit(3)
+                        .opacity(0.5)
+                }
+                .padding()
             }
-            .padding()
         }
         .background(Color.white.opacity(0.2))
         .clipShape(RoundedRectangle(cornerRadius: 8))

@@ -17,6 +17,7 @@
 		E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E515A1582697FC85008D4FE4 /* ContentView.swift */; };
 		E515A15B2697FC95008D4FE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15A2697FC95008D4FE4 /* Assets.xcassets */; };
 		E515A15E2697FC95008D4FE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */; };
+		E520361327032AD500F0E0F7 /* WebPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50DBD7D26A2BA43005948E7 /* WebPlayerView.swift */; };
 		E52294B026E0D02900DD3E09 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52294AF26E0D02700DD3E09 /* Creator.swift */; };
 		E5269CF926FC6AEA0061E48E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5269CF826FC6AEA0061E48E /* WidgetKit.framework */; };
 		E5269CFB26FC6AEB0061E48E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5269CFA26FC6AEA0061E48E /* SwiftUI.framework */; };
@@ -926,6 +927,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E520361327032AD500F0E0F7 /* WebPlayerView.swift in Sources */,
 				E53AD02126FEDA2B0034DE21 /* Cast.swift in Sources */,
 				E53AD02D26FEE04F0034DE21 /* Collection+Extension.swift in Sources */,
 				E5269D0F26FC79900061E48E /* URLSession+Extension.swift in Sources */,

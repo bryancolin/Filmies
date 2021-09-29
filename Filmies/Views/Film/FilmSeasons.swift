@@ -28,13 +28,9 @@ struct FilmSeasons: View {
                     Text("Season \(season.number ?? 0)")
                         .fontWeight(.bold)
                     
-                    HStack {
-                        Text("\(season.totalEpisode ?? 0) episodes")
-                        Text("•")
-                        Text(season.airDate?.toDate().toString(format: "dd/MM/yyyy") ?? "")
-                    }
-                    .font(.caption)
-                    .opacity(0.5)
+                    Text("\(season.totalEpisode ?? 0) episodes • \(season.airDate?.toDate().toString(format: "dd/MM/yyyy") ?? "")")
+                        .font(.caption)
+                        .opacity(0.5)
                 }
                 
                 Spacer()

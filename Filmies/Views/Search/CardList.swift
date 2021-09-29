@@ -17,20 +17,14 @@ struct CardList: View {
     @State private var isPresented = false
     
     var body: some View {
-        Button(action: {
-            isPresented.toggle()
-        }) {
-            ZStack(alignment: .bottomTrailing) {
-                if let movies =  modelData.films[category] {
-                    CustomImage(urlString: movies.first?.posterURL ?? "")
-                        .frame(width: 75, height: 100)
-                        .cornerRadius(5)
-                        .blur(radius: 1)
-                        .offset(x: 20, y: 10)
-                        .rotationEffect(.degrees(-25))
-                }
+        if let movies =  modelData.films[category] {
+            GeometryReader { geometry in
+                let height = geometry.size.height
                 
-                HStack {
+                Button(action: {
+                    isPresented.toggle()
+                }) {
+                    HStack {
                     VStack(alignment: .leading) {
                         Text(title)
                             .font(.headline)
@@ -41,19 +35,44 @@ struct CardList: View {
                         
                         Spacer()
                     }
+                        Spacer()
+                    }
                     .padding()
+                    .background(Color.black.opacity(0.75))
                     
-                    Spacer()
+//                    ZStack(alignment: .bottomTrailing) {
+//                        HStack {
+//                            VStack(alignment: .leading) {
+//                                Text(title)
+//                                    .font(.headline)
+//                                    .fontWeight(.semibold)
+//
+//                                Text(modelData.selectedType.rawValue.capitalized)
+//                                    .font(.subheadline)
+//
+//                                Spacer()
+//                            }
+//                            .padding()
+//
+//                            Spacer()
+//                        }
+//                    }
+//                    .background(Color.black.opacity(0.75))
+                }
+                .background(
+                    CustomImage(urlString: movies.first?.backdropURL ?? "")
+                        .frame(height: height)
+//                        .cornerRadius(5)
+                )
+                .foregroundColor(.white)
+                .frame(width: geometry.size.width)
+                .cornerRadius(8)
+                .fullScreenCover(isPresented: $isPresented) {
+                    ListView(title: title, category: category, searchText: .constant(""))
+                        .environmentObject(modelData)
                 }
             }
-        }
-        .background(Color([K.BrandColors.pink, K.BrandColors.blue, K.BrandColors.darkBlue, K.BrandColors.purple].randomElement() ?? K.BrandColors.pink))
-        .foregroundColor(.white)
-        .frame(height: 100)
-        .cornerRadius(8)
-        .fullScreenCover(isPresented: $isPresented) {
-            ListView(title: title, category: category, searchText: .constant(""))
-                .environmentObject(modelData)
+            .frame(height: 100)
         }
     }
 }

@@ -79,7 +79,6 @@ struct ChartView: View {
             .background(Blur(style: .dark))
             .cornerRadius(15)
             .padding(.horizontal, 10)
-            .padding(.vertical)
         }
     }
     

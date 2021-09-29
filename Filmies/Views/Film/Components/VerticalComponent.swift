@@ -15,16 +15,29 @@ struct VerticalComponent: View {
     var subDetails: [String]?
     var id: [Int]
     
+    @State var showDetail = true
+    
     var body: some View {
+        let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 4)
+        
         VStack(alignment: .leading, spacing: 0) {
-            Text(title)
-                .fontWeight(.semibold)
+            HStack {
+                Text(title).fontWeight(.semibold)
+                Spacer()
+                IconButton(title: "chevron.down") {
+                    withAnimation {
+                        showDetail.toggle()
+                    }
+                }
+                .font(.caption2)
+                .rotationEffect(.degrees(showDetail ? 180 : 0))
+            }
             
             CustomDivider()
             
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(alignment: .top, spacing: 10) {
-                    ForEach(0..<5) { index in
+            if showDetail {
+                LazyVGrid(columns: columns, alignment: .center, spacing: 10) {
+                    ForEach(0..<details.count) { index in
                         if index < details.count {
                             VerticalComponentDetails(url: urls[index], detail: details[index], subDetail: subDetails?[index], id: id[index])
                         }
@@ -49,30 +62,36 @@ struct VerticalComponentDetails: View {
     var body: some View {
         Button(action: {
             if !url.isEmpty {
-                isPresented.toggle()
+                withAnimation {
+                    isPresented.toggle()
+                }
             }
         }) {
-            VStack(alignment: .leading) {
-                CustomImage(urlString: url, placeholder: detail)
-                    .frame(width: 75, height: 75)
-                    .cornerRadius(50)
+            GeometryReader { geometry in
+                let height = geometry.size.height / 2
                 
                 VStack(alignment: .leading) {
-                    Text(detail)
-                        .font(.caption)
+                    CustomImage(urlString: url, placeholder: detail)
+                        .frame(width: height, height: height)
+                        .cornerRadius(height / 2)
                     
-                    if let subDetail = subDetail {
-                        Text(subDetail)
-                            .foregroundColor(.gray)
-                            .font(.caption2)
+                    VStack(alignment: .leading) {
+                        Text(detail)
+                            .font(.caption)
+                        
+                        if let subDetail = subDetail {
+                            Text(subDetail)
+                                .foregroundColor(.gray)
+                                .font(.caption2)
+                        }
                     }
+                    .lineLimit(2)
+                    .minimumScaleFactor(0.5)
+                    .multilineTextAlignment(.leading)
                 }
-                .lineLimit(2)
-                .minimumScaleFactor(0.5)
-                .multilineTextAlignment(.leading)
-                .frame(width: 75)
+                .padding(.vertical, 10)
             }
-            .padding(.vertical, 10)
+            .frame(height: 150)
         }
         .fullScreenCover(isPresented: $isPresented) {
             PeopleView(id: id)

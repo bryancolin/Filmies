@@ -13,6 +13,7 @@ struct PeopleView: View {
     @Environment(\.presentationMode) var presentationMode
     
     @State var opacity: Double = 0
+    @State var showMore: Bool = false
     
     var id: Int
     
@@ -23,7 +24,11 @@ struct PeopleView: View {
     var header: some View {
         // Back Button
         HStack {
-            IconButton(title: "arrow.backward") { presentationMode.wrappedValue.dismiss() }
+            IconButton(title: "arrow.backward") {
+                withAnimation {
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
             
             Spacer()
             
@@ -51,14 +56,13 @@ struct PeopleView: View {
             ScrollView(.vertical, showsIndicators: false) {
                 if let people = modelData.people[id] {
                     CustomImage(urlString: people.profileURL, placeholder: people.name ?? "")
-                        .overlay(
+                        .frame(maxWidth: UIScreen.main.bounds.width)
+                        .overlay(alignment: .bottomTrailing) {
                             Text(people.name ?? "")
                                 .font(.title)
                                 .lineLimit(2)
-                                .padding(),
-                            alignment: .bottomTrailing
-                        )
-                        .frame(maxWidth: UIScreen.main.bounds.width)
+                                .padding()
+                        }
                         .overlay(alignment: .topTrailing) {
                             GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
@@ -79,13 +83,60 @@ struct PeopleView: View {
                             }
                         }
                     
-                    VStack(alignment: .leading) {  
-                        HorizontalComponent(title: "From", details: [people.birthPlace ?? "-"])
-                        HorizontalComponent(title: "Date of Birth", details: [people.birthday?.toDate().toString(format: K.dateFormat) ?? "-"])
+                    // Details
+                    VStack(alignment: .leading) {
+                        if let dob = people.birthPlace, let birthday = people.birthday, !dob.isEmpty && !birthday.isEmpty {
+                            GeometryReader { geometry in
+                                let width = geometry.size.width / 2
+                                HStack {
+                                    VStack {
+                                        Spacer()
+                                        Text(dob)
+                                        Spacer()
+                                        Text("From").font(.caption)
+                                    }
+                                    .frame(width: width)
+                                    
+                                    Rectangle().frame(width: 1)
+                                    
+                                    VStack {
+                                        Spacer()
+                                        Text(birthday.toDate().toString(format: K.dateFormat))
+                                        Spacer()
+                                        Text("Date of Birth").font(.caption)
+                                    }
+                                    .frame(width: width)
+                                }
+                                .font(.headline)
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.5)
+                                .multilineTextAlignment(.center)
+                                .padding(.trailing)
+                            }
+                            .frame(height: 100)
+                            .padding(.trailing)
+                            .padding(10)
+                            .background(Color.white.opacity(0.2))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
                         
-                        Text(people.biography ?? "")
-                            .font(.subheadline)
-                            .fixedSize(horizontal: false, vertical: true)
+                        if let biography = people.biography, !biography.isEmpty {
+                            VStack(alignment: .leading) {
+                                Text(biography)
+                                    .font(.subheadline)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .lineLimit(showMore ? nil : 10)
+                                Button(action: {
+                                    withAnimation {
+                                        showMore.toggle()
+                                    }
+                                }) {
+                                    Text(showMore ? "read less" : "read more")
+                                        .font(.caption)
+                                        .opacity(0.5)
+                                }
+                            }
+                        }
                         
                         VStack {
                             CategoryRow(title: "Movies", color: .white, category: String(id) + K.People.movie)
