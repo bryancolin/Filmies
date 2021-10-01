@@ -10,6 +10,7 @@ import UIKit
 
 struct CategoryHome: View {
     
+    @Namespace var animation
     @EnvironmentObject var modelData: ModelData
     
     @State var selectedIndex = 0
@@ -21,7 +22,7 @@ struct CategoryHome: View {
     var title: some View {
         GeometryReader { geometry in
             TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .semibold) {
-                CustomPicker(width: geometry.size.width * 0.2)
+                CustomPicker(animation: animation)
             }
         }
         .frame(height: 75)

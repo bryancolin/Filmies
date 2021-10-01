@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SearchView: View {
     
+    @Namespace var animation
     @EnvironmentObject var modelData: ModelData
     
     @State private var searchText = ""
@@ -21,7 +22,7 @@ struct SearchView: View {
     var title: some View {
         GeometryReader { geometry in
             TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .semibold) {
-                CustomPicker(width: geometry.size.width * 0.2)
+                CustomPicker(animation: animation)
             }
         }
         .frame(height: 75)

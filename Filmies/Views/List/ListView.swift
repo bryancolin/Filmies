@@ -48,11 +48,11 @@ struct ListView: View {
                     
                     // Cards
                     if let films = modelData.films[category] {
-                        LazyVGrid(columns: columns, spacing: 10) {
+//                        LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(films) {
                                 ListItem(film: $0, category: category, numberOfColumns: $numberOfColumns)
                             }
-                        }
+//                        }
                         
                         // Load More
                         if films.count % 20 == 0 && !category.contains("favorites") {

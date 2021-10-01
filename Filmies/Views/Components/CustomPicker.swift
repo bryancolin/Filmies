@@ -9,24 +9,59 @@ import SwiftUI
 
 struct CustomPicker: View {
     
+    var animation: Namespace.ID
+    
     @EnvironmentObject var modelData: ModelData
-    
-    var width: CGFloat
-    
-    init(width: CGFloat) {
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor(Color(K.BrandColors.pink))], for: .selected)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
-        
-        self.width = width
-    }
+    @State var show: Bool = true
     
     var body: some View {
-        Picker(selection: $modelData.selectedType, label: Text("")) {
-            ForEach(FilmType.allCases, id: \.self) {
-                Text($0.rawValue.first?.uppercased() ?? "").tag($0)
+        HStack {
+            if show {
+                Text("Movie")
+                    .foregroundColor(Color(K.BrandColors.pink))
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 10)
+                    .background(
+                        Capsule()
+                            .foregroundColor(Color.white)
+                            .matchedGeometryEffect(id: "shape", in: animation)
+                    )
+                
+                Text("TV")
+                    .foregroundColor(Color.white)
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 10)
+
+            } else {
+                Text("Movie")
+                    .foregroundColor(Color.white)
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 10)
+                
+                Text("TV")
+                    .foregroundColor(Color(K.BrandColors.pink))
+                    .padding(.vertical, 6)
+                    .padding(.horizontal, 10)
+                    .background(
+                        Capsule()
+                            .foregroundColor(Color.white)
+                            .matchedGeometryEffect(id: "shape", in: animation)
+                    )
             }
         }
-        .pickerStyle(SegmentedPickerStyle())
-        .frame(width: width)
+        .font(.system(size: 15, weight: .bold))
+        .background(
+            Capsule()
+                .stroke(Color.white, lineWidth: 1)
+        )
+        .onTapGesture {
+            withAnimation {
+                show.toggle()
+                modelData.selectedType = show ? .movie : .tvShow
+            }
+        }
+        .onAppear {
+            show = modelData.selectedType == .movie ? true : false
+        }
     }
 }
