@@ -12,7 +12,6 @@ struct FilmTrailer: View {
     @EnvironmentObject var modelData: ModelData
     
     var film: Film
-    var category: String
     
     var body: some View {
         if let officialTrailers = film.videos?.all?.filter({ trailer -> Bool in
@@ -21,16 +20,15 @@ struct FilmTrailer: View {
         }) {
             if !officialTrailers.isEmpty {
                 VStack {
-                    if officialTrailers.count > 1 && category != K.Movie.favorites {
-                        PageView(pages: officialTrailers.compactMap{ WebPlayerView(urlString: $0.youtubeURL, loadOnce: true)},
-                                 alignment: .topTrailing)
+                    if officialTrailers.count > 1 {
+                        PageView(pages: officialTrailers.compactMap{ WebPlayerView(key: $0.key, loadOnce: true)}, alignment: .topTrailing)
                     } else {
-                        WebPlayerView(urlString: officialTrailers.first?.youtubeURL, loadOnce: true)
+                        WebPlayerView(key: officialTrailers.first?.key, loadOnce: true)
                     }
                 }
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height / 3, alignment: .top)
             } else {
-                CustomImage(urlString: film.backdropURL.isEmpty ? film.posterURL : film.backdropURL)
+                CustomImage(urlPath: (film.backdropPath != nil) ? film.backdropPath : film.posterPath)
             }
         }
     }

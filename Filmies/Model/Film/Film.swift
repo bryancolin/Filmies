@@ -11,10 +11,7 @@ class Film: Codable, Identifiable {
     let id: Int?
     let title, overview: String?
     var description: String {
-        if let text = overview, !text.isEmpty {
-            return text
-        }
-        
+        if let text = overview, !text.isEmpty { return text }
         return String("No synopsis available yet")
     }
     
@@ -22,32 +19,16 @@ class Film: Codable, Identifiable {
     let languages: [Language]?
     let rating: Double?
     var rate: String {
-        if let rating = rating {
-            return String(rating)
-        }
+        if let rating = rating { return String(rating) }
         return String()
     }
     
     let productionCompanies, productionCountries: [Production]?
     
-    let backdropPath: String?
-    var backdropURL: String {
-        if let url = backdropPath {
-            return String("https://image.tmdb.org/t/p/w500" + url)
-        }
-        return posterURL
-    }
-    
-    let posterPath: String?
-    var posterURL: String {
-        if let url = posterPath {
-            return String("https://image.tmdb.org/t/p/w500" + url)
-        }
-        return String()
-    }
+    let backdropPath, posterPath: String?
     
     let videos: Videos?
-    
+
     let images: Images?
     
     // Extra Variable
@@ -83,15 +64,6 @@ class Film: Codable, Identifiable {
         case details
         case isFavorite
         case addedAt
-    }
-    
-    func getPosters(at index: Int) -> String {
-        if let images = images?.posters {
-            if index < images.count {
-                return images[index].url
-            }
-        }
-        return posterURL
     }
 }
 

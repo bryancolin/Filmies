@@ -11,13 +11,6 @@ struct People: Codable, Identifiable {
     let id: Int?
     let name, biography, birthPlace, birthday, deathday, department, profilePath: String?
     
-    var profileURL: String {
-        if let url = profilePath {
-            return String("https://image.tmdb.org/t/p/w500" + url)
-        }
-        return String()
-    }
-    
     let movieCredits, tvCredits: Credits?
     
     enum CodingKeys: String, CodingKey {

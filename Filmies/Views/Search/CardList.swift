@@ -17,7 +17,7 @@ struct CardList: View {
     @State private var isPresented = false
     
     var body: some View {
-        if let movies =  modelData.films[category] {
+        if let films =  modelData.films[category] {
             GeometryReader { geometry in
                 let height = geometry.size.height
                 
@@ -25,44 +25,24 @@ struct CardList: View {
                     isPresented.toggle()
                 }) {
                     HStack {
-                    VStack(alignment: .leading) {
-                        Text(title)
-                            .font(.headline)
-                            .fontWeight(.semibold)
-                        
-                        Text(modelData.selectedType.rawValue.capitalized)
-                            .font(.subheadline)
-                        
-                        Spacer()
-                    }
+                        VStack(alignment: .leading) {
+                            Text(title)
+                                .font(.headline)
+                                .fontWeight(.semibold)
+                            
+                            Text(modelData.selectedType.rawValue.capitalized)
+                                .font(.subheadline)
+                            
+                            Spacer()
+                        }
                         Spacer()
                     }
                     .padding()
                     .background(Color.black.opacity(0.75))
-                    
-//                    ZStack(alignment: .bottomTrailing) {
-//                        HStack {
-//                            VStack(alignment: .leading) {
-//                                Text(title)
-//                                    .font(.headline)
-//                                    .fontWeight(.semibold)
-//
-//                                Text(modelData.selectedType.rawValue.capitalized)
-//                                    .font(.subheadline)
-//
-//                                Spacer()
-//                            }
-//                            .padding()
-//
-//                            Spacer()
-//                        }
-//                    }
-//                    .background(Color.black.opacity(0.75))
                 }
                 .background(
-                    CustomImage(urlString: movies.first?.backdropURL ?? "")
+                    CustomImage(urlPath: films.first?.backdropPath)
                         .frame(height: height)
-//                        .cornerRadius(5)
                 )
                 .foregroundColor(.white)
                 .frame(width: geometry.size.width)

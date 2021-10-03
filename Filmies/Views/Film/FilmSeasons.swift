@@ -10,17 +10,17 @@ import SwiftUI
 struct FilmSeasons: View {
     
     let seasons: [Season]
-    let poster: String
+    let posterPath: String?
     
-    init(_ seasons: [Season], poster: String) {
+    init(_ seasons: [Season], posterPath: String?) {
         self.seasons = seasons
-        self.poster = poster
+        self.posterPath = posterPath
     }
     
     var body: some View {
         ForEach(seasons) { season in
             HStack {
-                CustomImage(urlString: !season.posterURL.isEmpty ? season.posterURL : poster)
+                CustomImage(urlPath: (season.posterPath != nil) ? season.posterPath : posterPath)
                     .frame(width: 100)
                     .cornerRadius(8)
                 

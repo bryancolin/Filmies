@@ -10,7 +10,7 @@ import SwiftUI
 struct VerticalComponent: View {
     
     var title: String
-    var urls: [String]
+    var urlsPath: [String]
     var details: [String]
     var subDetails: [String]?
     var id: [Int]
@@ -39,7 +39,7 @@ struct VerticalComponent: View {
                 LazyVGrid(columns: columns, alignment: .center, spacing: 10) {
                     ForEach(0..<details.count) { index in
                         if index < details.count {
-                            VerticalComponentDetails(url: urls[index], detail: details[index], subDetail: subDetails?[index], id: id[index])
+                            VerticalComponentDetails(urlPath: urlsPath[index], detail: details[index], subDetail: subDetails?[index], id: id[index])
                         }
                     }
                 }
@@ -52,7 +52,7 @@ struct VerticalComponentDetails: View {
     
     @EnvironmentObject var modelData: ModelData
     
-    var url: String
+    var urlPath: String
     var detail: String
     var subDetail: String?
     var id: Int
@@ -61,7 +61,7 @@ struct VerticalComponentDetails: View {
     
     var body: some View {
         Button(action: {
-            if !url.isEmpty {
+            if !urlPath.isEmpty {
                 withAnimation {
                     isPresented.toggle()
                 }
@@ -71,7 +71,7 @@ struct VerticalComponentDetails: View {
                 let height = geometry.size.height / 2
                 
                 VStack(alignment: .leading) {
-                    CustomImage(urlString: url, placeholder: detail)
+                    CustomImage(urlPath: urlPath, placeholder: detail)
                         .frame(width: height, height: height)
                         .cornerRadius(height / 2)
                     

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ModalView: View {
     
@@ -27,8 +28,13 @@ struct ModalView: View {
         return film.title ?? ""
     }
     
-    var filmType: String {
-        return film is Movie ? K.Movie.favorites : K.Tv.favorites
+    var filmType: String { return film is Movie ? K.Movie.favorites : K.Tv.favorites }
+    
+    var posters: String? {
+        if let posters = film.images?.posters, posters.count != 0 {
+            return posters[imageIndex].filePath
+        }
+        return film.posterPath
     }
     
     var transition: AnyTransition {
@@ -46,7 +52,7 @@ struct ModalView: View {
                 // Head View
                 VStack(spacing: 0) {
                     // Video Trailer
-                    FilmTrailer(film: film, category: category)
+                    FilmTrailer(film: film)
                     
                     // Title Description
                     TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold) {
@@ -65,12 +71,12 @@ struct ModalView: View {
             }
         }
         .background (
-            CustomImage(urlString: film.getPosters(at: imageIndex))
+            CustomImage(urlPath: posters)
                 .ignoresSafeArea()
                 .transition(transition)
                 .animation(.spring(), value: imageIndex)
                 .onReceive(timer) { _ in
-                    if let posters = film.images?.postersCount, posters != 0 {
+                    if let posters = film.images?.posters?.count, posters != 0 {
                         self.imageIndex = (self.imageIndex + 1) % posters
                     }
                 }

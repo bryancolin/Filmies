@@ -8,17 +8,8 @@
 import Foundation
 
 struct Cast: Codable, Identifiable {
-    let id: Int?
-    let name, character, department: String?
-    let order: Int?
-    
-    let profilePath: String?
-    var profileURL: String {
-        if let url = profilePath {
-            return String("https://image.tmdb.org/t/p/w500" + url)
-        }
-        return String()
-    }
+    let id, order: Int?
+    let name, character, department, profilePath: String?
     
     enum CodingKeys: String, CodingKey {
         case id

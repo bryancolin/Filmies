@@ -9,6 +9,8 @@ import SwiftUI
 
 struct WidgetView: View {
     
+    @Environment(\.widgetFamily) var family
+    
     var entry: Model
     var title: String {
         if let film = entry.data.first, film is Movie {
@@ -17,8 +19,6 @@ struct WidgetView: View {
             return "TV Shows"
         }
     }
-    
-    @Environment(\.widgetFamily) var family
     
     var body: some View {
         let columns = Array(repeating: GridItem(.flexible()), count: 5)
@@ -37,7 +37,7 @@ struct WidgetView: View {
                     HStack {
                         ForEach(0..<2) { index in
                             if let details = entry.data, index < details.count {
-                                NetworkImage(urlString: details[index].posterURL)
+                                NetworkImage(urlString: details[index].posterPath)
                                     .cornerRadius(5)
                             }
                         }
@@ -47,7 +47,7 @@ struct WidgetView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(0..<5) { index in
                             if let details = entry.data, index < details.count {
-                                NetworkImage(urlString: details[index].posterURL)
+                                NetworkImage(urlString: details[index].posterPath)
                                     .cornerRadius(5)
                             }
                         }
@@ -58,7 +58,7 @@ struct WidgetView: View {
                     LazyVGrid(columns: columns) {
                         ForEach(0..<15) { index in
                             if let details = entry.data, index < details.count  {
-                                NetworkImage(urlString: details[index].posterURL)
+                                NetworkImage(urlString: details[index].posterPath)
                                     .cornerRadius(5)
                             }
                         }
@@ -79,13 +79,15 @@ struct WidgetView: View {
 
 struct NetworkImage: View {
     
-    let urlString: String
+    let urlString: String?
     
     var body: some View {
-        if let url = URL(string: urlString), let imageData = try? Data(contentsOf: url), let uiImage = UIImage(data: imageData) {
-            Image(uiImage: uiImage)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+        if let urls = urlString, let url = URL(string: "https://image.tmdb.org/t/p/w500" + urls) {
+            if let imageData = try? Data(contentsOf: url), let uiImage = UIImage(data: imageData) {
+                Image(uiImage: uiImage)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
         }
     }
 }

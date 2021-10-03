@@ -55,7 +55,7 @@ struct PeopleView: View {
             // Component
             ScrollView(.vertical, showsIndicators: false) {
                 if let people = modelData.people[id] {
-                    CustomImage(urlString: people.profileURL, placeholder: people.name ?? "")
+                    CustomImage(urlPath: people.profilePath, placeholder: people.name ?? "")
                         .frame(maxWidth: UIScreen.main.bounds.width)
                         .overlay(alignment: .bottomTrailing) {
                             Text(people.name ?? "")
@@ -151,8 +151,7 @@ struct PeopleView: View {
         .animation(.default)
         .ignoresSafeArea()
         .safeAreaInset(edge: .top) {
-            header
-                .ignoresSafeArea()
+            header.ignoresSafeArea()
         }
         .task {
             await modelData.fetchPeople(id: id)
