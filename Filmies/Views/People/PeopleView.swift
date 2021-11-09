@@ -16,6 +16,7 @@ struct PeopleView: View {
     @State var showMore: Bool = false
     
     var id: Int
+    var name, urlPath: String
     
     var background: some View {
         GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color.black], blurRadius: 100)
@@ -32,11 +33,9 @@ struct PeopleView: View {
             
             Spacer()
             
-            if let people = modelData.people[id] {
-                Text(people.name ?? "")
-                    .font(.title3)
-                    .opacity(opacity)
-            }
+            Text(name)
+                .font(.title3)
+                .opacity(opacity)
             
             Spacer()
             
@@ -54,35 +53,36 @@ struct PeopleView: View {
             
             // Component
             ScrollView(.vertical, showsIndicators: false) {
-                if let people = modelData.people[id] {
-                    CustomImage(urlPath: people.profilePath, placeholder: people.name ?? "")
-                        .frame(maxWidth: UIScreen.main.bounds.width)
-                        .overlay(alignment: .bottomTrailing) {
-                            Text(people.name ?? "")
-                                .font(.title)
-                                .lineLimit(2)
-                                .padding()
-                        }
-                        .overlay(alignment: .topTrailing) {
-                            GeometryReader { proxy -> Color in
-                                DispatchQueue.main.async {
-                                    let offset = proxy.frame(in:. global).minY + UIScreen.main.bounds.height / 2
-                                    
-                                    if offset < 80 {
-                                        if offset > 0 {
-                                            let opacity_value = (80 -  offset) / 80
-                                            self.opacity = Double(opacity_value)
-                                            return
-                                        }
-                                        self.opacity = 1
-                                    } else {
-                                        self.opacity = 0
+                
+                CustomImage(urlPath: urlPath, placeholder: name)
+                    .frame(maxWidth: UIScreen.main.bounds.width)
+                    .overlay(alignment: .bottomTrailing) {
+                        Text(name)
+                            .font(.title)
+                            .lineLimit(2)
+                            .padding()
+                    }
+                    .overlay(alignment: .topTrailing) {
+                        GeometryReader { proxy -> Color in
+                            DispatchQueue.main.async {
+                                let offset = proxy.frame(in:. global).minY + UIScreen.main.bounds.height / 2
+                                
+                                if offset < 80 {
+                                    if offset > 0 {
+                                        let opacity_value = (80 -  offset) / 80
+                                        self.opacity = Double(opacity_value)
+                                        return
                                     }
+                                    self.opacity = 1
+                                } else {
+                                    self.opacity = 0
                                 }
-                                return Color.clear
                             }
+                            return Color.clear
                         }
-                    
+                    }
+                
+                if let people = modelData.people[id] {
                     // Details
                     VStack(alignment: .leading) {
                         if let dob = people.birthPlace, let birthday = people.birthday, !dob.isEmpty && !birthday.isEmpty {

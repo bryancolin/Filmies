@@ -20,12 +20,16 @@ struct ChartView: View {
             .onEnded({ value in
                 // Left
                 if value.translation.width < 0 && index < 0 {
-                    index += 1
+                    withAnimation {
+                        index += 1
+                    }
                 }
                 
                 // Right
                 if value.translation.width > 0 {
-                    index -= 1
+                    withAnimation {
+                        index -= 1
+                    }
                 }
             })
     }
@@ -51,7 +55,7 @@ struct ChartView: View {
             .padding(.horizontal)
             
             VStack {
-                if let startOfWeek = Date().getWeekInterval(weekOfYear: index).startOfWeek, let endOfWeek = Date().getWeekInterval(weekOfYear: index).endOfWeek {
+                if let week = Date().getWeekInterval(weekOfYear: index), let startOfWeek = week.startOfWeek, let endOfWeek = week.endOfWeek {
                     ChartTab(title: "\(startOfWeek.toString(format: "dd/MM/yy"))-\(endOfWeek.toString(format: "dd/MM/yy"))", selectedIndex: $index)
                         .gesture(drag)
                 }
@@ -87,13 +91,8 @@ struct ChartView: View {
     }
     
     // Total Hours of Watching Films In A Week
-    func getTotalHoursPerWeek() -> Int {
-        var hours = 0
-        films.forEach {
-            hours += getTotalHoursPerDay($0.value)
-        }
-        
-        return hours
+    func getTotalHoursPerWeek() -> Int {        
+        return films.map { getTotalHoursPerDay($0.value) }.reduce(0, +)
     }
     
     // Total Hours of Watching Films In A Day

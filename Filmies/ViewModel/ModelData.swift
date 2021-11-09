@@ -63,7 +63,7 @@ final class ModelData: ObservableObject {
                 if pageNumber == 1 {
                     films[param] = data
                 } else {
-                    films[param]! += data
+                    films[param]?.append(contentsOf: data)
                 }
             }
             

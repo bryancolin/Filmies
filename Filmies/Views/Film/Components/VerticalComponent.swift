@@ -22,15 +22,17 @@ struct VerticalComponent: View {
         
         VStack(alignment: .leading, spacing: 0) {
             HStack {
-                Text(title).fontWeight(.semibold)
-                Spacer()
-                IconButton(title: "chevron.down") {
-                    withAnimation {
-                        showDetail.toggle()
+                Button(action: {
+                    showAnimation()
+                }) {
+                    Text(title).fontWeight(.semibold)
+                    Spacer()
+                    IconButton(title: "chevron.down") {
+                        showAnimation()
                     }
+                    .font(.caption2)
+                    .rotationEffect(.degrees(showDetail ? 180 : 0))
                 }
-                .font(.caption2)
-                .rotationEffect(.degrees(showDetail ? 180 : 0))
             }
             
             CustomDivider()
@@ -44,6 +46,12 @@ struct VerticalComponent: View {
                     }
                 }
             }
+        }
+    }
+    
+    func showAnimation() {
+        withAnimation {
+            showDetail.toggle()
         }
     }
 }
@@ -94,7 +102,7 @@ struct VerticalComponentDetails: View {
             .frame(height: 150)
         }
         .fullScreenCover(isPresented: $isPresented) {
-            PeopleView(id: id)
+            PeopleView(id: id, name: detail, urlPath: urlPath)
                 .environmentObject(modelData)
         }
     }
