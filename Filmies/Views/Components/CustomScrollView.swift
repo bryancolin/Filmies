@@ -41,8 +41,8 @@ struct CustomScrollView<Content>: View where Content: View {
                         }
                     }
             }
-            .safeAreaInset(edge: .bottom, alignment: .trailing, spacing: 0) {
-                Button(action: {
+            .overlay(alignment: .bottomTrailing) {
+                IconButton(title: "arrow.up") {
                     withAnimation(.linear(duration:  0.3)) {
                         isScrollToTop = true
                         proxyReader.scrollTo(scrollId, anchor: .top)
@@ -51,21 +51,16 @@ struct CustomScrollView<Content>: View where Content: View {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
                         isScrollToTop = false
                     }
-                }) {
-                    Image(systemName: "arrow.up")
-                        .font(.system(size: 20, weight: .semibold))
-                        .foregroundColor(.white)
-                        .padding()
-                        .background(Color(K.BrandColors.pink))
-                        .clipShape(Circle())
                 }
+                .padding()
+                .background(Color(K.BrandColors.pink))
+                .clipShape(Circle())
                 .buttonStyle(BorderlessButtonStyle())
                 .padding()
                 .opacity(-scrollViewOffset > 450 ? 1 : 0)
                 .animation(.easeInOut, value: scrollViewOffset)
                 .disabled(isScrollToTop)
             }
-            
         }
         .foregroundColor(.white)
     }

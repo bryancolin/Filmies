@@ -35,7 +35,7 @@ struct CategoryItem: View {
                     showingModal.toggle()
                 }
             }) {
-                CustomImage(urlString: film.posterURL)
+                CustomImage(urlPath: film.posterPath)
                     .frame(width: width, alignment: .leading)
                     .cornerRadius(8)
                     .overlay(alignment: .topLeading) {

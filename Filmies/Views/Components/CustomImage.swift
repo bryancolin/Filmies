@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct CustomImage: View {
     
-    var urlString: String
+    var urlPath: String?
     var placeholder: String = ""
     
     private var fullName: [String] {
@@ -18,8 +18,8 @@ struct CustomImage: View {
     }
     
     var body: some View {
-        if !urlString.isEmpty {
-            WebImage(url: URL(string: urlString))
+        if let url = urlPath, !url.isEmpty {
+            WebImage(url: URL(string: "https://image.tmdb.org/t/p/w500" + url))
                 .resizable()
                 .aspectRatio(contentMode: .fill)
         } else {

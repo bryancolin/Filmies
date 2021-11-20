@@ -10,17 +10,17 @@ import SwiftUI
 struct FilmSeasons: View {
     
     let seasons: [Season]
-    let poster: String
+    let posterPath: String?
     
-    init(_ seasons: [Season], poster: String) {
+    init(_ seasons: [Season], posterPath: String?) {
         self.seasons = seasons
-        self.poster = poster
+        self.posterPath = posterPath
     }
     
     var body: some View {
         ForEach(seasons) { season in
             HStack {
-                CustomImage(urlString: !season.posterURL.isEmpty ? season.posterURL : poster)
+                CustomImage(urlPath: (season.posterPath != nil) ? season.posterPath : posterPath)
                     .frame(width: 100)
                     .cornerRadius(8)
                 
@@ -28,13 +28,9 @@ struct FilmSeasons: View {
                     Text("Season \(season.number ?? 0)")
                         .fontWeight(.bold)
                     
-                    HStack {
-                        Text("\(season.totalEpisode ?? 0) episodes")
-                        Text("•")
-                        Text(season.airDate?.toDate().toString(format: "dd/MM/yyyy") ?? "")
-                    }
-                    .font(.caption)
-                    .opacity(0.5)
+                    Text("\(season.totalEpisode ?? 0) episodes • \(season.airDate?.toDate().toString(format: "dd/MM/yyyy") ?? "")")
+                        .font(.caption)
+                        .opacity(0.5)
                 }
                 
                 Spacer()

@@ -10,13 +10,6 @@ import Foundation
 struct Video: Codable {
     let name, key, site, type: String?
     
-    var youtubeURL: String {
-        if let key = key {
-            return "https://www.youtube.com/embed/" + key
-        }
-        return String()
-    }
-    
     enum CodingKeys: String, CodingKey {
         case name
         case key

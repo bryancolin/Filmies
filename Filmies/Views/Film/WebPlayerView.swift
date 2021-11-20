@@ -10,7 +10,7 @@ import WebKit
 
 struct WebPlayerView: UIViewRepresentable {
     
-    let urlString: String?
+    let key: String?
     @State var loadOnce: Bool
     
     func makeUIView(context: Context) -> WebPlayerView.UIViewType {
@@ -22,8 +22,8 @@ struct WebPlayerView: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: WKWebView, context: Context) {
-        if loadOnce, let urls = urlString {
-            guard let url = URL(string: "\(urls)?playsinline=1") else { fatalError() }
+        if loadOnce, let key = key {
+            guard let url = URL(string: "https://www.youtube.com/embed/\(key)?playsinline=1") else { fatalError() }
             let request = URLRequest(url: url)
             
             uiView.load(request)

@@ -12,7 +12,8 @@ struct PeopleView: View {
     @EnvironmentObject var modelData: ModelData
     @Environment(\.presentationMode) var presentationMode
     
-    @State var opacity: Double = 1
+    @State var opacity: Double = 0
+    @State var showMore: Bool = false
     
     var id: Int
     
@@ -23,10 +24,10 @@ struct PeopleView: View {
     var header: some View {
         // Back Button
         HStack {
-            Button(action: {
-                presentationMode.wrappedValue.dismiss()
-            }) {
-                Image(systemName: "arrow.backward")
+            IconButton(title: "arrow.backward") {
+                withAnimation {
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
             
             Spacer()
@@ -39,9 +40,7 @@ struct PeopleView: View {
             
             Spacer()
             
-            Button(action: {}) {
-                Image(systemName: "star")
-            }
+            IconButton(title: "star") {}
         }
         .padding()
         .padding(.top)
@@ -56,16 +55,15 @@ struct PeopleView: View {
             // Component
             ScrollView(.vertical, showsIndicators: false) {
                 if let people = modelData.people[id] {
-                    CustomImage(urlString: people.profileURL, placeholder: people.name ?? "")
-                        .overlay(
+                    CustomImage(urlPath: people.profilePath, placeholder: people.name ?? "")
+                        .frame(maxWidth: UIScreen.main.bounds.width)
+                        .overlay(alignment: .bottomTrailing) {
                             Text(people.name ?? "")
                                 .font(.title)
                                 .lineLimit(2)
-                                .padding(),
-                            alignment: .bottomTrailing
-                        )
-                        .frame(maxWidth: UIScreen.main.bounds.width)
-                        .overlay(
+                                .padding()
+                        }
+                        .overlay(alignment: .topTrailing) {
                             GeometryReader { proxy -> Color in
                                 DispatchQueue.main.async {
                                     let offset = proxy.frame(in:. global).minY + UIScreen.main.bounds.height / 2
@@ -83,15 +81,62 @@ struct PeopleView: View {
                                 }
                                 return Color.clear
                             }
-                        )
+                        }
                     
+                    // Details
                     VStack(alignment: .leading) {
-                        HorizontalComponent(title: "From", details: [people.birthPlace ?? "-"])
-                        HorizontalComponent(title: "Date of Birth", details: [people.birthday?.toDate().toString(format: K.dateFormat) ?? "-"])
+                        if let dob = people.birthPlace, let birthday = people.birthday, !dob.isEmpty && !birthday.isEmpty {
+                            GeometryReader { geometry in
+                                let width = geometry.size.width / 2
+                                HStack {
+                                    VStack {
+                                        Spacer()
+                                        Text(dob)
+                                        Spacer()
+                                        Text("From").font(.caption)
+                                    }
+                                    .frame(width: width)
+                                    
+                                    Rectangle().frame(width: 1)
+                                    
+                                    VStack {
+                                        Spacer()
+                                        Text(birthday.toDate().toString(format: K.dateFormat))
+                                        Spacer()
+                                        Text("Date of Birth").font(.caption)
+                                    }
+                                    .frame(width: width)
+                                }
+                                .font(.headline)
+                                .lineLimit(2)
+                                .minimumScaleFactor(0.5)
+                                .multilineTextAlignment(.center)
+                                .padding(.trailing)
+                            }
+                            .frame(height: 100)
+                            .padding(.trailing)
+                            .padding(10)
+                            .background(Color.white.opacity(0.2))
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                        }
                         
-                        Text(people.biography ?? "")
-                            .font(.subheadline)
-                            .fixedSize(horizontal: false, vertical: true)
+                        if let biography = people.biography, !biography.isEmpty {
+                            VStack(alignment: .leading) {
+                                Text(biography)
+                                    .font(.subheadline)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .lineLimit(showMore ? nil : 10)
+                                Button(action: {
+                                    withAnimation {
+                                        showMore.toggle()
+                                    }
+                                }) {
+                                    Text(showMore ? "read less" : "read more")
+                                        .font(.caption)
+                                        .opacity(0.5)
+                                }
+                            }
+                        }
                         
                         VStack {
                             CategoryRow(title: "Movies", color: .white, category: String(id) + K.People.movie)
@@ -103,10 +148,10 @@ struct PeopleView: View {
                 }
             }
         }
+        .animation(.default)
         .ignoresSafeArea()
         .safeAreaInset(edge: .top) {
-            header
-                .ignoresSafeArea()
+            header.ignoresSafeArea()
         }
         .task {
             await modelData.fetchPeople(id: id)

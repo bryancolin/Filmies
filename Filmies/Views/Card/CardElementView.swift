@@ -21,7 +21,7 @@ struct CardElementView: View {
     
     var body: some View {
         if width > 0 && height > 0 {
-            CustomImage(urlString: film.posterURL)
+            CustomImage(urlPath: film.posterPath)
                 .frame(width: width, height: height)
                 .cornerRadius(15)
                 .overlay(alignment: .bottomLeading) {

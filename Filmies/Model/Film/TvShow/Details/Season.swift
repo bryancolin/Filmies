@@ -8,17 +8,8 @@
 import Foundation
 
 struct Season: Codable, Identifiable {
-    let id: Int?
-    let name, description, airDate: String?
-    let number, totalEpisode: Int?
-
-    let posterPath: String?
-    var posterURL: String {
-        if let url = posterPath {
-            return String("https://image.tmdb.org/t/p/w500" + url)
-        }
-        return String()
-    }
+    let id, number, totalEpisode: Int?
+    let name, description, airDate, posterPath: String?
     
     enum CodingKeys: String, CodingKey {
         case id

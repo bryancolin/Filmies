@@ -10,13 +10,6 @@ import Foundation
 struct Images: Codable {
     let backdrops, posters: [Photo]?
     
-    var postersCount: Int {
-        if let posters = posters {
-            return posters.count
-        }
-        return 0
-    }
-    
     enum CodingKeys: String, CodingKey {
         case backdrops
         case posters

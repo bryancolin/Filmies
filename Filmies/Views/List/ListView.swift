@@ -16,13 +16,15 @@ struct ListView: View {
     var category: String
     @Binding var searchText: String
     
-    @State private var numberOfColumns = 2
-
+    @State private var numberOfColumns = 1
+    
     var background: some View {
         GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color.black], blurRadius: 100)
     }
     
     var body: some View {
+        let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: numberOfColumns)
+        
         ZStack {
             // Background
             background
@@ -30,27 +32,27 @@ struct ListView: View {
             CustomScrollView {
                 VStack(alignment: .leading) {
                     // Back Button
-                    Button(action: {
+                    IconButton(title: "arrow.backward") {
                         presentationMode.wrappedValue.dismiss()
-                    }) {
-                        Image(systemName: "arrow.backward")
                     }
                     .padding()
                     
                     // Title
                     TitleComponent(name: title, color: .white, type: .largeTitle, weight: .bold) {
-                        Button(action: {
-                            numberOfColumns = numberOfColumns % 2 + 1
-                        }) {
-                            Image(systemName: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill")
+                        IconButton(title: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill") {
+                            withAnimation {
+//                                numberOfColumns = numberOfColumns % 2 + 1
+                            }
                         }
                     }
                     
                     // Cards
                     if let films = modelData.films[category] {
-                        ForEach(films) {
-                            ListItem(film: $0, category: category)
-                        }
+//                        LazyVGrid(columns: columns, spacing: 10) {
+                            ForEach(films) {
+                                ListItem(film: $0, category: category, numberOfColumns: $numberOfColumns)
+                            }
+//                        }
                         
                         // Load More
                         if films.count % 20 == 0 && !category.contains("favorites") {
@@ -77,6 +79,7 @@ struct ListView: View {
                 }
             }
         }
+        .animation(.default)
     }
 }
 

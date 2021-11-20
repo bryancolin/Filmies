@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ScrollTabView: View {
     
+    @Namespace var animation
+    
     var titles: [String]
     @Binding var selectedIndex: Int
     var color: CustomColor = .primary
@@ -17,7 +19,7 @@ struct ScrollTabView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(0..<titles.count) {
-                    RoundedText(title: titles[$0], id: $0, selectedIndex: $selectedIndex, color: color)
+                    UnderlineText(title: titles[$0], id: $0, selectedIndex: $selectedIndex, animation: animation)
                 }
             }
             .padding(.horizontal)

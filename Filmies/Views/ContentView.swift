@@ -17,14 +17,13 @@ struct ContentView: View {
                 switch selectedTab {
                 case .house:
                     CategoryHome()
-                        .animation(.default)
                 case .search:
                     SearchView()
                 case .person:
                     AccountView()
-                        .animation(.default)
                 }
             }
+            .animation(.default)
         }
         .safeAreaInset(edge: .bottom) {
             CustomTabBar(selectedTab: $selectedTab)
