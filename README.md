@@ -9,6 +9,7 @@ An iOS app for movie/tv-show lovers to browse and search for movies with an incr
 - Add Movie/Tv-Shows as Favorites
 - View Movies Screen Time (All Time)
 - View Actor/Actress Profiles
+- Display Widget
 
 ## Requirements
 
