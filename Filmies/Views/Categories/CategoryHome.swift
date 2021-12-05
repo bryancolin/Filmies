@@ -23,7 +23,7 @@ struct CategoryHome: View {
     
     var title: some View {
         GeometryReader { geometry in
-            TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .semibold) {
+            TitleComponent(name: "Trending", color: Color(K.BrandColors.pink), type: .largeTitle, weight: .black) {
                 CustomPicker(animation: animation)
             }
         }

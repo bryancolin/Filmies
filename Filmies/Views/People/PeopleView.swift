@@ -35,8 +35,9 @@ struct PeopleView: View {
             
             Spacer()
             
-            Text(name)
+            Text(name) 
                 .font(.title3)
+                .fontWeight(.bold)
                 .opacity(opacity)
             
             Spacer()

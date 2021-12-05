@@ -25,8 +25,6 @@ struct UnderlineText: View {
         }) {
             VStack(alignment: .leading, spacing: 5) {
                 Text(title)
-                    .font(.caption2)
-                    .fontWeight(.semibold)
                     .foregroundColor(.white)
                     .opacity(selectedIndex == id ? 1 : 0.5)
                 

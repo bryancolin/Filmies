@@ -43,7 +43,7 @@ struct ChartView: View {
             // TITLE
             HStack {
                 Text("Screen Time (Movies)")
-                    .font(.title3)
+                    .font(.title2)
                     .fontWeight(.bold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.5)
@@ -51,7 +51,6 @@ struct ChartView: View {
                 Spacer()
                 
                 Text(getTotalHoursPerWeek().convert())
-                    .font(.caption)
                     .fontWeight(.semibold)
                     .opacity(0.5)
             } //: HSTACK

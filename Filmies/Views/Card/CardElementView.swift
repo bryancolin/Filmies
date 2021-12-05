@@ -33,7 +33,6 @@ struct CardElementView: View {
                         showingModal.toggle()
                     }) {
                         Text("View")
-                            .font(.caption)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
                             .padding(.vertical, 6)

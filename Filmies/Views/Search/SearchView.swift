@@ -23,7 +23,7 @@ struct SearchView: View {
     
     var title: some View {
         GeometryReader { geometry in
-            TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .semibold) {
+            TitleComponent(name: "Search", color: .white, type: .largeTitle, weight: .black) {
                 CustomPicker(animation: animation)
             }
         }

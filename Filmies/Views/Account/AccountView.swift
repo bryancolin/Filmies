@@ -20,7 +20,7 @@ struct AccountView: View {
     
     var title: some View {
         GeometryReader { geometry in
-            TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .semibold) {
+            TitleComponent(name: "Account", color: .white, type: .largeTitle, weight: .black) {
                 HStack(alignment: .center) {
                     ForEach(0..<colors.count) { index in
                         Button(action: {

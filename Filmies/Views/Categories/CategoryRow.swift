@@ -25,13 +25,12 @@ struct CategoryRow: View {
         VStack(alignment: .leading) {
             if let films = modelData.films[category], !films.isEmpty {
                 // TITLE
-                TitleComponent(name: title, color: color, type: .title3, weight: .semibold) {
+                TitleComponent(name: title, color: color, type: .title2, weight: .black) {
                     Button(action: {
                         isPresented.toggle()
                     }) {
                         Text("see all")
                             .foregroundColor(Color.white.opacity(0.5))
-                            .font(.caption)
                             .fontWeight(.semibold)
                     }
                     .fullScreenCover(isPresented: $isPresented) {
@@ -63,6 +62,8 @@ struct CategoryRow: View {
 struct CategoryRow_Previews: PreviewProvider {
     static var previews: some View {
         CategoryRow(title: "Now Playing", color: .pink, category: "movie/now_playing")
+            .previewLayout(.sizeThatFits)
+            .padding()
             .environmentObject(ModelData())
     }
 }
