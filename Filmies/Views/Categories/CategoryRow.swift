@@ -42,15 +42,15 @@ struct CategoryRow: View {
                 
                 // CONTENT
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(alignment: .top, spacing: 0) {
+                    HStack(alignment: .top, spacing: 15) {
                         ForEach(0..<20) {
                             if $0 < films.count {
                                 CategoryItem(film: films[$0], category: category)
                                     .redacted(reason: modelData.isLoading ? .placeholder : [])
-                                    .padding(.trailing, $0 == 19 ? 15 : 0)
                             }
                         } //: LOOP
                     } //: HSTACK
+                    .padding(.horizontal, 15)
                 } //: SCROLL
             }
         } //: VSTACK

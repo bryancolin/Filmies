@@ -52,7 +52,7 @@ struct SearchView: View {
             if !searchText.isEmpty {
                 IconButton(title: "xmark") { searchText = "" }
             }
-        }
+        } //: HSTACK
         .accentColor(Color(K.BrandColors.pink))
         .foregroundColor(Color(K.BrandColors.pink))
         .padding(12)

@@ -11,6 +11,8 @@ struct CardList: View {
     
     //MARK: - PROPERTIES
     
+    @AppStorage("filmType") var selectedType: FilmType = .movie
+    
     @EnvironmentObject var modelData: ModelData
     
     var title: String
@@ -34,7 +36,7 @@ struct CardList: View {
                                 .font(.headline)
                                 .fontWeight(.semibold)
                             
-                            Text(modelData.selectedType.rawValue.capitalized)
+                            Text(selectedType.rawValue.capitalized)
                                 .font(.subheadline)
                             
                             Spacer()

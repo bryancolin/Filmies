@@ -11,7 +11,8 @@ struct ContentView: View {
     
     //MARK: - PROPERTIES
     
-    @State var selectedTab: Tab = .house
+    @State private var selectedTab: Tab = .house
+    @State private var isAnimating: Bool = false
     
     //MARK: - BDOY
     
@@ -27,11 +28,16 @@ struct ContentView: View {
                     AccountView()
                 }
             }
-            .animation(.default)
         } //: ZSTACK
+        .animation(.default)
         .safeAreaInset(edge: .bottom) {
             CustomTabBar(selectedTab: $selectedTab)
                 .padding(.vertical)
+                .offset(y: isAnimating ? 0 : 100)
+                .animation(.easeInOut(duration: 1), value: isAnimating)
+        }
+        .onAppear {
+            isAnimating = true
         }
     }
 }
@@ -41,7 +47,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            .previewDevice("iPhone 6s")
+
             .environmentObject(ModelData())
     }
 }

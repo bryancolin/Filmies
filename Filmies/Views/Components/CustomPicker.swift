@@ -12,15 +12,13 @@ struct CustomPicker: View {
     //MARK: - PROPERTIES
     
     var animation: Namespace.ID
-    
     @EnvironmentObject var modelData: ModelData
-    @State var show: Bool = true
     
     //MARK: - BODY
     
     var body: some View {
         HStack {
-            if show {
+            if modelData.selectedType == .movie {
                 Text("Movie")
                     .foregroundColor(Color(K.BrandColors.pink))
                     .padding(.vertical, 6)
@@ -35,7 +33,7 @@ struct CustomPicker: View {
                     .foregroundColor(Color.white)
                     .padding(.vertical, 6)
                     .padding(.horizontal, 10)
-
+                
             } else {
                 Text("Movie")
                     .foregroundColor(Color.white)
@@ -59,13 +57,7 @@ struct CustomPicker: View {
                 .stroke(Color.white, lineWidth: 1)
         )
         .onTapGesture {
-            withAnimation {
-                show.toggle()
-                modelData.selectedType = show ? .movie : .tvShow
-            }
-        }
-        .onAppear {
-            show = modelData.selectedType == .movie ? true : false
+            modelData.selectedType = modelData.selectedType == .movie ? .tvShow : .movie
         }
     }
 }
@@ -77,7 +69,6 @@ struct CustomPicker_Previews: PreviewProvider {
     
     static var previews: some View {
         CustomPicker(animation: animation)
-            .environmentObject(ModelData())
     }
 }
 

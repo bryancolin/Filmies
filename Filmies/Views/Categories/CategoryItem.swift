@@ -15,11 +15,9 @@ struct CategoryItem: View {
     @EnvironmentObject var modelData: ModelData
     @State private var showingModal = false
     
-    var film: Film 
+    var film: Film
     var category: String
-    
     var width: CGFloat = 150
-    var height: CGFloat = 220
     
     var releaseDate: String {
         if let movie = film as? Movie {
@@ -33,34 +31,31 @@ struct CategoryItem: View {
     //MARK: - BODY
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Button(action: {
-                if !modelData.isLoading {
-                    showingModal.toggle()
-                }
-            }) {
-                CustomImage(urlPath: film.posterPath)
-                    .frame(width: width, alignment: .leading)
-                    .cornerRadius(8)
-                    .overlay(alignment: .topLeading) {
-                        GeometryReader { geometry in
-                            let fontSize = min(9, geometry.size.width * 0.2)
-                            let circleWidth = min(50, geometry.size.width * 0.2)
-                            
-                            Circle()
-                                .frame(width: circleWidth, height: circleWidth)
-                                .foregroundColor(Color(K.BrandColors.pink))
-                                .overlay(
-                                    Text(releaseDate)
-                                        .font(.system(size: fontSize))
-                                        .foregroundColor(.white)
-                                )
-                                .padding(5)
-                        }
+        Button(action: {
+            if !modelData.isLoading {
+                showingModal.toggle()
+            }
+        }) {
+            CustomImage(urlPath: film.posterPath)
+                .frame(width: width, alignment: .leading)
+                .cornerRadius(8)
+                .overlay(alignment: .topLeading) {
+                    GeometryReader { geometry in
+                        let fontSize = min(9, geometry.size.width * 0.2)
+                        let circleWidth = min(50, geometry.size.width * 0.2)
+                        
+                        Circle()
+                            .frame(width: circleWidth, height: circleWidth)
+                            .foregroundColor(Color(K.BrandColors.pink))
+                            .overlay(
+                                Text(releaseDate)
+                                    .font(.system(size: fontSize))
+                                    .foregroundColor(.white)
+                            )
+                            .padding(5)
                     }
-            } //: BUTTON
-        } //: VSTACK
-        .padding(.leading, 15)
+                }
+        } //: BUTTON
         .sheet(isPresented: $showingModal) {
             FilmView(film: film, category: category)
                 .environmentObject(modelData)

@@ -27,8 +27,6 @@ struct ListView: View {
     //MARK: - BODY
     
     var body: some View {
-        let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: numberOfColumns)
-        
         ZStack {
             // BACKGROUND
             background
@@ -43,20 +41,14 @@ struct ListView: View {
                     
                     // TITLE
                     TitleComponent(name: title, color: .white, type: .largeTitle, weight: .bold) {
-                        IconButton(title: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill") {
-                            withAnimation {
-//                                numberOfColumns = numberOfColumns % 2 + 1
-                            }
-                        }
+                        IconButton(title: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill") {}
                     }
                     
                     // CARDS
                     if let films = modelData.films[category] {
-//                        LazyVGrid(columns: columns, spacing: 10) {
-                            ForEach(films) {
-                                ListItem(film: $0, category: category, numberOfColumns: $numberOfColumns)
-                            } //: LOOP
-//                        }
+                        ForEach(films) {
+                            ListItem(film: $0, category: category, numberOfColumns: $numberOfColumns)
+                        } //: LOOP
                         
                         // LOAD MORE
                         if films.count % 20 == 0 && !category.contains("favorites") {

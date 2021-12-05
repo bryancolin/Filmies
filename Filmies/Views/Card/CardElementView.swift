@@ -13,13 +13,12 @@ struct CardElementView: View {
     
     @EnvironmentObject var modelData: ModelData
     
-    @State private var showingModal = false
-    
     var film: Film
     var category: String
-    
     var width: CGFloat
     var height: CGFloat
+    
+    @State private var showingModal = false
     
     //MARK: - BODY
     

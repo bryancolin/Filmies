@@ -11,6 +11,10 @@ struct K {
     
     static let dateFormat = "dd MMMM yyyy"
     
+    struct Settings {
+        static let selectedFilmType = "filmType"
+    }
+    
     struct FileDocument {
         static let movieKey = "FavoriteMovies"
         static let tvKey = "FavoriteTvShows"

@@ -25,8 +25,9 @@ final class ModelData: ObservableObject {
     var movieParams = [K.Movie.daily, K.Movie.weekly, K.Movie.nowPlaying, K.Movie.topRated, K.Movie.popular, K.Movie.popular]
     var tvShowParams = [K.Tv.daily, K.Tv.weekly, K.Tv.airingToday, K.Tv.topRated, K.Tv.popular, K.Tv.onAir]
     
+    @AppStorage(K.Settings.selectedFilmType) var selectedType: FilmType = .movie
+    
     @Published var films = [String: [Film]]()
-    @Published var selectedType: FilmType = .movie
     @Published var selectedFilmId: Int = 0
     @Published var selectedCategory: String = ""
     

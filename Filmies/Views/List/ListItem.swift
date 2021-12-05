@@ -41,7 +41,6 @@ struct ListItem: View {
     var body: some View {
         HStack(alignment: .top) {
             CategoryItem(film: film, category: category)
-                .padding(.leading, -15)
             
             if numberOfColumns % 2 != 0 {
                 VStack(alignment: .leading) {
