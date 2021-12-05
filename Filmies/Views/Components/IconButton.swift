@@ -9,8 +9,12 @@ import SwiftUI
 
 struct IconButton: View {
     
+    //MARK: - PROPERTIES
+    
     let title: String
     let action: () -> Void
+    
+    //MARK: - BODY
     
     var body: some View {
         Button(action: {
@@ -21,8 +25,10 @@ struct IconButton: View {
     }
 }
 
+//MARK: - PREVIEW
+
 struct IconButton_Previews: PreviewProvider {
     static var previews: some View {
-        IconButton(title: "", action: {})
+        IconButton(title: "xmark", action: {})
     }
 }

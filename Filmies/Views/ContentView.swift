@@ -9,7 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
+    //MARK: - PROPERTIES
+    
     @State var selectedTab: Tab = .house
+    
+    //MARK: - BDOY
     
     var body: some View {
         ZStack {
@@ -24,13 +28,15 @@ struct ContentView: View {
                 }
             }
             .animation(.default)
-        }
+        } //: ZSTACK
         .safeAreaInset(edge: .bottom) {
             CustomTabBar(selectedTab: $selectedTab)
                 .padding(.vertical)
         }
     }
 }
+
+//MARK: - PREVIEW
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

@@ -9,10 +9,14 @@ import SwiftUI
 
 struct GlassmorphismBackground: View {
     
+    //MARK: - PROPERTIES
+    
     var type: Direction = .left
     @Binding var circleColors: [Color]
     var backgroundColors: [Color]
     var blurRadius: CGFloat = 10
+    
+    //MARK: - BODY
     
     var body: some View {
         ZStack {
@@ -32,6 +36,8 @@ struct GlassmorphismBackground: View {
         .ignoresSafeArea()
     }
 }
+
+//MARK: - PREVIEW
 
 struct GlassmorphismBackground_Previews: PreviewProvider {
     static var previews: some View {

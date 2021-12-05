@@ -9,6 +9,8 @@ import SwiftUI
 
 struct SearchView: View {
     
+    //MARK: - PROPERTIES
+    
     @Namespace var animation
     @EnvironmentObject var modelData: ModelData
     
@@ -59,15 +61,17 @@ struct SearchView: View {
         .padding(.horizontal)
     }
     
+    //MARK: - BODY
+    
     var body: some View {
-        // Glassmorphism Background
+        // GLASSMORPHISM BACKGROUND
         background
         
         ScrollView(showsIndicators: false) {
-            // Title
+            // TITLE
             title
             
-            // Pinned Search Bar
+            // PINNED SEARCH BAR
             LazyVStack(alignment: .leading, pinnedViews: [.sectionHeaders]) {
                 Section(header: searchBar.animation(.none)) {
                     //Content
@@ -79,18 +83,20 @@ struct SearchView: View {
                         ForEach(0..<subtitles.count) {
                             let count = (modelData.movieParams.count - 1) - $0
                             CardList(title: subtitles[$0], category: modelData.selectedType == .movie ? modelData.movieParams[count] : modelData.tvShowParams[count])
-                        }
-                    }
+                        } //: LOOP
+                    } //: LAZYVGRID
                     .padding(.horizontal)
-                }
-            }
-        }
+                } //: SECTION
+            } //: LAZYVSTACK
+        } //: SCROLLVIEW
         .fullScreenCover(isPresented: $isPresented) {
             ListView(title: "Results", category: "search/\(modelData.selectedType.rawValue)", searchText: $searchText)
                 .environmentObject(modelData)
         }
     }
 }
+
+//MARK: - PREVIEW
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {

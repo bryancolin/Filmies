@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CardElementView: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     
     @State private var showingModal = false
@@ -18,6 +20,8 @@ struct CardElementView: View {
     
     var width: CGFloat
     var height: CGFloat
+    
+    //MARK: - BODY
     
     var body: some View {
         if width > 0 && height > 0 {
@@ -40,9 +44,18 @@ struct CardElementView: View {
                     .padding()
                 }
                 .sheet(isPresented: $showingModal) {
-                    ModalView(film: film, category: category, showModal: self.$showingModal)
+                    FilmView(film: film, category: category)
                         .environmentObject(modelData)
                 }
         }
+    }
+}
+
+//MARK: - PREVIEW
+
+struct CardElementView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardElementView(film: Film.getPlaceholderData()[0], category: "movie/now_playing", width: 250, height: 300)
+            .environmentObject(ModelData())
     }
 }

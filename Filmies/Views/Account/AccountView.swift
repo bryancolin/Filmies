@@ -9,6 +9,8 @@ import SwiftUI
 
 struct AccountView: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     @State var colors = [Color(K.BrandColors.blue), Color(K.BrandColors.pink), Color(K.BrandColors.purple)]
     
@@ -35,12 +37,14 @@ struct AccountView: View {
         .frame(height: 75)
     }
     
+    //MARK: - BODY
+    
     var body: some View {
-        // Glassmorphism Background
+        // GLASSMORPHISM BACKGROUND
         background
         
         ScrollView(showsIndicators: false) {
-            // Title
+            // TITLE
             title
             
             if let movies = modelData.films[K.Movie.favorites] as? [Movie] {
@@ -53,6 +57,8 @@ struct AccountView: View {
         }
     }
 }
+
+//MARK: - PREVIEW
 
 struct AccountView_Previews: PreviewProvider {
     static var previews: some View {

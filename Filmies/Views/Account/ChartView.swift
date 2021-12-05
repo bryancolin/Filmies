@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ChartView: View {
     
+    //MARK: - PROPERTIES
+    
     var films: [String: [Film]]
     var titles: [String]
     
@@ -34,9 +36,11 @@ struct ChartView: View {
             })
     }
     
+    //MARK: - BODY
+    
     var body: some View {
         VStack {
-            // Title
+            // TITLE
             HStack {
                 Text("Screen Time (Movies)")
                     .font(.title3)
@@ -50,17 +54,18 @@ struct ChartView: View {
                     .font(.caption)
                     .fontWeight(.semibold)
                     .opacity(0.5)
-            }
+            } //: HSTACK
             .foregroundColor(.white)
             .padding(.horizontal)
             
+            // CONTENT
             VStack {
                 if let week = Date().getWeekInterval(weekOfYear: index), let startOfWeek = week.startOfWeek, let endOfWeek = week.endOfWeek {
                     ChartTab(title: "\(startOfWeek.toString(format: "dd/MM/yy"))-\(endOfWeek.toString(format: "dd/MM/yy"))", selectedIndex: $index)
                         .gesture(drag)
                 }
                 
-                // Bars
+                // BARS
                 ZStack(alignment: .center) {
                     GeometryReader { geometry in
                         let width = geometry.size.width / 2 * (1 / 7)
@@ -73,29 +78,31 @@ struct ChartView: View {
                                     .onAppear {
                                         getBarHeights(index: id, title: title)
                                     }
-                            }
-                        }
+                            } //: LOOP
+                        } //: HSTACK
                         .padding(.horizontal)
-                    }
+                    } //: GEOMETRYREADER
                     .frame(height: 250)
-                }
-            }
+                } //: ZSTACK
+            } //: VSTACK
             .background(Blur(style: .dark))
             .cornerRadius(15)
             .padding(.horizontal, 10)
-        }
+        } //: VSTACK
     }
+    
+    //MARK: - FUNCTIONS
     
     func getBarHeights(index: Int, title: String) {
         barHeights[index] = CGFloat(getTotalHoursPerDay(films[title]) / 60)
     }
     
-    // Total Hours of Watching Films In A Week
+    // TOTAL HOURS OF WATCHING FILMS IN A WEEK
     func getTotalHoursPerWeek() -> Int {        
         return films.map { getTotalHoursPerDay($0.value) }.reduce(0, +)
     }
     
-    // Total Hours of Watching Films In A Day
+    // TOTAL HOURS OF WATCHING FILMS IN A DAY
     func getTotalHoursPerDay(_ films: [Film]?) -> Int {
         return films?.compactMap { film -> Int in
             if let movie = film as? Movie {
@@ -108,3 +115,15 @@ struct ChartView: View {
         }.reduce(0, +) ?? 0
     }
 }
+
+//MARK: - PREVIEW
+
+struct ChartView_Previews: PreviewProvider {
+    static let categorizeMovies = Dictionary(grouping: Film.getPlaceholderData(), by: { $0.addedDate.fullDayName() })
+    
+    static var previews: some View {
+        ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
+            .environmentObject(ModelData())
+    }
+}
+

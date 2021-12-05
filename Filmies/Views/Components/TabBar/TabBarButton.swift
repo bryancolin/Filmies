@@ -9,9 +9,13 @@ import SwiftUI
 
 struct TabBarButton: View {
     
+    //MARK: - PROPERTIES
+    
     var image: Tab
     @Binding var selectedTab: Tab
     @Binding var tabPoints: [CGFloat]
+    
+    //MARK: - BODY
     
     var body: some View {
         GeometryReader{ reader -> AnyView in

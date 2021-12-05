@@ -9,11 +9,15 @@ import SwiftUI
 
 struct UnderlineText: View {
     
+    //MARK: - PROPERTIES
+    
     var title: String
     var id: Int = 0
     @Binding var selectedIndex: Int
     
     var animation: Namespace.ID
+    
+    //MARK: - BODY
     
     var body: some View {
         Button(action: {
@@ -38,5 +42,15 @@ struct UnderlineText: View {
             .padding(.horizontal, 5)
             .padding(.trailing, 10)
         }
+    }
+}
+
+//MARK: - PREVIEW
+
+struct UnderlineText_Previews: PreviewProvider {
+    @Namespace static var animation
+    
+    static var previews: some View {
+        UnderlineText(title: "Text", id: 0, selectedIndex: .constant(0), animation: animation)
     }
 }

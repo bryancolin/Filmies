@@ -9,6 +9,8 @@ import SwiftUI
 
 struct PeopleView: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     @Environment(\.presentationMode) var presentationMode
     
@@ -40,18 +42,20 @@ struct PeopleView: View {
             Spacer()
             
             IconButton(title: "star") {}
-        }
+        } //: HSTACK
         .padding()
         .padding(.top)
         .background(Blur(style: .dark).opacity(opacity))
     }
     
+    //MARK: - BODY
+    
     var body: some View {
         ZStack(alignment: .topLeading) {
-            // Background
+            //MARK: - BACKGROUND
             background
             
-            // Component
+            //MARK: - COMPONENT
             ScrollView(.vertical, showsIndicators: false) {
                 
                 CustomImage(urlPath: urlPath, placeholder: name)
@@ -79,11 +83,11 @@ struct PeopleView: View {
                                 }
                             }
                             return Color.clear
-                        }
-                    }
+                        } //: GEOMETRY READER
+                    } //: IMAGE
                 
                 if let people = modelData.people[id] {
-                    // Details
+                    //MARK: - DETAILS
                     VStack(alignment: .leading) {
                         if let dob = people.birthPlace, let birthday = people.birthday, !dob.isEmpty && !birthday.isEmpty {
                             GeometryReader { geometry in
@@ -94,7 +98,7 @@ struct PeopleView: View {
                                         Text(dob)
                                         Spacer()
                                         Text("From").font(.caption)
-                                    }
+                                    } //: VSTACK
                                     .frame(width: width)
                                     
                                     Rectangle().frame(width: 1)
@@ -104,9 +108,9 @@ struct PeopleView: View {
                                         Text(birthday.toDate().toString(format: K.dateFormat))
                                         Spacer()
                                         Text("Date of Birth").font(.caption)
-                                    }
+                                    } //: VSTACK
                                     .frame(width: width)
-                                }
+                                } //: HSTACK
                                 .font(.headline)
                                 .lineLimit(2)
                                 .minimumScaleFactor(0.5)
@@ -118,7 +122,7 @@ struct PeopleView: View {
                             .padding(10)
                             .background(Color.white.opacity(0.2))
                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                        }
+                        } //: GEOMETRY READER
                         
                         if let biography = people.biography, !biography.isEmpty {
                             VStack(alignment: .leading) {
@@ -135,19 +139,19 @@ struct PeopleView: View {
                                         .font(.caption)
                                         .opacity(0.5)
                                 }
-                            }
+                            } //: VSTACK
                         }
                         
                         VStack {
                             CategoryRow(title: "Movies", color: .white, category: String(id) + K.People.movie)
                             CategoryRow(title: "Tv Shows", color: .white, category: String(id) + K.People.tv)
-                        }
+                        } //: VSTACK
                         .padding(.horizontal, -15)
-                    }
+                    } //: VSTACK
                     .padding()
                 }
-            }
-        }
+            } //: SCROLLVIEW
+        } //: ZSTACK
         .animation(.default)
         .ignoresSafeArea()
         .safeAreaInset(edge: .top) {
@@ -158,3 +162,13 @@ struct PeopleView: View {
         }
     }
 }
+
+//MARK: - PREVIEW
+
+struct PeopleView_Previews: PreviewProvider {
+    static var previews: some View {
+        PeopleView(id: 1, name: "", urlPath: "")
+            .environmentObject(ModelData())
+    }
+}
+

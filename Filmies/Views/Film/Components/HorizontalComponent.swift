@@ -9,8 +9,12 @@ import SwiftUI
 
 struct HorizontalComponent: View {
     
+    //MARK: - PROPERTIES
+    
     var title: String
     var details: [String]
+    
+    //MARK: - BODY
     
     var body: some View {
         HStack(alignment: .top) {
@@ -29,10 +33,19 @@ struct HorizontalComponent: View {
                 } else {
                     Text("-")
                 }
-            }
+            } //: VSTACK
             .multilineTextAlignment(.trailing)
             .padding(.bottom, 1)
         }
         .padding(.bottom, 5)
+    } //: HSTACK
+}
+
+//MARK: - PREVIEW
+
+struct HorizontalComponent_Previews: PreviewProvider {
+    static var previews: some View {
+        HorizontalComponent(title: "Language", details: ["English", "Mandarin"])
+            .environmentObject(ModelData())
     }
 }

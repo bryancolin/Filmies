@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FilmComponent<Content>: View where Content : View {
     
+    //MARK: - PROPERTIES
+    
     @Namespace var animation
     
     var title: String
@@ -19,19 +21,21 @@ struct FilmComponent<Content>: View where Content : View {
         self.content = content
     }
     
+    //MARK: - BODY
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
-            // Title
+            // TITLE
             HStack {
                 RoundedText(title: title, selectedIndex: .constant(0), color: .secondary, animation: animation)
                 Spacer()
             }
             
-            // Body
+            // BODY
             ScrollView(showsIndicators: false) {
                 content()
             }
-        }
+        } //: VSTACK
         .foregroundColor(.white)
         .padding()
     }

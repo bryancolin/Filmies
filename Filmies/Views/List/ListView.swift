@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ListView: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     @Environment(\.presentationMode) var presentationMode
     
@@ -22,13 +24,15 @@ struct ListView: View {
         GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color.black], blurRadius: 100)
     }
     
+    //MARK: - BODY
+    
     var body: some View {
         let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: numberOfColumns)
         
         ZStack {
-            // Background
+            // BACKGROUND
             background
-            // Component
+            // COMPONENT
             CustomScrollView {
                 VStack(alignment: .leading) {
                     // Back Button
@@ -37,7 +41,7 @@ struct ListView: View {
                     }
                     .padding()
                     
-                    // Title
+                    // TITLE
                     TitleComponent(name: title, color: .white, type: .largeTitle, weight: .bold) {
                         IconButton(title: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill") {
                             withAnimation {
@@ -46,15 +50,15 @@ struct ListView: View {
                         }
                     }
                     
-                    // Cards
+                    // CARDS
                     if let films = modelData.films[category] {
 //                        LazyVGrid(columns: columns, spacing: 10) {
                             ForEach(films) {
                                 ListItem(film: $0, category: category, numberOfColumns: $numberOfColumns)
-                            }
+                            } //: LOOP
 //                        }
                         
-                        // Load More
+                        // LOAD MORE
                         if films.count % 20 == 0 && !category.contains("favorites") {
                             Button(action: {
                                 Task {
@@ -65,7 +69,7 @@ struct ListView: View {
                                     .fontWeight(.bold)
                                     .foregroundColor(Color(K.BrandColors.pink))
                                     .frame(maxWidth: .infinity)
-                            }
+                            } //: BUTTON
                             .tint(.white)
                             .buttonStyle(.bordered)
                             .controlSize(.large)
@@ -77,13 +81,15 @@ struct ListView: View {
                             .padding(.horizontal)
                     }
                 }
-            }
-        }
+            } //: SCROLLVIEW
+        } //: ZSTACK
         .animation(.default)
     }
 }
 
-struct ListItem_Previews: PreviewProvider {
+//MARK: - PREVIEW
+
+struct ListView_Previews: PreviewProvider {
     static var previews: some View {
         ListView(title: "Now Playing", category: "movie/now_playing", searchText: .constant(""))
             .environmentObject(ModelData())

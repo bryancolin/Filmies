@@ -10,6 +10,8 @@ import UIKit
 
 struct CategoryHome: View {
     
+    //MARK: - PROPERTIES
+    
     @Namespace var animation
     @EnvironmentObject var modelData: ModelData
     
@@ -28,27 +30,31 @@ struct CategoryHome: View {
         .frame(height: 75)
     }
     
+    //MARK: - BODY
+    
     var body: some View {
-        // Glassmorphism Background
+        // GLASSMORPHISM BACKGROUND
         background
         
         ScrollView(showsIndicators: false) {
-            // Title
+            // TITLE
             title
             
-            // Scroll Tab for Trending Movies (Day & Week)
+            // SCROLL TAB FOR TRENDING MOVIES
             ScrollTabView(titles: ["Today", "This Week"], selectedIndex: $selectedIndex)
             CardView(category: modelData.selectedType == .movie ? modelData.movieParams[selectedIndex] : modelData.tvShowParams[selectedIndex])
             
-            // Scroll View
+            // SCROLL VIEW
             let subtitles = [(modelData.selectedType == .movie ? "Now Playing" : "Airing Today"), "Top Rated"]
             
             ForEach(0..<subtitles.count) {
                 CategoryRow(title: subtitles[$0], color: Color(K.BrandColors.pink), category: modelData.selectedType == .movie ? modelData.movieParams[$0 + 2] : modelData.tvShowParams[$0 + 2])
             }
-        }
+        } //: SCROLL
     }
 }
+
+//MARK: - PREVIEW
 
 struct FilmCategory_Previews: PreviewProvider {
     static var previews: some View {

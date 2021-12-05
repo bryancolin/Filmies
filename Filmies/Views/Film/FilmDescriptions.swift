@@ -9,7 +9,11 @@ import SwiftUI
 
 struct FilmDescriptions: View {
     
+    //MARK: - PROPERTIES
+    
     let date, duration, rate: String
+    
+    //MARK: - BODY
     
     var body: some View {
         
@@ -17,7 +21,7 @@ struct FilmDescriptions: View {
             let width = geometry.size.width / 3.5
             
             HStack(alignment: .center) {
-                // Rate
+                // RATE
                 VStack(alignment: .center) {
                     Spacer()
                     HStack {
@@ -26,43 +30,45 @@ struct FilmDescriptions: View {
                     }
                     Spacer()
                     Text("Rating").font(.caption)
-                }
+                } //: VSTACK
                 .frame(width: width)
                 
                 Spacer()
                 Rectangle().frame(width: 1)
                 Spacer()
                 
-                // Duration
+                // DURATION
                 VStack(alignment: .center) {
                     Spacer()
                     Text(duration)
                     Spacer()
                     Text("Duration").font(.caption)
-                }
+                } //: VSTACK
                 .frame(width: width)
 
                 Spacer()
                 Rectangle().frame(width: 1)
                 Spacer()
 
-                // Release Date
+                // RELEASE DATE
                 VStack(alignment: .center) {
                     Spacer()
                     Text(date)
                     Spacer()
                     Text("Release Date").font(.caption)
-                }
+                } //: VSTACK
                 .frame(width: width)
-            }
+            } //: HSTACK
             .font(.headline)
             .lineLimit(2)
             .minimumScaleFactor(0.5)
             .multilineTextAlignment(.center)
-        }
+        } // GEOMETRY READER
         .frame(height: 80)
     }
 }
+
+//MARK: - PREVIEW
 
 struct FilmDescriptions_Previews: PreviewProvider {
     static var previews: some View {

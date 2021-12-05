@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CategoryRow: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     
     var title: String
@@ -17,10 +19,12 @@ struct CategoryRow: View {
     
     @State private var isPresented = false
     
+    //MARK: - BODY
+    
     var body: some View {
         VStack(alignment: .leading) {
             if let films = modelData.films[category], !films.isEmpty {
-                // Title
+                // TITLE
                 TitleComponent(name: title, color: color, type: .title3, weight: .semibold) {
                     Button(action: {
                         isPresented.toggle()
@@ -34,10 +38,10 @@ struct CategoryRow: View {
                         ListView(title: title, category: category, searchText: .constant(""))
                             .environmentObject(modelData)
                     }
-                }
+                } //: TITLE
                 .padding(.vertical, -10)
                 
-                // Content
+                // CONTENT
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(alignment: .top, spacing: 0) {
                         ForEach(0..<20) {
@@ -46,10 +50,19 @@ struct CategoryRow: View {
                                     .redacted(reason: modelData.isLoading ? .placeholder : [])
                                     .padding(.trailing, $0 == 19 ? 15 : 0)
                             }
-                        }
-                    }
-                }
+                        } //: LOOP
+                    } //: HSTACK
+                } //: SCROLL
             }
-        }
+        } //: VSTACK
+    }
+}
+
+//MARK: - PREVIEW
+
+struct CategoryRow_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoryRow(title: "Now Playing", color: .pink, category: "movie/now_playing")
+            .environmentObject(ModelData())
     }
 }

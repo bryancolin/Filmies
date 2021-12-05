@@ -9,12 +9,16 @@ import SwiftUI
 
 struct RoundedText: View {
     
+    //MARK: - PROPERTES
+    
     var title: String
     var id: Int = 0
     @Binding var selectedIndex: Int
     var color: CustomColor = .primary
     
     var animation: Namespace.ID
+    
+    //MARK: - BODY
     
     var body: some View {
         let firstColor = color == .primary ? Color(K.BrandColors.pink) : Color.white
@@ -34,5 +38,15 @@ struct RoundedText: View {
                         .foregroundColor(color == .primary ? secondColor.opacity(id == selectedIndex ? 1 : 0) : firstColor.opacity(id == selectedIndex ? 0.32 : 0))
                 )
         }
+    }
+}
+
+//MARK: - PREVIEW
+
+struct RoundedText_Previews: PreviewProvider {
+    @Namespace static var animation
+    
+    static var previews: some View {
+        RoundedText(title: "Text", id: 0, selectedIndex: .constant(0), animation: animation)
     }
 }

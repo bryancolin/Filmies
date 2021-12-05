@@ -8,13 +8,14 @@
 import SwiftUI
 import SDWebImageSwiftUI
 
-struct ModalView: View {
+struct FilmView: View {
+    
+    //MARK: - PROPERTIES
     
     @EnvironmentObject var modelData: ModelData
     
     var film: Film
     var category: String
-    @Binding var showModal: Bool
     
     @State var isFavorite: Bool = false
     
@@ -46,15 +47,17 @@ struct ModalView: View {
         }
     }
     
+    //MARK: - BODY
+    
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack {
-                // Head View
+                // HEAD VIEW
                 VStack(spacing: 0) {
-                    // Video Trailer
+                    // TRAILER
                     FilmTrailer(film: film)
                     
-                    // Title Description
+                    // TITLE
                     TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold) {
                         IconButton(title: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill") {
                             isFavorite.toggle()
@@ -66,10 +69,10 @@ struct ModalView: View {
                 .background(Color.black.opacity(0.75))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 
-                // Sub View
+                // SUB VIEW
                 FilmDetails(film: film)
-            }
-        }
+            } //: VSTACK
+        } // SCROLLVIEW
         .background (
             CustomImage(urlPath: posters)
                 .ignoresSafeArea()
@@ -93,5 +96,14 @@ struct ModalView: View {
             modelData.selectedFilmId = film.id ?? 0
             isFavorite = modelData.findFilm(param: filmType, id: film.id ?? 0).0
         }
+    }
+}
+
+//MARK: - PREVIEW
+
+struct FilmView_Previews: PreviewProvider {
+    static var previews: some View {
+        FilmView(film: Film.getPlaceholderData()[0], category: "movie/now_playing")
+            .environmentObject(ModelData())
     }
 }

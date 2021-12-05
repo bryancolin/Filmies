@@ -9,6 +9,8 @@ import SwiftUI
 
 struct VerticalComponent: View {
     
+    //MARK: - PROPERTIES
+    
     var title: String
     var urlsPath: [String]
     var details: [String]
@@ -16,6 +18,8 @@ struct VerticalComponent: View {
     var id: [Int]
     
     @State var showDetail = true
+    
+    //MARK: - BODY
     
     var body: some View {
         let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 4)
@@ -33,7 +37,7 @@ struct VerticalComponent: View {
                     .font(.caption2)
                     .rotationEffect(.degrees(showDetail ? 180 : 0))
                 }
-            }
+            } //: HSTACK
             
             CustomDivider()
             
@@ -43,11 +47,13 @@ struct VerticalComponent: View {
                         if index < details.count {
                             VerticalComponentDetails(urlPath: urlsPath[index], detail: details[index], subDetail: subDetails?[index], id: id[index])
                         }
-                    }
-                }
+                    } //: LOOP
+                } //: GRID
             }
-        }
+        } //: VSTACK
     }
+    
+    //MARK: - FUNCTION
     
     func showAnimation() {
         withAnimation {
@@ -58,6 +64,8 @@ struct VerticalComponent: View {
 
 struct VerticalComponentDetails: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     
     var urlPath: String
@@ -66,6 +74,8 @@ struct VerticalComponentDetails: View {
     var id: Int
     
     @State private var isPresented = false
+    
+    //MARK: - BODY
     
     var body: some View {
         Button(action: {
@@ -92,18 +102,27 @@ struct VerticalComponentDetails: View {
                                 .foregroundColor(.gray)
                                 .font(.caption2)
                         }
-                    }
+                    } //: VSTACK
                     .lineLimit(2)
                     .minimumScaleFactor(0.5)
                     .multilineTextAlignment(.leading)
-                }
+                } //: VSTACK
                 .padding(.vertical, 10)
             }
             .frame(height: 150)
-        }
+        } //: BUTTON
         .fullScreenCover(isPresented: $isPresented) {
             PeopleView(id: id, name: detail, urlPath: urlPath)
                 .environmentObject(modelData)
         }
+    }
+}
+
+//MARK: - PREVIEW
+
+struct VerticalComponent_Previews: PreviewProvider {
+    static var previews: some View {
+        VerticalComponent(title: "Bryan Colin", urlsPath: [""], details: [""], id: [0])
+            .environmentObject(ModelData())
     }
 }

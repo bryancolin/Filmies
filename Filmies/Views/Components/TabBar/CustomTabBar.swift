@@ -9,16 +9,20 @@ import SwiftUI
 
 struct CustomTabBar: View {
     
+    //MARK: - PROPERTIES
+    
     @Binding var selectedTab: Tab
     
     @State var tabPoints: [CGFloat] = []
+    
+    //MARK: - BODY
     
     var body: some View {
         HStack(spacing: 0) {
             ForEach(Tab.allCases, id: \.self) {
                 TabBarButton(image: $0, selectedTab: $selectedTab, tabPoints: $tabPoints)
             }
-        }
+        } //: HSTACK
         .padding(0)
         .background(
             Color.white
@@ -33,6 +37,8 @@ struct CustomTabBar: View {
         .cornerRadius(30)
         .padding(.horizontal)
     }
+    
+    //MARK: - FUNCTIONS
     
     func getCurvePoint() -> CGFloat {
         if tabPoints.isEmpty {
@@ -49,3 +55,14 @@ struct CustomTabBar: View {
         }
     }
 }
+
+//MARK: - PREVIEW
+
+struct CustomTabBar_Previews: PreviewProvider {
+    @Namespace static var animation
+    
+    static var previews: some View {
+        CustomTabBar(selectedTab: .constant(Tab.house), tabPoints: [CGFloat.zero])
+    }
+}
+

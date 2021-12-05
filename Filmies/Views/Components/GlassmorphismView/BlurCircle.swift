@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BlurCircle: View {
     
+    //MARK: - PROPERTIES
+    
     var color: Color
     var paddingNumber: CGFloat
     var offsetX: CGFloat = 0
@@ -17,6 +19,8 @@ struct BlurCircle: View {
     var shadowRadius: CGFloat = 100
     
     @State private var isAppear = false
+    
+    //MARK: - BODY
     
     var body: some View {
         Circle()
@@ -33,6 +37,8 @@ struct BlurCircle: View {
             .drawingGroup()
     }
 }
+
+//MARK: - PREVIEW
 
 struct BlurCircle_Previews: PreviewProvider {
     static var previews: some View {

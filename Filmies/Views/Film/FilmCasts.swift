@@ -9,11 +9,15 @@ import SwiftUI
 
 struct FilmCasts: View {
     
+    //MARK: - PROPERTIES
+    
     let casts: Casts
     
     init(_ casts: Casts) {
         self.casts = casts
     }
+    
+    //MARK: - BODY
     
     var body: some View {
         if let crews = casts.crewCategories["Director"] {
@@ -29,3 +33,13 @@ struct FilmCasts: View {
         }
     }
 }
+
+//MARK: - PREVIEW
+
+struct FilmCasts_Previews: PreviewProvider {
+    static var previews: some View {
+        FilmCasts((Film.getPlaceholderData()[0] as? Movie)!.casts!)
+            .environmentObject(ModelData())
+    }
+}
+

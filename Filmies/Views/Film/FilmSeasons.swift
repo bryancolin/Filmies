@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FilmSeasons: View {
     
+    //MARK: - PROPERTIES
+    
     let seasons: [Season]
     let posterPath: String?
     
@@ -16,6 +18,8 @@ struct FilmSeasons: View {
         self.seasons = seasons
         self.posterPath = posterPath
     }
+    
+    //MARK: - BODY
     
     var body: some View {
         ForEach(seasons) { season in
@@ -38,3 +42,4 @@ struct FilmSeasons: View {
         }
     }
 }
+

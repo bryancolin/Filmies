@@ -9,10 +9,14 @@ import SwiftUI
 
 struct CustomPicker: View {
     
+    //MARK: - PROPERTIES
+    
     var animation: Namespace.ID
     
     @EnvironmentObject var modelData: ModelData
     @State var show: Bool = true
+    
+    //MARK: - BODY
     
     var body: some View {
         HStack {
@@ -65,3 +69,15 @@ struct CustomPicker: View {
         }
     }
 }
+
+//MARK: - PREVIEW
+
+struct CustomPicker_Previews: PreviewProvider {
+    @Namespace static var animation
+    
+    static var previews: some View {
+        CustomPicker(animation: animation)
+            .environmentObject(ModelData())
+    }
+}
+

@@ -9,12 +9,16 @@ import SwiftUI
 
 struct CardList: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     
     var title: String
     var category: String
     
     @State private var isPresented = false
+    
+    //MARK: - BODY
     
     var body: some View {
         if let films =  modelData.films[category] {
@@ -34,12 +38,12 @@ struct CardList: View {
                                 .font(.subheadline)
                             
                             Spacer()
-                        }
+                        } //: VSTACK
                         Spacer()
-                    }
+                    } //: HSTACK
                     .padding()
                     .background(Color.black.opacity(0.75))
-                }
+                } //: BUTTON
                 .background(
                     CustomImage(urlPath: films.first?.backdropPath)
                         .frame(height: height)
@@ -56,3 +60,13 @@ struct CardList: View {
         }
     }
 }
+
+//MARK: - PREVIEW
+
+struct CardList_Previews: PreviewProvider {
+    static var previews: some View {
+        CardList(title: "Now Playing", category: "movie/now_playing")
+            .environmentObject(ModelData())
+    }
+}
+

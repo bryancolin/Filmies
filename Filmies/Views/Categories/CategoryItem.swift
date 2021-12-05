@@ -10,6 +10,8 @@ import SDWebImageSwiftUI
 
 struct CategoryItem: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     @State private var showingModal = false
     
@@ -27,6 +29,8 @@ struct CategoryItem: View {
         }
         return ""
     }
+    
+    //MARK: - BODY
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -54,12 +58,21 @@ struct CategoryItem: View {
                                 .padding(5)
                         }
                     }
-            }
-        }
+            } //: BUTTON
+        } //: VSTACK
         .padding(.leading, 15)
         .sheet(isPresented: $showingModal) {
-            ModalView(film: film, category: category, showModal: self.$showingModal)
+            FilmView(film: film, category: category)
                 .environmentObject(modelData)
         }
+    }
+}
+
+//MARK: - PREVIEW
+
+struct CategoryItem_Previews: PreviewProvider {
+    static var previews: some View {
+        CategoryItem(film: Film.getPlaceholderData()[0], category: "movie/now_playing")
+            .environmentObject(ModelData())
     }
 }

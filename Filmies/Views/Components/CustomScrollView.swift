@@ -9,6 +9,8 @@ import SwiftUI
 
 struct CustomScrollView<Content>: View where Content: View {
     
+    //MARK: - PROPERTIES
+    
     let content: () -> Content
     
     @State var scrollViewOffset: CGFloat = 0
@@ -20,6 +22,8 @@ struct CustomScrollView<Content>: View where Content: View {
     init(@ViewBuilder _ content: @escaping () -> Content) {
         self.content = content
     }
+    
+    //MARK: - BODY
     
     var body: some View {
         ScrollViewReader { proxyReader in

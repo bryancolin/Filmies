@@ -9,6 +9,8 @@ import SwiftUI
 
 struct FilmDetails: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     
     var film: Film
@@ -70,6 +72,8 @@ struct FilmDetails: View {
         }
     }
     
+    //MARK: - BODY
+    
     var body: some View {
         TabView(selection: $index) {
             
@@ -80,7 +84,7 @@ struct FilmDetails: View {
             if film is TvShow {
                 seasons.tag(2)
             }
-        }
+        } // TAB VIEW
         .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
         .frame(height: UIScreen.main.bounds.height - 100)
         .background(Color.black.opacity(0.75))
@@ -93,3 +97,11 @@ struct FilmDetails: View {
     }
 }
 
+//MARK: - PREVIEW
+
+struct FilmDetails_Previews: PreviewProvider {
+    static var previews: some View {
+        FilmDetails(film: Film.getPlaceholderData()[0])
+            .environmentObject(ModelData())
+    }
+}

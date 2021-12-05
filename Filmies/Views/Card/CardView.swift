@@ -9,12 +9,16 @@ import SwiftUI
 
 struct CardView: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     
     var category: String
     
     @State var scrolled = 0
     @State var offsets: [CGFloat] = Array(repeating: 0, count: 20)
+    
+    //MARK: - BODY
     
     var body: some View {
         ZStack {
@@ -28,7 +32,7 @@ struct CardView: View {
                             .offset(x: index - scrolled <= 2 ? CGFloat(index - scrolled) * 30 : 60)
                             
                             Spacer()
-                        }
+                        } //: HSTACK
                         .contentShape(Rectangle())
                         .offset(x: offsets[index])
                         .gesture(
@@ -67,13 +71,13 @@ struct CardView: View {
                                         }
                                     }
                                 }
-                        )
-                    }
+                        ) //: GESTURE
+                    } //: LOOP
                 } else {
                     Color.white.opacity(0.2)
                 }
             }
-        }
+        } //: ZSTACK
         .frame(height: UIScreen.main.bounds.height / 1.8)
         .cornerRadius(15)
         .padding()
@@ -93,12 +97,23 @@ struct CardView: View {
         }
     }
     
+    //MARK: - FUNCTIONS
+    
     func calculateWidth() -> CGFloat {
         return (UIScreen.main.bounds.width - 50) - (2 * 30)
     }
     
     func calculateHeight(with index: Int) -> CGFloat {
         return (UIScreen.main.bounds.height / 1.8) - CGFloat(index - scrolled) * 50
+    }
+}
+
+//MARK: - PREVIEW
+
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardView(category: "movie/now_playing")
+            .environmentObject(ModelData())
     }
 }
 

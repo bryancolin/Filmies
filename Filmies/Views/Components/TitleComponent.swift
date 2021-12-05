@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TitleComponent<Content>: View where Content : View {
     
+    //MARK: - PROPERTIES
+    
     var name: String
     var color: Color
     var type: Font
@@ -22,6 +24,8 @@ struct TitleComponent<Content>: View where Content : View {
         self.weight = weight
         self.content = content
     }
+    
+    //MARK: - BODY
     
     var body: some View {
         HStack {

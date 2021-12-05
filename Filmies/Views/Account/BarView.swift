@@ -9,6 +9,8 @@ import SwiftUI
 
 struct BarView: View {
     
+    //MARK: - PROPERTIES
+    
     var title: String
     var width: CGFloat
     @Binding var height: CGFloat
@@ -16,6 +18,8 @@ struct BarView: View {
     private let defaultHeight: CGFloat = 200
     
     @State private var progress: CGFloat = 0
+    
+    //MARK: - BODY
     
     var body: some View {
         VStack {
@@ -35,13 +39,15 @@ struct BarView: View {
                         updateProgress()
                     }
                     .drawingGroup()
-            }
+            } //: ZSTACK
             .frame(width: width)
             
             Text(title.prefix(1))
                 .foregroundColor(.white)
-        }
+        } //: VSTACK
     }
+    
+    //MARK: - FUNCTIONS
     
     func updateProgress() {
         progress = 0
@@ -49,4 +55,14 @@ struct BarView: View {
         progress += (h < 6 ? (h/6) : 1)
     }
 }
+
+//MARK: - PREVIEW
+
+struct BarView_Previews: PreviewProvider {
+    static var previews: some View {
+        BarView(title: "M", width: 50, height: .constant(50))
+            .environmentObject(ModelData())
+    }
+}
+
 

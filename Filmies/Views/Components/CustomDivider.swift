@@ -8,8 +8,13 @@
 import SwiftUI
 
 struct CustomDivider: View {
+    
+    //MARK: - PROPERTIES
+    
     let color: Color = .gray
     let height: CGFloat = 2
+    
+    //MARK: - BODY
     
     var body: some View {
         Rectangle()
@@ -18,6 +23,8 @@ struct CustomDivider: View {
             .edgesIgnoringSafeArea(.horizontal)
     }
 }
+
+//MARK: - PREVIEW
 
 struct CustomDivider_Previews: PreviewProvider {
     static var previews: some View {

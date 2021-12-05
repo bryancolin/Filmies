@@ -69,7 +69,7 @@
 		E54B4D5026BFCF4A00BE5461 /* URLSession+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4F26BFCF4A00BE5461 /* URLSession+Extension.swift */; };
 		E54CC43A269D8DBE0083C6FE /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC439269D8DBD0083C6FE /* CardView.swift */; };
 		E54CC43D269D8E8C0083C6FE /* CardElementView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43C269D8E8B0083C6FE /* CardElementView.swift */; };
-		E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43E269D8EC50083C6FE /* ModalView.swift */; };
+		E54CC43F269D8EC50083C6FE /* FilmView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54CC43E269D8EC50083C6FE /* FilmView.swift */; };
 		E551B052269C6C0D005D9613 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E551B051269C6C0D005D9613 /* Launch Screen.storyboard */; };
 		E558D2C826DF3643007A1801 /* PeopleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E558D2C726DF3643007A1801 /* PeopleView.swift */; };
 		E558D2CA26DF456A007A1801 /* People.swift in Sources */ = {isa = PBXBuildFile; fileRef = E558D2C926DF4569007A1801 /* People.swift */; };
@@ -190,7 +190,7 @@
 		E54B4D4F26BFCF4A00BE5461 /* URLSession+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLSession+Extension.swift"; sourceTree = "<group>"; };
 		E54CC439269D8DBD0083C6FE /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E54CC43C269D8E8B0083C6FE /* CardElementView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardElementView.swift; sourceTree = "<group>"; };
-		E54CC43E269D8EC50083C6FE /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		E54CC43E269D8EC50083C6FE /* FilmView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmView.swift; sourceTree = "<group>"; };
 		E551B051269C6C0D005D9613 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		E558D2C726DF3643007A1801 /* PeopleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleView.swift; sourceTree = "<group>"; };
 		E558D2C926DF4569007A1801 /* People.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = People.swift; sourceTree = "<group>"; };
@@ -296,6 +296,14 @@
 				E5269CFA26FC6AEA0061E48E /* SwiftUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E500DE52275C763400EBE722 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				E55FF2922700446F00D2BE68 /* sampleData.json */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 		E50254F326983D37000C6F03 /* Views */ = {
@@ -555,7 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				E56870C026B7F61E002BA55F /* Components */,
-				E54CC43E269D8EC50083C6FE /* ModalView.swift */,
+				E54CC43E269D8EC50083C6FE /* FilmView.swift */,
 				E564B11826ABFAE4002637A9 /* FilmDetails.swift */,
 				E55C503E26BBF0460059EBD3 /* FilmDescriptions.swift */,
 				E55C504026BBF0820059EBD3 /* FilmCasts.swift */,
@@ -607,8 +615,8 @@
 			children = (
 				E5C9574226B3EA15007B1B1D /* Extension */,
 				E5AC242B269AAC6B00FBBDD3 /* Fonts */,
+				E500DE52275C763400EBE722 /* Data */,
 				E577698E26A6F6220076D7CF /* Constants.swift */,
-				E55FF2922700446F00D2BE68 /* sampleData.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -883,7 +891,7 @@
 				E5840A6A26A7FD7B00E3F782 /* TabCurve.swift in Sources */,
 				E503173D26CCB914009155E7 /* ListItem.swift in Sources */,
 				E564B11D26ABFCDB002637A9 /* CustomDivider.swift in Sources */,
-				E54CC43F269D8EC50083C6FE /* ModalView.swift in Sources */,
+				E54CC43F269D8EC50083C6FE /* FilmView.swift in Sources */,
 				E50254F826983E80000C6F03 /* Movie.swift in Sources */,
 				E5269D0426FC6AF90061E48E /* FilmiesWidget.intentdefinition in Sources */,
 				E5A0DF8726BD067C00C0FA11 /* FilmSeasons.swift in Sources */,

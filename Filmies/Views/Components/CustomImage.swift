@@ -10,12 +10,16 @@ import SDWebImageSwiftUI
 
 struct CustomImage: View {
     
+    //MARK: - PROPERTIES
+    
     var urlPath: String?
     var placeholder: String = ""
     
     private var fullName: [String] {
         return placeholder.components(separatedBy: " ")
     }
+    
+    //MARK: - BODY
     
     var body: some View {
         if let url = urlPath, !url.isEmpty {
@@ -35,3 +39,13 @@ struct CustomImage: View {
         }
     }
 }
+
+//MARK: - PREVIEW
+
+struct CustomImage_Previews: PreviewProvider {
+    static var previews: some View {
+        CustomImage(urlPath: "/e1mjopzAS2KNsvpbpahQ1a6SkSn.jpg")
+    }
+}
+
+

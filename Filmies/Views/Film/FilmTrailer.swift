@@ -9,9 +9,13 @@ import SwiftUI
 
 struct FilmTrailer: View {
     
+    //MARK: - PROPERTIES
+    
     @EnvironmentObject var modelData: ModelData
     
     var film: Film
+    
+    //MARK: - BODY
     
     var body: some View {
         if let officialTrailers = film.videos?.all?.filter({ trailer -> Bool in
@@ -33,3 +37,13 @@ struct FilmTrailer: View {
         }
     }
 }
+
+//MARK: - PREVIEW
+
+struct FilmTrailer_Previews: PreviewProvider {
+    static var previews: some View {
+        FilmTrailer(film: Film.getPlaceholderData()[0])
+            .environmentObject(ModelData())
+    }
+}
+
