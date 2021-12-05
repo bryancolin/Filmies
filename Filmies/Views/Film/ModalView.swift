@@ -58,7 +58,7 @@ struct ModalView: View {
                     TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold) {
                         IconButton(title: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill") {
                             isFavorite.toggle()
-                            modelData.highlightFilm(type: filmType, param: film.category, id: film.id ?? 0, check: isFavorite)
+                            modelData.highlightFilm(type: filmType, check: isFavorite)
                         }
                         .foregroundColor(.white)
                     }
@@ -83,12 +83,14 @@ struct ModalView: View {
         )
         .task {
             if let movie = film as? Movie, movie.details == nil {
-                await modelData.fetchFilmDetails(type: .movie, param: category, id: movie.id ?? 0, expecting: Movie.self)
+                await modelData.fetchFilmDetails(type: .movie, expecting: Movie.self)
             } else if let tvShow = film as? TvShow, tvShow.details == nil {
-                await modelData.fetchFilmDetails(type: .tvShow, param: category, id: tvShow.id ?? 0, expecting: TvShow.self)
+                await modelData.fetchFilmDetails(type: .tvShow, expecting: TvShow.self)
             }
         }
         .onAppear {
+            modelData.selectedCategory = category
+            modelData.selectedFilmId = film.id ?? 0
             isFavorite = modelData.findFilm(param: filmType, id: film.id ?? 0).0
         }
     }

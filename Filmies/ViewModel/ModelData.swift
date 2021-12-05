@@ -27,6 +27,8 @@ final class ModelData: ObservableObject {
     
     @Published var films = [String: [Film]]()
     @Published var selectedType: FilmType = .movie
+    @Published var selectedFilmId: Int = 0
+    @Published var selectedCategory: String = ""
     
     @Published var people = [Int: People]()
     
@@ -78,21 +80,21 @@ final class ModelData: ObservableObject {
     }
     
     @MainActor
-    func fetchFilmDetails<T: Codable>(type: FilmType, param: String, id: Int, expecting: T.Type) async {
+    func fetchFilmDetails<T: Codable>(type: FilmType, expecting: T.Type) async {
         
-        let film = findFilm(param: param, id: id)
+        let film = findFilm(param: selectedCategory, id: selectedFilmId)
         let filmExists = film.exists
         let filmAtIndex = film.index
         
         if filmExists {
-            let fullURL = "\(url)/\(type.rawValue)/\(id)" + apiKey + "&append_to_response=videos,casts,credits,images&include_image_language=en"
+            let fullURL = "\(url)/\(type.rawValue)/\(selectedFilmId)" + apiKey + "&append_to_response=videos,casts,credits,images&include_image_language=en"
             
             do {
                 let result = try await URLSession.shared.request(url: URL(string: fullURL), expecting: expecting)
                 if let film = result as? Film {
-                    film.category = param
+                    film.category = selectedCategory
                     film.details = true
-                    films[param]?[filmAtIndex] = film
+                    films[selectedCategory]?[filmAtIndex] = film
                 }
             } catch {
                 print(error)
@@ -100,9 +102,9 @@ final class ModelData: ObservableObject {
         }
     }
     
-    func highlightFilm(type: String, param: String, id: Int, check: Bool) {
+    func highlightFilm(type: String, check: Bool) {
         
-        let film = findFilm(param: param, id: id)
+        let film = findFilm(param: selectedCategory, id: selectedFilmId)
         //        let movieExists = movie.0
         let filmAtIndex = film.index
         
@@ -113,7 +115,7 @@ final class ModelData: ObservableObject {
         
         if check {
             // Append Favorite Movie
-            guard let film = films[param]?[filmAtIndex] else { return }
+            guard let film = films[selectedCategory]?[filmAtIndex] else { return }
             film.isFavorite = true
             film.addedAt = Date().timeIntervalSince1970
             
@@ -124,7 +126,7 @@ final class ModelData: ObservableObject {
             }
         } else {
             // Remove Favorite Movie
-            let favoriteFilm = findFilm(param: type, id: id)
+            let favoriteFilm = findFilm(param: type, id: selectedFilmId)
             if favoriteFilm.exists {
                 films[type]?.remove(at: favoriteFilm.index)
             }
