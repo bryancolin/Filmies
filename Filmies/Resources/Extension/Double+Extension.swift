@@ -12,4 +12,8 @@ extension Double {
     func toDate() -> Date {
         return NSDate(timeIntervalSince1970: self) as Date
     }
+    
+    func toString() -> String {
+        return String(self)
+    }
 }

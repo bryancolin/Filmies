@@ -8,6 +8,7 @@
 import Foundation
 
 extension RangeReplaceableCollection {
+    
     func rotatingLeft(positions: Int) -> SubSequence {
         let index = self.index(startIndex, offsetBy: positions, limitedBy: endIndex) ?? endIndex
         return self[index...] + self[..<index]

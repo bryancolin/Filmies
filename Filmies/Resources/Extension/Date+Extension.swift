@@ -16,20 +16,6 @@ extension Date {
         return formatter.string(from: self)
     }
     
-    func dateAndTimetoString(format: String = "yyyy-MM-dd HH:mm") -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.dateFormat = format
-        return formatter.string(from: self)
-    }
-    
-    func fullDayName(format: String = "EEEE") -> String {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .short
-        formatter.dateFormat = format
-        return formatter.string(from: self)
-    }
-    
     func getWeek(index: Int) -> Bool {
         return Calendar.current.isDateInWeekOf(self, weekOfYear: index)
     }

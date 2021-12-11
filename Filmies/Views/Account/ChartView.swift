@@ -50,7 +50,7 @@ struct ChartView: View {
                 
                 Spacer()
                 
-                Text(getTotalHoursPerWeek().convert())
+                Text(getTotalHoursPerWeek().toTimeString())
                     .fontWeight(.semibold)
                     .opacity(0.5)
             } //: HSTACK
@@ -118,7 +118,7 @@ struct ChartView: View {
 //MARK: - PREVIEW
 
 struct ChartView_Previews: PreviewProvider {
-    static let categorizeMovies = Dictionary(grouping: Film.getPlaceholderData(), by: { $0.addedDate.fullDayName() })
+    static let categorizeMovies = Dictionary(grouping: Film.getPlaceholderData(), by: { $0.addedDate.toString(format: "EEEE") })
     
     static var previews: some View {
         ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])

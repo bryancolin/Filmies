@@ -9,9 +9,11 @@ import Foundation
 
 extension Int {
     
-    func convert() -> String {
-        let hours = self / 60
-        let minutes = self % 60
-        return String(hours > 0 ? "\(hours)h " : "") + "\(minutes)m"
+    var hours: Int { self / 60 }
+    
+    var minutes: Int { self % 60 }
+    
+    func toTimeString() -> String {
+        return hours > 0 ? "\(hours)h " : "" + "\(minutes) m"
     }
 }

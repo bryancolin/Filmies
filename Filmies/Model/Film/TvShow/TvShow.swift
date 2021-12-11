@@ -13,7 +13,7 @@ class TvShow: Film {
     var runTime: [Int]?
     var duration: String {
         if let time = runTime?.first {
-            return time.convert()
+            return time.toTimeString()
         }
         return String()
     }

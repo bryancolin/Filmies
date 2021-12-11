@@ -11,7 +11,7 @@ class Movie: Film {
     var runTime: Int?
     var duration: String {
         if let time = runTime {
-            return time.convert()
+            return time.toTimeString()
         }
         return String()
     }
