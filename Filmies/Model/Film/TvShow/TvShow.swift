@@ -12,18 +12,12 @@ class TvShow: Film {
     
     var runTime: [Int]?
     var duration: String {
-        if let time = runTime?.first {
-            return time.toTimeString()
-        }
-        return String()
+        return runTime?.first?.toTimeString() ?? ""
     }
     
     let firstAirDate: String?
     var firstAir: String {
-        if let date = firstAirDate {
-            return String(date.prefix(4))
-        }
-        return String("-")
+        return String(firstAirDate?.prefix(4) ?? "-")
     }
     
     let lastAirDate: String?

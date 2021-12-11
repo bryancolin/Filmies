@@ -48,7 +48,7 @@ struct AccountView: View {
             title
             
             if let movies = modelData.films[K.Movie.favorites] as? [Movie] {
-                let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.toString(format: "EEEE") })
+                let categorizeMovies = Dictionary(grouping: movies, by: { $0.addedDate.toString(format: K.DateFormat.day) })
                 ChartView(films: categorizeMovies, titles: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
             }
             

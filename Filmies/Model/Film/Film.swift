@@ -19,8 +19,7 @@ class Film: Codable, Identifiable {
     let languages: [Language]?
     let rating: Double?
     var rate: String {
-        if let rating = rating { return String(rating) }
-        return String()
+        return rating?.toString() ?? ""
     }
     
     let productionCompanies, productionCountries: [Production]?
@@ -38,10 +37,7 @@ class Film: Codable, Identifiable {
     
     var addedAt: Double? = nil
     var addedDate: Date {
-        if let dateInDouble = addedAt {
-            return dateInDouble.toDate()
-        }
-        return Date()
+        return addedAt?.toDate() ?? Date()
     }
     
     enum CodingKeys: String, CodingKey {

@@ -10,18 +10,12 @@ import Foundation
 class Movie: Film {
     var runTime: Int?
     var duration: String {
-        if let time = runTime {
-            return time.toTimeString()
-        }
-        return String()
+        return runTime?.toTimeString() ?? ""
     }
     
     let releaseDate: String?
     var releaseYear: String {
-        if let date = releaseDate {
-            return String(date.prefix(4))
-        }
-        return String("-")
+        return String(releaseDate?.prefix(4) ?? "-")
     }
     
     let casts: Casts?

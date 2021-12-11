@@ -28,9 +28,9 @@ struct ListItem: View {
     
     private var releaseDate: String {
         if let movie = film as? Movie {
-            return movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? ""
+            return movie.releaseDate?.toDate().toString(format: K.DateFormat.typeOne) ?? ""
         } else if let tvShow = film as? TvShow {
-            return tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? ""
+            return tvShow.firstAirDate?.toDate().toString(format: K.DateFormat.typeOne) ?? ""
         } else {
             return ""
         }

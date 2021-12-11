@@ -106,7 +106,7 @@ struct PeopleView: View {
                                     
                                     VStack {
                                         Spacer()
-                                        Text(birthday.toDate().toString(format: K.dateFormat))
+                                        Text(birthday.toDate().toString(format: K.DateFormat.typeOne))
                                         Spacer()
                                         Text("Date of Birth").font(.caption)
                                     } //: VSTACK

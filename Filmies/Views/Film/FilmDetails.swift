@@ -22,9 +22,9 @@ struct FilmDetails: View {
         FilmComponent(title: "Overview") {
             
             if let movie = film as? Movie {
-                FilmDescriptions(date: movie.releaseDate?.toDate().toString(format: K.dateFormat) ?? "", duration: movie.duration, rate: film.rate)
+                FilmDescriptions(date: movie.releaseDate?.toDate().toString(format: K.DateFormat.typeOne) ?? "", duration: movie.duration, rate: film.rate)
             } else if let tvShow = film as? TvShow {
-                FilmDescriptions(date: tvShow.firstAirDate?.toDate().toString(format: K.dateFormat) ?? "", duration: tvShow.duration, rate: film.rate)
+                FilmDescriptions(date: tvShow.firstAirDate?.toDate().toString(format: K.DateFormat.typeOne) ?? "", duration: tvShow.duration, rate: film.rate)
             }
             
             Text(film.description)

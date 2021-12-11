@@ -9,7 +9,10 @@ import Foundation
 
 struct K {
     
-    static let dateFormat = "dd MMMM yyyy"
+    struct DateFormat {
+        static let day = "EEEE"
+        static let typeOne = "dd MMMM yyyy"
+    }
     
     struct Settings {
         static let selectedFilmType = "filmType"
