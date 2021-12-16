@@ -65,13 +65,13 @@ struct PeopleView: View {
                         Text(name)
                             .font(.title)
                             .lineLimit(2)
+                            .multilineTextAlignment(.trailing)
                             .padding()
                     }
                     .overlay(alignment: .topTrailing) {
                         GeometryReader { proxy -> Color in
                             DispatchQueue.main.async {
-                                let offset = proxy.frame(in:. global).minY + UIScreen.main.bounds.height / 2
-                                
+                                let offset = proxy.frame(in:. global).minY + UIScreen.main.bounds.height / 1.5
                                 if offset < 80 {
                                     if offset > 0 {
                                         let opacity_value = (80 -  offset) / 80

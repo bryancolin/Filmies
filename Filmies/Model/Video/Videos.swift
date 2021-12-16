@@ -13,4 +13,10 @@ struct Videos: Codable {
     enum CodingKeys: String, CodingKey {
         case all = "results"
     }
+    
+    func getVideos(name: String) -> [Video]? {
+        return all?.filter({ trailer -> Bool in
+            return trailer.name?.contains(name) ?? false
+        })
+    }
 }
