@@ -8,19 +8,8 @@
 import Foundation
 
 class TvShow: Film {
-    let name: String?
-    
+    let name, firstAirDate, lastAirDate: String?
     var runTime: [Int]?
-    var duration: String {
-        return runTime?.first?.toTimeString() ?? ""
-    }
-    
-    let firstAirDate: String?
-    var firstAir: String {
-        return String(firstAirDate?.prefix(4) ?? "-")
-    }
-    
-    let lastAirDate: String?
     
     let creators: [Creator]?
     let casts: Casts?
@@ -63,5 +52,15 @@ class TvShow: Film {
         try container.encode(seasons, forKey: .seasons)
         
         try super.encode(to: encoder)
+    }
+}
+
+extension TvShow {
+    var duration: String {
+        return runTime?.first?.toTimeString() ?? ""
+    }
+    
+    var firstAir: String {
+        return String(firstAirDate?.prefix(4) ?? "-")
     }
 }

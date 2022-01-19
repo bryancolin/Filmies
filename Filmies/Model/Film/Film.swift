@@ -10,17 +10,10 @@ import Foundation
 class Film: Codable, Identifiable {
     let id: Int?
     let title, overview: String?
-    var description: String {
-        if let text = overview, !text.isEmpty { return text }
-        return String("No synopsis available yet")
-    }
     
     let genres: [Genre]?
     let languages: [Language]?
     let rating: Double?
-    var rate: String {
-        return rating?.toString() ?? ""
-    }
     
     let productionCompanies, productionCountries: [Production]?
     
@@ -36,9 +29,6 @@ class Film: Codable, Identifiable {
     var isFavorite: Bool? = nil
     
     var addedAt: Double? = nil
-    var addedDate: Date {
-        return addedAt?.toDate() ?? Date()
-    }
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -64,6 +54,18 @@ class Film: Codable, Identifiable {
 }
 
 extension Film {
+    var description: String {
+        if let text = overview, !text.isEmpty { return text }
+        return String("No synopsis available yet")
+    }
+    
+    var rate: String {
+        return rating?.toString() ?? ""
+    }
+    
+    var addedDate: Date {
+        return addedAt?.toDate() ?? Date()
+    }
     
     static func getPlaceholderData() -> [Film] {
         let data: Data

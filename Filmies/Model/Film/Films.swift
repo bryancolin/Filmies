@@ -19,12 +19,11 @@ struct Films: Codable {
         var results = try container.nestedUnkeyedContainer(forKey: CodingKeys.all)
         var films = [Film]()
         
-        var result = results
-        while(!results.isAtEnd)
-        {
+        var array = results
+        while(!results.isAtEnd) {
             let film = try results.nestedContainer(keyedBy: Film.CodingKeys.self)
             let title = try film.decodeIfPresent(String.self, forKey: Film.CodingKeys.title)
-            films.append(try result.decode(title != nil ? Movie.self : TvShow.self))
+            films.append(try array.decode(title != nil ? Movie.self : TvShow.self))
         }
         
         self.all = films

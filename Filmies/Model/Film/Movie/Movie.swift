@@ -9,14 +9,7 @@ import Foundation
 
 class Movie: Film {
     var runTime: Int?
-    var duration: String {
-        return runTime?.toTimeString() ?? ""
-    }
-    
     let releaseDate: String?
-    var releaseYear: String {
-        return String(releaseDate?.prefix(4) ?? "-")
-    }
     
     let casts: Casts?
     
@@ -45,6 +38,16 @@ class Movie: Film {
         try container.encode(casts, forKey: .casts)
         
         try super.encode(to: encoder)
+    }
+}
+
+extension Movie {
+    var duration: String {
+        return runTime?.toTimeString() ?? ""
+    }
+    
+    var releaseYear: String {
+        return String(releaseDate?.prefix(4) ?? "-")
     }
 }
 
