@@ -19,7 +19,7 @@ struct CategoryItem: View {
     var category: String
     var width: CGFloat = 150
     
-    var releaseDate: String {
+    private var releaseDate: String {
         if let movie = film as? Movie {
             return movie.releaseYear
         } else if let tvShow = film as? TvShow {

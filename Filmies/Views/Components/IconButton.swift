@@ -21,6 +21,7 @@ struct IconButton: View {
             action()
         }) {
             Image(systemName: title)
+                .font(.system(size: 20))
         }
     }
 }

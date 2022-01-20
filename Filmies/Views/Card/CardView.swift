@@ -99,11 +99,11 @@ struct CardView: View {
     
     //MARK: - FUNCTIONS
     
-    func calculateWidth() -> CGFloat {
+    private func calculateWidth() -> CGFloat {
         return (UIScreen.main.bounds.width - 50) - (2 * 30)
     }
     
-    func calculateHeight(with index: Int) -> CGFloat {
+    private func calculateHeight(with index: Int) -> CGFloat {
         return (UIScreen.main.bounds.height / 1.8) - CGFloat(index - scrolled) * 50
     }
 }

@@ -17,7 +17,7 @@ struct ListItem: View {
     var film: Film
     var category: String
     
-    @Binding var numberOfColumns: Int
+    @Binding var isToggle: Bool
     
     private var title: String {
         if let tvShow = film as? TvShow {
@@ -28,28 +28,28 @@ struct ListItem: View {
     
     private var releaseDate: String {
         if let movie = film as? Movie {
-            return movie.releaseDate?.toDate().toString(format: K.DateFormat.typeOne) ?? ""
+            return movie.releaseYear
         } else if let tvShow = film as? TvShow {
-            return tvShow.firstAirDate?.toDate().toString(format: K.DateFormat.typeOne) ?? ""
-        } else {
-            return ""
+            return tvShow.firstAir
         }
+        return ""
     }
     
     //MARK: - BODY
     
     var body: some View {
         HStack(alignment: .top) {
-            CategoryItem(film: film, category: category)
-            
-            if numberOfColumns % 2 != 0 {
+            if !isToggle {
+                CategoryItem(film: film, category: category)
+                    .padding(.horizontal, -10)
+                
                 VStack(alignment: .leading) {
                     Text(title)
                         .font(.title3)
                         .fontWeight(.bold)
                         .lineLimit(2)
                     
-                    Text(releaseDate)
+                    Text(releaseDate.toDate().toString(format: K.DateFormat.typeOne))
                         .font(.caption)
                         .fontWeight(.regular)
                         .lineLimit(1)
@@ -60,13 +60,12 @@ struct ListItem: View {
                         .lineLimit(3)
                         .opacity(0.5)
                 } //: VSTACK
-                .padding()
+                .padding(.vertical)
+                .padding(.leading, 10)
+            } else {
+                BackdropView(film: film, category: category)
             }
         } //: HSTACK
-        .background(Color.white.opacity(0.2))
-        .clipShape(RoundedRectangle(cornerRadius: 8))
-        .padding(.horizontal)
-        .redacted(reason: modelData.isLoading ? .placeholder : [])
     }
 }
 
@@ -74,7 +73,7 @@ struct ListItem: View {
 
 struct ListItem_Previews: PreviewProvider {
     static var previews: some View {
-        ListItem(film: Film.getPlaceholderData()[0], category: "movie/now_playing", numberOfColumns: .constant(1))
+        ListItem(film: Film.getPlaceholderData()[0], category: "movie/now_playing", isToggle: .constant(false))
             .environmentObject(ModelData())
     }
 }

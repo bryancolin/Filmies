@@ -53,7 +53,7 @@ struct CardList: View {
                 .foregroundColor(.white)
                 .frame(width: geometry.size.width)
                 .cornerRadius(8)
-                .fullScreenCover(isPresented: $isPresented) {
+                .sheet(isPresented: $isPresented) {
                     ListView(title: title, category: category, searchText: .constant(""))
                         .environmentObject(modelData)
                 }

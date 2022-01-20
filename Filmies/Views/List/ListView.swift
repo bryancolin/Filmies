@@ -18,63 +18,57 @@ struct ListView: View {
     var category: String
     @Binding var searchText: String
     
-    @State private var numberOfColumns = 1
+    @State private var isToggle: Bool = false
+    
+    init(title: String, category: String, searchText: Binding<String>) {
+        self.title = title
+        self.category = category
+        self._searchText = searchText
+        
+        UITableView.appearance().backgroundColor = .clear
+    }
+    
+    //MARK: - BODY
     
     var background: some View {
         GlassmorphismBackground(type: .left, circleColors: .constant([Color(K.BrandColors.purple), Color(K.BrandColors.pink), Color(K.BrandColors.blue)]), backgroundColors: [Color.black], blurRadius: 100)
     }
     
-    //MARK: - BODY
-    
     var body: some View {
-        ZStack {
-            // BACKGROUND
-            background
-            // COMPONENT
-            CustomScrollView {
-                VStack(alignment: .leading) {
-                    // Back Button
-                    IconButton(title: "arrow.backward") {
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                    .padding()
-                    
-                    // TITLE
-                    TitleComponent(name: title, color: .white, type: .largeTitle, weight: .bold) {
-                        IconButton(title: ((numberOfColumns % 2) != 0)  ? "rectangle.grid.1x2.fill" : "square.grid.2x2.fill") {}
-                    }
-                    
-                    // CARDS
-                    if let films = modelData.films[category] {
-                        ForEach(films) {
-                            ListItem(film: $0, category: category, numberOfColumns: $numberOfColumns)
+        NavigationView {
+            VStack(alignment: .leading) {
+                if let films = modelData.films[category] {
+                    List {
+                        ForEach(films) { film in
+                            ListItem(film: film, category: category, isToggle: $isToggle)
+                                .onAppear {
+                                    if film.id == films.last?.id && (films.count % 20 == 0) && !category.contains("favorites") {
+                                        Task {
+                                            await modelData.fetchFilms(with: category, name: searchText, pageNumber: (films.count / 20) + 1)
+                                        }
+                                    }
+                                } //: LIST ITEM
                         } //: LOOP
-                        
-                        // LOAD MORE
-                        if films.count % 20 == 0 && !category.contains("favorites") {
-                            Button(action: {
-                                Task {
-                                    await modelData.fetchFilms(with: category, name: searchText, pageNumber: (films.count / 20) + 1)
-                                }
-                            }) {
-                                Text("Load more")
-                                    .fontWeight(.bold)
-                                    .foregroundColor(Color(K.BrandColors.pink))
-                                    .frame(maxWidth: .infinity)
-                            } //: BUTTON
-                            .tint(.white)
-                            .buttonStyle(.bordered)
-                            .controlSize(.large)
-                            .padding()
-                        }
-                    } else if modelData.isError {
-                        Text("Not Found")
-                            .font(.caption)
-                            .padding(.horizontal)
-                    }
+                        .listRowBackground(Blur(style: .dark))
+                    } //: LIST
+                    .background(background)
+                } else {
+                    Text("Not Found")
+                        .font(.caption)
+                        .padding()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 }
-            } //: SCROLLVIEW
-        } //: ZSTACK
+            } //: VSTACK
+            .navigationTitle(title)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    IconButton(title: isToggle ? "square.fill.text.grid.1x2" : "square.split.1x2.fill") {
+                        isToggle.toggle()
+                    }
+                    .foregroundColor(.white)
+                }
+            }
+        } //: NAVIGATION VIEW
         .animation(.default)
     }
 }

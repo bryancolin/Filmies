@@ -32,17 +32,24 @@ struct PeopleView: View {
                     presentationMode.wrappedValue.dismiss()
                 }
             }
+            .padding(10)
+            .background(Blur(style: .dark).opacity(1 - opacity))
+            .clipShape(Circle())
             
             Spacer()
             
             Text(name) 
                 .font(.title3)
                 .fontWeight(.bold)
+                .multilineTextAlignment(.center)
                 .opacity(opacity)
             
             Spacer()
             
             IconButton(title: "star") {}
+            .padding(10)
+            .background(Blur(style: .dark).opacity(1 - opacity))
+            .clipShape(Circle())
         } //: HSTACK
         .padding()
         .padding(.top)
@@ -64,6 +71,7 @@ struct PeopleView: View {
                     .overlay(alignment: .bottomTrailing) {
                         Text(name)
                             .font(.title)
+                            .fontWeight(.black)
                             .lineLimit(2)
                             .multilineTextAlignment(.trailing)
                             .padding()
@@ -117,13 +125,13 @@ struct PeopleView: View {
                                 .minimumScaleFactor(0.5)
                                 .multilineTextAlignment(.center)
                                 .padding(.trailing)
-                            }
+                            } //: GEOMETRY READER
                             .frame(height: 100)
                             .padding(.trailing)
                             .padding(10)
                             .background(Color.white.opacity(0.2))
                             .clipShape(RoundedRectangle(cornerRadius: 8))
-                        } //: GEOMETRY READER
+                        }
                         
                         if let biography = people.biography, !biography.isEmpty {
                             VStack(alignment: .leading) {

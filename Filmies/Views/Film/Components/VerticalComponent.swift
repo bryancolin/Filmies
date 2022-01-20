@@ -89,7 +89,7 @@ struct VerticalComponentDetails: View {
                 let height = geometry.size.height / 2
                 
                 VStack(alignment: .leading) {
-                    CustomImage(urlPath: urlPath, placeholder: detail)
+                    CustomImage(urlPath: urlPath, placeholder: detail, ratio: .fill)
                         .frame(width: height, height: height)
                         .cornerRadius(height / 2)
                     

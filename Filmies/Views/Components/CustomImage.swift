@@ -14,6 +14,7 @@ struct CustomImage: View {
     
     var urlPath: String?
     var placeholder: String = ""
+    var ratio: ContentMode = .fit
     
     private var fullName: [String] {
         return placeholder.components(separatedBy: " ")
@@ -25,7 +26,7 @@ struct CustomImage: View {
         if let url = urlPath, !url.isEmpty {
             WebImage(url: URL(string: "https://image.tmdb.org/t/p/w500" + url))
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .aspectRatio(contentMode: ratio)
         } else {
             ZStack {
                 Color(K.BrandColors.darkBlue)

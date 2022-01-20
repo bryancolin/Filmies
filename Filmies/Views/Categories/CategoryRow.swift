@@ -33,7 +33,7 @@ struct CategoryRow: View {
                             .foregroundColor(Color.white.opacity(0.5))
                             .fontWeight(.semibold)
                     }
-                    .fullScreenCover(isPresented: $isPresented) {
+                    .sheet(isPresented: $isPresented) {
                         ListView(title: title, category: category, searchText: .constant(""))
                             .environmentObject(modelData)
                     }

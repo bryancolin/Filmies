@@ -89,7 +89,7 @@ struct SearchView: View {
                 } //: SECTION
             } //: LAZYVSTACK
         } //: SCROLLVIEW
-        .fullScreenCover(isPresented: $isPresented) {
+        .sheet(isPresented: $isPresented) {
             ListView(title: "Results", category: "search/\(modelData.selectedType.rawValue)", searchText: $searchText)
                 .environmentObject(modelData)
         }
