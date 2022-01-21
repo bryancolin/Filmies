@@ -22,43 +22,23 @@ struct VerticalComponent: View {
     //MARK: - BODY
     
     var body: some View {
-        let columns = Array(repeating: GridItem(.flexible(), spacing: 10), count: 4)
+        let columns = Array(repeating: GridItem(.flexible(), spacing: 7.5), count: 3)
         
-        VStack(alignment: .leading, spacing: 0) {
-            HStack {
-                Button(action: {
-                    showAnimation()
-                }) {
-                    Text(title).fontWeight(.semibold)
-                    Spacer()
-                    IconButton(title: "chevron.down") {
-                        showAnimation()
-                    }
-                    .font(.caption2)
-                    .rotationEffect(.degrees(showDetail ? 180 : 0))
-                }
-            } //: HSTACK
-            
-            CustomDivider()
-            
-            if showDetail {
-                LazyVGrid(columns: columns, alignment: .center, spacing: 10) {
+        GroupBox() {
+            DisclosureGroup(title, isExpanded: $showDetail) {
+                CustomDivider()
+                
+                LazyVGrid(columns: columns, alignment: .center, spacing: 7.5) {
                     ForEach(0..<details.count) { index in
                         if index < details.count {
                             VerticalComponentDetails(urlPath: urlsPath[index], detail: details[index], subDetail: subDetails?[index], id: id[index])
                         }
                     } //: LOOP
                 } //: GRID
-            }
-        } //: VSTACK
-    }
-    
-    //MARK: - FUNCTION
-    
-    func showAnimation() {
-        withAnimation {
-            showDetail.toggle()
-        }
+            } //: DISCLOSURE GROUP
+            .accentColor(Color.white)
+        } //: GROUP BOX
+        .groupBoxStyle(TransparentGroupBox())
     }
 }
 

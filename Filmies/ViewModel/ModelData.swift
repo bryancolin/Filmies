@@ -148,6 +148,20 @@ final class ModelData: ObservableObject {
     }
     
     @MainActor
+    func fetchEpisodes(seasonId: Int) async -> [Episode]? {
+        let fullURL = "\(url)/tv/\(selectedFilmId)/season/\(seasonId)" + apiKey
+        
+        do {
+            let result = try await URLSession.shared.request(url: URL(string: fullURL), expecting: Season.self)
+            return result.episodes
+        } catch {
+            print(error)
+        }
+        
+        return nil
+    }
+    
+    @MainActor
     func fetchPeople(id: Int) async {
         let fullURL = "\(url)/person/\(id)" + apiKey + "&append_to_response=movie_credits,tv_credits&include_image_language=en"
         

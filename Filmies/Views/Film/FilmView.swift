@@ -77,9 +77,9 @@ struct FilmView: View {
                 // SUB VIEW
                 FilmDetails(film: film)
             } //: VSTACK
-        } // SCROLLVIEW
+        } // SCROLLVIEWg
         .background (
-            CustomImage(urlPath: posters)
+            CustomImage(urlPath: posters, ratio: .fill)
                 .ignoresSafeArea()
                 .transition(transition)
                 .animation(.spring(), value: imageIndex)

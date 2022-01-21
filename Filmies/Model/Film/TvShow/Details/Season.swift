@@ -10,6 +10,7 @@ import Foundation
 struct Season: Codable, Identifiable {
     let id, number, totalEpisode: Int?
     let name, description, airDate, posterPath: String?
+    var episodes: [Episode]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -19,5 +20,6 @@ struct Season: Codable, Identifiable {
         case airDate = "air_date"
         case totalEpisode = "episode_count"
         case posterPath = "poster_path"
+        case episodes
     }
 }
