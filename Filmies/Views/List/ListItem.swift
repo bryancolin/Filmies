@@ -49,7 +49,7 @@ struct ListItem: View {
                         .fontWeight(.bold)
                         .lineLimit(2)
                     
-                    Text(releaseDate.toDate().toString(format: K.DateFormat.typeOne))
+                    Text(releaseDate.toDate().toString(format: K.DateFormat.defaultOne))
                         .font(.caption)
                         .fontWeight(.regular)
                         .lineLimit(1)
