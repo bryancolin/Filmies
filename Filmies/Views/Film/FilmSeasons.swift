@@ -10,9 +10,14 @@ import SwiftUI
 struct FilmSeasons: View {
     
     //MARK: - PROPERTIES
+    @EnvironmentObject var modelData: ModelData
     
     let seasons: [Season]
     let posterPath: String?
+    
+    @State private var selectedIndex: Int = 0
+    @State private var loadMore: Bool = false
+    @State private var episodes: [Episode] = []
     
     init(_ seasons: [Season], posterPath: String?) {
         self.seasons = seasons
@@ -22,81 +27,83 @@ struct FilmSeasons: View {
     //MARK: - BODY
     
     var body: some View {
-        ForEach(seasons) { season in
-            FilmSeasonDetails(season: season, posterPath: posterPath)
-        } //: LOOP
-    }
-}
-
-struct FilmSeasonDetails: View {
-    
-    //MARK: - PROPERTIES
-    
-    @EnvironmentObject var modelData: ModelData
-    
-    let season: Season
-    let posterPath: String?
-    
-    @State private var episodes: [Episode] = []
-    @State private var loadMore: Bool = false
-    
-    //MARK: - BODY
-    
-    var body: some View {
-        HStack {
-            CustomImage(urlPath: (season.posterPath != nil) ? season.posterPath : posterPath)
-                .frame(width: 100)
-                .cornerRadius(8)
-            
-            VStack(alignment: .leading) {
-                Text("Season \(season.number ?? 0)")
-                    .fontWeight(.bold)
-                
-                Text("\(season.totalEpisode ?? 0) episodes • \(season.airDate?.toDate().toString(format: "dd/MM/yyyy") ?? "")")
-                    .font(.caption)
-                    .opacity(0.5)
-                
-                Button(action: {
-                    withAnimation {
-                        loadMore = !loadMore
-                    }
-                    
-                    Task {
-                        if episodes.isEmpty {
-                            episodes = await (modelData.fetchEpisodes(seasonId: season.number ?? 0) ?? [])
+        VStack {
+            //MARK: - SEASONS NUMBER
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(0..<seasons.count) { index in
+                        Button(action: {
+                            withAnimation {
+                                selectedIndex = index
+                                loadMore = false
+                            }
+                        }) {
+                            Text("\(seasons[index].number ?? 0)")
+                                .padding()
+                                .background(
+                                    Circle() 
+                                        .foregroundColor(selectedIndex == index ? Color.white.opacity(0.3) : .clear)
+                                )
                         }
-                    }
-                }) {
-                    Text(loadMore ? "show less" : "load more")
+                    } //: LOOP
+                } //: HSTACK
+            } //: SCROLL VIEW
+            
+            //MARK: - HEADER
+            HStack {
+                CustomImage(urlPath: (seasons[selectedIndex].posterPath != nil) ? seasons[selectedIndex].posterPath : posterPath)
+                    .frame(width: 100)
+                    .cornerRadius(8)
+                
+                VStack(alignment: .leading) {
+                    Text("Season \(seasons[selectedIndex].number ?? 0)")
+                        .fontWeight(.bold)
+                    
+                    Text("\(seasons[selectedIndex].totalEpisode ?? 0) episodes • \(seasons[selectedIndex].airDate?.toDate().toString(format: "dd/MM/yyyy") ?? "")")
                         .font(.caption)
                         .opacity(0.5)
-                }
-            } //: VSTACK
-            
-            Spacer()
-        } //: HSTACK
-        
-        if loadMore {
-            GroupBox() {
-                DisclosureGroup {
-                    ForEach(episodes) { episode in
-                        CustomDivider().padding(.vertical, 2)
+                    
+                    Button(action: {
+                        withAnimation {
+                            loadMore = !loadMore
+                        }
                         
-                        HStack {
-                            Text("\(episode.number ?? 0). \(episode.name ?? "")")
-                                .multilineTextAlignment(.leading)
-                                .lineLimit(1)
-                            
-                            Spacer()
-                        } //: HSTACK
+                        Task {
+                            episodes = await (modelData.fetchEpisodes(seasonId: seasons[selectedIndex].number ?? 0) ?? [])
+                        }
+                    }) {
+                        Text(loadMore ? "show less" : "load more")
+                            .font(.caption)
+                            .opacity(0.5)
                     }
-                } label: {
-                    Text("Episodes")
-                        .fontWeight(.bold)
-                } //: DISCLOSURE GROUP
-                .accentColor(Color.white)
-            } //: GROUP BOX
-            .groupBoxStyle(TransparentGroupBox())
-        }
+                } //: VSTACK
+                
+                Spacer()
+            } //: HSTACK
+            
+            //MARK: - EPISODES
+            if loadMore {
+                GroupBox() {
+                    DisclosureGroup {
+                        ForEach(episodes) { episode in
+                            Divider().padding(.vertical, 2)
+                            
+                            HStack {
+                                Text("\(episode.number ?? 0). \(episode.name ?? "")")
+                                    .multilineTextAlignment(.leading)
+                                    .lineLimit(1)
+                                
+                                Spacer()
+                            } //: HSTACK
+                        }
+                    } label: {
+                        Text("Episodes")
+                            .fontWeight(.bold)
+                    } //: DISCLOSURE GROUP
+                    .accentColor(Color.white)
+                } //: GROUP BOX
+                .groupBoxStyle(TransparentGroupBox())
+            }
+        } //: VSTACK
     }
 }
