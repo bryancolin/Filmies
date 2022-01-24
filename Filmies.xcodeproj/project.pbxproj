@@ -62,6 +62,7 @@
 		E53AD03126FEE05B0034DE21 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5785826B506D4005D86BD /* String+Extension.swift */; };
 		E53AD03226FEE0630034DE21 /* View+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52B8DDA26C53DD00032BC4A /* View+Extension.swift */; };
 		E53AD03426FEE2D20034DE21 /* WidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E53AD03326FEE2D20034DE21 /* WidgetView.swift */; };
+		E541EAD5279E9C4600525FCD /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E541EAD4279E9C4600525FCD /* OnboardingView.swift */; };
 		E545C07C279AB56300E17660 /* TransparentGroupBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = E545C07B279AB56200E17660 /* TransparentGroupBox.swift */; };
 		E54B4D4526BFC3E200BE5461 /* ChartTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4426BFC3E100BE5461 /* ChartTab.swift */; };
 		E54B4D4726BFC40F00BE5461 /* UnderlineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = E54B4D4626BFC40F00BE5461 /* UnderlineText.swift */; };
@@ -187,6 +188,7 @@
 		E52C334626B13E5E0080031F /* FilmTrailer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmTrailer.swift; sourceTree = "<group>"; };
 		E52C334826B146320080031F /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
 		E53AD03326FEE2D20034DE21 /* WidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetView.swift; sourceTree = "<group>"; };
+		E541EAD4279E9C4600525FCD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		E545C07B279AB56200E17660 /* TransparentGroupBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransparentGroupBox.swift; sourceTree = "<group>"; };
 		E54B4D4426BFC3E100BE5461 /* ChartTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartTab.swift; sourceTree = "<group>"; };
 		E54B4D4626BFC40F00BE5461 /* UnderlineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineText.swift; sourceTree = "<group>"; };
@@ -317,6 +319,7 @@
 			children = (
 				E551B051269C6C0D005D9613 /* Launch Screen.storyboard */,
 				E515A1582697FC85008D4FE4 /* ContentView.swift */,
+				E541EAD4279E9C4600525FCD /* OnboardingView.swift */,
 				E5A0CBBA26984B2E0088F968 /* Categories */,
 				E54CC43B269D8DC40083C6FE /* Card */,
 				E5D592F526C4E5C000D318A8 /* List */,
@@ -858,6 +861,7 @@
 				E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */,
 				E57C8BB626B1208500D41473 /* PageControl.swift in Sources */,
 				E55C504126BBF0820059EBD3 /* FilmCasts.swift in Sources */,
+				E541EAD5279E9C4600525FCD /* OnboardingView.swift in Sources */,
 				E54B4D4726BFC40F00BE5461 /* UnderlineText.swift in Sources */,
 				E574286B26BACCEF006CC990 /* Film.swift in Sources */,
 				E57C8BB826B1208500D41473 /* PageView.swift in Sources */,

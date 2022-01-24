@@ -11,6 +11,8 @@ struct ContentView: View {
     
     //MARK: - PROPERTIES
     
+    @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
+    
     @State private var selectedTab: Tab = .house
     @State private var isAnimating: Bool = false
     
@@ -27,6 +29,9 @@ struct ContentView: View {
                 case .person:
                     AccountView()
                 }
+            }
+            .sheet(isPresented: $isOnboardingViewActive) {
+                OnboardingView()
             }
         } //: ZSTACK
         .animation(.default)
