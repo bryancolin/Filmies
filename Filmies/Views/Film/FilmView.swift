@@ -20,7 +20,6 @@ struct FilmView: View {
     
     @State var imageIndex = 0
     @State var isFavorite: Bool = false
-    @State private var isAnimating = false
     
     var filmTitle: String {
         if let tvShow = film as? TvShow {
@@ -56,10 +55,7 @@ struct FilmView: View {
                 VStack(spacing: 0) {
                     // TRAILER
                     FilmTrailer(film: film)
-                        .offset(y: isAnimating ? 0 : -UIScreen.main.bounds.height / 3)
-                        .opacity(isAnimating ? 1 : 0)
-                        .animation(.easeInOut(duration: 0.25), value: isAnimating)
-                    
+
                     // TITLE
                     TitleComponent(name: filmTitle, color: .white, type: .title3, weight: .semibold) {
                         IconButton(title: !isFavorite ? "checkmark.circle" : "checkmark.circle.fill") {
@@ -67,8 +63,6 @@ struct FilmView: View {
                             modelData.highlightFilm(type: filmType, check: isFavorite)
                         }
                         .foregroundColor(.white)
-                        .scaleEffect(isAnimating ? 1.1 : 1)
-                        .animation(.easeInOut(duration: 1).repeatForever(autoreverses: true), value: isAnimating)
                     }
                 }
                 .background(Color.black.opacity(0.75))
@@ -77,7 +71,7 @@ struct FilmView: View {
                 // SUB VIEW
                 FilmDetails(film: film)
             } //: VSTACK
-        } // SCROLLVIEWg
+        } // SCROLLVIEW
         .background (
             CustomImage(urlPath: posters, ratio: .fill)
                 .ignoresSafeArea()
@@ -100,7 +94,6 @@ struct FilmView: View {
             modelData.selectedCategory = category
             modelData.selectedFilmId = film.id ?? 0
             isFavorite = modelData.findFilm(param: filmType, id: film.id ?? 0).0
-            isAnimating = true
         }
     }
 }

@@ -30,19 +30,15 @@ struct CardList: View {
                 Button(action: {
                     isPresented.toggle()
                 }) {
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text(title)
-                                .font(.headline)
-                                .fontWeight(.semibold)
-                            
-                            Text(selectedType.rawValue.capitalized)
-                                .font(.subheadline)
-                            
-                            Spacer()
-                        } //: VSTACK
-                        Spacer()
-                    } //: HSTACK
+                    VStack(alignment: .leading) {
+                        Text(title)
+                            .font(.headline)
+                            .fontWeight(.semibold)
+                        
+                        Text(selectedType.rawValue.capitalized)
+                            .font(.subheadline)
+                    } //: VSTACK
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
                     .padding()
                     .background(Color.black.opacity(0.75))
                 } //: BUTTON

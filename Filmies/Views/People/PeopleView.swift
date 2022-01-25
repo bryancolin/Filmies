@@ -75,6 +75,8 @@ struct PeopleView: View {
                             .lineLimit(2)
                             .multilineTextAlignment(.trailing)
                             .padding()
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                            .background(LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]) , startPoint: .bottom , endPoint: .top))
                     }
                     .overlay(alignment: .topTrailing) {
                         GeometryReader { proxy -> Color in
