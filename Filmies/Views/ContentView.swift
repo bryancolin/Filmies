@@ -11,7 +11,7 @@ struct ContentView: View {
     
     //MARK: - PROPERTIES
     
-    @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
+    @AppStorage(K.Settings.onboarding) var isOnboardingViewActive: Bool = true
     
     @State private var selectedTab: Tab = .house
     @State private var isAnimating: Bool = false

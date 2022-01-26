@@ -16,6 +16,7 @@ struct K {
     
     struct Settings {
         static let selectedFilmType = "filmType"
+        static let onboarding = "onboarding"
     }
     
     struct FileDocument {

@@ -11,7 +11,7 @@ struct OnboardingView: View {
     
     //MARK: - PROPERTIES
     
-    @AppStorage("onboarding") var isOnboardingViewActive: Bool = true
+    @AppStorage(K.Settings.onboarding) var isOnboardingViewActive: Bool = true
     
     //MARK: - BODY
     

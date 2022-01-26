@@ -77,6 +77,7 @@ struct PeopleView: View {
                             .padding()
                             .frame(maxWidth: .infinity, alignment: .trailing)
                             .background(LinearGradient(gradient: Gradient(colors: [Color.black, Color.clear]) , startPoint: .bottom , endPoint: .top))
+                            .opacity(1 - opacity)
                     }
                     .overlay(alignment: .topTrailing) {
                         GeometryReader { proxy -> Color in
@@ -135,12 +136,12 @@ struct PeopleView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                         
-                        if let biography = people.biography, !biography.isEmpty {
+                        if let biography = people.biography, let count = biography.count, !biography.isEmpty {
                             VStack(alignment: .leading) {
                                 Text(biography)
                                     .font(.subheadline)
                                     .fixedSize(horizontal: false, vertical: true)
-                                    .lineLimit(showMore ? nil : 10)
+                                    .lineLimit(count > 500 ? (showMore ? nil : 10) : nil)
                                 Button(action: {
                                     withAnimation {
                                         showMore.toggle()
@@ -148,8 +149,8 @@ struct PeopleView: View {
                                 }) {
                                     Text(showMore ? "read less" : "read more")
                                         .font(.caption)
-                                        .opacity(0.5)
                                 }
+                                .opacity(count > 500 ? 0.5 : 0)
                             } //: VSTACK
                         }
                         
