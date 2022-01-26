@@ -11,8 +11,6 @@ struct CardList: View {
     
     //MARK: - PROPERTIES
     
-    @AppStorage("filmType") var selectedType: FilmType = .movie
-    
     @EnvironmentObject var modelData: ModelData
     
     var title: String
@@ -23,39 +21,44 @@ struct CardList: View {
     //MARK: - BODY
     
     var body: some View {
-        if let films =  modelData.films[category] {
-            GeometryReader { geometry in
-                let height = geometry.size.height
-                
-                Button(action: {
-                    isPresented.toggle()
-                }) {
+        GeometryReader { geometry in
+            let height = geometry.size.height
+            
+            Button(action: {
+                isPresented.toggle()
+            }) {
+                ZStack(alignment: .bottomTrailing) {
+                    if let films =  modelData.films[category] {
+                        CustomImage(urlPath: films.first?.posterPath)
+                            .frame(width: 75, height: height)
+                            .cornerRadius(8)
+                            .blur(radius: 1)
+                            .offset(x: 20, y: 10)
+                            .rotationEffect(.degrees(-25))
+                    }
+                    
                     VStack(alignment: .leading) {
                         Text(title)
                             .font(.headline)
                             .fontWeight(.semibold)
                         
-                        Text(selectedType.rawValue.capitalized)
+                        Text(modelData.selectedType.rawValue.capitalized)
                             .font(.subheadline)
                     } //: VSTACK
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomLeading)
                     .padding()
-                    .background(Color.black.opacity(0.75))
-                } //: BUTTON
-                .background(
-                    CustomImage(urlPath: films.first?.backdropPath)
-                        .frame(height: height)
-                )
-                .foregroundColor(.white)
-                .frame(width: geometry.size.width)
-                .cornerRadius(8)
-                .sheet(isPresented: $isPresented) {
-                    ListView(title: title, category: category, searchText: .constant(""))
-                        .environmentObject(modelData)
-                }
+                } //: ZSTACK
+            } //: BUTTON
+            .background(Color([K.BrandColors.pink, K.BrandColors.blue, K.BrandColors.darkBlue, K.BrandColors.purple].randomElement() ?? K.BrandColors.pink))
+            .foregroundColor(.white)
+            .frame(width: geometry.size.width)
+            .cornerRadius(8)
+            .sheet(isPresented: $isPresented) {
+                ListView(title: title, category: category, searchText: .constant(""))
+                    .environmentObject(modelData)
             }
-            .frame(height: 100)
-        }
+        } //: GEOMETRY READER
+        .frame(height: 100)
     }
 }
 

@@ -14,6 +14,6 @@ extension Int {
     var minutes: Int { self % 60 }
     
     func toTimeString() -> String {
-        return (hours > 0 ? "\(hours)h " : "") + "\(minutes) m"
+        return (hours > 0 ? "\(hours)h " : "") + (minutes > 0 ? "\(minutes)m" : "")
     }
 }
