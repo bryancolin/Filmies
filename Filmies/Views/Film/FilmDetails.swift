@@ -66,7 +66,7 @@ struct FilmDetails: View {
     
     var seasons: some View {
         FilmComponent(title: "Seasons") {
-            if let tvShow = film as? TvShow, let seasons = tvShow.seasons {
+            if let tvShow = film as? TvShow, let seasons = tvShow.seasons, !seasons.isEmpty {
                 FilmSeasons(seasons, posterPath: film.posterPath)
             }
         }
