@@ -9,12 +9,12 @@ import Foundation
 
 struct Episode: Codable, Identifiable {
     let id, number: Int?
-    let name, description: String?
+    let name, overview: String?
     
     enum CodingKeys: String, CodingKey {
         case id
         case number = "episode_number"
         case name
-        case description = "overview"
+        case overview
     }
 }

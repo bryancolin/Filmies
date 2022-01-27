@@ -81,8 +81,15 @@ struct FilmSeasons: View {
                 Spacer()
             } //: HSTACK
             
-            //MARK: - EPISODES
             if loadMore {
+                //MARK: - OVERVIEW
+                VStack(alignment: .leading) {
+                    Text(seasons[selectedIndex].overview ?? "")
+                        .font(.subheadline)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                
+                //MARK: - EPISODES
                 GroupBox() {
                     DisclosureGroup {
                         ForEach(episodes) { episode in

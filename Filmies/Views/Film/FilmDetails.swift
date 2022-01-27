@@ -18,39 +18,49 @@ struct FilmDetails: View {
     @State var index = 0
     private var pageNumber: Int { return film is Movie ? 2 : 3 }
     
+    //MARK: - OVERVIEW
     var overview: some View {
         FilmComponent(title: "Overview") {
             
+            //MARK: - DETAILS
             if let movie = film as? Movie {
                 FilmDescriptions(date: movie.releaseDate?.toDate().toString(format: K.DateFormat.defaultOne) ?? "", duration: movie.duration, rate: film.rate)
             } else if let tvShow = film as? TvShow {
                 FilmDescriptions(date: tvShow.firstAirDate?.toDate().toString(format: K.DateFormat.defaultOne) ?? "", duration: tvShow.duration, rate: film.rate)
             }
             
-            Text(film.description)
-                .font(.subheadline)
-                .fixedSize(horizontal: false, vertical: true)
+            //MARK: - DESCRIPTIONS
+            VStack(alignment: .leading) {
+                Text(film.description)
+                    .font(.subheadline)
+                    .fixedSize(horizontal: false, vertical: true)
+            } //: VSTACK
             
             CustomDivider()
             
+            //MARK: - LANGUAGES
             if let languages = film.languages {
                 HorizontalComponent(title: "Languages", details: languages.compactMap{ $0.name })
             }
             
+            //MARK: - GENRES
             if let genres = film.genres {
                 HorizontalComponent(title: "Genres", details: genres.compactMap{ $0.name })
             }
             
+            //MARK: - PRODUCTION COUNTRIES
             if let countries = film.productionCountries {
                 HorizontalComponent(title: "Production Countries", details: countries.compactMap{ $0.name })
             }
             
+            //MARK: - PRODUCTION COMPANIES
             if let companies = film.productionCompanies {
                 HorizontalComponent(title: "Production Companies", details: companies.compactMap{ $0.name })
             }
         }
     }
     
+    //MARK: - CAST
     var casts: some View {
         FilmComponent(title: "Casts") {
             if let movie = film as? Movie, let casts = movie.casts {
@@ -64,6 +74,7 @@ struct FilmDetails: View {
         }
     }
     
+    //MARK: - SEASONS
     var seasons: some View {
         FilmComponent(title: "Seasons") {
             if let tvShow = film as? TvShow, let seasons = tvShow.seasons, !seasons.isEmpty {
