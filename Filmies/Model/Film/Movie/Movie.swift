@@ -8,7 +8,7 @@
 import Foundation
 
 class Movie: Film {
-    var runTime: Int?
+    let runTime: Int?
     let releaseDate: String?
     
     let casts: Casts?

@@ -28,9 +28,9 @@ struct ListItem: View {
     
     private var releaseDate: String {
         if let movie = film as? Movie {
-            return movie.releaseYear
+            return movie.releaseDate ?? ""
         } else if let tvShow = film as? TvShow {
-            return tvShow.firstAir
+            return tvShow.firstAirDate ?? ""
         }
         return ""
     }
