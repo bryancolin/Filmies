@@ -119,6 +119,8 @@
 		E5A7A52E26B6A5C50062B756 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A7A52D26B6A5C50062B756 /* Photo.swift */; };
 		E5AB1B0A27993B3D0002CC33 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AB1B0927993B3D0002CC33 /* Episode.swift */; };
 		E5AB1B0B27993C940002CC33 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5AB1B0927993B3D0002CC33 /* Episode.swift */; };
+		E5ABF9C727A7D06F00B4E1FF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABF9C627A7D06E00B4E1FF /* Bundle+Extension.swift */; };
+		E5ABF9C827A7D8F400B4E1FF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABF9C627A7D06E00B4E1FF /* Bundle+Extension.swift */; };
 		E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B3AF3026A0384B004B2DCC /* CustomColor.swift */; };
 		E5B5785926B506D4005D86BD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5785826B506D4005D86BD /* String+Extension.swift */; };
 		E5B7FFED26C013B800E5BC6D /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B7FFEC26C013B800E5BC6D /* Blur.swift */; };
@@ -243,6 +245,7 @@
 		E5A7A52B26B6A5AD0062B756 /* Images.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Images.swift; sourceTree = "<group>"; };
 		E5A7A52D26B6A5C50062B756 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		E5AB1B0927993B3D0002CC33 /* Episode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Episode.swift; sourceTree = "<group>"; };
+		E5ABF9C627A7D06E00B4E1FF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E5B3AF3026A0384B004B2DCC /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
 		E5B5785826B506D4005D86BD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -633,6 +636,7 @@
 		E5C9574226B3EA15007B1B1D /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				E5ABF9C627A7D06E00B4E1FF /* Bundle+Extension.swift */,
 				E54B4D4D26BFCF2B00BE5461 /* Calendar+Extension.swift */,
 				E5663AC926B9457A00506BCA /* Collection+Extension.swift */,
 				E5C9574026B3EA0F007B1B1D /* Date+Extension.swift */,
@@ -857,6 +861,7 @@
 				E55C503F26BBF0460059EBD3 /* FilmDescriptions.swift in Sources */,
 				E560797326B7E3E600D6C7B5 /* Production.swift in Sources */,
 				E5FB89BE26AAAB3400A496CB /* Casts.swift in Sources */,
+				E5ABF9C727A7D06F00B4E1FF /* Bundle+Extension.swift in Sources */,
 				E5A0CBB9269845D20088F968 /* Films.swift in Sources */,
 				E5A0CBBC26984F950088F968 /* CategoryHome.swift in Sources */,
 				E57C8BB626B1208500D41473 /* PageControl.swift in Sources */,
@@ -951,6 +956,7 @@
 				E53AD01C26FEDA0E0034DE21 /* Movie.swift in Sources */,
 				E53AD02426FEDA370034DE21 /* Photo.swift in Sources */,
 				E53AD03226FEE0630034DE21 /* View+Extension.swift in Sources */,
+				E5ABF9C827A7D8F400B4E1FF /* Bundle+Extension.swift in Sources */,
 				E5AB1B0B27993C940002CC33 /* Episode.swift in Sources */,
 				E53AD03026FEE0580034DE21 /* Int+Extension.swift in Sources */,
 				E5269D0326FC6AF90061E48E /* FilmiesWidget.intentdefinition in Sources */,
