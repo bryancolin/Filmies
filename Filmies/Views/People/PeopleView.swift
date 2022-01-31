@@ -38,7 +38,7 @@ struct PeopleView: View {
             
             Spacer()
             
-            Text(name) 
+            Text(name)
                 .font(.title3)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
@@ -136,21 +136,26 @@ struct PeopleView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                         }
                         
-                        if let biography = people.biography, let count = biography.count, !biography.isEmpty {
+                        //MARK: - BIOGRAPHY
+                        
+                        if let biography = people.biography, let count = biography.wordCount, !biography.isEmpty {
                             VStack(alignment: .leading) {
                                 Text(biography)
                                     .font(.subheadline)
                                     .fixedSize(horizontal: false, vertical: true)
-                                    .lineLimit(count > 500 ? (showMore ? nil : 10) : nil)
-                                Button(action: {
-                                    withAnimation {
-                                        showMore.toggle()
-                                    }
-                                }) {
-                                    Text(showMore ? "read less" : "read more")
-                                        .font(.caption)
+                                    .lineLimit(count > 50 ? (showMore ? nil : 10) : nil)
+                                
+                                if count > 50 {
+                                    Button(action: {
+                                        withAnimation {
+                                            showMore.toggle()
+                                        }
+                                    }) {
+                                        Text(showMore ? "read less" : "read more")
+                                            .font(.caption)
+                                    } //: BUTTON
+                                    .foregroundColor(Color.secondary)
                                 }
-                                .opacity(count > 500 ? 0.5 : 0)
                             } //: VSTACK
                         }
                         
