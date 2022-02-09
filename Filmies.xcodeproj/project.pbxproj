@@ -176,7 +176,7 @@
 		E515A1582697FC85008D4FE4 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E515A15A2697FC95008D4FE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E515A15F2697FC95008D4FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E515A15F2697FC95008D4FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Filmies/Resources/Info.plist; sourceTree = SOURCE_ROOT; };
 		E52294AF26E0D02700DD3E09 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
 		E5269CF726FC6AEA0061E48E /* FilmiesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FilmiesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5269CF826FC6AEA0061E48E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -375,8 +375,6 @@
 				E50254F426983E5C000C6F03 /* Model */,
 				E572602E26A00C6400864493 /* ViewModel */,
 				E50254F326983D37000C6F03 /* Views */,
-				E515A15A2697FC95008D4FE4 /* Assets.xcassets */,
-				E515A15F2697FC95008D4FE4 /* Info.plist */,
 				E5C6F1592699A38100631576 /* Resources */,
 				E515A15C2697FC95008D4FE4 /* Preview Content */,
 				E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */,
@@ -628,6 +626,8 @@
 				E5C9574226B3EA15007B1B1D /* Extension */,
 				E5AC242B269AAC6B00FBBDD3 /* Fonts */,
 				E500DE52275C763400EBE722 /* Data */,
+				E515A15A2697FC95008D4FE4 /* Assets.xcassets */,
+				E515A15F2697FC95008D4FE4 /* Info.plist */,
 				E577698E26A6F6220076D7CF /* Constants.swift */,
 			);
 			path = Resources;
@@ -1128,7 +1128,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Filmies/Preview Content\"";
 				DEVELOPMENT_TEAM = QL7B6ZXFS7;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Filmies/Info.plist;
+				INFOPLIST_FILE = Filmies/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1152,7 +1152,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Filmies/Preview Content\"";
 				DEVELOPMENT_TEAM = QL7B6ZXFS7;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = Filmies/Info.plist;
+				INFOPLIST_FILE = Filmies/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

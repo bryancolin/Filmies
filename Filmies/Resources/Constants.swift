@@ -7,24 +7,24 @@
 
 import Foundation
 
-struct K {
+enum K {
     
-    struct DateFormat {
+    enum DateFormat {
         static let day = "EEEE"
         static let defaultOne = "dd MMMM yyyy"
     }
     
-    struct Settings {
+    enum Settings {
         static let selectedFilmType = "filmType"
         static let onboarding = "onboarding"
     }
     
-    struct FileDocument {
+    enum FileDocument {
         static let movieKey = "FavoriteMovies"
         static let tvKey = "FavoriteTvShows"
     }
     
-    struct Movie {
+    enum Movie {
         static let daily = "trending/movie/day"
         static let weekly = "trending/movie/week"
         static let nowPlaying = "movie/now_playing"
@@ -34,7 +34,7 @@ struct K {
         static let favorites = "movie/favorites"
     }
     
-    struct Tv {
+    enum Tv {
         static let daily = "trending/tv/day"
         static let weekly = "trending/tv/week"
         static let airingToday = "tv/airing_today"
@@ -44,12 +44,12 @@ struct K {
         static let favorites = "tv/favorites"
     }
     
-    struct People {
+    enum People {
         static let movie = "person/movie"
         static let tv = "person/tv"
     }
     
-    struct BrandColors {
+    enum BrandColors {
         static let blue = "BrandBlue"
         static let darkBlue = "BrandDarkBlue"
         static let pink = "BrandPink"
