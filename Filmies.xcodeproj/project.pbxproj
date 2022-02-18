@@ -16,6 +16,8 @@
 		E515A1592697FC85008D4FE4 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E515A1582697FC85008D4FE4 /* ContentView.swift */; };
 		E515A15B2697FC95008D4FE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15A2697FC95008D4FE4 /* Assets.xcassets */; };
 		E515A15E2697FC95008D4FE4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */; };
+		E51C184127BFD5250017A524 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51C184027BFD5240017A524 /* APIService.swift */; };
+		E51C184227BFD5250017A524 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E51C184027BFD5240017A524 /* APIService.swift */; };
 		E52294B026E0D02900DD3E09 /* Creator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E52294AF26E0D02700DD3E09 /* Creator.swift */; };
 		E5269CF926FC6AEA0061E48E /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5269CF826FC6AEA0061E48E /* WidgetKit.framework */; };
 		E5269CFB26FC6AEB0061E48E /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5269CFA26FC6AEA0061E48E /* SwiftUI.framework */; };
@@ -177,6 +179,7 @@
 		E515A15A2697FC95008D4FE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E515A15F2697FC95008D4FE4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Filmies/Resources/Info.plist; sourceTree = SOURCE_ROOT; };
+		E51C184027BFD5240017A524 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		E52294AF26E0D02700DD3E09 /* Creator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Creator.swift; sourceTree = "<group>"; };
 		E5269CF726FC6AEA0061E48E /* FilmiesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FilmiesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5269CF826FC6AEA0061E48E /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -372,6 +375,7 @@
 			isa = PBXGroup;
 			children = (
 				E515A1562697FC85008D4FE4 /* FilmiesApp.swift */,
+				E51C183F27BFD4F30017A524 /* Service */,
 				E50254F426983E5C000C6F03 /* Model */,
 				E572602E26A00C6400864493 /* ViewModel */,
 				E50254F326983D37000C6F03 /* Views */,
@@ -388,6 +392,14 @@
 				E515A15D2697FC95008D4FE4 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E51C183F27BFD4F30017A524 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				E51C184027BFD5240017A524 /* APIService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		E5269CFC26FC6AEB0061E48E /* FilmiesWidget */ = {
@@ -880,6 +892,7 @@
 				E55C503D26BBE7550059EBD3 /* CustomPicker.swift in Sources */,
 				E5C9574826B3F0B4007B1B1D /* BarView.swift in Sources */,
 				E5A0DF8526BD061E00C0FA11 /* Season.swift in Sources */,
+				E51C184127BFD5250017A524 /* APIService.swift in Sources */,
 				E56A3BF22699622800494650 /* CategoryRow.swift in Sources */,
 				E54B4D4E26BFCF2B00BE5461 /* Calendar+Extension.swift in Sources */,
 				E5A7A52C26B6A5AD0062B756 /* Images.swift in Sources */,
@@ -968,6 +981,7 @@
 				E53AD02C26FEE04C0034DE21 /* Calendar+Extension.swift in Sources */,
 				E53AD02226FEDA2E0034DE21 /* Crew.swift in Sources */,
 				E53AD01626FED9EA0034DE21 /* Language.swift in Sources */,
+				E51C184227BFD5250017A524 /* APIService.swift in Sources */,
 				E53AD03126FEE05B0034DE21 /* String+Extension.swift in Sources */,
 				E53AD02826FEE02D0034DE21 /* Direction.swift in Sources */,
 				E53AD01F26FEDA1A0034DE21 /* Season.swift in Sources */,

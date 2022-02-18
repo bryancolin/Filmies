@@ -5,7 +5,6 @@
 //  Created by bryan colin on 7/9/21.
 //
 
-import Foundation
 import SwiftUI
 
 protocol FileDocument {
@@ -18,11 +17,9 @@ protocol FileDocument {
 
 final class ModelData: ObservableObject {
     
-    // URL
-    private let url = "https://api.themoviedb.org/3"
-    private let apiKey = "?api_key=\(Bundle.main.infoDictionary?["API_KEY"] as? String ?? "")"
+    private let service = APIService()
     
-    var movieParams = [K.Movie.daily, K.Movie.weekly, K.Movie.nowPlaying, K.Movie.topRated, K.Movie.popular, K.Movie.popular]
+    var movieParams = [K.Movie.daily, K.Movie.weekly, K.Movie.nowPlaying, K.Movie.topRated, K.Movie.popular, K.Movie.upcoming]
     var tvShowParams = [K.Tv.daily, K.Tv.weekly, K.Tv.airingToday, K.Tv.topRated, K.Tv.popular, K.Tv.onAir]
     
     @AppStorage(K.Settings.selectedFilmType) var selectedType: FilmType = .movie
@@ -50,56 +47,38 @@ final class ModelData: ObservableObject {
         isLoading = true
         isError = false
         
-        // Searching Films (Encoding Query)
-        let urlName = name.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-        let query = name.isEmpty ? "" : "&query=\(urlName ?? "")"
-        
-        let fullURL = "\(url)/\(param)" + apiKey + query + "&page=\(pageNumber)"
-        
-        do {
-            let result = try await URLSession.shared.request(url: URL(string: fullURL), expecting: Films.self)
-            guard let data = result.all else { return }
-            
-            if data.isEmpty {
-                isError = true
-            } else {
-                if pageNumber == 1 {
-                    films[param] = data
-                } else {
-                    films[param]?.append(contentsOf: data)
-                }
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-                self.isLoading = false
-            }
-        } catch {
-            isLoading = false
+        guard let data = await service.getFilms(with: param, name: name, pageNumber: pageNumber) else {
             isError = true
-            print(error)
+            isLoading = false
+            return
+        }
+        
+        if data.isEmpty {
+            isError = true
+        } else {
+            if pageNumber == 1 {
+                films[param] = data
+            } else {
+                films[param]?.append(contentsOf: data)
+            }
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.isLoading = false
         }
     }
     
     @MainActor
     func fetchFilmDetails<T: Codable>(type: FilmType, expecting: T.Type) async {
-        
         let film = findFilm(param: selectedCategory, id: selectedFilmId)
         let filmExists = film.exists
         let filmAtIndex = film.index
         
         if filmExists {
-            let fullURL = "\(url)/\(type.rawValue)/\(selectedFilmId)" + apiKey + "&append_to_response=videos,casts,credits,images&include_image_language=en"
-            
-            do {
-                let result = try await URLSession.shared.request(url: URL(string: fullURL), expecting: expecting)
-                if let film = result as? Film {
-                    film.category = selectedCategory
-                    film.details = true
-                    films[selectedCategory]?[filmAtIndex] = film
-                }
-            } catch {
-                print(error)
-            }
+            guard let data = await service.getFilmDetails(filmId: selectedFilmId, type: type.rawValue, expecting: expecting) else { return }
+            data.category = selectedCategory
+            data.details = true
+            films[selectedCategory]?[filmAtIndex] = data
         }
     }
     
@@ -149,31 +128,16 @@ final class ModelData: ObservableObject {
     
     @MainActor
     func fetchEpisodes(seasonId: Int) async -> [Episode]? {
-        let fullURL = "\(url)/tv/\(selectedFilmId)/season/\(seasonId)" + apiKey
-        
-        do {
-            let result = try await URLSession.shared.request(url: URL(string: fullURL), expecting: Season.self)
-            return result.episodes
-        } catch {
-            print(error)
-        }
-        
-        return nil
+        return await service.getEpisodes(filmId: selectedFilmId, seasonId: seasonId)
     }
     
     @MainActor
     func fetchPeople(id: Int) async {
-        let fullURL = "\(url)/person/\(id)" + apiKey + "&append_to_response=movie_credits,tv_credits&include_image_language=en"
-        
         if people[id] == nil {
-            do {
-                let result = try await URLSession.shared.request(url: URL(string: fullURL), expecting: People.self)
-                people[result.id ?? 0] = result
-                films[String(id) + K.People.movie] = result.movieCredits?.all
-                films[String(id) + K.People.tv] = result.tvCredits?.all
-            } catch {
-                print(error)
-            }
+            let data = await service.getPeople(id: id)
+            people[data?.id ?? 0] = data
+            films[String(id) + K.People.movie] = data?.movieCredits?.all
+            films[String(id) + K.People.tv] = data?.tvCredits?.all
         }
     }
 }
