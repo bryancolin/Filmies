@@ -52,7 +52,7 @@ struct PeopleView: View {
             .clipShape(Circle())
         } //: HSTACK
         .padding()
-        .padding(.top)
+        .padding(.top, UIApplication.shared.isTopSafeAreaAvailable() ? 30 : 0)
         .background(Blur(style: .dark).opacity(opacity))
     }
     
@@ -129,7 +129,7 @@ struct PeopleView: View {
                                 .multilineTextAlignment(.center)
                                 .padding(.trailing)
                             } //: GEOMETRY READER
-                            .frame(height: 100)
+                            .frame(height: 75)
                             .padding(.trailing)
                             .padding(10)
                             .background(Color.white.opacity(0.2))
