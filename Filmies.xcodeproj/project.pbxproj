@@ -124,6 +124,8 @@
 		E5ABF9C727A7D06F00B4E1FF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABF9C627A7D06E00B4E1FF /* Bundle+Extension.swift */; };
 		E5ABF9C827A7D8F400B4E1FF /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5ABF9C627A7D06E00B4E1FF /* Bundle+Extension.swift */; };
 		E5B3AF3126A0384B004B2DCC /* CustomColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B3AF3026A0384B004B2DCC /* CustomColor.swift */; };
+		E5B4ED6428B0D0B200931B96 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B4ED6328B0D0B200931B96 /* UIApplication+Extension.swift */; };
+		E5B4ED6528B0D0B200931B96 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B4ED6328B0D0B200931B96 /* UIApplication+Extension.swift */; };
 		E5B5785926B506D4005D86BD /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B5785826B506D4005D86BD /* String+Extension.swift */; };
 		E5B7FFED26C013B800E5BC6D /* Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B7FFEC26C013B800E5BC6D /* Blur.swift */; };
 		E5C9574126B3EA0F007B1B1D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C9574026B3EA0F007B1B1D /* Date+Extension.swift */; };
@@ -251,6 +253,7 @@
 		E5ABF9C627A7D06E00B4E1FF /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
 		E5AC242C269AAD8300FBBDD3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		E5B3AF3026A0384B004B2DCC /* CustomColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomColor.swift; sourceTree = "<group>"; };
+		E5B4ED6328B0D0B200931B96 /* UIApplication+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		E5B5785826B506D4005D86BD /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		E5B7FFEC26C013B800E5BC6D /* Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Blur.swift; sourceTree = "<group>"; };
 		E5C6F1582699A37C00631576 /* Epilogue-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Epilogue-Regular.ttf"; sourceTree = "<group>"; };
@@ -655,6 +658,7 @@
 				E5CFD86626B3FBD400F2C6C8 /* Double+Extension.swift */,
 				E5C9574326B3ED90007B1B1D /* Int+Extension.swift */,
 				E5B5785826B506D4005D86BD /* String+Extension.swift */,
+				E5B4ED6328B0D0B200931B96 /* UIApplication+Extension.swift */,
 				E54B4D4F26BFCF4A00BE5461 /* URLSession+Extension.swift */,
 				E52B8DDA26C53DD00032BC4A /* View+Extension.swift */,
 			);
@@ -923,6 +927,7 @@
 				E52294B026E0D02900DD3E09 /* Creator.swift in Sources */,
 				E5840A6A26A7FD7B00E3F782 /* TabCurve.swift in Sources */,
 				E503173D26CCB914009155E7 /* ListItem.swift in Sources */,
+				E5B4ED6428B0D0B200931B96 /* UIApplication+Extension.swift in Sources */,
 				E564B11D26ABFCDB002637A9 /* CustomDivider.swift in Sources */,
 				E54CC43F269D8EC50083C6FE /* FilmView.swift in Sources */,
 				E50254F826983E80000C6F03 /* Movie.swift in Sources */,
@@ -986,6 +991,7 @@
 				E53AD02826FEE02D0034DE21 /* Direction.swift in Sources */,
 				E53AD01F26FEDA1A0034DE21 /* Season.swift in Sources */,
 				E53AD02E26FEE0520034DE21 /* Date+Extension.swift in Sources */,
+				E5B4ED6528B0D0B200931B96 /* UIApplication+Extension.swift in Sources */,
 				E53AD02326FEDA340034DE21 /* Images.swift in Sources */,
 				E53AD02526FEDA3B0034DE21 /* People.swift in Sources */,
 				E53AD01726FED9ED0034DE21 /* Production.swift in Sources */,
