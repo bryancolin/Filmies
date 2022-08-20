@@ -34,11 +34,7 @@ extension URLSession {
         
         let task = dataTask(with: url) { data, _, error in
             guard let data = data else {
-                if let error = error {
-                    completion(.failure(error))
-                } else {
-                    completion(.failure(CustomError.invalidData))
-                }
+                completion(.failure(error ?? CustomError.invalidData))
                 return
             }
             
