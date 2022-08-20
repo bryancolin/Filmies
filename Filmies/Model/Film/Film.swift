@@ -55,8 +55,8 @@ class Film: Codable, Identifiable {
 
 extension Film {
     var description: String {
-        if let text = overview, !text.isEmpty { return text }
-        return String("No synopsis available yet")
+        guard let text = overview, !text.isEmpty else { return String("") }
+        return text
     }
     
     var rate: String {

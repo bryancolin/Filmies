@@ -30,32 +30,34 @@ struct FilmDetails: View {
             }
             
             //MARK: - DESCRIPTIONS
-            VStack(alignment: .leading) {
-                Text(film.description)
-                    .font(.subheadline)
-                    .fixedSize(horizontal: false, vertical: true)
-            } //: VSTACK
-            
-            CustomDivider()
+            if !film.description.isEmpty {
+                VStack(alignment: .leading) {
+                    Text(film.description)
+                        .font(.subheadline)
+                        .fixedSize(horizontal: false, vertical: true)
+                } //: VSTACK
+                
+                CustomDivider()
+            }
             
             //MARK: - LANGUAGES
-            if let languages = film.languages {
-                HorizontalComponent(title: "Languages", details: languages.compactMap{ $0.name })
+            if let languages = film.languages?.compactMap { $0.name } {
+                HorizontalComponent(title: "Languages", details: languages)
             }
             
             //MARK: - GENRES
-            if let genres = film.genres {
-                HorizontalComponent(title: "Genres", details: genres.compactMap{ $0.name })
+            if let genres = film.genres?.compactMap { $0.name } {
+                HorizontalComponent(title: "Genres", details: genres)
             }
             
             //MARK: - PRODUCTION COUNTRIES
-            if let countries = film.productionCountries {
-                HorizontalComponent(title: "Production Countries", details: countries.compactMap{ $0.name })
+            if let countries = film.productionCountries?.compactMap { $0.name }  {
+                HorizontalComponent(title: "Production Countries", details: countries)
             }
             
             //MARK: - PRODUCTION COMPANIES
-            if let companies = film.productionCompanies {
-                HorizontalComponent(title: "Production Companies", details: companies.compactMap{ $0.name })
+            if let companies = film.productionCompanies?.compactMap { $0.name }  {
+                HorizontalComponent(title: "Production Companies", details: companies)
             }
         }
     }

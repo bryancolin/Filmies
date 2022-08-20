@@ -30,6 +30,7 @@ struct FilmDescriptions: View {
                     }
                     Spacer()
                     Text("Rating").font(.caption)
+                        .padding(.bottom, 10)
                 } //: VSTACK
                 .frame(width: width)
                 
@@ -43,6 +44,7 @@ struct FilmDescriptions: View {
                     Text(duration)
                     Spacer()
                     Text("Duration").font(.caption)
+                        .padding(.bottom, 10)
                 } //: VSTACK
                 .frame(width: width)
 
@@ -56,6 +58,7 @@ struct FilmDescriptions: View {
                     Text(date)
                     Spacer()
                     Text("Release Date").font(.caption)
+                        .padding(.bottom, 10)
                 } //: VSTACK
                 .frame(width: width)
             } //: HSTACK
@@ -64,7 +67,7 @@ struct FilmDescriptions: View {
             .minimumScaleFactor(0.5)
             .multilineTextAlignment(.center)
         } // GEOMETRY READER
-        .frame(height: 80)
+        .frame(height: 75)
     }
 }
 

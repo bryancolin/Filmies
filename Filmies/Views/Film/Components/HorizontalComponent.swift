@@ -17,28 +17,22 @@ struct HorizontalComponent: View {
     //MARK: - BODY
     
     var body: some View {
-        HStack(alignment: .top) {
-            Text(title)
-                .fontWeight(.semibold)
+        HStack {
+            VStack(alignment: .leading, spacing: 5) {
+                Text(title)
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                
+                Text(!details.isEmpty ? details.joined(separator: "  ") : "-")
+                    .multilineTextAlignment(.leading)
+                    .lineSpacing(2)
+                    .padding(.bottom, 1)
+            } //: VSTACK
+            .padding(.bottom, 5)
             
             Spacer()
-            
-            VStack(alignment: .trailing) {
-                if !details.isEmpty {
-                    ForEach(0..<5) {
-                        if $0 < details.count {
-                            Text(details[$0])
-                        }
-                    }
-                } else {
-                    Text("-")
-                }
-            } //: VSTACK
-            .multilineTextAlignment(.trailing)
-            .padding(.bottom, 1)
-        }
-        .padding(.bottom, 5)
-    } //: HSTACK
+        } //: HSTACK
+    }
 }
 
 //MARK: - PREVIEW
