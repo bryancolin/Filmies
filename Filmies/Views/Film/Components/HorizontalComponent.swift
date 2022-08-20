@@ -24,6 +24,7 @@ struct HorizontalComponent: View {
                     .fontWeight(.semibold)
                 
                 Text(!details.isEmpty ? details.joined(separator: "  ") : "-")
+                    .font(.subheadline)
                     .multilineTextAlignment(.leading)
                     .lineSpacing(2)
                     .padding(.bottom, 1)

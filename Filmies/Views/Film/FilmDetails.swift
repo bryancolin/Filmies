@@ -29,16 +29,8 @@ struct FilmDetails: View {
                 FilmDescriptions(date: tvShow.firstAirDate?.toDate().toString(format: K.DateFormat.defaultOne) ?? "", duration: tvShow.duration, rate: film.rate)
             }
             
-            //MARK: - DESCRIPTIONS
-            if !film.description.isEmpty {
-                VStack(alignment: .leading) {
-                    Text(film.description)
-                        .font(.subheadline)
-                        .fixedSize(horizontal: false, vertical: true)
-                } //: VSTACK
-                
-                CustomDivider()
-            }
+            //MARK: - Synopsis
+            HorizontalComponent(title: "Synopsis", details: [film.description])
             
             //MARK: - LANGUAGES
             if let languages = film.languages?.compactMap { $0.name } {
