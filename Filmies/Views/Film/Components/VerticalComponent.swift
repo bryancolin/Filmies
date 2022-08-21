@@ -73,7 +73,7 @@ struct VerticalComponentDetails: View {
                         .frame(width: height, height: height)
                         .cornerRadius(height / 2)
                     
-                    VStack(alignment: .leading) {
+                    VStack(alignment: .leading, spacing: 2.5) {
                         Text(detail)
                             .font(.caption)
                         
@@ -89,7 +89,7 @@ struct VerticalComponentDetails: View {
                 } //: VSTACK
                 .padding(.vertical, 10)
             }
-            .frame(height: 150)
+            .frame(height: 125)
         } //: BUTTON
         .fullScreenCover(isPresented: $isPresented) {
             PeopleView(id: id, name: detail, urlPath: urlPath)
@@ -102,7 +102,7 @@ struct VerticalComponentDetails: View {
 
 struct VerticalComponent_Previews: PreviewProvider {
     static var previews: some View {
-        VerticalComponent(title: "Bryan Colin", urlsPath: [""], details: [""], id: [0])
+        VerticalComponent(title: "Casts", urlsPath: [""], details: ["Bryan Colin"], subDetails: ["Self"], id: [0])
             .environmentObject(ModelData())
     }
 }

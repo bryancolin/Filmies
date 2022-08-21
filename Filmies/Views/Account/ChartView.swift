@@ -15,7 +15,8 @@ struct ChartView: View {
     var titles: [String]
     
     @State var index = 0
-    @State var barHeights: [CGFloat]  = Array(repeating: 0, count: 7)
+    @State var barHeights: [CGFloat] = Array(repeating: 0, count: 7)
+    @State var barValues: [String] = Array(repeating: "", count: 7)
     
     var drag: some Gesture {
         DragGesture(minimumDistance: 0, coordinateSpace: .local)
@@ -70,7 +71,7 @@ struct ChartView: View {
                         let width = geometry.size.width / 2 * (1 / 7)
                         HStack(alignment: .center, spacing: geometry.size.width / 14.5) {
                             ForEach(Array(titles.enumerated()), id: \.offset) { id, title in
-                                BarView(title: title, width: width, height: $barHeights[id])
+                                BarView(title: title, width: width, height: $barHeights[id], value: $barValues[id])
                                     .onChange(of: index) { newValue in
                                         getBarHeights(index: id, title: title)
                                     }
@@ -93,7 +94,9 @@ struct ChartView: View {
     //MARK: - FUNCTIONS
     
     func getBarHeights(index: Int, title: String) {
-        barHeights[index] = CGFloat(getTotalHoursPerDay(films[title]) / 60)
+        let totalHoursPerDay = getTotalHoursPerDay(films[title])
+        barValues[index] = totalHoursPerDay.toTimeString(withMinutes: false)
+        barHeights[index] = CGFloat(totalHoursPerDay/60)
     }
     
     // TOTAL HOURS OF WATCHING FILMS IN A WEEK

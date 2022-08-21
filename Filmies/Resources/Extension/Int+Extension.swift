@@ -13,7 +13,7 @@ extension Int {
     
     var minutes: Int { self % 60 }
     
-    func toTimeString() -> String {
-        return (hours > 0 ? "\(hours)h " : "") + (minutes > 0 ? "\(minutes)m" : "")
+    func toTimeString(withMinutes: Bool = true) -> String {
+        return (hours > 0 ? "\(hours)h " : "") + (minutes > 0 && withMinutes ? "\(minutes)m" : "")
     }
 }
