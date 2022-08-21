@@ -9,9 +9,4 @@ import Foundation
 
 struct Images: Codable {
     let backdrops, posters: [Photo]?
-    
-    enum CodingKeys: String, CodingKey {
-        case backdrops
-        case posters
-    }
 }

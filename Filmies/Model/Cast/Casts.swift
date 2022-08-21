@@ -10,11 +10,6 @@ import Foundation
 struct Casts: Codable {
     let cast: [Cast]?
     let crew: [Crew]?
-    
-    enum CodingKeys: String, CodingKey {
-        case cast
-        case crew
-    }
 }
 
 extension Casts {

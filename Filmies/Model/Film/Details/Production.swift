@@ -9,8 +9,4 @@ import Foundation
 
 struct Production: Codable {
     let name: String
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-    }
 }

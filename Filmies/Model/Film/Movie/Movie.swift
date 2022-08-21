@@ -43,7 +43,7 @@ class Movie: Film {
 
 extension Movie {
     var duration: String {
-        return runTime?.toTimeString() ?? ""
+        return runTime?.toTimeString() ?? "-"
     }
     
     var releaseYear: String {

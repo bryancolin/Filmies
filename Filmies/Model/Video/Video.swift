@@ -9,11 +9,4 @@ import Foundation
 
 struct Video: Codable {
     let name, key, site, type: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case name
-        case key
-        case site
-        case type
-    }
 }

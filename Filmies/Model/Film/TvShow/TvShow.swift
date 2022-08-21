@@ -57,7 +57,7 @@ class TvShow: Film {
 
 extension TvShow {
     var duration: String {
-        return runTime?.first?.toTimeString() ?? ""
+        return runTime?.first?.toTimeString() ?? "-"
     }
     
     var firstAir: String {
