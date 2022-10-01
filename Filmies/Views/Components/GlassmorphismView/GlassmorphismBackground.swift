@@ -27,8 +27,11 @@ struct GlassmorphismBackground: View {
                 let height = geometry.size.height
                 
                 BlurCircle(color: circleColors[0], paddingNumber: 50, offsetX: width/2, offsetY: -height/4, blurRadius: blurRadius)
+                    .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                 BlurCircle(color: circleColors[1], paddingNumber: 25, offsetX: -width/2.2, blurRadius: blurRadius)
+                    .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                 BlurCircle(color: circleColors[2], paddingNumber: 50, offsetX: width/2.1, offsetY: height/2, blurRadius: blurRadius)
+                    .position(x: geometry.frame(in: .local).midX, y: geometry.frame(in: .local).midY)
                 
                 Color.black.opacity(0.3)
             }

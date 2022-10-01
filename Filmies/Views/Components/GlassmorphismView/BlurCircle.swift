@@ -34,7 +34,6 @@ struct BlurCircle: View {
             .onAppear {
                 isAppear.toggle()
             }
-            .drawingGroup()
     }
 }
 
