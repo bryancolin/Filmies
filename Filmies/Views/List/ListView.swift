@@ -38,20 +38,18 @@ struct ListView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 if let films = modelData.films[category] {
-                    List {
-                        ForEach(films) { film in
-                            ListItem(film: film, category: category, isToggle: $isToggle)
-                                .onAppear {
-                                    if film.id == films.last?.id && (films.count % 20 == 0) && !category.contains("favorites") {
-                                        Task {
-                                            await modelData.fetchFilms(with: category, name: searchText, pageNumber: (films.count / 20) + 1)
-                                        }
-                                    }
-                                } //: LIST ITEM
-                        } //: LOOP
-                        .listRowBackground(Blur(style: .dark))
-                    } //: LIST
-                    .background(background)
+                    if #available(iOS 16.0, *) {
+                        List {
+                            content(of: films)
+                        } //: LIST
+                        .scrollContentBackground(.hidden)
+                        .background(background)
+                    } else {
+                        List {
+                            content(of: films)
+                        } //: LIST
+                        .background(background)
+                    }
                 } else {
                     Text("Not Found")
                         .font(.caption)
@@ -70,6 +68,22 @@ struct ListView: View {
             }
         } //: NAVIGATION VIEW
         .animation(.default)
+    }
+    
+    // MARK: - FUNCTIONS
+    @ViewBuilder
+    func content(of films: [Film]) -> some View {
+        ForEach(films) { film in
+            ListItem(film: film, category: category, isToggle: $isToggle)
+                .onAppear {
+                    if film.id == films.last?.id && (films.count % 20 == 0) && !category.contains("favorites") {
+                        Task {
+                            await modelData.fetchFilms(with: category, name: searchText, pageNumber: (films.count / 20) + 1)
+                        }
+                    }
+                } //: LIST ITEM
+        } //: LOOP
+        .listRowBackground(Blur(style: .dark))
     }
 }
 
