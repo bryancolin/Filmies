@@ -32,11 +32,12 @@ struct WidgetView: View {
                     .fontWeight(.bold)
                     .lineLimit(1)
                 
+                let details = entry.data
                 switch family {
                 case .systemSmall:
                     HStack {
                         ForEach(0..<2) { index in
-                            if let details = entry.data, index < details.count {
+                            if index < details.count {
                                 NetworkImage(urlString: details[index].posterPath)
                                     .cornerRadius(5)
                             }
@@ -46,7 +47,7 @@ struct WidgetView: View {
                 case .systemMedium:
                     LazyVGrid(columns: columns) {
                         ForEach(0..<5) { index in
-                            if let details = entry.data, index < details.count {
+                            if index < details.count {
                                 NetworkImage(urlString: details[index].posterPath)
                                     .cornerRadius(5)
                             }
@@ -57,7 +58,7 @@ struct WidgetView: View {
                 case .systemLarge:
                     LazyVGrid(columns: columns) {
                         ForEach(0..<15) { index in
-                            if let details = entry.data, index < details.count  {
+                            if index < details.count  {
                                 NetworkImage(urlString: details[index].posterPath)
                                     .cornerRadius(5)
                             }

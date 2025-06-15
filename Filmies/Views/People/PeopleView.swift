@@ -138,7 +138,8 @@ struct PeopleView: View {
                         
                         //MARK: - BIOGRAPHY
                         
-                        if let biography = people.biography, let count = biography.wordCount, !biography.isEmpty {
+                        if let biography = people.biography, !biography.isEmpty {
+                            let count = biography.wordCount
                             VStack(alignment: .leading) {
                                 Text(biography)
                                     .font(.subheadline)

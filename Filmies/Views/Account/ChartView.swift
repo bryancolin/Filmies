@@ -60,7 +60,8 @@ struct ChartView: View {
             
             // CONTENT
             VStack {
-                if let week = Date().getWeekInterval(weekOfYear: index), let startOfWeek = week.startOfWeek, let endOfWeek = week.endOfWeek {
+                let week = Date().getWeekInterval(weekOfYear: index)
+                if let startOfWeek = week.startOfWeek, let endOfWeek = week.endOfWeek {
                     ChartTab(title: "\(startOfWeek.toString(format: "dd/MM/yy"))-\(endOfWeek.toString(format: "dd/MM/yy"))", selectedIndex: $index)
                         .gesture(drag)
                 }

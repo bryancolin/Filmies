@@ -23,10 +23,9 @@ struct CustomImage: View {
     //MARK: - BODY
     
     var body: some View {
-        if let url = urlPath, !url.isEmpty {
-            WebImage(url: URL(string: "https://image.tmdb.org/t/p/w500" + url))
-                .resizable()
-                .aspectRatio(contentMode: ratio)
+        if let path = urlPath, !path.isEmpty {
+            let url = URL(string: "https://image.tmdb.org/t/p/w500" + path)
+            webImage(with: url)
         } else {
             ZStack {
                 Color(K.BrandColors.darkBlue)
@@ -38,6 +37,25 @@ struct CustomImage: View {
                 }
             }
         }
+    }
+    
+    // MARK: - FUNCTIONS
+    
+    @ViewBuilder
+    func asyncImage(with url: URL?) -> some View {
+        AsyncImage(url: url) { image in
+            image.resizable()
+        } placeholder: {
+            Color.white.opacity(0.2)
+        }
+        .aspectRatio(2/3, contentMode: ratio)
+    }
+    
+    @ViewBuilder
+    func webImage(with url: URL?) -> some View {
+        WebImage(url: url)
+            .resizable()
+            .aspectRatio(contentMode: ratio)
     }
 }
 

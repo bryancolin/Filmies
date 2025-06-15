@@ -13,14 +13,14 @@ struct CustomTabBar: View {
     
     @Binding var selectedTab: Tab
     
-    @State var tabPoints: [CGFloat] = []
+    @State var tabPoints: [CGFloat] = Array(repeating: 0, count: Tab.allCases.count)
     
     //MARK: - BODY
     
     var body: some View {
         HStack(spacing: 0) {
-            ForEach(Tab.allCases, id: \.self) {
-                TabBarButton(image: $0, selectedTab: $selectedTab, tabPoints: $tabPoints)
+            ForEach(Array(Tab.allCases.enumerated()), id: \ .element) { index, tab in
+                TabBarButton(index: index, image: tab, selectedTab: $selectedTab, tabPoints: $tabPoints)
             }
         } //: HSTACK
         .padding(0)
@@ -32,7 +32,8 @@ struct CustomTabBar: View {
             Circle()
                 .fill(Color.white)
                 .frame(width: 10, height: 10)
-                .offset(x: getCurvePoint() - 20)   
+                .offset(x: getCurvePoint() - 20)
+                .animation(.spring(response: 0.3, dampingFraction: 0.7), value: getCurvePoint())
         }
         .cornerRadius(30)
         .padding(.horizontal)
